@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  #content.pure-g-r
+    .pure-u-1
+      h1= title
+      - var d = new Date;
+      p For your records, here are the details of your payment on #{d.getMonth()}/#{d.getDate()}/#{d.getFullYear()} to #{name}:
+      h3 $#{paidAmount} #{paidMessage ? 'for '+paidMessage : ''} paid via your #{charge.card.type} ending in #{charge.card.last4}.

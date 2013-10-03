@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href="/stylesheets/polarpageviews.css")
+  .pure-g-r
+    .pure-u-1(style='margin-top:2em;')
+      #controls
+        button#live-button.hidden(onclick='handleLiveButton()') Live
+        button#daily-button.hidden(onclick='handleDailyButton()') Daily
+        button#weekly-button.hidden(onclick='handleWeeklyButton()') Weekly
+        button#monthly-button.hidden(onclick='handleMonthlyButton()') Monthly
+        button#reload-button.hidden(onclick='location.reload()') Restart
+      #options
+        h1 Polar Pageviews
+        p.lead A tool for traffic comparison
+        p
+          | View data from your Google Analytics properties by day, week & month from the previous 365 days.
+        hr
+        p
+          small
+            | Your data will not be stored, no registration required.
+            br
+            | Made by 
+            a(href='http://bckmn.com', target='_blank') jbckmn
+            | . Have fun.
+        #example
+          button#authorize-button Begin
+      #radial
+      #divvy.tooltip
+      script(type='text/javascript', src='/javascripts/moment.js')
+      script(type='text/javascript', src='/javascripts/gapi.js')
+      script(type='text/javascript', src='/javascripts/authorize.js')
+      script(type='text/javascript', src='/javascripts/d3.v2.min.js')
+      script(type='text/javascript', src='/javascripts/p.js')

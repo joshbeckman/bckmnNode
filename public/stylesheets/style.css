@@ -1,0 +1,160 @@
+@import url('http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300');
+@import url('pure-min.css');
+body{
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  color: #fff;
+  background-color: #5e5bd6;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: 0.7s;-moz-transition: 0.7s;-webkit-transition: 0.7s;-o-transition: 0.7s;
+}
+h1,h2,h3,h4,h5{
+  font-family: "Oswald", Helvetica, sans-serif;
+  font-weight: 300;
+}
+a {
+  color: lightcyan;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid lightcyan;
+  transition: 0.3s;-moz-transition: 0.3s;-webkit-transition: 0.3s;-o-transition: 0.3s;
+}
+a:hover{
+  border-bottom: 3px solid lightcyan;
+}
+.btn{
+  color: white;
+  background-color: lightcoral;
+  padding: 0.3em 0.5em;
+  border-radius: 4px;
+  border: none;
+}
+.btn:hover{
+  border:none !important;
+  background-color: coral;
+}
+.text-center {
+  text-align: center;
+}
+#content{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+.invisible{visibility: hidden;}
+.visible{visibility: visible;}
+.transition{transition: 0.3s;-moz-transition: 0.3s;-webkit-transition: 0.3s;-o-transition: 0.3s;}
+.btn-danger{
+  background-color: rgba(194,89,117,0.75);
+}
+.btn-danger:hover{
+  background-color: rgba(194,89,117,0.5);
+}
+code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
+.message, .error {
+  line-height: 3em;
+  margin: 0 0 1em 0;
+  padding: 0.5em 2em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  border-radius: 3px;
+}
+.message {
+  color: #384682;
+  background-color: #c3cbf0;
+}
+.error {
+  color: #ad8600;
+  background-color: #feffab;
+}
+.lead {
+  font-size: 1.5em;
+}
+.muted{
+  opacity: 0.5;
+}
+#hero h1{
+  font-size:5em;
+}
+#hero .hint{
+  height: 1em;
+  opacity: 0;
+  font-size: 1.2em;
+  padding-top: 0;
+  margin-top: -3em;
+  margin-bottom: 3em;
+  color: lightcyan;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 1s;-moz-transition: 1s;-webkit-transition: 1s;-o-transition: 1s;
+}
+/*#about:before{
+  content: 'WORK';
+  display: inline-block;
+  transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg);
+  -webkit-transform:rotate(-90deg);
+  width: 0;
+  height: 60px;
+  position: relative;
+  bottom:-70px;
+  opacity: 0.5;
+}
+#about{
+  margin-top: -50px;
+}*/
+#about{
+  box-sizing:border-box;
+  padding-left: 20px;
+  text-align: left;
+}
+#contact{
+  box-sizing:border-box;
+  text-align: right;
+  padding-right: 20px;
+  margin-top: -5px;
+}
+.lightbox{
+  overflow: hidden;
+  overflow-x: scroll;
+  margin:0;
+  padding: 0;
+  height:0;
+}
+.gallery{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  display: block;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.gallery li{
+  display: inline;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.gallery li img{
+  position: relative;
+  height: 450px;
+  margin:3px;
+  border-radius:3px;
+}
+b.stars, b.forks{ font-weight: bold; display: inline-block; } b.stars:before, b.forks:before{ display: inline-block; font-size: 14px; width: 20px; text-align: center; } b.stars:before{ content: '\2605'; } b.forks:before{ content: '\2646'; }
+.Arduino{color: #bd79d1;} .Java{color: #b07219;} .VHDL{color: #543978;} .Scala{color: #7dd3b0;} .Emacs .Lisp{color: #c065db;} .Delphi{color: #b0ce4e;} .Ada{color: #02f88c;} .VimL{color: #199c4b;} .Perl{color: #0298c3;} .Lua{color: #fa1fa1;} .Rebol{color: #358a5b;} .Verilog{color: #848bf3;} .Factor{color: #636746;} .Ioke{color: #078193;} .R{color: #198ce7;} .Erlang{color: #949e0e;} .Nu{color: #c9df40;} .AutoHotkey{color:#6594b9;} .Clojure{color: #db5855;} .Shell{color: #5861ce;} .Assembly{color: #a67219;} .Parrot{color: #f3ca0a;} .C#{color: #5a25a2;} .Turing{color: #45f715;} .AppleScript{color: #3581ba;} .Eiffel{color: #946d57;} .Common .Lisp{color: #3fb68b;} .Dart{color: #cccccc;} .SuperCollider{color: #46390b;} .CoffeeScript{color: #244776;} .XQuery{color: #2700e2;} .Haskell{color: #29b544;} .Racket{color: #ae17ff;} .Elixir{color: #6e4a7e;} .HaXe{color: #346d51;} .Ruby{color: #701516;} .Self{color: #0579aa;} .Fantom{color: #dbded5;} .Groovy{color: #e69f56;} .C{color: #555;} .JavaScript{color: #f15501;} .D{color: #fcd46d;} .ooc{color: #b0b77e;} .C++{color: #f34b7d;} .Dylan{color: #3ebc27;} .Nimrod{color: #37775b;} .Standard .ML{color: #dc566d;} .Objective-C{color: #f15501;} .Nemerle{color: #0d3c6e;} .Mirah{color: #c7a938;} .Boo{color: #d4bec1;} .Objective-J{color: #ff0c5a;} .Rust{color: #dea584;} .Prolog{color: #74283c;} .Ecl{color: #8a1267;} .Gosu{color: #82937f;} .FORTRAN{color: #4d41b1;} .ColdFusion{color: #ed2cd6;} .OCaml{color: #3be133;} .Fancy{color: #7b9db4;} .Pure .Data{color: #f15501;} .Python{color: #3581ba;} .Tcl{color: #e4cc98;} .Arc{color: #ca2afe;} .Puppet{color: #cc5555;} .Io{color: #a9188d;} .Max{color: #ce279c;} .Go{color: #8d04eb;} .ASP{color: #6a40fd;} .Visual .Basic{color: #945db7;} .PHP{color: #6e03c1;} .Scheme{color: #1e4aec;} .Vala{color: #3581ba;} .Smalltalk{color: #596706;} .Matlab{color: #bb92ac;} .C#{color: #bb92af;}
+#repos-list, #stars-list{ margin: 0; padding: 0; list-style: none; } #repos-list li, #stars-list li{ display: inline; } #repos-list li a, #stars-list li a{ position: relative; display: block; line-height: 20px; padding: 1em 0; overflow: hidden; border:none; } #repos-list li a:hover, #stars-list li a:hover{ background-color: rgba(0,0,0,0.05); } #repos-list li.fork a:before, #stars-list li.fork a:before{ color: #999; content: '\2646'; position: absolute; left: 5px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); } #repos-list li a .desc, #stars-list li a .desc{ color: #fff; display: inline-block; line-height: 1.3em; margin-left: .5em; } #projects-info, #repos-list li a .info, #stars-list li a .info{ float: right; clear: right; }
+@media only screen and (max-width :780px){
+  #about{
+    box-sizing:border-box;
+    padding-left: 0px;
+    text-align: left;
+  }
+  #contact{
+    box-sizing:border-box;
+    text-align: left;
+    padding-right: 0px;
+  }
+}

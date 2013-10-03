@@ -1,0 +1,225 @@
+{
+  "first_name":"Joshua",
+  "last_name":"Beckman",
+  "identicon_path":"http://bckmn.com/images/favicon.png",
+  "image_path":"http://bckmn.com/images/jsh.jpg",
+  "email":"jsh@bckmn.com",
+  "externals":[
+    {
+      "name":"Twitter",
+      "username":"jbckmn",
+      "html_url":"http://twitter.com/jbckmn"
+    },
+    {
+      "name":"GitHub",
+      "username":"jbckmn",
+      "html_url":"http://github.com/jbckmn"
+    },
+    {
+      "name":"Vimeo",
+      "username":"bckmn",
+      "html_url":"http://vimeo.com/bckmn"
+    },
+    {
+      "name":"Tent",
+      "username":"bckmn",
+      "html_url":"http://bckmn.cupcake.io"
+    }
+  ],
+  "birthdate":"1990-03-22T17:00:00-06:00",
+  "birthplace":{
+    "lat":42.6394,
+      "lon":-71.3147
+  },
+  "location":{
+    "lat":41.8819,
+      "lon":-87.6278
+  },
+  "languages":{
+    "communication":[
+      "English", "Spanish"
+    ],
+    "programming":[
+      "Ruby","Javascript","Python","HTML","CSS","PHP"
+    ],
+    "frameworks":[
+      "Rails","Node.js","Flask","WordPress","Jade","LESS","SASS","jQuery","Socket.io","Backbone","PostgreSQL","MongoDB","MySQL","Redis"
+    ]
+  },
+  "thoughts":[
+    "cares most about honesty in product and mind","learned something new today","can listen to Philip Glass for hours","teaches himself to fish","is in it to win it","breaks it and buys it","reads books over the water","sees things in black and white","speaks less than he thinks","keeps his fingers in many pies","is in the loop","wants to be in the know","can feel a change a'comin'","woke up early today","writes it all down","is based on a true story","doesn't see how that's possible","believes you","agrees to disagree","stays up at night","keeps his hands free","works with his hands","is backwards compatible","was never really IE 7 compatible","shoots from the hip","carries several cameras","is the sum of his parts","is a viewer like you","isn't afraid of guys like you","learns ice-skating over the summer"
+  ],
+  "front":{
+    "src":"https://s3.amazonaws.com/bckmn/public/",
+    "images":{
+      "falling":[
+        {
+          "src":"falling/falling07.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling02.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling05.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling01.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling09.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling10.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling11.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling14.jpg",
+          "alt":"people fall into water"
+        },
+        {
+          "src":"falling/falling15.jpg",
+          "alt":"people fall into water"
+        }
+      ],
+      "illiniImprov":[
+        {
+          "src":"illiniimprov/improv_01_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_02_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_03_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_04_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_05_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_06_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_07_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_08_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_09_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_10_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_11_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        },
+        {
+          "src":"illiniimprov/improv_12_JRB.jpg",
+          "alt":"University of Illinois Improv"
+        }
+      ],
+      "sports":[
+        {
+          "src":"sports/index_bg0.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/01.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/02.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/03.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/04.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/05.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/06.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/07.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/08.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/09.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/10.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/11.jpg",
+          "alt":"sports by Joshua Beckman"
+        },
+        {
+          "src":"sports/12.jpg",
+          "alt":"sports by Joshua Beckman"
+        }
+      ],
+      "latest":[
+        {
+          "src":"latest/riding.jpg",
+          "alt":"Riding a bike into the fiery Chicago Sunset."
+        },
+        {
+          "src":"latest/fire.jpg",
+          "alt":"Lighting a fire while playing Scrabble."
+        },
+        {
+          "src":"latest/stare.jpg",
+          "alt":"Staring down Chicago streets."
+        },
+        {
+          "src":"latest/savard.jpg",
+          "alt":"Hockey Hall of Famer Denis Savard."
+        },
+        {
+          "src":"latest/IECA.jpg",
+          "alt":"A member of the Independent Education Consultant Association speaks at a conference."
+        },
+        {
+          "src":"latest/IECA_choir.jpg",
+          "alt":"A gospel choir performs at the 2013 Independent Education Consultant Association conference."
+        }
+      ]
+    }
+  }
+}

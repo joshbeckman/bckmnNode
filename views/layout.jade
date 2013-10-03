@@ -1,0 +1,43 @@
+doctype 5
+html
+  head
+    title #{title || 'Joshua Beckman (jbckmn)'}
+    meta(name="viewport", content="width=device-width")
+    meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
+    link(rel='icon', href="/images/favicon.png")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='canonical', href='http://bckmn.com#{req.path}')
+    link(rel='author', href='')
+    meta(property='og:locale', content='en_US')
+    meta(property='og:url', content='http://bckmn.com#{req.path}')
+    meta(property='og:title', content='#{title || "Joshua Beckman (jbckmn)"}')
+    meta(property='og:site_name', content="Joshua Beckman (jbckmn)")
+    meta(property='og:type', content='website')
+    meta(name='twitter:card', content='summary')
+    meta(name='twitter:site', content='@jbckmn')
+    meta(name='twitter:creator', content='@jbckmn')
+    meta(name='twitter:url', content='http://bckmn.com#{req.path}')
+    meta(name='twitter:title', content='#{title || "Joshua Beckman (jbckmn)"}')
+    meta(name='twitter:image', content='#{mainImage || ""}')
+    meta(name='twitter:description', content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
+    meta(name='twitter:domain', content='http://bckmn.com')
+    
+  body
+    main.container
+      #message
+        if message.length > 0
+          p.pull-center.message #{message}
+            a(onclick="dismissAlert(this.parentNode.parentNode);", style="float:right;")
+              span.x-remove X
+      #error
+        if error.length > 0
+          p.pull-center.error #{error}
+            a(onclick="dismissAlert(this.parentNode.parentNode);", style="float:right;")
+              span.x-remove X
+
+      block content
+
+      footer.footer
+
+    script
+      function dismissAlert(elem){elem.innerHTML = '';};
