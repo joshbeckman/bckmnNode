@@ -52,7 +52,7 @@ server.listen(app.get('port'));
 console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
 
 // Setup routes
-require('./routes/frontend')(app, io);
+require('./routes/frontEnd')(app, io);
 require('./routes/api')(app, io);
 io.sockets.on('connection', function (socket) {});
 
