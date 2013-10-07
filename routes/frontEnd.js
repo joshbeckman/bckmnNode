@@ -73,4 +73,7 @@ module.exports = function (app) {
                           error: req.flash('error'), 
                           req: req });
   });
+  app.get('/naked-wordpress', function(req,res){
+    res.redirect('http://naked-wordpress.bckmn.com');
+  });
 }

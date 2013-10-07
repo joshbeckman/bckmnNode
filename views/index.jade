@@ -3,21 +3,37 @@ extends layout
 block content
   #content.pure-g-r
     #hero.pure-u-1
-      h1 #{title}
+      h1(onclick="jshBckmn.setRandomThought(this.parentNode.children[1]);") #{title}
       p(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.lead.hint
-    #contact.pure-u-1-2
+    #contact.pure-u-1-3
       h3
         a(href="mailto:jsh@bckmn.com?subject=Yo, I saw your website!") jsh@bckmn.com
-      h4 847.975.7110
-      h2
-        a.btn(href="/api") Access my API
+      h3 847.975.7110
       h3
         del.muted Too busy.
         br
         |  Looking for projects.
+        br
+        br
+      h3
+        a.btn(href="/api") Access my API
 
-    #about.pure-u-1-2
-      p <a href="http://naked-wordpress.bckmn.com" target="_blank">Naked Wordpress</a> is a commented theme and Wordpress guide for designers and developers, open-sourced and freely available. With <a href="http://atomist.co" target="_blank">Atomist.co</a>, searching your thoughts has never been more fruitful. <a href="http://ontrack.io" target="_blank">OnTrack.io</a> lets you start seeing yourself, graphed. <a href="/polarpageviews" target="_blank">Polar Pageviews</a> shows you data from your Google Analytics properties by day, week & month from the previous 365 days. <a href="http://weekaway.com" target="_blank">WeekAway.com</a> allows you to discover unique things to do and ask the locals questions. <a href="http://rankommend.com" target="_blank">Rankommend.com</a> finds the best service providers in Chicagoland.
+    #about.pure-u-1-3
+      p.muted WWW
+      h3
+        a(href="http://naked-wordpress.bckmn.com", target="_blank") Naked Wordpress
+      h3
+        a(href="http://atomist.co", target="_blank") Atomist.co
+      h3
+        a(href="http://ontrack.io", target="_blank") OnTrack.io
+      h3
+        a(href="/polarpageviews", target="_blank") Polar Pageviews
+      h3
+        a(href="http://weekaway.com", target="_blank") WeekAway.com
+      h3
+        a(href="http://rankommend.com", target="_blank") Rankommend.com
+    .pure-u-1-3
+      p.muted PICS
       h3
         a(onclick="openStrip('latest');") Latest
       h3

@@ -22,15 +22,51 @@ module.exports = function (app, io) {
     person.last_name = config.last_name;
     person.birthdate = config.birthdate;
     person.birthplace = config.birthplace;
+    var years = moment().diff(config.birthdate, 'years'),
+        months = moment(config.birthdate)
+                .add('years', years),
+        weeks = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months')),
+        days = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months'))
+                .add('weeks',moment().diff(weeks,'weeks')),
+        hours = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months'))
+                .add('weeks',moment().diff(weeks,'weeks'))
+                .add('days',moment().diff(days,'days')),
+        minutes = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months'))
+                .add('weeks',moment().diff(weeks,'weeks'))
+                .add('days',moment().diff(days,'days'))
+                .add('hours',moment().diff(hours,'hours')),
+        seconds = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months'))
+                .add('weeks',moment().diff(weeks,'weeks'))
+                .add('days',moment().diff(days,'days'))
+                .add('hours',moment().diff(hours,'hours'))
+                .add('minutes',moment().diff(minutes,'minutes')),
+        milliseconds = moment(config.birthdate)
+                .add('years', years)
+                .add('months', moment().diff(months, 'months'))
+                .add('weeks',moment().diff(weeks,'weeks'))
+                .add('days',moment().diff(days,'days'))
+                .add('hours',moment().diff(hours,'hours'))
+                .add('minutes',moment().diff(minutes,'minutes'))
+                .add('seconds',moment().diff(seconds,'seconds'));
     person.age = {
-      "years":moment().diff(config.birthdate, 'years'),
-      "months":moment().diff(config.birthdate, 'months'),
-      "weeks":moment().diff(config.birthdate, 'weeks'),
-      "days": moment().diff(config.birthdate, 'days'),
-      "hours": moment().diff(config.birthdate, 'hours'),
-      "minutes": moment().diff(config.birthdate, 'minutes'),
-      "seconds": moment().diff(config.birthdate, 'seconds'),
-      "milliseconds": moment().diff(config.birthdate, 'milliseconds')
+      "years":years,
+      "months":moment().diff(months, 'months'),
+      "weeks":moment().diff(weeks, 'weeks'),
+      "days": moment().diff(days, 'days'),
+      "hours": moment().diff(hours, 'hours'),
+      "minutes": moment().diff(minutes, 'minutes'),
+      "seconds": moment().diff(seconds, 'seconds'),
+      "milliseconds": moment().diff(milliseconds, 'milliseconds')
     };
     person.location = config.location;
     person.languages = config.languages;

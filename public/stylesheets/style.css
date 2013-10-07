@@ -75,6 +75,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 }
 #hero h1{
   font-size:5em;
+  cursor: pointer;
 }
 #hero .hint{
   height: 1em;
@@ -110,9 +111,8 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 }
 #contact{
   box-sizing:border-box;
-  text-align: right;
+  text-align: left;
   padding-right: 20px;
-  margin-top: -5px;
 }
 .lightbox{
   overflow: hidden;
