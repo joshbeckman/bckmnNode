@@ -10,7 +10,7 @@ var moment = require('moment')
 
 module.exports = function (app) {
   app.get('/', function(req, res) {
-    res.render('index', { title: 'Joshua Beckman', 
+    res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago', 
                           user: req.user, 
                           images: config.front.images, 
                           imageSrc: config.front.src, 

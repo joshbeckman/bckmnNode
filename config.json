@@ -2,7 +2,7 @@
   "first_name":"Joshua",
   "last_name":"Beckman",
   "identicon_path":"http://bckmn.com/images/favicon.png",
-  "image_path":"http://bckmn.com/images/jsh.jpg",
+  "image_path":"http://s3.amazonaws.com/bckmn/public/about/jsh.jpg",
   "email":"jsh@bckmn.com",
   "externals":[
     {
@@ -43,15 +43,22 @@
       "Ruby","Javascript","Python","HTML","CSS","PHP"
     ],
     "frameworks":[
-      "Rails","Node.js","Flask","WordPress","Jade","LESS","SASS","jQuery","Socket.io","Backbone","PostgreSQL","MongoDB","MySQL","Redis"
+      "Rails","Node.js","Flask","d3js","WordPress","Jade","LESS","SASS","jQuery","Socket.io","Backbone","PostgreSQL","MongoDB","MySQL","Redis"
     ]
   },
   "thoughts":[
     "cares most about honesty in product and mind","learned something new today","can listen to Philip Glass for hours","teaches himself to fish","is in it to win it","breaks it and buys it","reads books over the water","sees things in black and white","speaks less than he thinks","keeps his fingers in many pies","is in the Loop","wants to be in the know","can feel a change a'comin'","woke up early today","writes it all down","is based on a true story","doesn't see how that's possible","believes you","agrees to disagree","stays up at night","keeps his hands free","works with his hands","is backwards compatible","was never really IE 7 compatible","shoots from the hip","carries several cameras","is the sum of his parts","is a viewer like you","isn't afraid of guys like you","learns ice-skating over the summer"
   ],
   "front":{
-    "src":"https://s3.amazonaws.com/bckmn/public/",
+    "src":"http://s3.amazonaws.com/bckmn/public/",
     "images":{
+      "about":[
+        {
+          "src":"about/jsh.jpg",
+          "alt":"Joshua Beckman"
+        },
+        {"text":""}
+      ],
       "falling":[
         {
           "src":"falling/falling07.jpg",
