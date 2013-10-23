@@ -39,5 +39,8 @@ html
 
       footer.footer
 
+    script(src='/socket.io/socket.io.js')
+    script(src="/javascripts/highlight.pack.js")
     script
+      hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};

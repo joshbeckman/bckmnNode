@@ -1,0 +1,127 @@
+extends layout
+
+block content
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+    h3 POSTS
+      a(href='#') Celery seakale
+      if unpublishedPosts
+        for up in unpublishedPosts
+          a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost('#{up._id}')") #{up.title}
+  #post-editor.pure-g-r
+    .pure-u-1
+        h1#post-title-editor.editable
+        #post-body-editor.editable.mono
+        #editor-controls
+            button#preview-button Preview
+            button#raw-button Raw
+            button#posts-button Posts
+            | |
+            button#draft-button(onclick='saveCurrent(false)') Draft
+            button#pub-button(onclick='saveCurrent(true)') Publish
+  
+  script
+    window.onload = function() {        
+        var socket = io.connect(window.location.hostname),
+            makeEdits = function(){
+                var elems = document.getElementsByClassName('editable');
+                for(i=0;i<elems.length;i++){
+                    elems[i].contentEditable = true;
+                }
+                rawButton.style.visibility = 'hidden';
+                previewButton.style.visibility = 'visible';
+            },
+            saveCurrent = function(published){
+              var editor = document.getElementById('post-editor'),
+                  postID = editor.dataset.postId,
+                  title = document.getElementById('post-title-editor').innerText,
+                  body = document.getElementById('post-body-editor').innerText;
+              if(body && title){
+                if(postID){
+                  socket.emit('updatePost', {
+                    markdown: body,
+                    title: title,
+                    _id: postID,
+                    published: published,
+                    time: (new Date)
+                  });
+                }else{
+                  socket.emit('createPost', {
+                    markdown: body,
+                    title: title,
+                    published: published,
+                    time: (new Date)
+                  });
+                }
+              }else{}
+            },
+            unescapeHTML= function(escapedStr) {
+              var div = document.createElement('div');
+              div.innerHTML = escapedStr;
+              var child = div.childNodes[0];
+              return child ? child.nodeValue : '';
+            };
+        
+        makeEdits();
+        socket.on('savedPost', function(data) {
+          console.log(data.post);
+          console.log(data);
+          if(data.post.published == false){
+              unPubs.push(data.post);
+              updateList(unPubs);
+              alert('draft');
+          }else{
+            alert('published');
+              for(p in unPubs){
+                  if(data.post._id == p._id){
+                      p.published = true;
+                  }
+              }
+              updateList(unPubs);
+          }
+        });
+        socket.on('markedWords', function(data){
+            previewButton.style.visibility = 'hidden';
+            document.getElementById('post-body-editor').innerHTML = data.markedWords;
+            previewButton.style.visibility = 'hidden';
+        });
+        previewButton.onclick = function(){
+            rawButton.style.visibility = 'visible';
+            socket.emit('markMyWords', {string: document.getElementById('post-body-editor').innerText});
+            mdHolder = document.getElementById('post-body-editor').innerText;
+        };
+        rawButton.onclick = function(){
+            document.getElementById('post-body-editor').innerText = unescapeHTML(mdHolder);
+            mdHolder = '';
+            makeEdits();
+        };
+        draftButton.onclick = function(){
+          saveCurrent(false);
+        };
+        pubButton.onclick = function(){
+          saveCurrent(true);
+        };
+        
+    };
+    var unPubs = !{JSON.stringify(unpublishedPosts) || '[]'},
+        mdHolder = '',
+        previewButton = document.getElementById('preview-button'),
+        rawButton = document.getElementById('raw-button'),
+        postsButton = document.getElementById('posts-button'),
+        draftButton = document.getElementById('draft-button'),
+        pubButton = document.getElementById('pub-button'),
+        displayPost = function(postIdToDisplay){
+          for(i=0;i<unPubs.length;i++){
+            if(unPubs[i]._id == postIdToDisplay){
+              document.getElementById('post-editor').dataset.postId = postIdToDisplay;
+              document.getElementById('post-title-editor').innerText = unPubs[i].title;
+              document.getElementById('post-body-editor').innerText = unPubs[i].markdown;
+            }
+          }
+        };
+    var menuRight = document.getElementById( 'cbp-spmenu-right' ),
+        showRight = document.getElementById( 'posts-button' );
+    showRight.onclick = function() {
+        classie.toggle( this, 'active' );
+        classie.toggle( menuRight, 'cbp-spmenu-open' );
+    };
+  include classie

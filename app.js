@@ -9,10 +9,12 @@
 
 var express = require('express')
   , load = require('express-load')
+  , mongoose = require('mongoose')
   , http = require('http')
   , path = require('path')
   , flash = require('connect-flash')
   , io = require('socket.io')
+  , Post = require('./models/post')
   , fs = require('fs')
   , config = JSON.parse(fs.readFileSync('./config.json'));
 
@@ -25,6 +27,11 @@ io.configure(function () {
   io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
+
+// Define what/which mongo to yell at
+var mongoUri = process.env.MONGOLAB_URI
+                || process.env.MONGOHQ_URL
+                || config.mongo.url;
 
 app.configure(function(){
     app.set('views', __dirname + '/views');
@@ -47,16 +54,35 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
+mongoose.connect(mongoUri);
 server.listen(app.get('port'));
 // Let's see what's going on
 console.log("Express server listening on port %d in %s mode", app.get('port'), app.settings.env);
 
+function ensureAuth(req, res, next) {
+  if(req.query.key && req.query.key == process.env.BLOG_KEY) {return next();}
+  req.flash('error', "Not allowed. You can't always get what you want.");
+  res.redirect('/');
+}
+
 // Setup routes
 require('./routes/frontEnd')(app, io);
+require('./routes/backEnd')(app, io, ensureAuth);
 require('./routes/api')(app, io);
-io.sockets.on('connection', function (socket) {});
+io.sockets.on('connection', function (socket) {
+  socket.on('markMyWords', function(data){
+    socket.emit('markedWords', {markedWords: Post.markMyWords(data.string)});
+  });
+  socket.on('updatePost', function(data){
+    socket.emit('savedPost', {post: Post.updatePost(data, io)});
+  });
+  socket.on('createPost', function(data){
+    socket.emit('savedPost', {post: Post.createPost(data, io)});
+  });
+});
 
 app.configure('development', function(){
   var repl = require('repl').start('liverepl> ');
   repl.context.io = io;
+  repl.context.Post = Post;
 })

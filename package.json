@@ -13,11 +13,14 @@
     "connect-flash": "*",
     "moment": "~2.2.1",
     "request": "~2.16.6",
-    "socket.io":"*",
-    "express-load":"*",
-    "mailgun":"*",
+    "socket.io": "*",
+    "express-load": "*",
+    "mailgun": "*",
     "stripe": "*",
     "mailcomposer": "~0.2.1",
-    "async":"*"
+    "async": "*",
+    "mongoose": "~3.6.20",
+    "mongoose-troop": "0.0.8",
+    "marked": "~0.2.9"
   }
 }
