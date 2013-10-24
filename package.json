@@ -21,6 +21,7 @@
     "async": "*",
     "mongoose": "~3.6.20",
     "mongoose-troop": "0.0.8",
-    "marked": "~0.2.9"
+    "marked": "~0.2.9",
+    "sitemap": "~0.7.0"
   }
 }
