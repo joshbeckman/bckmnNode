@@ -8,6 +8,8 @@ block content
       if unpublishedPosts
         for up in unpublishedPosts
           a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
+    h3
+      a(href="/") HOME
   #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
     .pure-u-1
         h1#post-title-editor.editable #{post ? post.title : ''}

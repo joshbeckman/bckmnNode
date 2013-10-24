@@ -242,6 +242,9 @@ p.gallery-image{
 .cbp-spmenu a {
     display: block;
 }
+.cbp-spmenu p {
+  margin-left: 1em;
+}
 .cbp-spmenu small a:hover{
   background-color: transparent;
 }

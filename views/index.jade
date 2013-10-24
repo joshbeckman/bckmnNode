@@ -19,6 +19,8 @@ block content
             a.blog-post-link(href="/blog/#{p.slug}") #{p.title}
           .post-body !{p.lede}
           a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
+      if posts.length < 1
+        h2.text-center COMING SOON
     .pure-u-1-6
   
   script
