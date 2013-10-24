@@ -1,6 +1,10 @@
 extends layout
 
 block content
+  button#main-menu-button.menu-toggle-button
+    span Menu
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+    include menuItems
   #content.pure-g-r
     .pure-u-1
       h1= title
