@@ -1,6 +1,7 @@
 doctype 5
 html
   head
+    // Hey! Email me at jsh@bckmn.com
     title #{title || 'Joshua Beckman (jbckmn)'}
     meta(name="viewport", content="width=device-width")
     meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
@@ -38,11 +39,17 @@ html
       block content
 
       footer.footer
+        .pure-g-r
+          .pure-u-1.lightbox.transition
+            ul#strip.gallery  
 
     script(src='/socket.io/socket.io.js')
     script(src="/javascripts/highlight.pack.js")
     include menuControls
     include classie
+    include lightbox
+    include creator
+    include scrollTo
     script
       hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};

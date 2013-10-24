@@ -13,7 +13,6 @@ body{
 main{
   background-color: white;
   margin-bottom: 1em;
-  padding-bottom: 5em;
 }
 h1,h2,h3,h4,h5{
   font-family: "Oswald", Helvetica, sans-serif;
@@ -84,6 +83,11 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 .muted{
   opacity: 0.5;
 }
+.face-img{
+  width:50px;
+  height: auto;
+  border-bottom-right-radius: 3px;
+}
 .name-header{
   display: inline-block;
   font-size: 25px;
@@ -101,7 +105,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
   transition: 1s;-moz-transition: 1s;-webkit-transition: 1s;-o-transition: 1s;
 }
 .blog-post-wrapper{
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 .blog-post-title{
   font-size: 2.5em;
@@ -145,6 +149,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
   margin:0;
   padding: 0;
   height:0;
+  padding-top: 100px;
 }
 .gallery{
   margin: 0;
@@ -208,7 +213,7 @@ p.gallery-image{
 }
 #main-menu-button{
   color: #aaa;
-  position: absolute;
+  position: fixed;
   background: transparent;
   border: none;
   font-size: 2em;
@@ -226,14 +231,20 @@ p.gallery-image{
 }
 .cbp-spmenu h3 {
   color: darkgrey;
-    padding: 20px;
-    margin: 0;
+  padding: 20px 20px 5px 20px;
+  margin: 0;
 }
- 
+.cbp-spmenu small a{
+  float: right;
+  padding: 1.4em 1em 0 0;
+  border: none;
+}
 .cbp-spmenu a {
     display: block;
 }
- 
+.cbp-spmenu small a:hover{
+  background-color: transparent;
+}
 .cbp-spmenu a:hover {
     background: #ddd;
     color: black;
@@ -250,7 +261,7 @@ p.gallery-image{
 }
  
 .cbp-spmenu-vertical a {
-    border-bottom: 1px solid #258ecd;
+    border-bottom: 1px solid #ddd;
     padding: 0.5em 1em;
 }
  
@@ -266,6 +277,8 @@ p.gallery-image{
 }
 #main-menu-button.menu-open {
   right: 240px;
+  color: black;
+  background-color: rgba(255,255,255,0.9);
 }
 /* Transitions */
  
@@ -288,7 +301,9 @@ p.gallery-image{
     .cbp-spmenu-right {
         right: -190px;
     }
- 
+    #main-menu-button.menu-open {
+      right: 190px;
+    }
 }
 
 b.stars, b.forks{ font-weight: bold; display: inline-block; } b.stars:before, b.forks:before{ display: inline-block; font-size: 14px; width: 20px; text-align: center; } b.stars:before{ content: '\2605'; } b.forks:before{ content: '\2646'; }

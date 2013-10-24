@@ -33,6 +33,8 @@ module.exports = function (app, io, ensureAuth) {
                                 post: post,
                                 relatedPost: relatedPost,
                                 moment: moment,
+                                images: config.front.images, 
+                                imageSrc: config.front.src, 
                                 message: req.flash('message'), 
                                 error: req.flash('error'), 
                                 req: req,
@@ -52,6 +54,8 @@ module.exports = function (app, io, ensureAuth) {
                             amount: req.query.amount,
                             email: req.query.email,
                             text: req.query.message,
+                            images: config.front.images, 
+                            imageSrc: config.front.src,
                             message: req.flash('message'),
                             error: req.flash('error'), 
                             req: req });
@@ -79,6 +83,8 @@ module.exports = function (app, io, ensureAuth) {
                                   charge: charge,
                                   paidAmount: req.body.amount,
                                   paidMessage: req.body.message,
+                                  images: config.front.images, 
+                                  imageSrc: config.front.src,
                                   message: req.flash('message'),
                                   error: req.flash('error'), 
                                   req: req });
@@ -90,6 +96,8 @@ module.exports = function (app, io, ensureAuth) {
     res.render('payError', { title: 'Oh Noes!',
                           message: req.flash('message'),
                           error: req.flash('error'), 
+                          images: config.front.images, 
+                          imageSrc: config.front.src,
                           req: req });
   });
   app.get('/polarpageviews', function(req, res) {
