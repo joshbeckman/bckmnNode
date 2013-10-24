@@ -1,0 +1,27 @@
+doctype 5
+html
+  head
+    title #{title || 'Joshua Beckman (jbckmn)'}
+    meta(name="viewport", content="width=device-width")
+    link(rel='icon', href="/images/favicon.png")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    main.container
+      #content.pure-g-r
+        .pure-u-1-8
+        .pure-u-3-4
+          h1.text-center
+            code 404
+          h2 Apologies, but I don't know what you mean by: <br>
+            small(style='word-wrap:break-word;font-family:"Open Sans";') "#{url}"
+          br
+          p You could try searching: 
+            input(type="text")#search-field
+            input(type="submit")#search-submit
+          br
+          h2 or 
+            a(href="/") GO HOME
+          br
+          br
+    script(src="/javascripts/searcher.js")

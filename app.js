@@ -53,25 +53,6 @@ app.configure('development', function(){
 app.configure('production', function(){
     app.use(express.errorHandler());
 });
-//setup the errors
-server.error(function(err, req, res, next){
-    if (err instanceof NotFound) {
-        res.render('404.jade', { locals: { 
-                  title : '404 - Not Found'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX' 
-                },status: 404 });
-    } else {
-        res.render('500.jade', { locals: { 
-                  title : 'The Server Encountered an Error'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX'
-                 ,error: err 
-                },status: 500 });
-    }
-});
 
 mongoose.connect(mongoUri);
 server.listen(app.get('port'));
@@ -103,7 +84,20 @@ io.sockets.on('connection', function (socket) {
     })
   });
 });
-
+//setup the errors
+app.use(app.router);
+app.use(function(req, res, next){
+  res.status(404);
+  if (req.accepts('html')) {
+    res.render('404', { url: req.url });
+    return;
+  }
+  if (req.accepts('json')) {
+    res.send({ error: 'Not found' });
+    return;
+  }
+  res.type('txt').send('Not found');
+});
 app.configure('development', function(){
   var repl = require('repl').start('liverepl> ');
   repl.context.io = io;

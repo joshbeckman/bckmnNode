@@ -48,6 +48,21 @@ module.exports = function (app, io, ensureAuth) {
       res.redirect('/w?key='+req.query.key+'&edit='+post._id)
     });
   });
+  app.get('/search', function (req, res) {
+    Post.find({ keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {
+      res.render('index', { title: 'Results for: '+req.query.q, 
+                          user: req.user, 
+                          posts: posts,
+                          queryString: req.query.q,
+                          images: config.front.images, 
+                          imageSrc: config.front.src, 
+                          message: req.flash('message'), 
+                          error: req.flash('error'), 
+                          req: req,
+                          thoughts: config.thoughts });
+    });
+  })
+
   app.get('/pay', function(req, res) {
       res.render('pay', { title: 'Joshua Beckman accepts credit cards!',
                             description: "You can pay Joshua Beckman via secure credit card transaction on this super-simple form!",
