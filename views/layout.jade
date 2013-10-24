@@ -47,9 +47,10 @@ html
     script(src="/javascripts/highlight.pack.js")
     include menuControls
     include classie
-    include lightbox
+    if images
+      include lightbox
+      include scrollTo
     include creator
-    include scrollTo
     script.
       hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};
