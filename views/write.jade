@@ -22,7 +22,7 @@ block content
             button#draft-button(onclick='saveCurrent(false)') Draft
             button#pub-button(onclick='saveCurrent(true)') Publish
   
-  script
+  script.
     window.onload = function() {        
         var socket = io.connect(window.location.hostname),
             makeEdits = function(){
@@ -155,18 +155,5 @@ block content
           div.innerHTML = escapedStr;
           var child = div.childNodes[0];
           return child ? child.nodeValue : '';
-        },
-        create = function(name, props){
-          var el = document.createElement(name);
-          for (var p in props){
-            if(typeof props[p] === 'object'){
-              for(var q in props[p]){
-                el[p][q] = props[p][q];
-              }
-            }else{
-              el[p] = props[p];
-            }
-          }
-          return el;
         };
   

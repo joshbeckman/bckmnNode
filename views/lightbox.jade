@@ -2,8 +2,8 @@ script.
   function openStrip(set){
     document.body.style.background = 'rgba(0,0,0,0.8)';
     classie.add(document.getElementsByTagName('main')[0], 'lightboxed');
-    var images = !{JSON.stringify(images)},
-        imageSrc = !{JSON.stringify(imageSrc)},
+    var images = !{JSON.stringify(images) || '[]'},
+        imageSrc = !{JSON.stringify(imageSrc) || '[]'},
         lb = document.getElementsByClassName('lightbox')[0],
         lbHeight = 560;
     lb.style.height = lbHeight.toString()+'px';
