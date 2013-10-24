@@ -23,6 +23,7 @@
     "mongoose-troop": "0.0.8",
     "marked": "~0.2.9",
     "sitemap": "~0.7.0",
-    "rss": "~0.2.1"
+    "rss": "~0.2.1",
+    "newrelic": "~1.0.0"
   }
 }
