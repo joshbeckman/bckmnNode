@@ -3,18 +3,19 @@ extends layout
 block content
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
     h3 POSTS
-      a(href='#') Celery seakale
+      button.menu-toggle-button(style="float:right; border:none;background-color:transparent;") x
+    span#post-menu-items
       if unpublishedPosts
         for up in unpublishedPosts
-          a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost('#{up._id}')") #{up.title}
-  #post-editor.pure-g-r
+          a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
+  #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
     .pure-u-1
-        h1#post-title-editor.editable
-        #post-body-editor.editable.mono
+        h1#post-title-editor.editable #{post ? post.title : ''}
+        #post-body-editor.editable.mono !{post ? post.markdown.split('\n').join('<br>') : ''}
         #editor-controls
             button#preview-button Preview
             button#raw-button Raw
-            button#posts-button Posts
+            button#posts-button.menu-toggle-button Posts
             | |
             button#draft-button(onclick='saveCurrent(false)') Draft
             button#pub-button(onclick='saveCurrent(true)') Publish
@@ -53,30 +54,35 @@ block content
                   });
                 }
               }else{}
-            },
-            unescapeHTML= function(escapedStr) {
-              var div = document.createElement('div');
-              div.innerHTML = escapedStr;
-              var child = div.childNodes[0];
-              return child ? child.nodeValue : '';
             };
         
         makeEdits();
         socket.on('savedPost', function(data) {
           console.log(data.post);
-          console.log(data);
+          var done = false;
           if(data.post.published == false){
+            for(i=0;i<unPubs.length;i++){
+              if(unPubs[i]._id == data.post._id){
+                unPubs[i] = data.post;
+                done = true;
+                updateList(unPubs);
+                console.log('extant unpublished');
+              }
+            }
+            if(done == false){
               unPubs.push(data.post);
               updateList(unPubs);
-              alert('draft');
+              console.log('new unpublished');
+            }
           }else{
             alert('published');
-              for(p in unPubs){
-                  if(data.post._id == p._id){
-                      p.published = true;
+              for(i=0;i<unPubs.length;i++){
+                  if(data.post._id == unPubs[i]._id){
+                      unPubs.splice(i, 1);
                   }
               }
               updateList(unPubs);
+              console.log('published');
           }
         });
         socket.on('markedWords', function(data){
@@ -109,19 +115,56 @@ block content
         postsButton = document.getElementById('posts-button'),
         draftButton = document.getElementById('draft-button'),
         pubButton = document.getElementById('pub-button'),
-        displayPost = function(postIdToDisplay){
+        displayPost = function(elem){
           for(i=0;i<unPubs.length;i++){
-            if(unPubs[i]._id == postIdToDisplay){
-              document.getElementById('post-editor').dataset.postId = postIdToDisplay;
+            if(unPubs[i]._id == elem.dataset.postId){
+              document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
               document.getElementById('post-title-editor').innerText = unPubs[i].title;
               document.getElementById('post-body-editor').innerText = unPubs[i].markdown;
             }
           }
+        },
+        listenToMenuPosts = function(){
+          var menuPosts = document.getElementsByClassName('menu-post-link');
+          for(i=0;i<menuPosts.length;i++){
+            menuPosts[i].onclick = function(){
+              displayPost(this);
+            }
+          }
+        },
+        updateList = function(unPubs){
+          var menu = document.getElementById('post-menu-items');
+          menu.innerHTML = '';
+          for(i=0;i<unPubs.length;i++){
+            menu.appendChild(
+              create('a',{
+                innerText: unPubs[i].title,
+                className: 'menu-post-link',
+                dataset:{
+                  postId: unPubs[i]._id
+                }
+              })
+            );
+          }
+          listenToMenuPosts();
+        },
+        unescapeHTML= function(escapedStr) {
+          var div = document.createElement('div');
+          div.innerHTML = escapedStr;
+          var child = div.childNodes[0];
+          return child ? child.nodeValue : '';
+        },
+        create = function(name, props){
+          var el = document.createElement(name);
+          for (var p in props){
+            if(typeof props[p] === 'object'){
+              for(var q in props[p]){
+                el[p][q] = props[p][q];
+              }
+            }else{
+              el[p] = props[p];
+            }
+          }
+          return el;
         };
-    var menuRight = document.getElementById( 'cbp-spmenu-right' ),
-        showRight = document.getElementById( 'posts-button' );
-    showRight.onclick = function() {
-        classie.toggle( this, 'active' );
-        classie.toggle( menuRight, 'cbp-spmenu-open' );
-    };
-  include classie
+  

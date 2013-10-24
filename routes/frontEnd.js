@@ -6,18 +6,44 @@ var moment = require('moment')
     , config = JSON.parse(fs.readFileSync('./config.json'))
     , api_key = process.env.STRIPE_SECRET_KEY,
     stripe = require('stripe')(api_key),
-    api_public = process.env.STRIPE_PUBLIC_KEY;
+    api_public = process.env.STRIPE_PUBLIC_KEY,
+    Post = require('../models/post'),
+    moment = require('moment');
 
-module.exports = function (app) {
+module.exports = function (app, io, ensureAuth) {
   app.get('/', function(req, res) {
-    res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago', 
+    Post.getLatestPosts(15, function(err, posts){
+      res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago', 
                           user: req.user, 
+                          posts: posts,
                           images: config.front.images, 
                           imageSrc: config.front.src, 
                           message: req.flash('message'), 
                           error: req.flash('error'), 
                           req: req,
                           thoughts: config.thoughts });
+    });
+  });
+  app.get('/blog/:slug', function(req,res){
+    Post.find({published: true}).limit(10).lean().exec(function(err,related){
+      relatedPost = related[Math.floor(Math.random() * related.length)];
+      Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+        res.render('blogPost', {title: post.title+' | Joshua Beckman',
+                                user: req.user,
+                                post: post,
+                                relatedPost: relatedPost,
+                                moment: moment,
+                                message: req.flash('message'), 
+                                error: req.flash('error'), 
+                                req: req,
+                                thoughts: config.thoughts})
+      });
+    });
+  });
+  app.get('/blog/:slug/edit', ensureAuth, function(req,res){
+    Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+      res.redirect('/w?key='+req.query.key+'&edit='+post._id)
+    });
   });
   app.get('/pay', function(req, res) {
       res.render('pay', { title: 'Joshua Beckman accepts credit cards!',

@@ -15,6 +15,7 @@ var express = require('express')
   , flash = require('connect-flash')
   , io = require('socket.io')
   , Post = require('./models/post')
+  , postHelpers = require('./lib/postHelpers')
   , fs = require('fs')
   , config = JSON.parse(fs.readFileSync('./config.json'));
 
@@ -66,18 +67,22 @@ function ensureAuth(req, res, next) {
 }
 
 // Setup routes
-require('./routes/frontEnd')(app, io);
+require('./routes/frontEnd')(app, io, ensureAuth);
 require('./routes/backEnd')(app, io, ensureAuth);
-require('./routes/api')(app, io);
+require('./routes/api')(app, io, ensureAuth);
 io.sockets.on('connection', function (socket) {
   socket.on('markMyWords', function(data){
     socket.emit('markedWords', {markedWords: Post.markMyWords(data.string)});
   });
   socket.on('updatePost', function(data){
-    socket.emit('savedPost', {post: Post.updatePost(data, io)});
+    postHelpers.updatePost(data, io, function(err, result){
+      socket.emit('savedPost', {post: result});
+    })
   });
   socket.on('createPost', function(data){
-    socket.emit('savedPost', {post: Post.createPost(data, io)});
+    postHelpers.createPost(data, io, function(err, result){
+      socket.emit('savedPost', {post: result});
+    })
   });
 });
 

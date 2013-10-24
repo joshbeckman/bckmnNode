@@ -1,0 +1,21 @@
+script.
+  var menuRight = document.getElementById( 'cbp-spmenu-right' ),
+      menuTogglers = document.getElementsByClassName( 'menu-toggle-button' ),
+      menuButton = document.getElementById( 'main-menu-button' ),
+      menuToggle = function() {
+        for(i=0;i<menuTogglers.length;i++){
+          classie.toggle( menuTogglers[i], 'active' );
+        }
+          classie.toggle( menuRight, 'cbp-spmenu-open' );
+          if(menuButton){classie.toggle( menuButton, 'menu-open' );}
+      };
+  if(menuButton){
+    menuButton.onmouseover = function(){
+      menuToggle();
+    };
+  }
+  for(i=0;i<menuTogglers.length;i++){
+    menuTogglers[i].onclick = function() {
+      menuToggle();
+    };
+  }

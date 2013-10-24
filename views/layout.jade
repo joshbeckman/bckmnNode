@@ -41,6 +41,8 @@ html
 
     script(src='/socket.io/socket.io.js')
     script(src="/javascripts/highlight.pack.js")
+    include menuControls
+    include classie
     script
       hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  button#main-menu-button.menu-toggle-button =
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+    h3
+      a(href="/") JOSHUA BECKMAN
+    a(href='/api?callback=foo') API
+
+  #content.pure-g-r
+    .pure-u-3-4
+    .pure-u-1-4
+    .pure-u-1-6
+      span.post-date #{moment(post.modified).fromNow()}
+    article#single-post.pure-u-2-3
+      h1.blog-post-title
+        a.blog-post-link(href="/blog/#{post.slug}") #{post.title}
+      .post-body !{post.html}
+      .post-meta
+      .post-links
+        p.related-post READ THIS NEXT: 
+          a(href="/blog/#{relatedPost.slug}") #{relatedPost.title}
+    .pure-u-1-6
+    .pure-u-3-4
+      br
+      br
+      h3.name-header
+        a(href="/") JOSHUA BECKMAN
+        span(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.hint
+    .pure-u-1-4
+  script
+    window.jshBckmn = {
+      setRandomThought: function(elem){
+        elem.innerText = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
+        elem.style.opacity = '0.9';
+      },
+      thoughts: !{JSON.stringify(thoughts)}
+    };
+    var setFirstThought = window.setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));

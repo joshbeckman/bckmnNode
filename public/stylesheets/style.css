@@ -1,19 +1,29 @@
-@import url('http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300');
+@import url('http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300,600');
 @import url('pure-min.css');
 @import url('default.css');
 body{
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-weight: 300;
-  color: #5e5bd6;
-  background-color: #5e5bd6;
-  background-color: white;
+  color: #222;
+  background-color: rgba(94,91,214, 1);
   font-size: 15px;
   box-sizing: border-box;
   transition: background 0.7s;-moz-transition: background 0.7s;-webkit-transition: background 0.7s;-o-transition: background 0.7s;
 }
+main{
+  background-color: white;
+  margin-bottom: 1em;
+  padding-bottom: 5em;
+}
 h1,h2,h3,h4,h5{
   font-family: "Oswald", Helvetica, sans-serif;
   font-weight: 300;
+}
+blockquote{
+  font-weight: 600;
+  border-left: 3px solid rgba(94,91,214,0.8);
+  margin-left: 0;
+  padding-left: 40px;
 }
 a {
   color: #5e5bd6;
@@ -22,7 +32,7 @@ a {
   transition: 0.3s;-moz-transition: 0.3s;-webkit-transition: 0.3s;-o-transition: 0.3s;
 }
 a:hover{
-  color:cyan;
+  color:#258ecd;
 }
 .btn{
   color: white;
@@ -74,21 +84,50 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 .muted{
   opacity: 0.5;
 }
-#hero h1{
-  font-size:5em;
-  cursor: pointer;
+.name-header{
+  display: inline-block;
+  font-size: 25px;
+  margin: 0.5em 0;
 }
-#hero .hint{
-  height: 1em;
+#thoughtBubble.hint{
+  display: inline-block;
   opacity: 0;
-  font-size: 1.2em;
-  padding-top: 0;
-  margin-top: -3em;
-  margin-bottom: 3em;
-  color: lightcyan;
+  font-size: 0.7em;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  padding-left: 0.4em;
+  color: grey;
   text-decoration: none;
   cursor: pointer;
   transition: 1s;-moz-transition: 1s;-webkit-transition: 1s;-o-transition: 1s;
+}
+.blog-post-wrapper{
+  margin-bottom: 3em;
+}
+.blog-post-title{
+  font-size: 2.5em;
+}
+.post-date{
+  float: right;
+  margin-top: 3.5em;
+  padding-right: 1em;
+  opacity: 0.5;
+}
+.post-links{
+  margin-top: 3em;
+}
+.post-links .back-button{
+  border: 2px solid rgba(94,91,214, 0.75);
+  border-radius: 3px;
+  padding: 0.2em 0.5em;
+  background: transparent;
+  color: rgba(94,91,214, 0.75);
+}
+.post-links p a{
+  font-family: "Oswald", Helvetica, sans-serif;
+  font-size: 1.25em;
+}
+.post-links p{
+  margin-top: 5em;
 }
 #about{
   box-sizing:border-box;
@@ -136,6 +175,10 @@ p.gallery-image{
 }
 #post-editor{
 }
+#editor-controls{
+  border-top: 1px solid #aaa;
+  padding: 0.5em;
+}
 #post-title-editor{
  border-bottom: 2px solid rgba(94,91,214, 0.5);
  min-height: 1em; 
@@ -163,9 +206,23 @@ p.gallery-image{
 .mono{
   font-family: monospace;
 }
+#main-menu-button{
+  color: #aaa;
+  position: absolute;
+  background: transparent;
+  border: none;
+  font-size: 2em;
+  right: 0;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
 .cbp-spmenu {
-    background: #eee;
+    background: rgba(255,255,255,0.95);
     position: fixed;
+    overflow-y: scroll;
 }
 .cbp-spmenu h3 {
   color: darkgrey;
@@ -207,6 +264,9 @@ p.gallery-image{
     right: 0px;
     box-shadow: -3px 0 3px 0px rgba(0,0,0,0.1);
 }
+#main-menu-button.menu-open {
+  right: 240px;
+}
 /* Transitions */
  
 .cbp-spmenu,
@@ -234,15 +294,13 @@ p.gallery-image{
 b.stars, b.forks{ font-weight: bold; display: inline-block; } b.stars:before, b.forks:before{ display: inline-block; font-size: 14px; width: 20px; text-align: center; } b.stars:before{ content: '\2605'; } b.forks:before{ content: '\2646'; }
 .Arduino{color: #bd79d1;} .Java{color: #b07219;} .VHDL{color: #543978;} .Scala{color: #7dd3b0;} .Emacs .Lisp{color: #c065db;} .Delphi{color: #b0ce4e;} .Ada{color: #02f88c;} .VimL{color: #199c4b;} .Perl{color: #0298c3;} .Lua{color: #fa1fa1;} .Rebol{color: #358a5b;} .Verilog{color: #848bf3;} .Factor{color: #636746;} .Ioke{color: #078193;} .R{color: #198ce7;} .Erlang{color: #949e0e;} .Nu{color: #c9df40;} .AutoHotkey{color:#6594b9;} .Clojure{color: #db5855;} .Shell{color: #5861ce;} .Assembly{color: #a67219;} .Parrot{color: #f3ca0a;} .C#{color: #5a25a2;} .Turing{color: #45f715;} .AppleScript{color: #3581ba;} .Eiffel{color: #946d57;} .Common .Lisp{color: #3fb68b;} .Dart{color: #cccccc;} .SuperCollider{color: #46390b;} .CoffeeScript{color: #244776;} .XQuery{color: #2700e2;} .Haskell{color: #29b544;} .Racket{color: #ae17ff;} .Elixir{color: #6e4a7e;} .HaXe{color: #346d51;} .Ruby{color: #701516;} .Self{color: #0579aa;} .Fantom{color: #dbded5;} .Groovy{color: #e69f56;} .C{color: #555;} .JavaScript{color: #f15501;} .D{color: #fcd46d;} .ooc{color: #b0b77e;} .C++{color: #f34b7d;} .Dylan{color: #3ebc27;} .Nimrod{color: #37775b;} .Standard .ML{color: #dc566d;} .Objective-C{color: #f15501;} .Nemerle{color: #0d3c6e;} .Mirah{color: #c7a938;} .Boo{color: #d4bec1;} .Objective-J{color: #ff0c5a;} .Rust{color: #dea584;} .Prolog{color: #74283c;} .Ecl{color: #8a1267;} .Gosu{color: #82937f;} .FORTRAN{color: #4d41b1;} .ColdFusion{color: #ed2cd6;} .OCaml{color: #3be133;} .Fancy{color: #7b9db4;} .Pure .Data{color: #f15501;} .Python{color: #3581ba;} .Tcl{color: #e4cc98;} .Arc{color: #ca2afe;} .Puppet{color: #cc5555;} .Io{color: #a9188d;} .Max{color: #ce279c;} .Go{color: #8d04eb;} .ASP{color: #6a40fd;} .Visual .Basic{color: #945db7;} .PHP{color: #6e03c1;} .Scheme{color: #1e4aec;} .Vala{color: #3581ba;} .Smalltalk{color: #596706;} .Matlab{color: #bb92ac;} .C#{color: #bb92af;}
 #repos-list, #stars-list{ margin: 0; padding: 0; list-style: none; } #repos-list li, #stars-list li{ display: inline; } #repos-list li a, #stars-list li a{ position: relative; display: block; line-height: 20px; padding: 1em 0; overflow: hidden; border:none; } #repos-list li a:hover, #stars-list li a:hover{ background-color: rgba(0,0,0,0.05); } #repos-list li.fork a:before, #stars-list li.fork a:before{ color: #999; content: '\2646'; position: absolute; left: 5px; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); } #repos-list li a .desc, #stars-list li a .desc{ color: #fff; display: inline-block; line-height: 1.3em; margin-left: .5em; } #projects-info, #repos-list li a .info, #stars-list li a .info{ float: right; clear: right; }
-@media only screen and (max-width :780px){
-  #about{
-    box-sizing:border-box;
-    padding-left: 0px;
-    text-align: left;
+@media only screen and (max-width :767px){
+  .post-date{
+    margin: 0;
   }
-  #contact{
-    box-sizing:border-box;
-    text-align: left;
-    padding-right: 0px;
+}
+@media only screen and (max-width :500px){
+  #thoughtBubble.hint{
+    display: none;
   }
 }
