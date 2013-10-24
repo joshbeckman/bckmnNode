@@ -31,6 +31,7 @@ module.exports = function (app, io, ensureAuth) {
         res.render('blogPost', {title: post.title+' | Joshua Beckman',
                                 user: req.user,
                                 post: post,
+                                description: post.markdown.slice(0,150),
                                 relatedPost: relatedPost,
                                 moment: moment,
                                 images: config.front.images, 
