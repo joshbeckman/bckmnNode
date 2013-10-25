@@ -104,9 +104,11 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
   opacity: 0.5;
 }
 .face-img{
-  width:50px;
+  width:36px;
   height: auto;
-  border-bottom-right-radius: 3px;
+  float: right;
+  margin-top: -8px;
+  margin-right: -15px;
 }
 .name-header{
   display: inline-block;
@@ -374,7 +376,9 @@ p.gallery-image{
         font-size: 90%;
         width: 190px;
     }
- 
+    .face-img{
+      width: 35px;
+    }
     .cbp-spmenu-right {
         right: -190px;
     }
