@@ -5,7 +5,7 @@
   * @license The MIT license. 2013
   *
   */
-// require('newrelic');
+require('newrelic');
 var express = require('express')
   , load = require('express-load')
   , mongoose = require('mongoose')
