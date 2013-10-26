@@ -104,7 +104,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
   opacity: 0.5;
 }
 .face-img{
-  width:36px;
+  width:57px;
   height: auto;
   float: right;
   margin-top: -8px;
@@ -256,11 +256,6 @@ p.gallery-image{
   padding: 20px 20px 5px 20px;
   margin: 0;
 }
-.cbp-spmenu small a{
-  float: right;
-  padding: 1.4em 1em 0 0;
-  border: none;
-}
 .cbp-spmenu a {
     display: block;
 }
@@ -286,8 +281,7 @@ p.gallery-image{
 }
  
 .cbp-spmenu-vertical a {
-    border-bottom: 1px solid #ddd;
-    padding: 0.5em 1em;
+    padding: 0.25em 1em;
 }
  
 /* Vertical menu that slides from the left or right */
@@ -377,7 +371,7 @@ p.gallery-image{
         width: 190px;
     }
     .face-img{
-      width: 35px;
+      width: 34px;
     }
     .cbp-spmenu-right {
         right: -190px;
