@@ -32,11 +32,15 @@
   "birthdate":"1990-03-22T17:00:00-06:00",
   "birthplace":{
     "latitude":42.6394,
-      "longitude":-71.3147
+      "longitude":-71.3147,
+      "city":"Lowell",
+      "state":"MA"
   },
   "location":{
     "latitude":41.8819,
-      "longitude":-87.6278
+      "longitude":-87.6278,
+      "city":"Chicago",
+      "state":"IL"
   },
   "languages":{
     "communication":[
