@@ -21,8 +21,8 @@ module.exports = function (app, io) {
       identifiers.home_url = "http://www.bckmn.com";
       identifiers.first_name = config.first_name;
       identifiers.last_name = config.last_name;
-      person.birthdate = config.birthdate;
-      person.birthplace = config.birthplace;
+      // person.birthdate = config.birthdate;
+      // person.birthplace = config.birthplace;
       var years = moment().diff(config.birthdate, 'years'),
           months = moment(config.birthdate)
                   .add('years', years),
