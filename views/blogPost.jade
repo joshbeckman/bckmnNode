@@ -11,14 +11,15 @@ block content
     .pure-u-1-4
     .pure-u-1-6
       span.post-date #{moment(post.modified).fromNow()}
-    article#single-post.pure-u-2-3
-      h1.blog-post-title
-        a.blog-post-link(href="/blog/#{post.slug}") #{post.title}
-      .post-body !{post.html}
-      .post-meta
-      .post-links
-        p.related-post READ THIS NEXT: 
-          a(href="/blog/#{relatedPost.slug}") #{relatedPost.title}
+    .pure-u-2-3
+      article#single-post
+        h1.blog-post-title
+          a.blog-post-link(href="/blog/#{post.slug}") #{post.title}
+        .post-body !{post.html}
+        .post-meta
+        .post-links
+          p.related-post READ THIS NEXT: 
+            a(href="/blog/#{relatedPost.slug}") #{relatedPost.title}
     .pure-u-1-6
     .pure-u-3-4
       br
