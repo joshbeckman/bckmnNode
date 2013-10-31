@@ -49,7 +49,7 @@ module.exports = function (app, io, ensureAuth) {
     });
   });
   app.get('/search', function (req, res) {
-    Post.find({ keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {
+    Post.find({published: true, keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {
       res.render('index', { title: 'Results for: '+req.query.q, 
                           user: req.user, 
                           posts: posts,
