@@ -55,7 +55,8 @@ a:hover{
 #search-field{
   height: 1.8em;
   font-family: "Open Sans";
-  padding-bottom: 0.15em;
+  padding-bottom: 3px;
+  padding-top: 0px;
   padding-left: 5px;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
