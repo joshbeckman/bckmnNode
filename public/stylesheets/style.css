@@ -140,6 +140,9 @@ article#single-post {
   float: right;
   margin-top: 3.5em;
   padding-right: 1em;
+  opacity: 0;
+}
+.date-fadeIn{
   opacity: 0.5;
 }
 .post-links{

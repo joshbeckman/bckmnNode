@@ -10,7 +10,7 @@ block content
     .pure-u-3-4
     .pure-u-1-4
     .pure-u-1-6
-      span.post-date #{moment(post.modified).fromNow()}
+      span.post-date.transition #{moment(post.modified).fromNow()}
     .pure-u-2-3
       article#single-post
         h1.blog-post-title
@@ -34,6 +34,17 @@ block content
         elem.innerText = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
         elem.style.opacity = '0.9';
       },
-      thoughts: !{JSON.stringify(thoughts)}
+      thoughts: !{JSON.stringify(thoughts)},
+      fadeDate: function(){
+        var d = document.getElementsByClassName('post-date')[0],
+          t = document.getElementsByClassName('blog-post-title')[0];
+        t.onmouseover = function(){
+          classie.add(d, 'date-fadeIn');
+        };
+        t.onmouseout = function(){
+          classie.remove(d, 'date-fadeIn');
+        };
+      }
     };
+    jshBckmn.fadeDate();
     var setFirstThought = window.setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
