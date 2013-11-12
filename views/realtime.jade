@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    // link(rel="stylesheet", href="/stylesheets/odometer-theme-default.css")
+    link(rel="stylesheet", href="/stylesheets/sitebeat.css")
+    button#main-menu-button.menu-toggle-button
+      span Menu
+    nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+      include menuItems
+    .pure-g-r
+      .pure-u-1
+        #controls
+          button#reload-button.hidden(onclick='location.reload()') Restart
+          button#authorize-button(style="color:green;opacity:0.75;") Begin
+        #options
+          br
+          h1.borders(style="margin-left:0px;margin-right:70px;") <small><del class="muted">BLURRED</del></small> STARK LINES
+          blockquote Google Analytics won't let you see all of your <span style="text-decoration:underline;">live visitors</span>, across multiple sites, together?
+            br
+            em "How boring!"
+          p We can fix that.
+          p Just imagine that this window is one minute wide. 
+            span.muted (Click above to get going.)
+          p
+            small Your data will not be stored, no registration required. Have fun.
+        #counters.text-center.pure-g-r
+    #graph1.aGraph(style='width: 100%; height: 100%;')
+    #divvy.tooltip(style='opacity:0;')    
+    script(src='/javascripts/d3.v3.min.js')
+    // script(type='text/javascript', src='/javascripts/odometer.min.js')
+    script(type='text/javascript', src='/javascripts/gapi.js')
+    script(type='text/javascript', src='/javascripts/ga_authorize.js')
+    script(type='text/javascript', src='/javascripts/sitebeat.js')
+    include classie

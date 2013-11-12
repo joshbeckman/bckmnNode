@@ -33,6 +33,11 @@ a {
 a:hover{
   color:#258ecd;
 }
+h1 a, h2 a, h3 a, h4 a, h5 a{
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  text-transform: uppercase;
+}
 .btn{
   color: white;
   background-color: lightcoral;
@@ -51,6 +56,10 @@ a:hover{
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1em;
+}
+.borders {
+  border-top: 2px solid #222;
+  border-bottom: 2px solid #222;
 }
 #search-field{
   height: 1.8em;
@@ -243,10 +252,13 @@ p.gallery-image{
 }
 #main-menu-button{
   color: #aaa;
+  cursor: pointer;
   position: fixed;
   background: transparent;
   border: none;
   font-size: 2em;
+  width: 2em;
+  height: 1.5em;
   right: 0;
   padding-right: 0.5em;
   padding-left: 0.5em;

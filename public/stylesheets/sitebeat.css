@@ -1,0 +1,55 @@
+body{
+  background-color: white;
+}
+.live-counter {
+  font-size: 3em;
+  color: #fefefe;
+  margin:0 5px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.live-name {
+  margin: 0.1em 0;
+}
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 60px;                  
+  height: 28px;                 
+  padding: 2px;             
+  background: #fff;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+#counters{
+}
+.borders{
+  margin:10px 5px 0px 5px;
+}
+ul{
+  list-style: none;
+  padding-left: 0;
+  margin-left: -2em;
+}
+p{
+  font-size: 1.2em;
+}
+button {
+  background-color: transparent;
+  border: none;
+  font-family: "Oswald", Helvetica, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: grey;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+  margin:10px 5px 0px 5px;
+}
+button:hover {
+  color: black;
+}
+#options{
+  margin-left: 5em;
+}

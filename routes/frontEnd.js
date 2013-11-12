@@ -126,4 +126,11 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/naked-wordpress', function(req,res){
     res.redirect('http://naked-wordpress.bckmn.com');
   });
+  app.get('/stark-lines', function(req,res){
+    res.render('realtime', { title: 'Realtime Sparkline',
+                          description: "",
+                          message: req.flash('message'),
+                          error: req.flash('error'), 
+                          req: req });
+  });
 }
