@@ -65,7 +65,7 @@ function addProfile (profile, profileName) {
   rb.innerHTML = 'Add Profile';
   rb.onclick = function() { queryAccounts(); };
   optionsDiv.innerHTML = null;
-  document.getElementById('counters').innerHTML += '<div class="pure-u-1-4"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div></div>';
+  document.getElementById('counters').innerHTML += '<div class="pure-u-1-5"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div></div>';
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
       siteBeat.profileList.push(profile);
