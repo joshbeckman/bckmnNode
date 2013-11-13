@@ -169,7 +169,7 @@ var x = d3.scale.linear()
 
     setInterval(function() {
       for (i = 0; i < siteBeat.profileList.length; i++) {
-        queryLiveReportingApi(siteBeat.profileList[i]);
+        setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
       }
       redraw();
       d3.timer.flush(); // avoid memory leak when in background tab
