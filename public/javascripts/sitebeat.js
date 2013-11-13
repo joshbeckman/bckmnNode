@@ -13,7 +13,7 @@ function handleAccounts(results) {
       optionsDiv.innerHTML += '<p>No accounts found for this user.</p>';
     }
   } else {
-    console.log('There was an error querying accounts: ' + results.message);
+    alert('There was an error querying accounts: ' + results.message);
   }
 }
 function handleWebproperties(results) {
@@ -31,7 +31,7 @@ function handleWebproperties(results) {
       optionsDiv.innerHTML += '<p>No webproperties found for this account.</p>';
     }
   } else {
-    console.log('There was an error querying webproperties: ' + results.message);
+    alert('There was an error querying webproperties: ' + results.message);
   }
 }
 function handleProfiles(results) {
@@ -48,12 +48,12 @@ function handleProfiles(results) {
       optionsDiv.innerHTML += '<p>No views (profiles) found for this account.</p>';
     }
   } else {
-    console.log('There was an error querying views (profiles): ' + results.message);
+    alert('There was an error querying views (profiles): ' + results.message);
   }
 }
 function handleLiveReportingResults(results){
   if (results.error) {
-    console.log('There was an error querying core reporting API: ' + results.message);
+    alert('There was an error querying core reporting API: ' + results.message);
   } else {
     // var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
     // el.innerHTML = (results.rows ? results.rows[0][0] : 0);
@@ -126,7 +126,7 @@ window.siteBeat = {
   allData: d3.range(30).map(function(){return [];}),
   profileList: [],
   running: false,
-  delay: 3000,
+  delay: 5000,
   counterList: []
 };
 var x = d3.scale.linear()
