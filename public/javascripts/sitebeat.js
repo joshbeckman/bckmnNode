@@ -55,8 +55,8 @@ function handleLiveReportingResults(results){
   if (results.error) {
     console.log('There was an error querying core reporting API: ' + results.message);
   } else {
-    var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
-    el.innerHTML = (results.rows ? results.rows[0][0] : 0);
+    // var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
+    // el.innerHTML = (results.rows ? results.rows[0][0] : 0);
     pushResults(results);
   }
 }
@@ -65,13 +65,15 @@ function addProfile (profile, profileName) {
   rb.innerHTML = 'Add Profile';
   rb.onclick = function() { queryAccounts(); };
   optionsDiv.innerHTML = null;
-  document.getElementById('counters').innerHTML += '<div class="pure-u-1-4"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="odometer odometer-theme-default live-counter" id="'+profile.toString()+'-counter" style="background-color:'+color(siteBeat.profileList.length)+';">0</div></div>';
+  document.getElementById('counters').innerHTML += '<div class="pure-u-1-4"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div></div>';
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
       siteBeat.profileList.push(profile);
+      siteBeat.counterList.push(new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0}));
     }
   } else {
     siteBeat.profileList.push(profile);
+    siteBeat.counterList.push(new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0}));
   }
   if (siteBeat.running == false) {
     runnable();
@@ -95,19 +97,21 @@ function pushResults (results) {
   }
 }
 function pusher (position, results) {
+  var count = (results.rows ? results.rows[0][0] : 0);
   siteBeat.data[position].shift();
   siteBeat.data[position].push({
     time: (new Date()).getTime(),
-    value: (results.rows ? results.rows[0][0] : 0),
+    value: count,
     profileName: results.profileInfo.profileName,
     profileId: results.profileInfo.profileId
   });
   siteBeat.allData[position].push({
     time: (new Date()).getTime(),
-    value: (results.rows ? results.rows[0][0] : 0),
+    value: count,
     profileName: results.profileInfo.profileName,
     profileId: results.profileInfo.profileName
   });
+  siteBeat.counterList[position].update(count);
 }
 var initial = function () {
     return {
@@ -118,12 +122,12 @@ var initial = function () {
     };
   };
 window.siteBeat = {
-  data: d3.range(10).map(function(){return d3.range(60).map(initial);}),
-  allData: d3.range(10).map(function(){return [];}),
+  data: d3.range(30).map(function(){return d3.range(60).map(initial);}),
+  allData: d3.range(30).map(function(){return [];}),
   profileList: [],
   running: false,
-  delay: 2000,
-  odometers: []
+  delay: 3000,
+  counterList: []
 };
 var x = d3.scale.linear()
     .domain([1, siteBeat.data[0].length - 2])
@@ -144,7 +148,7 @@ var x = d3.scale.linear()
   //   .domain([0, siteBeat.data.length - 1])
   //   .range(["#030208", "#4d45c1"]),
   color = function (int) {
-    return ['#3e8499','#acbc3f','#76c040','#43c246','#ad474a','#5574c5','#553c26','#8e5ac9','#ba5ccb','#b77f52'][int];
+    return ['#00A0B0','#6A4A3C','#CC333F','#EB6841','#EDC951','#3B2D38','#F02475','#F27435','#CFBE27','#BCBDAC', '#413E4A', '#73626E', '#B38184', '#F0B49E', '#F7E4BE', '#8C2318', '#5E8C6A', '#88A65E', '#BFB35A', '#F2C45A'][int];
   },
   chart = d3.select("#graph1").append("svg")
     .attr("class", "chart")

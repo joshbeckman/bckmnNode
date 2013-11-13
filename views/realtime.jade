@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    // link(rel="stylesheet", href="/stylesheets/odometer-theme-default.css")
+    link(rel="stylesheet", href="/stylesheets/odometer-theme-default.css")
     link(rel="stylesheet", href="/stylesheets/sitebeat.css")
     button#main-menu-button.menu-toggle-button
       span Menu
@@ -27,7 +27,7 @@ block content
     #graph1.aGraph(style='width: 100%; height: 100%;')
     #divvy.tooltip(style='opacity:0;')    
     script(src='/javascripts/d3.v3.min.js')
-    // script(type='text/javascript', src='/javascripts/odometer.min.js')
+    script(type='text/javascript', src='/javascripts/odometer.min.js')
     script(type='text/javascript', src='/javascripts/gapi.js')
     script(type='text/javascript', src='/javascripts/ga_authorize.js')
     script(type='text/javascript', src='/javascripts/sitebeat.js')
