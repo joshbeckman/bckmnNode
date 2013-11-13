@@ -36,8 +36,8 @@ block content
             saveCurrent = function(published){
               var editor = document.getElementById('post-editor'),
                   postID = editor.dataset.postId,
-                  title = document.getElementById('post-title-editor').innerText,
-                  body = document.getElementById('post-body-editor').innerText;
+                  title = document.getElementById('post-title-editor').textContent,
+                  body = document.getElementById('post-body-editor').textContent;
               if(body && title){
                 if(postID){
                   socket.emit('updatePost', {
@@ -94,11 +94,11 @@ block content
         });
         previewButton.onclick = function(){
             rawButton.style.visibility = 'visible';
-            socket.emit('markMyWords', {string: document.getElementById('post-body-editor').innerText});
-            mdHolder = document.getElementById('post-body-editor').innerText;
+            socket.emit('markMyWords', {string: document.getElementById('post-body-editor').textContent});
+            mdHolder = document.getElementById('post-body-editor').textContent;
         };
         rawButton.onclick = function(){
-            document.getElementById('post-body-editor').innerText = unescapeHTML(mdHolder);
+            document.getElementById('post-body-editor').textContent = unescapeHTML(mdHolder);
             mdHolder = '';
             makeEdits();
         };
@@ -121,8 +121,8 @@ block content
           for(i=0;i<unPubs.length;i++){
             if(unPubs[i]._id == elem.dataset.postId){
               document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
-              document.getElementById('post-title-editor').innerText = unPubs[i].title;
-              document.getElementById('post-body-editor').innerText = unPubs[i].markdown;
+              document.getElementById('post-title-editor').textContent = unPubs[i].title;
+              document.getElementById('post-body-editor').textContent = unPubs[i].markdown;
             }
           }
         },
@@ -140,7 +140,7 @@ block content
           for(i=0;i<unPubs.length;i++){
             menu.appendChild(
               create('a',{
-                innerText: unPubs[i].title,
+                textContent: unPubs[i].title,
                 className: 'menu-post-link',
                 dataset:{
                   postId: unPubs[i]._id
