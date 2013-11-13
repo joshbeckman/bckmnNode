@@ -55,8 +55,8 @@ function handleLiveReportingResults(results){
   if (results.error) {
     alert('There was an error querying core reporting API: ' + results.message);
   } else {
-    // var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
-    // el.innerHTML = (results.rows ? results.rows[0][0] : 0);
+    var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
+    el.innerHTML = (results.rows ? results.rows[0][0] : 0);
     pushResults(results);
   }
 }
@@ -69,11 +69,11 @@ function addProfile (profile, profileName) {
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
       siteBeat.profileList.push(profile);
-      siteBeat.counterList.push(new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0}));
+      // siteBeat.counterList.push((new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0})));
     }
   } else {
     siteBeat.profileList.push(profile);
-    siteBeat.counterList.push(new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0}));
+    // siteBeat.counterList.push((new Odometer({el: document.getElementById(profile.toString()+'-counter'), value: 0})));
   }
   if (siteBeat.running == false) {
     runnable();
@@ -111,7 +111,7 @@ function pusher (position, results) {
     profileName: results.profileInfo.profileName,
     profileId: results.profileInfo.profileName
   });
-  siteBeat.counterList[position].update(count);
+  // siteBeat.counterList[position].update(count);
 }
 var initial = function () {
     return {
