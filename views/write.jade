@@ -1,6 +1,13 @@
 extends layout
 
 block content
+  script(src='/javascripts/editor.js')
+  script(src='/javascripts/marked.js')
+  link(rel='stylesheet', href='/stylesheets/editor.css')
+  link(rel='stylesheet', href='/stylesheets/yue.css')
+  button#main-menu-button.menu-toggle-button
+    span Menu
+    button#save-button Save
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
     h3 POSTS
       button.menu-toggle-button(style="float:right; border:none;background-color:transparent;") x
@@ -12,53 +19,16 @@ block content
       a(href="/") HOME
   #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
     .pure-u-1
-        h1#post-title-editor.editable #{post ? post.title : ''}
-        #post-body-editor.editable.mono !{post ? post.markdown.split('\n').join('<br>') : ''}
-        #editor-controls
-            button#preview-button Preview
-            button#raw-button Raw
-            button#posts-button.menu-toggle-button Posts
-            | |
-            button#draft-button(onclick='saveCurrent(false)') Draft
-            button#pub-button(onclick='saveCurrent(true)') Publish
+      .editor-wrapper
+        input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
+        textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
   
   script.
+    var editor = new Editor(),
+      socket;
+    editor.render();
     window.onload = function() {        
-        var socket = io.connect(window.location.hostname),
-            makeEdits = function(){
-                var elems = document.getElementsByClassName('editable');
-                for(i=0;i<elems.length;i++){
-                    elems[i].contentEditable = true;
-                }
-                rawButton.style.visibility = 'hidden';
-                previewButton.style.visibility = 'visible';
-            },
-            saveCurrent = function(published){
-              var editor = document.getElementById('post-editor'),
-                  postID = editor.dataset.postId,
-                  title = document.getElementById('post-title-editor').textContent,
-                  body = document.getElementById('post-body-editor').textContent;
-              if(body && title){
-                if(postID){
-                  socket.emit('updatePost', {
-                    markdown: body,
-                    title: title,
-                    _id: postID,
-                    published: published,
-                    time: (new Date)
-                  });
-                }else{
-                  socket.emit('createPost', {
-                    markdown: body,
-                    title: title,
-                    published: published,
-                    time: (new Date)
-                  });
-                }
-              }else{}
-            };
-        
-        makeEdits();
+        socket = io.connect(window.location.hostname);
         socket.on('savedPost', function(data) {
           console.log(data.post);
           var done = false;
@@ -87,73 +57,70 @@ block content
               console.log('published');
           }
         });
-        socket.on('markedWords', function(data){
-            previewButton.style.visibility = 'hidden';
-            document.getElementById('post-body-editor').innerHTML = data.markedWords;
-            previewButton.style.visibility = 'hidden';
-        });
-        previewButton.onclick = function(){
-            rawButton.style.visibility = 'visible';
-            socket.emit('markMyWords', {string: document.getElementById('post-body-editor').textContent});
-            mdHolder = document.getElementById('post-body-editor').textContent;
-        };
-        rawButton.onclick = function(){
-            document.getElementById('post-body-editor').textContent = unescapeHTML(mdHolder);
-            mdHolder = '';
-            makeEdits();
-        };
-        draftButton.onclick = function(){
-          saveCurrent(false);
-        };
-        pubButton.onclick = function(){
-          saveCurrent(true);
-        };
-        
+        saveButton.onclick = function(){
+          saveCurrent();
+        };  
+    };
+    var saveCurrent = function(){
+      var postEditor = document.getElementById('post-editor'),
+          postID = postEditor.dataset.postId,
+          title = document.getElementById('post-title-editor').value,
+          body = editor.codemirror.getValue();
+      if(body && title){
+        var r = confirm("Publish this?");
+        if(postID){
+          socket.emit('updatePost', {
+            markdown: body,
+            title: title,
+            _id: postID,
+            published: r,
+            time: (new Date)
+          });
+        }else{
+          socket.emit('createPost', {
+            markdown: body,
+            title: title,
+            published: r,
+            time: (new Date)
+          });
+        }
+      }else{
+        alert('need both title and body!');
+      }
     };
     var unPubs = !{JSON.stringify(unpublishedPosts) || '[]'},
-        mdHolder = '',
-        previewButton = document.getElementById('preview-button'),
-        rawButton = document.getElementById('raw-button'),
-        postsButton = document.getElementById('posts-button'),
-        draftButton = document.getElementById('draft-button'),
-        pubButton = document.getElementById('pub-button'),
-        displayPost = function(elem){
-          for(i=0;i<unPubs.length;i++){
-            if(unPubs[i]._id == elem.dataset.postId){
-              document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
-              document.getElementById('post-title-editor').textContent = unPubs[i].title;
-              document.getElementById('post-body-editor').textContent = unPubs[i].markdown;
-            }
+      saveButton = document.getElementById('save-button'),
+      displayPost = function(elem){
+        for(i=0;i<unPubs.length;i++){
+          if(unPubs[i]._id == elem.dataset.postId){
+            document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
+            document.getElementById('post-title-editor').value = unPubs[i].title;
+            editor.codemirror.setValue(unPubs[i].markdown);
           }
-        },
-        listenToMenuPosts = function(){
-          var menuPosts = document.getElementsByClassName('menu-post-link');
-          for(i=0;i<menuPosts.length;i++){
-            menuPosts[i].onclick = function(){
-              displayPost(this);
-            }
+        }
+      },
+      listenToMenuPosts = function(){
+        var menuPosts = document.getElementsByClassName('menu-post-link');
+        for(i=0;i<menuPosts.length;i++){
+          menuPosts[i].onclick = function(){
+            displayPost(this);
           }
-        },
-        updateList = function(unPubs){
-          var menu = document.getElementById('post-menu-items');
-          menu.innerHTML = '';
-          for(i=0;i<unPubs.length;i++){
-            menu.appendChild(
-              create('a',{
-                textContent: unPubs[i].title,
-                className: 'menu-post-link',
-                dataset:{
-                  postId: unPubs[i]._id
-                }
-              })
-            );
-          }
-          listenToMenuPosts();
-        },
-        unescapeHTML= function(escapedStr) {
-          var div = document.createElement('div');
-          div.innerHTML = escapedStr;
-          var child = div.childNodes[0];
-          return child ? child.nodeValue : '';
-        };
-  
+        }
+      },
+      updateList = function(unPubs){
+        var menu = document.getElementById('post-menu-items');
+        menu.innerHTML = '';
+        for(i=0;i<unPubs.length;i++){
+          menu.appendChild(
+            create('a',{
+              textContent: unPubs[i].title,
+              className: 'menu-post-link',
+              dataset:{
+                postId: unPubs[i]._id
+              }
+            })
+          );
+        }
+        listenToMenuPosts();
+      };
+    listenToMenuPosts();
