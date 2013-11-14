@@ -138,7 +138,7 @@ window.siteBeat = {
   allData: d3.range(30).map(function(){return [];}),
   profileList: [],
   running: false,
-  delay: 5000,
+  delay: 10000,
   counterList: []
 };
 var x = d3.scale.linear()
@@ -175,7 +175,10 @@ var x = d3.scale.linear()
         .attr("fill", "none")
         .attr("d", line(siteBeat.data[i]));
     }
-
+    for (i = 0; i < siteBeat.profileList.length; i++) {
+      setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
+    }
+    redraw();
     setInterval(function() {
       for (i = 0; i < siteBeat.profileList.length; i++) {
         setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
