@@ -55,9 +55,10 @@ function handleLiveReportingResults(results){
   if (results.error) {
     alert('There was an error querying core reporting API: ' + results.message);
   } else {
-    var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
-    el.innerHTML = (results.rows ? results.rows[0][0] : 0);
+    // var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
+    // el.innerHTML = (results.rows ? results.rows[0][0] : 0);
     pushResults(results);
+    // printResults(results);
   }
 }
 function addProfile (profile, profileName) {
@@ -65,7 +66,7 @@ function addProfile (profile, profileName) {
   rb.innerHTML = 'Add Profile';
   rb.onclick = function() { queryAccounts(); };
   optionsDiv.innerHTML = null;
-  document.getElementById('counters').innerHTML += '<div class="pure-u-1-5"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div></div>';
+  document.getElementById('counters').innerHTML += '<div class="pure-u-1-5"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div><small class="live-top" id="'+profile.toString()+'-top"></small></div>';
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
       siteBeat.profileList.push(profile);
@@ -97,7 +98,21 @@ function pushResults (results) {
   }
 }
 function pusher (position, results) {
-  var count = (results.rows ? results.rows[0][0] : 0);
+  // var count = (results.rows ? results.rows[0][0] : 0);
+  if (results.rows) {
+    results.rows.sort(function(a,b) {
+      return parseInt(b[1]) - parseInt(a[1]);
+    });
+  }
+  var count = (results.rows ? d3.sum(results.rows, function(d) { return parseInt(d[1]); }) : 0);
+  var el = document.getElementById(results.profileInfo.profileId.toString()+'-counter');
+  el.innerHTML = count;
+  el = document.getElementById(results.profileInfo.profileId.toString()+'-top');
+  if (results.rows) {
+    el.innerHTML = results.rows[0][0].substring(0,40) + '... ' + results.rows[0][1];
+  } else {
+    el.innerHTML = '';
+  }
   siteBeat.data[position].shift();
   siteBeat.data[position].push({
     time: (new Date()).getTime(),

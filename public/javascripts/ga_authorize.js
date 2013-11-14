@@ -62,7 +62,8 @@ function queryLiveReportingApi(profileId){
   // console.log('Querying Live Reporting API.');
   var liveApiQuery = gapi.client.analytics.data.realtime.get({
     'ids': 'ga:' + profileId,
-    'metrics': 'ga:activeVisitors'
+    'metrics': 'ga:activeVisitors',
+    'dimensions': 'ga:pageTitle'
   });
   liveApiQuery.execute(handleLiveReportingResults);
 }
