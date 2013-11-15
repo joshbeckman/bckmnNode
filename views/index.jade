@@ -28,7 +28,7 @@ block content
   script
     window.jshBckmn = {
       setRandomThought: function(elem){
-        elem.innerText = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
+        elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
         elem.style.opacity = '0.9';
       },
       thoughts: !{JSON.stringify(thoughts)}
