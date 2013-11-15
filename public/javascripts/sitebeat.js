@@ -54,6 +54,7 @@ function handleProfiles(results) {
 function handleLiveReportingResults(results){
   if (results.error) {
     alert('There was an error querying core reporting API: ' + results.message);
+    clearInterval(siteBeat.runningInterval);
   } else {
     pushResults(results);
   }
@@ -139,7 +140,8 @@ window.siteBeat = {
   profileList: [],
   running: false,
   delay: 10000,
-  counterList: []
+  counterList: [],
+  runningInterval: null
 };
 var x = d3.scale.linear()
     .domain([1, siteBeat.data[0].length - 2])
@@ -179,7 +181,7 @@ var x = d3.scale.linear()
       setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
     }
     redraw();
-    setInterval(function() {
+    siteBeat.runningInterval = setInterval(function() {
       for (i = 0; i < siteBeat.profileList.length; i++) {
         setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
       }
