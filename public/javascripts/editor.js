@@ -7054,20 +7054,19 @@ function _toggleLine(cm, name) {
 };
 
 var toolbar = [
-  {name: 'bold', action: toggleBold},
-  {name: 'italic', action: toggleItalic},
-  '|',
+  // {name: 'bold', action: toggleBold},
+  // {name: 'italic', action: toggleItalic},
+  // '|',
 
-  {name: 'quote', action: toggleBlockquote},
-  {name: 'unordered-list', action: toggleUnOrderedList},
-  {name: 'ordered-list', action: toggleOrderedList},
-  '|',
+  // {name: 'quote', action: toggleBlockquote},
+  // {name: 'unordered-list', action: toggleUnOrderedList},
+  // {name: 'ordered-list', action: toggleOrderedList},
+  // '|',
 
-  {name: 'link', action: drawLink},
-  {name: 'image', action: drawImage},
-  '|',
+  // {name: 'link', action: drawLink},
+  // {name: 'image', action: drawImage},
+  // '|',
 
-  {name: 'info', action: 'http://lab.lepture.com/editor/markdown'},
   {name: 'preview', action: togglePreview},
   {name: 'fullscreen', action: toggleFullScreen}
 ]
