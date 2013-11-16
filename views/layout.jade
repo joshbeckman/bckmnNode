@@ -58,6 +58,8 @@ html
       script(src='/socket.io/socket.io.js')
     if (post || posts)
       script(src="/javascripts/highlight.pack.js")
+      script.
+        hljs.initHighlightingOnLoad();
     script(src="/javascripts/classie.js")
     include menuControls
     if images
@@ -65,5 +67,4 @@ html
       include scrollTo
       include creator
     script.
-      hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};
