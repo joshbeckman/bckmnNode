@@ -1,15 +1,16 @@
 {
   "name": "bckmn",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.1.1",
+    "express": "*",
     "jade": "*",
     "grunt": "~0.4.1",
     "grunt-cli": "*",
+    "grunt-contrib": "~0.7.0",
     "connect-flash": "*",
     "moment": "~2.2.1",
     "request": "~2.16.6",

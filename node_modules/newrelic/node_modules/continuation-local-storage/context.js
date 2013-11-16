@@ -3,6 +3,13 @@
 var assert  = require('assert');
 var shimmer = require('shimmer');
 
+/*
+ *
+ * CONSTANTS
+ *
+ */
+var CONTEXTS_SYMBOL = 'cls@contexts';
+
 // load polyfill if native support is unavailable
 if (!process.addAsyncListener) require('async-listener');
 
@@ -12,7 +19,7 @@ function Namespace(name) {
   this.name   = name;
   // every namespace has a default / "global" context
   this.active = Object.create(null);
-  this._stack = [];
+  this._set   = [];
   this.id     = null;
 }
 
@@ -58,7 +65,7 @@ Namespace.prototype.bind = function (fn, context) {
 Namespace.prototype.enter = function (context) {
   assert.ok(context, "context must be provided for entering");
 
-  this._stack.push(this.active);
+  this._set.push(this.active);
   this.active = context;
 };
 
@@ -67,108 +74,51 @@ Namespace.prototype.exit = function (context) {
 
   // Fast path for most exits that are at the top of the stack
   if (this.active === context) {
-    assert.ok(this._stack.length, "can't remove top context");
-    this.active = this._stack.pop();
+    assert.ok(this._set.length, "can't remove top context");
+    this.active = this._set.pop();
     return;
   }
 
   // Fast search in the stack using lastIndexOf
-  var index = this._stack.lastIndexOf(context);
+  var index = this._set.lastIndexOf(context);
 
   assert.ok(index >= 0, "context not currently entered; can't exit");
   assert.ok(index,      "can't remove top context");
 
-  this.active = this._stack[index - 1];
-  this._stack.length = index - 1;
+  this._set.splice(index, 1);
 };
 
-Namespace.prototype.bindEmitter = function (source) {
-  assert.ok(source.on && source.addListener && source.emit, "can only bind real EEs");
+Namespace.prototype.bindEmitter = function (emitter) {
+  assert.ok(emitter.on && emitter.addListener && emitter.emit, "can only bind real EEs");
 
-  var namespace = this;
-  var contextName = 'context@' + this.name;
+  var namespace  = this;
+  var thisSymbol = 'context@' + this.name;
 
-  /**
-   * Attach a context to a listener, and make sure that this hook stays
-   * attached to the emitter forevermore.
-   */
-  function capturer(on) {
-    return function captured(event, listener) {
-      listener[contextName] = namespace.active;
-      try {
-        return on.call(this, event, listener);
-      }
-      finally {
-        // old-style streaming overwrites .on and .addListener, so rewrap
-        if (!this.on.__wrapped) shimmer.wrap(this, 'on', capturer);
-        if (!this.addListener.__wrapped) shimmer.wrap(this, 'addListener', capturer);
-      }
+  // Capture the context active at the time the emitter is bound.
+  function attach(listener) {
+    if (!listener) return;
+    if (!listener[CONTEXTS_SYMBOL]) listener[CONTEXTS_SYMBOL] = Object.create(null);
+
+    listener[CONTEXTS_SYMBOL][thisSymbol] = {
+      namespace : namespace,
+      context   : namespace.active
     };
   }
 
-  /**
-   * Evaluate listeners within the CLS contexts in which they were originally
-   * captured.
-   */
-  function puncher(emit) {
-    // find all the handlers with attached contexts
-    function prepare(unwrapped) {
-      if (typeof unwrapped === 'function' && unwrapped[contextName]) {
-        return namespace.bind(unwrapped, unwrapped[contextName]);
-      }
-      else if (unwrapped && unwrapped.length) {
-        var replacements = [];
-        for (var i = 0; i < unwrapped.length; i++) {
-          var handler = unwrapped[i];
-          var context = handler[contextName];
+  // At emit time, bind the listener within the correct context.
+  function bind(unwrapped) {
+    if (!(unwrapped && unwrapped[CONTEXTS_SYMBOL])) return unwrapped;
 
-          if (context) handler = namespace.bind(handler, context);
-
-          replacements[i] = handler;
-        }
-
-        return replacements;
-      }
-      else {
-        return unwrapped;
-      }
-    }
-
-    return function punched(event) {
-      if (!this._events || !this._events[event]) return emit.apply(this, arguments);
-
-      // wrap
-      var unwrapped = this._events[event];
-      function releaser(removeListener) {
-        return function unwrapRemove() {
-          this._events[event] = unwrapped;
-          try {
-            return removeListener.apply(this, arguments);
-          }
-          finally {
-            unwrapped = this._events[event];
-            this._events[event] = prepare(unwrapped);
-          }
-        };
-      }
-      shimmer.wrap(this, 'removeListener', releaser);
-      this._events[event] = prepare(unwrapped);
-
-      try {
-        // apply
-        return emit.apply(this, arguments);
-      }
-      finally {
-        // reset
-        shimmer.unwrap(this, 'removeListener');
-        this._events[event] = unwrapped;
-      }
-    };
+    var wrapped  = unwrapped;
+    var contexts = unwrapped[CONTEXTS_SYMBOL];
+    Object.keys(contexts).forEach(function (name) {
+      var thunk = contexts[name];
+      wrapped = thunk.namespace.bind(wrapped, thunk.context);
+    });
+    return wrapped;
   }
 
-  shimmer.wrap(source, 'addListener', capturer);
-  shimmer.wrap(source, 'on',          capturer);
-  shimmer.wrap(source, 'emit',        puncher);
+  shimmer.wrapEmitter(emitter, attach, bind);
 };
 
 function get(name) {
@@ -180,9 +130,7 @@ function create(name) {
 
   var namespace = new Namespace(name);
   namespace.id = process.addAsyncListener(
-    function () {
-      return namespace.active;
-    },
+    function () { return namespace.active; },
     {
       before : function (context, domain) { namespace.enter(domain); },
       after  : function (context, domain) { namespace.exit(domain); },
