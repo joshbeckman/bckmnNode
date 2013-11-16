@@ -7,15 +7,16 @@ block content
     include menuItems
 
   #content.pure-g-r
-    .pure-u-3-4
-    .pure-u-1-4
     .pure-u-1-6
       span.post-date.transition #{moment(post.modified).fromNow()}
     .pure-u-2-3
-      article#single-post
+      article#single-post(itemscope, itemtype="http://schema.org/BlogPosting")
+        meta(itemprop="author", content="Joshua Beckman")
+        meta(itemprop="datePublished", content="#{post.modified}")
         h1.blog-post-title
-          a.blog-post-link(href="/blog/#{post.slug}") #{post.title}
-        .post-body !{post.html}
+          a.blog-post-link(href="/blog/#{post.slug}", itemprop="url")
+            span(itemprop="headline") #{post.title}
+        .post-body(itemprop="articleBody") !{post.html}
         .post-meta
         .post-links
           p.related-post READ THIS NEXT: 
@@ -31,7 +32,7 @@ block content
   script
     window.jshBckmn = {
       setRandomThought: function(elem){
-        elem.innerText = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
+        elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
         elem.style.opacity = '0.9';
       },
       thoughts: !{JSON.stringify(thoughts)},

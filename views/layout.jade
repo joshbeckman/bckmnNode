@@ -1,14 +1,14 @@
 doctype 5
 html
   head
-    // Hey! Email me at jsh@bckmn.com - I'm looking for projects!
+    // Hey! Email me at jsh@bckmn.com - I'm always looking for projects.
     title #{title || 'Joshua Beckman (jbckmn)'}
     meta(name="viewport", content="width=device-width")
     meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
     link(rel='icon', href="/images/favicon.png")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='canonical', href='http://bckmn.com#{req.path}')
-    link(rel='author', href='')
+    link(rel='author', href='https://plus.google.com/u/0/103739350784081056661')
     meta(property='og:locale', content='en_US')
     meta(property='og:url', content='http://bckmn.com#{req.path}')
     meta(property='og:title', content='#{title || "Joshua Beckman (jbckmn)"}')
@@ -23,16 +23,17 @@ html
     meta(name='twitter:description', content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
     meta(name='twitter:domain', content='http://bckmn.com')
     meta(name="apple-mobile-web-app-capable", content="yes")
-    script.
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-35141887-2']);
-      _gaq.push(['_trackPageview']);
+    if (!noTracking)
+      script.
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35141887-2']);
+        _gaq.push(['_trackPageview']);
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
     
   body
     main.container
@@ -53,15 +54,16 @@ html
         .pure-g-r
           .pure-u-1.lightbox.transition
             ul#strip.gallery  
-
-    script(src='/socket.io/socket.io.js')
-    script(src="/javascripts/highlight.pack.js")
+    if socket
+      script(src='/socket.io/socket.io.js')
+    if (post || posts)
+      script(src="/javascripts/highlight.pack.js")
+    script(src="/javascripts/classie.js")
     include menuControls
-    include classie
     if images
       include lightbox
       include scrollTo
-    include creator
+      include creator
     script.
       hljs.initHighlightingOnLoad();
       function dismissAlert(elem){elem.innerHTML = '';};

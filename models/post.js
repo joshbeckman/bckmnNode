@@ -42,6 +42,9 @@ Post.statics.getLatestPosts = function(count, callback){
 Post.statics.getUnpublishedPosts = function(callback){
   this.find({published: false}).sort('-modified').lean().exec(callback);
 }
+Post.statics.getPublishedPosts = function(callback){
+  this.find({published: true}).sort('-modified').lean().exec(callback);
+}
 
 Post.statics.searchQuery = function(data, io){
   this.find({ keywords: { $all: this.extractKeywords(data.query) } }, '-__v', {sort:{modified: -1}}).lean().exec(function(err, posts) {

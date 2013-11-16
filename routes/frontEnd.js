@@ -28,7 +28,10 @@ module.exports = function (app, io, ensureAuth) {
     Post.find({published: true}).limit(10).lean().exec(function(err,related){
       relatedPost = related[Math.floor(Math.random() * related.length)];
       Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
-        res.render('blogPost', {title: post.title+' | Joshua Beckman',
+        if (err || !post) {
+          res.redirect('/'+req.params.slug);
+        } else {
+          res.render('blogPost', {title: post.title+' | Joshua Beckman',
                                 user: req.user,
                                 post: post,
                                 description: post.markdown.slice(0,150),
@@ -40,8 +43,12 @@ module.exports = function (app, io, ensureAuth) {
                                 error: req.flash('error'), 
                                 req: req,
                                 thoughts: config.thoughts})
+        }
       });
     });
+  });
+  app.get('/blog', function(req,res){
+    res.redirect('/');
   });
   app.get('/blog/:slug/edit', ensureAuth, function(req,res){
     Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
