@@ -41,6 +41,7 @@ module.exports = function (app, io, ensureAuth) {
           marked: marked,
           unpublishedPosts: unpublishedPosts,
           noTracking: true,
+          socket: true,
           message: req.flash('message'), 
           error: req.flash('error'), 
           req: req
