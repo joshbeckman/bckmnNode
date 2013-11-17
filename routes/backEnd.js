@@ -34,7 +34,7 @@ Post.find({published: true}).lean().exec(function(err,posts){
 module.exports = function (app, io, ensureAuth) {
   app.get('/w', ensureAuth, function(req,res){
     Post.findOne({_id: req.query.edit}).lean().exec(function(err,post){
-      Post.getPublishedPosts(function(err, unpublishedPosts){
+      Post.getUnpublishedPosts(function(err, unpublishedPosts){
         res.render('write', {
           title: 'Write', 
           post: post,
@@ -63,7 +63,7 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/rss.xml', function(req, res){
-    Post.find({published: false}).lean().exec(function(err,posts){
+    Post.find({published: true}).lean().exec(function(err,posts){
       for(i=0;i<posts.length;i++){
         feed.item({
             title:  posts[i].title,

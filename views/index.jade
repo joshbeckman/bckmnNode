@@ -15,6 +15,8 @@ block content
     .pure-u-1-6
     #post-list.pure-u-2-3
       if queryString
+        p
+          a(href="/") HOME
         p.lead #{posts.length} results for: <code>#{queryString}</code>
       for p in posts
         .blog-post-wrapper
