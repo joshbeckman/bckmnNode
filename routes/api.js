@@ -74,16 +74,18 @@ module.exports = function (app, io) {
       identifiers.externals = externals;
       fullResponse.person = person;
       fullResponse.identifiers = identifiers;
-      fullResponse.blog = {
-        rss: "http://www.bckmn.com/rss.xml",
-        latest: [
-          {
-            title: posts[0].title,
-            url: 'http://www.bckmn.com/blog/'+posts[0].slug,
-            date: posts[0].modified
-          }
-        ]
-      };
+      if (posts && posts.length > 0) {
+        fullResponse.blog = {
+          rss: "http://www.bckmn.com/rss.xml",
+          latest: [
+            {
+              title: posts[0].title,
+              url: 'http://www.bckmn.com/blog/'+posts[0].slug,
+              date: posts[0].modified
+            }
+          ]
+        };
+      }
       fullResponse._links = {
         self: {
           href: "/api"

@@ -64,21 +64,16 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
 #search-field{
   height: 1.8em;
   font-family: "Open Sans";
-  padding-bottom: 3px;
-  padding-top: 0px;
-  padding-left: 5px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
   border: none;
-  box-shadow: 0 0 3px #333 inset;
-  width: 9em;
+  border-bottom: 2px solid #aaa;
+  margin-left: 1em;
 }
 #search-submit {
-  border: 2px solid #258ecd;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
-  background: rgba(37,142,205,0.07);
-  height: 2em;
+  border: none;
+  border-top: 2px solid #258ecd;
+  border-bottom: 2px solid #258ecd;
+  background: rgba(37,142,205,0);
+  height: 32px;
   color: #258ecd;
   font-family: "Open Sans";
 }
@@ -267,13 +262,13 @@ p.gallery-image{
   transition: all 0.3s ease;
 }
 .cbp-spmenu {
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,1);
     position: fixed;
     overflow-y: scroll;
 }
 .cbp-spmenu h3 {
   color: darkgrey;
-  padding: 20px 20px 5px 20px;
+  padding: 0px 0px;
   margin: 0;
 }
 .cbp-spmenu a {
