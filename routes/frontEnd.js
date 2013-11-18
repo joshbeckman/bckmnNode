@@ -134,7 +134,7 @@ module.exports = function (app, io, ensureAuth) {
     res.redirect('http://naked-wordpress.bckmn.com');
   });
   app.get('/stark-lines', function(req,res){
-    res.render('realtime', { title: 'Stark Lines: Google Analytics Realtime Sparkline from Joshua Beckman',
+    res.render('realtime', { title: 'Stark Lines: Google Analytics Realtime Comparison',
                           description: "Stark Lines: Google Analytics Realtime Sparkline from Joshua Beckman",
                           message: req.flash('message'),
                           error: req.flash('error'), 

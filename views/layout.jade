@@ -62,9 +62,8 @@ html
         hljs.initHighlightingOnLoad();
     script(src="/javascripts/classie.js")
     include menuControls
-    if images
-      include lightbox
-      include scrollTo
+    include lightbox
+    include scrollTo
     include creator
     script.
       function dismissAlert(elem){elem.innerHTML = '';};
