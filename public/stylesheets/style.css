@@ -37,6 +37,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
   border-top: 2px solid;
   border-bottom: 2px solid;
   text-transform: uppercase;
+  line-height:1.55em;
 }
 .btn{
   color: white;
@@ -71,7 +72,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
   width: 150px;
 }
 #search-field:focus{
-  outline: none; 
+  outline: none;
 }
 #search-submit {
   border: none;
@@ -225,7 +226,7 @@ p.gallery-image{
 }
 #post-title-editor{
  border-bottom: 2px solid rgba(94,91,214, 0.5);
- min-height: 1em; 
+ min-height: 1em;
  padding: 0.5em;
 }
 #post-title-editor:focus, #post-body-editor:focus{
@@ -269,7 +270,7 @@ p.gallery-image{
 .cbp-spmenu {
     background: rgba(255,255,255,1);
     position: fixed;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .cbp-spmenu h3 {
   color: darkgrey;
@@ -289,27 +290,27 @@ p.gallery-image{
     background: #ddd;
     color: black;
 }
- 
+
 .cbp-spmenu a:active {
 }
-  
+
 .cbp-spmenu-vertical {
     width: 240px;
     height: 100%;
     top: 0;
     z-index: 1000;
 }
- 
+
 .cbp-spmenu-vertical a {
     padding: 0.25em 1em;
 }
- 
+
 /* Vertical menu that slides from the left or right */
- 
+
 .cbp-spmenu-right {
     right: -240px;
 }
- 
+
 .cbp-spmenu-right.cbp-spmenu-open {
     right: 0px;
     box-shadow: -3px 0 3px 0px rgba(0,0,0,0.1);
@@ -317,10 +318,9 @@ p.gallery-image{
 #main-menu-button.menu-open {
   right: 240px;
   color: black;
-  background-color: rgba(255,255,255,0.9);
 }
 /* Transitions */
- 
+
 .cbp-spmenu,
 .cbp-spmenu-push {
     -webkit-transition: all 0.3s ease;
@@ -383,9 +383,14 @@ p.gallery-image{
     -webkit-transform: translateY(0) rotate(-45deg);
     transform: translateY(0) rotate(-45deg);
 }
- 
+
+.night, .night code, .night input{
+  background-color:rgba(0,0,0,0.8);
+  color:#eee;
+}
+
 @media screen and (max-height: 26.375em){
- 
+
     .cbp-spmenu-vertical {
         font-size: 90%;
         width: 190px;

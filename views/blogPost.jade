@@ -3,7 +3,7 @@ extends layout
 block content
   button#main-menu-button.menu-toggle-button
     span Menu
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
 
   #content.pure-g-r
@@ -19,8 +19,8 @@ block content
         .post-body(itemprop="articleBody") !{post.html}
         .post-meta
         .post-links
-          p.related-post READ THIS NEXT: 
-            a(href="/blog/#{relatedPost.slug}") #{relatedPost.title}
+          p.related-post READ THIS NEXT:
+            a(href="/blog/#{relatedPost.slug}")  #{relatedPost.title}
     .pure-u-1-6
     .pure-u-3-4
       br
@@ -48,4 +48,8 @@ block content
       }
     };
     jshBckmn.fadeDate();
-    var setFirstThought = window.setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    setInterval(function(){
+      document.getElementById('thoughtBubble').style.opacity = '0';
+      setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    },10000);

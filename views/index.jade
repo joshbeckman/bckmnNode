@@ -3,7 +3,7 @@ extends layout
 block content
   button#main-menu-button.menu-toggle-button
     span Menu
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
 
   #content.pure-g-r
@@ -26,7 +26,7 @@ block content
           a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
       if posts.length < 1
     .pure-u-1-6
-  
+
   script
     window.jshBckmn = {
       setRandomThought: function(elem){
@@ -35,7 +35,11 @@ block content
       },
       thoughts: !{JSON.stringify(thoughts)}
     };
-    var setFirstThought = window.setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    setInterval(function(){
+      document.getElementById('thoughtBubble').style.opacity = '0';
+      setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+    },10000);
     function openStrip(set){
       document.body.style.background = 'rgba(0,0,0,0.8)';
       var images = !{JSON.stringify(images)},
