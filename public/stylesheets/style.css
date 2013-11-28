@@ -139,7 +139,8 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
   transition: 1s;-moz-transition: 1s;-webkit-transition: 1s;-o-transition: 1s;
 }
 .blog-post-wrapper{
-  margin-bottom: 12em;
+  max-width: 600px;
+  margin: 0 auto 12em;
 }
 article#single-post {
   max-width: 600px;

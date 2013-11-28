@@ -6,7 +6,7 @@ block content
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
 
-  #content.pure-g-r.day
+  #content.pure-g-r
     .pure-u-1-6
       span.post-date.transition #{moment(post.modified).fromNow()}
     .pure-u-2-3
@@ -28,7 +28,11 @@ block content
       h3.name-header
         a(href="/") JOSHUA BECKMAN
         span(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.hint
-    .pure-u-1-4
+    .pure-u-1-4.pure-hidden-phone
+      br
+      br
+      h4(style="color:white;text-transform:uppercase;")
+        span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
   script
     window.jshBckmn = {
       setRandomThought: function(elem){
