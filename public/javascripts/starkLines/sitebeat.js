@@ -136,11 +136,29 @@ function handleLiveReportingResults(results){
   }
 }
 function addProfile (profile, profileName) {
-  var rb = document.getElementById('reload-button');
+  var rb = document.getElementById('reload-button'),
+      counters = document.getElementById('counters'),
+      oldIndex = counters.children.length;
   rb.innerHTML = 'Add Profile';
   rb.onclick = function() { queryAccounts(); };
   optionsDiv.innerHTML = null;
-  document.getElementById('counters').innerHTML += '<div class="pure-u-1-5"><a target="_blank" id="'+profile.toString()+'-link"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div><small class="live-top" id="'+profile.toString()+'-top"></small></a></div>';
+  counters.innerHTML += '<div class="pure-u-1-5"><span style="float:right;display:none;cursor:pointer;">X</span><a target="_blank" id="'+profile.toString()+'-link"><div class="borders" style="border-color:'+color(siteBeat.profileList.length)+';"><h2 class="live-name">'+profileName+'</h2></div><div class="live-counter" style="background-color:'+color(siteBeat.profileList.length)+';"><span id="'+profile.toString()+'-counter" class="odometer odometer-theme-default">0</span></div><small class="live-top" id="'+profile.toString()+'-top"></small></a></div>';
+  counters.children[oldIndex].onmouseover = function() {
+    this.children[0].style.display = 'inline';
+  };
+  counters.children[oldIndex].onmouseout = function() {
+    this.children[0].style.display = 'none';
+  };
+  counters.children[oldIndex].children[0].onclick = function(ev) {
+    var resp = confirm('Remove this profile?');
+    if (resp === true) {
+      var pos = [].indexOf.call(this.parentNode.parentNode.children, this.parentNode);
+      siteBeat.profileList.splice(pos, 1);
+      siteBeat.data[pos] = d3.range(60).map(window.initial);
+      siteBeat.allData[pos] = d3.range(60).map(window.initial);
+      this.parentNode.parentNode.removeChild(this.parentNode);
+    }
+  };
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
       siteBeat.profileList.push(profile);

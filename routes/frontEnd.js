@@ -13,13 +13,13 @@ var moment = require('moment')
 module.exports = function (app, io, ensureAuth) {
   app.get('/', function(req, res) {
     Post.getLatestPosts(15, function(err, posts){
-      res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago', 
-                          user: req.user, 
+      res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
+                          user: req.user,
                           posts: posts,
-                          images: config.front.images, 
-                          imageSrc: config.front.src, 
-                          message: req.flash('message'), 
-                          error: req.flash('error'), 
+                          images: config.front.images,
+                          imageSrc: config.front.src,
+                          message: req.flash('message'),
+                          error: req.flash('error'),
                           req: req,
                           thoughts: config.thoughts });
     });
@@ -37,10 +37,10 @@ module.exports = function (app, io, ensureAuth) {
                                 description: post.markdown.slice(0,150),
                                 relatedPost: relatedPost,
                                 moment: moment,
-                                images: config.front.images, 
-                                imageSrc: config.front.src, 
-                                message: req.flash('message'), 
-                                error: req.flash('error'), 
+                                images: config.front.images,
+                                imageSrc: config.front.src,
+                                message: req.flash('message'),
+                                error: req.flash('error'),
                                 req: req,
                                 thoughts: config.thoughts})
         }
@@ -57,14 +57,14 @@ module.exports = function (app, io, ensureAuth) {
   });
   app.get('/search', function (req, res) {
     Post.find({published: true, keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {
-      res.render('index', { title: 'Results for: '+req.query.q, 
-                          user: req.user, 
+      res.render('index', { title: 'Results for: '+req.query.q,
+                          user: req.user,
                           posts: posts,
                           queryString: req.query.q,
-                          images: config.front.images, 
-                          imageSrc: config.front.src, 
-                          message: req.flash('message'), 
-                          error: req.flash('error'), 
+                          images: config.front.images,
+                          imageSrc: config.front.src,
+                          message: req.flash('message'),
+                          error: req.flash('error'),
                           req: req,
                           thoughts: config.thoughts });
     });
@@ -77,10 +77,10 @@ module.exports = function (app, io, ensureAuth) {
                             amount: req.query.amount,
                             email: req.query.email,
                             text: req.query.message,
-                            images: config.front.images, 
+                            images: config.front.images,
                             imageSrc: config.front.src,
                             message: req.flash('message'),
-                            error: req.flash('error'), 
+                            error: req.flash('error'),
                             req: req });
   });
 
@@ -96,7 +96,7 @@ module.exports = function (app, io, ensureAuth) {
         if (err) {
            console.log(err.message);
            req.flash('error', err.message);
-           res.redirect('/error');
+           res.redirect('/pay/error');
         }
         if (!err) {
           console.log("charge id", charge.id);
@@ -106,10 +106,10 @@ module.exports = function (app, io, ensureAuth) {
                                   charge: charge,
                                   paidAmount: req.body.amount,
                                   paidMessage: req.body.message,
-                                  images: config.front.images, 
+                                  images: config.front.images,
                                   imageSrc: config.front.src,
                                   message: req.flash('message'),
-                                  error: req.flash('error'), 
+                                  error: req.flash('error'),
                                   req: req });
         }
       }
@@ -118,8 +118,8 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/pay/error', function(req, res) {
     res.render('payError', { title: 'Oh Noes!',
                           message: req.flash('message'),
-                          error: req.flash('error'), 
-                          images: config.front.images, 
+                          error: req.flash('error'),
+                          images: config.front.images,
                           imageSrc: config.front.src,
                           req: req });
   });
@@ -127,7 +127,7 @@ module.exports = function (app, io, ensureAuth) {
     res.render('polarPageviews', { title: 'Polar Pageviews',
                           description: "View data from your Google Analytics properties by day, week & month from the previous 365 days.",
                           message: req.flash('message'),
-                          error: req.flash('error'), 
+                          error: req.flash('error'),
                           req: req });
   });
   app.get('/naked-wordpress', function(req,res){
@@ -137,7 +137,7 @@ module.exports = function (app, io, ensureAuth) {
     res.render('realtime', { title: 'Stark Lines: Google Analytics Realtime Comparison',
                           description: "Stark Lines: Google Analytics Realtime Sparkline from Joshua Beckman",
                           message: req.flash('message'),
-                          error: req.flash('error'), 
+                          error: req.flash('error'),
                           req: req });
   });
 }

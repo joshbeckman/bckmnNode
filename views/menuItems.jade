@@ -24,6 +24,8 @@ br
 input(type="text", placeholder="Search...")#search-field
 input(type="submit", value="GO")#search-submit
 br
-p
-  del Too Busy
-  |  Looking for projects
+br
+form#login-form(action="/login", style="display:none;")
+  legend Log In
+  input(type="email", placeholder="Email")#login-email-field
+  input(type="password", placeholder="Password")#login-password-field

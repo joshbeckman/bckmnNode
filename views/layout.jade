@@ -39,14 +39,16 @@ html
     main.container.day
       #message
         if message.length > 0
-          p.pull-center.message #{message}
-            a(onclick="dismissAlert(this.parentNode.parentNode);", style="float:right;")
+          p.pull-center.message
+            a(onclick="dismissAlert(this.parentNode.parentNode);", style="margin-right:1em;")
               span.x-remove X
+            | #{message}
       #error
         if error.length > 0
-          p.pull-center.error #{error}
-            a(onclick="dismissAlert(this.parentNode.parentNode);", style="float:right;")
+          p.pull-center.error
+            a(onclick="dismissAlert(this.parentNode.parentNode);", style="margin-right:1em;")
               span.x-remove X
+            | #{error}
 
       block content
 
