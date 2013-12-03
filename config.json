@@ -2,6 +2,9 @@
   "mongo":{
     "url":"mongodb://localhost/personal"
   },
+  "mailgun":{
+    "key":"key-5n1bqp873lh8yritf-uiogsvgn120fa4"
+  },
   "first_name":"Joshua",
   "last_name":"Beckman",
   "identicon_path":"http://bckmn.com/images/favicon.png",

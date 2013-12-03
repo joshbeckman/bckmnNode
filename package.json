@@ -24,7 +24,10 @@
     "marked": "~0.2.9",
     "sitemap": "~0.7.0",
     "rss": "~0.2.1",
-    "newrelic": "~1.0.0"
+    "newrelic": "~1.0.0",
+    "passport": "~0.1.17",
+    "passport-mongoose": "0.0.1",
+    "passport-local-mongoose": "~0.2.5"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.7.2",

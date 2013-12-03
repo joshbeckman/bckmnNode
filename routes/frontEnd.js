@@ -2,12 +2,14 @@
  * Front End routes
  */
 var moment = require('moment')
+    , passport = require('passport')
     , fs = require('fs')
     , config = JSON.parse(fs.readFileSync('./config.json'))
     , api_key = process.env.STRIPE_SECRET_KEY,
     stripe = require('stripe')(api_key),
     api_public = process.env.STRIPE_PUBLIC_KEY,
     Post = require('../models/post'),
+    Account = require('../models/account'),
     moment = require('moment');
 
 module.exports = function (app, io, ensureAuth) {
@@ -100,7 +102,7 @@ module.exports = function (app, io, ensureAuth) {
         }
         if (!err) {
           console.log("charge id", charge.id);
-          req.flash('info', 'Success!');
+          req.flash('message', 'Success!');
           res.render('payThanks', {  title: 'Thank you!',
                                   name: process.env.PAYEE_NAME,
                                   charge: charge,
@@ -114,6 +116,61 @@ module.exports = function (app, io, ensureAuth) {
         }
       }
     );
+  });
+  app.post('/login', passport.authenticate('local', { failureRedirect: '/', failureFlash: 'Invalid email or password.' }), function(req, res) {
+    res.redirect('/');
+  });
+  app.get('/logout', function(req, res) {
+    req.logout();
+    req.flash('message', 'You have been signed out.');
+    res.redirect('/');
+  });
+  app.get('/register', function(req, res) {
+    res.render('register', { title: 'Register with bckmn.com', user: req.user, message: req.flash('message'), error: req.flash('error') });
+  });
+  app.post('/register', function(req,res) {
+    if (req.body.password != req.body.password_conf) {
+      req.flash('error', 'Password and password confirmation must match.')
+      res.redirect('/');
+    }
+    Account.register(new Account({ email : req.body.email, username: req.body.email.match(/^[^@]*/) }), req.body.password, function(err, account) {
+      if (err) {
+        req.flash('error', 'That email is already in use.')
+        return res.redirect('/register');
+      }
+      passport.authenticate('local')(req, res, function () {
+        //account.welcomeEmail();
+        req.flash('message', 'Thank you, '+account.username+'!')
+        stripe.charges.create(
+          {
+            amount: parseInt(parseFloat(req.body.amount)*100),
+            currency: "usd",
+            card: req.body.stripeToken,
+            description: req.body.email+' '+req.body.message
+          },
+          function(err, charge) {
+            if (err) {
+              console.log(err.message);
+              req.flash('error', 'Your account was created, but: ' + err.message);
+              res.redirect('/pay/error');
+            }
+            if (!err) {
+              console.log("charge id", charge.id);
+              res.render('payThanks', {  title: 'Thank you!',
+                                       name: process.env.PAYEE_NAME,
+                                       charge: charge,
+                                       paidAmount: req.body.amount,
+                                       paidMessage: req.body.message,
+                                       images: config.front.images,
+                                       imageSrc: config.front.src,
+                                       message: req.flash('message'),
+                                       error: req.flash('error'),
+                                       req: req });
+            }
+          }
+        );
+      })
+    });
   });
   app.get('/pay/error', function(req, res) {
     res.render('payError', { title: 'Oh Noes!',
