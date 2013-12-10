@@ -135,6 +135,20 @@ function handleLiveReportingResults(results){
     pushResults(results);
   }
 }
+function handleDownloadCreation() {
+  window.URL = window.URL || window.webkitURL;
+  var content = JSON.stringify(window.siteBeat.profileList),
+      blob = new Blob([content], {type: 'application/json'}),
+      link = document.getElementById('download-button'),
+      d = new Date();
+  link.style.visibility = 'visible';
+  link.href = window.URL.createObjectURL(blob);
+  link.download = ['stark_lines_config_',
+                   d.getFullYear().toString(), '_',
+                   (d.getMonth() + 1).toString(), '_',
+                   d.getDate().toString(),
+                   '.json'].join('');
+}
 function addProfile (profile, profileName) {
   var rb = document.getElementById('reload-button'),
       counters = document.getElementById('counters'),
@@ -161,10 +175,10 @@ function addProfile (profile, profileName) {
   };
   if (siteBeat.profileList.indexOf) {
     if (siteBeat.profileList.indexOf(profile) == -1) {
-      siteBeat.profileList.push(profile);
+      siteBeat.profileList.push({id: profile, name: profileName});
     }
   } else {
-    siteBeat.profileList.push(profile);
+    siteBeat.profileList.push({id: profile, name: profileName});
   }
   if (siteBeat.running === false) {
     runnable();
@@ -172,6 +186,7 @@ function addProfile (profile, profileName) {
   if (siteBeat.profileList.length == siteBeat.data.length) {
     rb.style.display = 'none';
   }
+  setTimeout(handleDownloadCreation, 1);
 }
 function pushResults (results) {
   var position = 0;
@@ -272,12 +287,12 @@ var x = d3.scale.linear()
         .attr("d", line(siteBeat.data[i]));
     }
     for (i = 0; i < siteBeat.profileList.length; i++) {
-      setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
+      setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i].id);
     }
     redraw();
     siteBeat.runningInterval = setInterval(function() {
       for (i = 0; i < siteBeat.profileList.length; i++) {
-        setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i]);
+        setTimeout(queryLiveReportingApi, 110, siteBeat.profileList[i].id);
       }
       redraw();
       d3.timer.flush(); // avoid memory leak when in background tab
@@ -297,3 +312,54 @@ var x = d3.scale.linear()
         .attr("transform", "translate(" + x(0) + ")");
     }
   };
+// dnd interface and loading
+(function initializeDnd() {
+  function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  }
+  function loadFileProfiles(profileArray) {
+    var i = 0,
+        length = profileArray.length;
+    window.siteBeat.profileList = [];
+    window.siteBeat.data = d3.range(30).map(function(){return d3.range(60).map(window.initial);});
+    window.siteBeat.allData = d3.range(30).map(function(){return [];});
+    document.getElementById('counters').innerHTML = null;
+    for (; i < length; i++){
+      addProfile(profileArray[i].id, profileArray[i].name);
+    }
+  }
+  function handleJSONDrop(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      var files = evt.dataTransfer.files,
+          i = 0,
+          f;
+      for (; i < files.length; i++) {
+        f = files[i];
+        if (!f.type.match('application/json')) {
+          alert('You\'re gonna need to upload a valid JSON file to configure this baby!');
+          continue;
+        }
+
+        var reader = new FileReader();
+
+        reader.onload = (function(theFile) {
+          return function(e) {
+            var result = JSON.parse(e.target.result);
+            loadFileProfiles(result);
+          };
+        })(f);
+
+        reader.readAsText(f);
+      }
+    } else {
+      alert('Javascript File APIs are not fully supported in this here browser.\n Ya\'ll have to manually add profiles!');
+    }
+  }
+  var dropZone = document.getElementsByTagName('body')[0];
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleJSONDrop, false);
+})();

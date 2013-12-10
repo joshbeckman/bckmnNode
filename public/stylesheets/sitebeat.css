@@ -7,9 +7,6 @@ body{
 #counters a:hover {
   color: grey;
 }
-.night #counters a{
-  color:#eee;
-}
 .live-counter {
   font-size: 3em;
   color: #fefefe;
@@ -69,4 +66,8 @@ button:hover {
 #options{
   margin-left: 5em;
   margin-right: 5em;
+}
+.night, .night code, .night input{
+  background-color:white;
+  color:#222;
 }

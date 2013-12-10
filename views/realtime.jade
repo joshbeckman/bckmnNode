@@ -40,9 +40,13 @@ block content
         #counters.text-center.pure-g-r
     #graph1.aGraph(style='width: 100%; height: 100%;')
     #social-links.text-center(style='margin:100px 0 200px;')
-      a(href='http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.bckmn.com/stark-lines&p[images][0]=&p[title]=Stark%20Lines:%20Realtime%20Google%20Analytics%20Comparison&p[summary]=', target='_blank', style='border-top: 2px solid #3B5998;border-bottom: 2px solid #3B5998;color: #3B5998;padding:0 3px;margin:0 3px;') Share on FB
-      a(href='http://twitter.com/home?status=Stark%20Lines%20-%20Realtime%20Google%20Analytics%20Comparison:%20http://www.bckmn.com/stark-lines%20from%20@jbckmn', target='_blank', style='border-top: 2px solid #55acee;border-bottom: 2px solid #55acee;color: #55acee;padding:0 3px;margin:0 3px;') Tweet
-      a(href='https://plus.google.com/share?url=http://www.bckmn.com/stark-lines', target='_blank', style='border-top: 2px solid #dd4b39;border-bottom: 2px solid #dd4b39;color: #dd4b39;padding:0 3px;margin:0 3px;') Share on G+
+      a#download-button(style="visibility:hidden;border-top: 2px solid #aaa;border-bottom: 2px solid #aaa;color: #888;padding:0 3px;margin:0 3px;") Download Configuration
+      a#donate-button(style=";border-top: 2px solid #ccc;border-bottom: 2px solid #ccc;color: #aaa;padding:0 3px;margin:0 3px;", target="_blank", href="http://www.bckmn.com/pay?amount=5&message=Thanks for Stark Lines!") Donate
+      br
+      br
+      a(href='http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.bckmn.com/stark-lines&p[images][0]=&p[title]=Stark%20Lines:%20Realtime%20Google%20Analytics%20Comparison&p[summary]=', target='_blank', style='border-top: 2px solid #3B5998;border-bottom: 2px solid #3B5998;color: #3B5998;padding:0 3px;margin:0 3px;') Share Stark Lines on FB
+      a(href='http://twitter.com/home?status=Stark%20Lines%20-%20Realtime%20Google%20Analytics%20Comparison:%20http://www.bckmn.com/stark-lines%20from%20@jbckmn', target='_blank', style='border-top: 2px solid #55acee;border-bottom: 2px solid #55acee;color: #55acee;padding:0 3px;margin:0 3px;') Tweet Stark Lines
+      a(href='https://plus.google.com/share?url=http://www.bckmn.com/stark-lines', target='_blank', style='border-top: 2px solid #dd4b39;border-bottom: 2px solid #dd4b39;color: #dd4b39;padding:0 3px;margin:0 3px;') Share Stark Lines on G+
     #divvy.tooltip(style='opacity:0;')
     script(src='/javascripts/d3.v3.min.js')
     // script(type='text/javascript', src='/javascripts/odometer.min.js')
