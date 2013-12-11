@@ -5,6 +5,11 @@ block content
   script(src='/javascripts/marked.js')
   link(rel='stylesheet', href='/stylesheets/editor.css')
   link(rel='stylesheet', href='/stylesheets/yue.css')
+  style(type="text/css").
+    .night, .night code, .night input {
+      background-color: white;
+      color: #333;
+    }
   button#main-menu-button.menu-toggle-button
     span Menu
     button#save-button Save
@@ -21,12 +26,12 @@ block content
       .editor-wrapper
         input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
         textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
-  
+
   script.
     var editor = new Editor(),
       socket;
     editor.render();
-    window.onload = function() {        
+    window.onload = function() {
         socket = io.connect(window.location.hostname);
         socket.on('savedPost', function(data) {
           console.log(data.post);
@@ -58,7 +63,7 @@ block content
         });
         saveButton.onclick = function(){
           saveCurrent();
-        };  
+        };
     };
     var saveCurrent = function(){
       var postEditor = document.getElementById('post-editor'),

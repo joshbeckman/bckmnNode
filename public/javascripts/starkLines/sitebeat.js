@@ -82,7 +82,7 @@ function handleAccounts(results) {
       for(i=0;i<results.items.length;i++){
         appendingList += '<li><a href="#chosen-account" onClick="queryWebproperties('+results.items[i].id+')">'+results.items[i].name+'</a></li>';
       }
-      appendingList += '<ul>';
+      appendingList += '<ul><p><small>Or, you can drag and drop a Stark Lines configuration file anywhere on this page.<br><a href="http://www.bckmn.com/blog/even-starker-lines" target="_blank">You can read more here.</a></small></p>';
       optionsDiv.innerHTML = appendingList;
     } else {
       console.log('No accounts found for this user.');
@@ -99,7 +99,7 @@ function handleWebproperties(results) {
       for(i=0;i<results.items.length;i++){
         appendingList += '<li><a href="#chosen-property" onClick="queryProfiles(\''+results.items[i].accountId+'\',\''+results.items[i].id+'\')">'+results.items[i].name+'</a></li>';
       }
-      appendingList += '<ul>';
+      appendingList += '<ul><small>Or, you can drag and drop a Stark Lines configuration file anywhere on this page.<br><a href="http://www.bckmn.com/blog/even-starker-lines" target="_blank">You can read more here.</a></small></p>';
       optionsDiv.innerHTML = appendingList;
       document.getElementById('reload-button').className = '';
     } else {
@@ -117,7 +117,7 @@ function handleProfiles(results) {
       for(i=0;i<results.items.length;i++){
         appendingList += '<li><a href="#chosen-profile" onClick="addProfile('+results.items[i].id+',\''+results.items[i].name+'\')">'+results.items[i].name+'</a></li>';
       }
-      appendingList += '<ul>';
+      appendingList += '<ul><p><small>Or, you can drag and drop a Stark Lines configuration file anywhere on this page.<br><a href="http://www.bckmn.com/blog/even-starker-lines" target="_blank">You can read more here.</a></small></p>';
       optionsDiv.innerHTML = appendingList;
     } else {
       console.log('No views (profiles) found for this account.');
