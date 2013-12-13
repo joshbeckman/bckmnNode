@@ -13,20 +13,9 @@ var moment = require('moment')
         {url: '/', changefreq: 'daily', priority: 1},
         {url: '/api', changefreq: 'daily', priority: 0.9},
         {url: '/pay', changefreq: 'monthly', priority: 0.7},
-      ]
-    , feed = new RSS({
-          title: 'Joshua Beckman | Blog',
-          description: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
-          feed_url: 'http://www.bckmn.com/rss.xml',
-          site_url: 'http://www.bckmn.com',
-          image_url: config.image_path,
-          author: 'Joshua Beckman',
-          language: 'en',
-          pubDate: (new Date),
-          ttl: '60'
-      });
+      ];
 
-Post.find({published: true}).lean().exec(function(err,posts){
+Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
   for(i=0;i<posts.length;i++){
     urls.push({url: '/blog/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
   };
@@ -36,20 +25,20 @@ module.exports = function (app, io, ensureAuth) {
     Post.findOne({_id: req.query.edit}).lean().exec(function(err,post){
       Post.getUnpublishedPosts(function(err, unpublishedPosts){
         res.render('write', {
-          title: 'Write', 
+          title: 'Write',
           post: post,
           marked: marked,
           unpublishedPosts: unpublishedPosts,
           noTracking: true,
           socket: true,
-          message: req.flash('message'), 
-          error: req.flash('error'), 
+          message: req.flash('message'),
+          error: req.flash('error'),
           req: req
-        });  
+        });
       });
     });
   });
-  
+
   app.get('/sitemap.xml', function(req,res){
     var sitemap = sm.createSitemap ({
                     hostname: 'http://www.bckmn.com',
@@ -63,7 +52,18 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/rss.xml', function(req, res){
-    Post.find({published: true}).lean().exec(function(err,posts){
+    Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
+      var feed = new RSS({
+          title: 'Joshua Beckman',
+          description: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
+          feed_url: 'http://www.bckmn.com/rss.xml',
+          site_url: 'http://www.bckmn.com',
+          image_url: config.image_path,
+          author: 'Joshua Beckman',
+          language: 'en',
+          pubDate: (new Date),
+          ttl: '60'
+      });
       for(i=0;i<posts.length;i++){
         feed.item({
             title:  posts[i].title,
