@@ -340,7 +340,7 @@ var x = d3.scale.linear()
       for (; i < files.length; i++) {
         f = files[i];
         if (!f.type.match('application/json')) {
-          alert('You\'re gonna need to upload a valid JSON file to configure this baby!');
+          alert('You\'re gonna need to upload a valid JSON file to configure this baby!\nCurrently, you are uploading a file of type "'+f.type.toString()+'."');
           continue;
         }
 
