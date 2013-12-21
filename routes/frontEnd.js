@@ -183,6 +183,8 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/polarpageviews', function(req, res) {
     res.render('polarPageviews', { title: 'Polar Pageviews',
                           description: "View data from your Google Analytics properties by day, week & month from the previous 365 days.",
+                          images: config.front.images,
+                          imageSrc: config.front.src,
                           message: req.flash('message'),
                           error: req.flash('error'),
                           req: req });
@@ -193,6 +195,18 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/stark-lines', function(req,res){
     res.render('realtime', { title: 'Stark Lines: Google Analytics Realtime Comparison',
                           description: "Stark Lines: Google Analytics Realtime Sparkline from Joshua Beckman",
+                          images: config.front.images,
+                          imageSrc: config.front.src,
+                          message: req.flash('message'),
+                          error: req.flash('error'),
+                          req: req });
+  });
+  app.get('/loading-soundcloud', function(req,res){
+    res.render('soundcloud', { title: 'SoundCloud Loading Animations',
+                          description: "Experimenting with loading or music playback animations for SoundCloud",
+                          images: config.front.images,
+                          imageSrc: config.front.src,
+                          thoughts: config.thoughts,
                           message: req.flash('message'),
                           error: req.flash('error'),
                           req: req });

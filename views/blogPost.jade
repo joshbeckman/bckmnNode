@@ -34,26 +34,6 @@ block content
       h4(style="color:white;text-transform:uppercase;")
         span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
   script
-    window.jshBckmn = {
-      setRandomThought: function(elem){
-        elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
-        elem.style.opacity = '0.9';
-      },
-      thoughts: !{JSON.stringify(thoughts)},
-      fadeDate: function(){
-        var d = document.getElementsByClassName('post-date')[0],
-          t = document.getElementsByClassName('blog-post-title')[0];
-        t.onmouseover = function(){
-          classie.add(d, 'date-fadeIn');
-        };
-        t.onmouseout = function(){
-          classie.remove(d, 'date-fadeIn');
-        };
-      }
-    };
-    jshBckmn.fadeDate();
-    setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
-    setInterval(function(){
-      document.getElementById('thoughtBubble').style.opacity = '0';
-      setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
-    },10000);
+    window.jshBckmn = window.jshBckmn || {};
+    window.jshBckmn.thoughts = !{JSON.stringify(thoughts)};
+    setTimeout(function(){jshBckmn.fadeDate();}, 1000);

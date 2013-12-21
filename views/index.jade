@@ -28,64 +28,6 @@ block content
           a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
       if posts.length < 1
     .pure-u-1-6
-
   script
-    window.jshBckmn = {
-      setRandomThought: function(elem){
-        elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
-        elem.style.opacity = '0.9';
-      },
-      thoughts: !{JSON.stringify(thoughts)}
-    };
-    setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
-    setInterval(function(){
-      document.getElementById('thoughtBubble').style.opacity = '0';
-      setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
-    },10000);
-    function openStrip(set){
-      document.body.style.background = 'rgba(0,0,0,0.8)';
-      var images = !{JSON.stringify(images)},
-          imageSrc = !{JSON.stringify(imageSrc)},
-          lb = document.getElementsByClassName('lightbox')[0],
-          lbHeight = 460;
-      lb.style.height = lbHeight.toString()+'px';
-      scrollTo(document.body, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
-      loadImages(imageSrc, document.getElementById('strip'), images[set], function(){
-        var imgs = document.getElementsByClassName('gallery-image'),
-            indMargin = 3,
-            totalWidth = 0;
-        if(imgs.length == images[set].length){
-          for(i=0;i<imgs.length;i++){
-            totalWidth += imgs[i].offsetWidth+(indMargin*2);
-          }
-          totalWidth < window.innerWidth ? totalWidth = window.innerWidth : totalWidth = totalWidth;
-          document.getElementsByClassName('gallery')[0].style.width = totalWidth.toString()+'px';
-        }
-      });
-    }
-    function loadImages(imageSrc, gal, imageSet, callback){
-      gal.innerHTML = '';
-      for(i=0;i<imageSet.length;i++){
-        var li = create('li',{});
-        if(imageSet[i].src){
-          li.appendChild(
-            create('img',{
-              className: 'gallery-image',
-              src: imageSrc+imageSet[i].src,
-              alt: imageSet[i].alt,
-              onload: callback,
-              title: imageSet[i].alt
-            })
-          );
-        }else{
-          li.appendChild(
-            create('p',{
-              className: 'gallery-image lead',
-              onload: callback,
-              innerText: imageSet[i].text
-            })
-          );
-        }
-        gal.appendChild(li);
-      }
-    }
+    window.jshBckmn = window.jshBckmn || {};
+    window.jshBckmn.thoughts = !{JSON.stringify(thoughts)};

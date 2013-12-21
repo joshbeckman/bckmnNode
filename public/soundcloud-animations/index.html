@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- // Hey! Email me at jsh@bckmn.com - I'm always looking for projects. -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>SoundCloud Logo Animations</title>
+    <meta name="description" content="Experimenting with loading or music playback animations for SoundCloud by Joshua Beckman" />
+    <link rel="icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300,600">
+    <link rel="stylesheet" href="/stylesheets/bckmn.min.css">
+    <link rel="canonical" href="http://www.bckmn.com/soundcloud-animations">
+    <link rel="author" href="https://plus.google.com/u/0/103739350784081056661">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="http://www.bckmn.com/soundcloud-animations">
+    <meta property="og:title" content="SoundCloud Logo Animations">
+    <meta property="og:site_name" content="Joshua Beckman (jbckmn)">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@jbckmn">
+    <meta name="twitter:creator" content="@jbckmn">
+    <meta name="twitter:url" content="http://www.bckmn.com/soundcloud-animations">
+    <meta name="twitter:title" content="SoundCloud Logo Animations">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:description" content="Experimenting with loading or music playback animations for SoundCloud by Joshua Beckman">
+    <meta name="twitter:domain" content="http://bckmn.com">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script>if (document.location.hostname == "www.bckmn.com") {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35141887-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    } else { _gaq = {push: function(arg) {console.log("ga:", arg)}}}
+    </script>
+    <style type="text/css">
+      body{
+        margin:0;
+      }
+      .foo{
+        margin:0 auto;
+        padding: 20px 0;
+        width:500px;
+        text-align: center;
+      }
+      .sound{
+        font-size:70px;
+        color:#ff3300;
+        background-color:white;
+        padding:0.25em;
+        margin:0 auto;
+        text-align:center;
+        font-family: 'Open Sans', Helvetica, sans-serif;
+        font-weight:700;
+        text-transform:uppercase;
+      }
+      .big-puff{
+        display:inline-block;
+        position:relative;
+        z-index:10;
+        width:2em;
+        height:2em;
+        left:-1.6em;
+        border-radius:50%;
+        background-color:#ff3300;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      .text{
+        display:block;
+        text-align:center;
+        margin-top: -0.55em;
+        font-size: 0.62em;
+      }
+      .small-puff{
+        display:inline-block;
+        position:relative;
+        z-index:10;
+        width:1.2em;
+        height:1.2em;
+        left:-2.2em;
+        border-radius:50%;
+        background-color:#ff3300;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      .cover{
+        display:inline-block;
+        position:relative;
+        z-index:11;
+        width:1em;
+        height:2em;
+        left:-0.75em;
+        border-radius:0.1em;
+        background-color:white;
+      }
+      .corner{
+        display:inline-block;
+        position:relative;
+        z-index:12;
+        width: 1.8em;
+        height: 1em;
+        left:2.32em;
+        border-radius:0.1em;
+        background-color:#ff3300;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      .bar{
+        width:0.2em;
+        border-radius: 0.1em;
+        height:1.5em;
+        background-color:#ff3300;
+        display: inline-block;
+        position: relative;
+        z-index: 12;
+        left:2.4em;
+        margin:0 -0.1em;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      .bar:nth-child(1){
+        width: 0.075em;
+        height: 0.43em;
+        bottom: 0.25em;
+      }
+      .run .bar:nth-child(1){
+        -webkit-animation: rise 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -moz-animation: rise 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -ms-animation: rise 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -o-animation: rise 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        animation: rise 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(2){
+        width: 0.09em;
+        height: 0.7em;
+        bottom: 0.11em;
+      }
+      .run .bar:nth-child(2){
+        -webkit-animation: rise 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -moz-animation: rise 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -ms-animation: rise 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -o-animation: rise 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        animation: rise 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(3){
+        width: 0.1em;
+        height: 0.85em;
+        bottom: 0.02em;
+      }
+      .run .bar:nth-child(3){
+        -webkit-animation: rise 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -moz-animation: rise 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -ms-animation: rise 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -o-animation: rise 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        animation: rise 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(4){
+        width: 0.1em;
+        height: 0.9em;
+      }
+      .run .bar:nth-child(4){
+        -webkit-animation: rise 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -moz-animation: rise 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -ms-animation: rise 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -o-animation: rise 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        animation: rise 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(5){
+        width:0.13em;
+        height: 0.8em;
+      }
+      .run .bar:nth-child(5){
+        -webkit-animation: rise 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -moz-animation: rise 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -ms-animation: rise 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -o-animation: rise 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        animation: rise 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(6){
+        width: 0.13em;
+        height: 1.1em;
+      }
+      .run .bar:nth-child(6){
+        -webkit-animation: rise 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -moz-animation: rise 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -ms-animation: rise 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -o-animation: rise 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        animation: rise 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(7){
+        width: 0.15em;
+        height: 1.3em;
+      }
+      .run .bar:nth-child(7){
+        -webkit-animation: rise 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -moz-animation: rise 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -ms-animation: rise 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -o-animation: rise 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        animation: rise 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(8){
+        width:0.155em;
+        height:1.45em;
+      }
+      .run .bar:nth-child(8){
+        -webkit-animation: rise 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -moz-animation: rise 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -ms-animation: rise 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -o-animation: rise 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        animation: rise 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(9){
+        width:0.16em;
+      }
+      .run .bar:nth-child(9){
+        -webkit-animation: rise 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -moz-animation: rise 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -ms-animation: rise 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -o-animation: rise 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        animation: rise 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(10){
+        width:0.165em;
+        height:1.45em;
+      }
+      .run .bar:nth-child(10){
+        -webkit-animation: rise 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -moz-animation: rise 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -ms-animation: rise 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -o-animation: rise 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        animation: rise 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(11){
+        width:0.17em;
+        height:1.35em;
+      }
+      .run .bar:nth-child(11){
+        -webkit-animation: rise 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -moz-animation: rise 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -ms-animation: rise 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -o-animation: rise 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        animation: rise 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(12){
+        width:0.18em;
+        height:1.6em;
+      }
+      .run .bar:nth-child(12){
+        -webkit-animation: rise 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: rise 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: rise 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: rise 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        animation: rise 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+      }
+      .bar:nth-child(13){
+        height:1.8em;
+      }
+      .run .bar:nth-child(13){
+        -webkit-animation: rise 2.1s ease-in-out infinite alternate, opa 4.1s ease-in-out infinite alternate;
+        -moz-animation: rise 2.1s ease-in-out infinite alternate, opa 4.1s ease-in-out infinite alternate;
+        -ms-animation: rise 2.1s ease-in-out infinite alternate, opa 4.1s ease-in-out infinite alternate;
+        -o-animation: rise 2.1s ease-in-out infinite alternate, opa 4.1s ease-in-out infinite alternate;
+        animation: rise 2.1s ease-in-out infinite alternate, opa 4.1s ease-in-out infinite alternate;
+      }
+      .run .big-puff, .run .small-puff, .run .corner{
+        -webkit-animation: opa 4.1s ease-in-out infinite alternate;
+        -moz-animation: opa 4.1s ease-in-out infinite alternate;
+        -ms-animation: opa 4.1s ease-in-out infinite alternate;
+        -o-animation: opa 4.1s ease-in-out infinite alternate;
+        animation: opa 4.1s ease-in-out infinite alternate;
+      }
+
+      .run.two .bar:nth-child(1){
+        -webkit-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -moz-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -ms-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -o-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(2){
+        -webkit-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -moz-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -ms-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -o-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(3){
+        -webkit-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -moz-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -ms-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -o-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(4){
+        -webkit-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -moz-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -ms-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -o-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(5){
+        -webkit-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -moz-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -ms-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -o-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(6){
+        -webkit-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -moz-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -ms-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -o-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(7){
+        -webkit-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -moz-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -ms-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -o-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(8){
+        -webkit-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -moz-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -ms-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -o-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(9){
+        -webkit-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -moz-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -ms-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -o-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(10){
+        -webkit-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -moz-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -ms-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -o-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(11){
+        -webkit-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -moz-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -ms-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -o-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(12){
+        -webkit-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+      }
+      .run.two .bar:nth-child(13){
+        -webkit-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+      }
+
+      .three .bar{
+        left:1.4em;
+      }
+      .three .corner{
+        left:1.3em;
+      }
+      .three .cover{
+        left: -1.78em;
+      }
+      .three .big-puff{
+        left: -2.5em;
+      }
+      .three .small-puff{
+        left: -3.1em;
+      }
+      .three .cap{
+        background-color: #ff3300;
+        height: 0.2em;
+        width: 0.2em;
+        position: relative;
+        z-index: 13;
+        border-radius: 0.1em;
+        display: inline-block;
+        margin:0 -0.1em;
+        left: 3.99em;
+        opacity:0;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      .run.three .cap{
+        opacity:1;
+      }
+      .three .cap:nth-child(1){
+        width: 0.075em;
+        height: 0.075em;
+        bottom: 0.605em;
+      }
+      .three .cap:nth-child(2){
+        width: 0.09em;
+        height: 0.09em;
+        bottom: 0.72em;
+      }
+      .three .cap:nth-child(3){
+        width: 0.1em;
+        height: 0.1em;
+        bottom: 0.77em;
+      }
+      .three .cap:nth-child(4){
+        width: 0.1em;
+        height: 0.1em;
+        bottom: 0.8em;
+      }
+      .three .cap:nth-child(5){
+        width:0.13em;
+        height:0.13em;
+        bottom: 0.67em;
+      }
+      .three .cap:nth-child(6){
+        width: 0.13em;
+        height: 0.13em;
+        bottom: 0.97em;
+      }
+      .three .cap:nth-child(7){
+        width: 0.15em;
+        height: 0.15em;
+        bottom: 1.15em;
+      }
+      .three .cap:nth-child(8){
+        width:0.155em;
+        height:0.155em;
+        bottom:1.295em;
+      }
+      .three .cap:nth-child(9){
+        width:0.16em;
+        height:0.16em;
+        bottom:1.34em;
+      }
+      .three .cap:nth-child(10){
+        width:0.165em;
+        height:0.165em;
+        bottom:1.285em;
+      }
+      .three .cap:nth-child(11){
+        width:0.17em;
+        height:0.17em;
+        bottom:1.18em;
+      }
+      .three .cap:nth-child(12){
+        width:0.18em;
+        height:0.18em;
+        bottom:1.42em;
+      }
+      .three .cap:nth-child(13){
+        bottom:1.6em;
+      }
+      .run.three .cap:nth-child(1){
+        -webkit-animation: pop1 1.4s ease-in-out infinite, opa 5.25s ease-in-out infinite alternate;
+        -moz-animation: pop1 1.4s ease-in-out infinite, opa 5.25s ease-in-out infinite alternate;
+        -ms-animation: pop1 1.4s ease-in-out infinite, opa 5.25s ease-in-out infinite alternate;
+        -o-animation: pop1 1.4s ease-in-out infinite, opa 5.25s ease-in-out infinite alternate;
+        animation: pop1 1.4s ease-in-out infinite, opa 5.25s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(2){
+        -webkit-animation: pop2 1.5s ease-in-out infinite, opa 5.2s ease-in-out infinite alternate;
+        -moz-animation: pop2 1.5s ease-in-out infinite, opa 5.2s ease-in-out infinite alternate;
+        -ms-animation: pop2 1.5s ease-in-out infinite, opa 5.2s ease-in-out infinite alternate;
+        -o-animation: pop2 1.5s ease-in-out infinite, opa 5.2s ease-in-out infinite alternate;
+        animation: pop2 1.5s ease-in-out infinite, opa 5.2s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(3){
+        -webkit-animation: pop 1.6s ease-in-out infinite, opa 5.1s ease-in-out infinite alternate;
+        -moz-animation: pop 1.6s ease-in-out infinite, opa 5.1s ease-in-out infinite alternate;
+        -ms-animation: pop 1.6s ease-in-out infinite, opa 5.1s ease-in-out infinite alternate;
+        -o-animation: pop 1.6s ease-in-out infinite, opa 5.1s ease-in-out infinite alternate;
+        animation: pop 1.6s ease-in-out infinite, opa 5.1s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(4){
+        -webkit-animation: pop 1.65s ease-in-out infinite, opa 5s ease-in-out infinite alternate;
+        -moz-animation: pop 1.65s ease-in-out infinite, opa 5s ease-in-out infinite alternate;
+        -ms-animation: pop 1.65s ease-in-out infinite, opa 5s ease-in-out infinite alternate;
+        -o-animation: pop 1.65s ease-in-out infinite, opa 5s ease-in-out infinite alternate;
+        animation: pop 1.65s ease-in-out infinite, opa 5s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(5){
+        -webkit-animation: pop 1.7s ease-in-out infinite, opa 4.9s ease-in-out infinite alternate;
+        -moz-animation: pop 1.7s ease-in-out infinite, opa 4.9s ease-in-out infinite alternate;
+        -ms-animation: pop 1.7s ease-in-out infinite, opa 4.9s ease-in-out infinite alternate;
+        -o-animation: pop 1.7s ease-in-out infinite, opa 4.9s ease-in-out infinite alternate;
+        animation: pop 1.7s ease-in-out infinite, opa 4.9s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(6){
+        -webkit-animation: pop 1.75s ease-in-out infinite, opa 4.8s ease-in-out infinite alternate;
+        -moz-animation: pop 1.75s ease-in-out infinite, opa 4.8s ease-in-out infinite alternate;
+        -ms-animation: pop 1.75s ease-in-out infinite, opa 4.8s ease-in-out infinite alternate;
+        -o-animation: pop 1.75s ease-in-out infinite, opa 4.8s ease-in-out infinite alternate;
+        animation: pop 1.75s ease-in-out infinite, opa 4.8s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(7){
+        -webkit-animation: pop 1.8s ease-in-out infinite, opa 4.7s ease-in-out infinite alternate;
+        -moz-animation: pop 1.8s ease-in-out infinite, opa 4.7s ease-in-out infinite alternate;
+        -ms-animation: pop 1.8s ease-in-out infinite, opa 4.7s ease-in-out infinite alternate;
+        -o-animation: pop 1.8s ease-in-out infinite, opa 4.7s ease-in-out infinite alternate;
+        animation: pop 1.8s ease-in-out infinite, opa 4.7s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(8){
+        -webkit-animation: pop 1.85s ease-in-out infinite, opa 4.6s ease-in-out infinite alternate;
+        -moz-animation: pop 1.85s ease-in-out infinite, opa 4.6s ease-in-out infinite alternate;
+        -ms-animation: pop 1.85s ease-in-out infinite, opa 4.6s ease-in-out infinite alternate;
+        -o-animation: pop 1.85s ease-in-out infinite, opa 4.6s ease-in-out infinite alternate;
+        animation: pop 1.85s ease-in-out infinite, opa 4.6s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(9){
+        -webkit-animation: pop 1.9s ease-in-out infinite, opa 4.5s ease-in-out infinite alternate;
+        -moz-animation: pop 1.9s ease-in-out infinite, opa 4.5s ease-in-out infinite alternate;
+        -ms-animation: pop 1.9s ease-in-out infinite, opa 4.5s ease-in-out infinite alternate;
+        -o-animation: pop 1.9s ease-in-out infinite, opa 4.5s ease-in-out infinite alternate;
+        animation: pop 1.9s ease-in-out infinite, opa 4.5s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(10){
+        -webkit-animation: pop 1.95s ease-in-out infinite, opa 4.4s ease-in-out infinite alternate;
+        -moz-animation: pop 1.95s ease-in-out infinite, opa 4.4s ease-in-out infinite alternate;
+        -ms-animation: pop 1.95s ease-in-out infinite, opa 4.4s ease-in-out infinite alternate;
+        -o-animation: pop 1.95s ease-in-out infinite, opa 4.4s ease-in-out infinite alternate;
+        animation: pop 1.95s ease-in-out infinite, opa 4.4s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(11){
+        -webkit-animation: pop 2s ease-in-out infinite, opa 4.3s ease-in-out infinite alternate;
+        -moz-animation: pop 2s ease-in-out infinite, opa 4.3s ease-in-out infinite alternate;
+        -ms-animation: pop 2s ease-in-out infinite, opa 4.3s ease-in-out infinite alternate;
+        -o-animation: pop 2s ease-in-out infinite, opa 4.3s ease-in-out infinite alternate;
+        animation: pop 2s ease-in-out infinite, opa 4.3s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(12){
+        -webkit-animation: pop 2.05s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: pop 2.05s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: pop 2.05s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: pop 2.05s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        animation: pop 2.05s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+      }
+      .run.three .cap:nth-child(13){
+        -webkit-animation: pop 2.1s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: pop 2.1s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: pop 2.1s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: pop 2.1s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+        animation: pop 2.1s ease-in-out infinite, opa 4.2s ease-in-out infinite alternate;
+      }
+      .three .bar:nth-child(14){
+        width: 0.075em;
+        height: 0.43em;
+        bottom: 0.25em;
+      }
+      .three .bar:nth-child(15){
+        width: 0.09em;
+        height: 0.7em;
+        bottom: 0.11em;
+      }
+      .three .bar:nth-child(16){
+        width: 0.1em;
+        height: 0.85em;
+        bottom: 0.02em;
+      }
+      .three .bar:nth-child(17){
+        width: 0.1em;
+        height: 0.9em;
+      }
+      .three .bar:nth-child(18){
+        width:0.13em;
+        height: 0.8em;
+      }
+      .three .bar:nth-child(19){
+        width: 0.13em;
+        height: 1.1em;
+      }
+      .three .bar:nth-child(20){
+        width: 0.15em;
+        height: 1.3em;
+      }
+      .three .bar:nth-child(21){
+        width:0.155em;
+        height:1.45em;
+      }
+      .three .bar:nth-child(22){
+        width:0.16em;
+      }
+      .three .bar:nth-child(23){
+        width:0.165em;
+        height:1.45em;
+      }
+      .three .bar:nth-child(24){
+        width:0.17em;
+        height:1.35em;
+      }
+      .three .bar:nth-child(25){
+        width:0.18em;
+        height:1.6em;
+      }
+      .three .bar:nth-child(26){
+        height:1.8em;
+      }
+      .run.three .bar:nth-child(14){
+        -webkit-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -moz-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -ms-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        -o-animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+        animation: bump1 1.4s ease-in-out infinite alternate, opa 5.25s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(15){
+        -webkit-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -moz-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -ms-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        -o-animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+        animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(16){
+        -webkit-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -moz-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -ms-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        -o-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+        animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(17){
+        -webkit-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -moz-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -ms-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        -o-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+        animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(18){
+        -webkit-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -moz-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -ms-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        -o-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+        animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(19){
+        -webkit-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -moz-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -ms-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        -o-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+        animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(20){
+        -webkit-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -moz-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -ms-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        -o-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+        animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(21){
+        -webkit-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -moz-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -ms-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        -o-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+        animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(22){
+        -webkit-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -moz-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -ms-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        -o-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+        animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(23){
+        -webkit-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -moz-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -ms-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        -o-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+        animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(24){
+        -webkit-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -moz-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -ms-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        -o-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+        animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(25){
+        -webkit-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+      }
+      .run.three .bar:nth-child(26){
+        -webkit-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -moz-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -ms-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        -o-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+        animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+      }
+      @keyframes pop1 {
+        33% {
+          bottom:0.75em;
+        }
+        50% {
+          bottom:1.75em;
+        }
+      }
+      @-o-keyframes pop1 {
+        33% {
+          bottom:0.75em;
+        }
+        50% {
+          bottom:1.75em;
+        }
+      }
+      @-moz-keyframes pop1 {
+        33% {
+          bottom:0.75em;
+        }
+        50% {
+          bottom:1.75em;
+        }
+      }
+      @-ms-keyframes pop1 {
+        33% {
+          bottom:0.75em;
+        }
+        50% {
+          bottom:1.75em;
+        }
+      }
+      @-webkit-keyframes pop1 {
+        33% {
+          bottom:0.75em;
+        }
+        50% {
+          bottom:1.75em;
+        }
+      }
+      @keyframes pop2 {
+        33% {
+          bottom:0.89em;
+        }
+        50% {
+          bottom:1.89em;
+        }
+      }
+      @-o-keyframes pop2 {
+        33% {
+          bottom:0.89em;
+        }
+        50% {
+          bottom:1.89em;
+        }
+      }
+      @-moz-keyframes pop2 {
+        33% {
+          bottom:0.89em;
+        }
+        50% {
+          bottom:1.89em;
+        }
+      }
+      @-ms-keyframes pop2 {
+        33% {
+          bottom:0.89em;
+        }
+        50% {
+          bottom:1.89em;
+        }
+      }
+      @-webkit-keyframes pop2 {
+        33% {
+          bottom:0.89em;
+        }
+        50% {
+          bottom:1.89em;
+        }
+      }
+      @keyframes pop {
+        33% {
+          bottom:1em;
+        }
+        50% {
+          bottom:2em;
+        }
+      }
+      @-o-keyframes pop {
+        33% {
+          bottom:1em;
+        }
+        50% {
+          bottom:2em;
+        }
+      }
+      @-moz-keyframes pop {
+        33% {
+          bottom:1em;
+        }
+        50% {
+          bottom:2em;
+        }
+      }
+      @-ms-keyframes pop {
+        33% {
+          bottom:1em;
+        }
+        50% {
+          bottom:2em;
+        }
+      }
+      @-webkit-keyframes pop {
+        33% {
+          bottom:1em;
+        }
+        50% {
+          bottom:2em;
+        }
+      }
+      @keyframes bump1 {
+        33% {
+          height:0.75em;
+        }
+        66% {
+          height:1.75em;
+        }
+      }
+      @-o-keyframes bump1 {
+        33% {
+          height:0.75em;
+        }
+        66% {
+          height:1.75em;
+        }
+      }
+      @-moz-keyframes bump1 {
+        33% {
+          height:0.75em;
+        }
+        66% {
+          height:1.75em;
+        }
+      }
+      @-ms-keyframes bump1 {
+        33% {
+          height:0.75em;
+        }
+        66% {
+          height:1.75em;
+        }
+      }
+      @-webkit-keyframes bump1 {
+        33% {
+          height:0.75em;
+        }
+        66% {
+          height:1.75em;
+        }
+      }
+      @keyframes bump2 {
+        33% {
+          height:0.89em;
+        }
+        66% {
+          height:1.89em;
+        }
+      }
+      @-o-keyframes bump2 {
+        33% {
+          height:0.89em;
+        }
+        66% {
+          height:1.89em;
+        }
+      }
+      @-moz-keyframes bump2 {
+        33% {
+          height:0.89em;
+        }
+        66% {
+          height:1.89em;
+        }
+      }
+      @-ms-keyframes bump2 {
+        33% {
+          height:0.89em;
+        }
+        66% {
+          height:1.89em;
+        }
+      }
+      @-webkit-keyframes bump2 {
+        33% {
+          height:0.89em;
+        }
+        66% {
+          height:1.89em;
+        }
+      }
+      @keyframes bump {
+        33% {
+          height:1em;
+        }
+        66% {
+          height:2em;
+        }
+      }
+      @-o-keyframes bump {
+        33% {
+          height:1em;
+        }
+        66% {
+          height:2em;
+        }
+      }
+      @-moz-keyframes bump {
+        33% {
+          height:1em;
+        }
+        66% {
+          height:2em;
+        }
+      }
+      @-ms-keyframes bump {
+        33% {
+          height:1em;
+        }
+        66% {
+          height:2em;
+        }
+      }
+      @-webkit-keyframes bump {
+        33% {
+          height:1em;
+        }
+        66% {
+          height:2em;
+        }
+      }
+      @keyframes rise {
+        33% {
+          transform:translateY(0.1em);
+        }
+        66% {
+          transform:translateY(-0.3em);
+        }
+      }
+      @-o-keyframes rise {
+        33% {
+          -o-transform:translateY(0.1em);
+        }
+        66% {
+          -o-transform:translateY(-0.3em);
+        }
+      }
+      @-moz-keyframes rise {
+        33% {
+          -moz-transform:translateY(0.1em);
+        }
+        66% {
+          -moz-transform:translateY(-0.3em);
+        }
+      }
+      @-ms-keyframes rise {
+        33% {
+          -ms-transform:translateY(0.1em);
+        }
+        66% {
+          -ms-transform:translateY(-0.3em);
+        }
+      }
+      @-webkit-keyframes rise {
+        33% {
+          -webkit-transform:translateY(0.1em);
+        }
+        66% {
+          -webkit-transform:translateY(-0.3em);
+        }
+      }
+      @-webkit-keyframes opa {
+        50%{
+          background-color:#ff8800;
+        }
+      }@-moz-keyframes opa {
+        50%{
+          background-color:#ff8800;
+        }
+      }@-ms-keyframes opa {
+        50%{
+          background-color:#ff8800;
+        }
+      }@-o-keyframes opa {
+        50%{
+          background-color:#ff8800;
+        }
+      }@keyframes opa {
+        50%{
+          background-color:#ff8800;
+        }
+      }
+      article#single-post, .fit{
+        max-width:1000px;
+        margin:0 auto;
+      }
+      h1.blog-post-title{
+        padding-top:1em;
+        margin-top:0;
+      }
+      .sound.three{
+        font-size:53px;
+        padding:0.75em 0;
+      }
+      .night .sound, .night .cover{
+        background-color: #131429;
+      }
+      .hide{
+        display:none;
+      }
+      button{
+        border:none;
+        background:none;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        text-transform: uppercase;
+        line-height: 1.3em;
+        color: #5e5bd6;
+        transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+      }
+      button:hover, button#runner{
+        color:#258ecd;
+      }
+      @media only screen and (max-width:702px){
+        .sound{
+          font-size:27px;
+        }
+        .sound.three{
+          font-size:20px;
+        }
+        .three .cap{
+          left: 3.79em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container day">
+      <button id="main-menu-button" class="menu-toggle-button">
+        <span>Menu</span>
+      </button>
+      <nav id="cbp-spmenu-right" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right day"><a href="mailto:jsh@bckmn.com?subject=Yo, I saw your website!">jsh@bckmn.com<img src="http://s3.amazonaws.com/bckmn/public/about/jsh.jpg" alt="Joshua Beckman" class="face-img"></a><a href="http://twitter.com/jbckmn" target="_blank">@jbckmn</a>
+      <br><a href="/rss.xml">RSS</a><a href="/api">API Access</a><a onclick="document.getElementById('menu-stories').style.display = 'inherit';this.style.fontWeight = '700';">Visuals & Stories</a>
+      <div id="menu-stories" style="display:none;padding-left:1em;"><a href="https://medium.com/joe-mctigue" target="_blank">Joe McTigue</a><a onclick="openStrip('illiniImprov');">Illini Improv: Behind The Curtain</a><a onclick="openStrip('sports');">Sporting Fun</a><a onclick="openStrip('falling');">Faces of The Falling</a><a onclick="openStrip('latest');">Latest</a>
+      </div><a onclick="document.getElementById('menu-projects').style.display = 'inherit';this.style.fontWeight = '700';">Projects</a>
+      <div id="menu-projects" style="display:none;padding-left:1em;"><a href="http://naked-wordpress.bckmn.com" target="_blank">Naked Wordpress</a><a href="/stark-lines" target="_blank">Stark Lines</a><a href="http://atomist.co" target="_blank">Atomist.co</a><a href="http://ontrack.io" target="_blank">OnTrack.io</a><a href="/polarpageviews" target="_blank">Polar Pageviews</a><a href="http://weekaway.com" target="_blank">WeekAway.com</a><a href="http://rankommend.com" target="_blank">Rankommend.com</a>
+      </div>
+      <br>
+      <input type="text" placeholder="Search..." id="search-field">
+      <input type="submit" value="GO" id="search-submit">
+      <br>
+      <br>
+      </nav>
+      <article id="single-post" itemscope itemtype="http://schema.org/Article">
+        <meta itemprop="author" content="Joshua Beckman">
+        <meta itemprop="datePublished" content="Sun Dec 22 2013 12:25:04 GMT-0600 (CST)">
+        <h1 class="blog-post-title"><a href="?utm_source=direct-share" itemprop="url" class="blog-post-link">
+          <span itemprop="headline">SoundCloud Logo Animations</span>
+        </a></h1>
+
+        <div itemprop="articleBody" class="sound-body">
+
+          <div class="sound" id="1">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="corner"></span>
+            <span class="cover"></span>
+            <span class="big-puff">
+            </span>
+            <span class="small-puff">
+            </span>
+          </div>
+          <div class="sound two hide" id="2">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="corner"></span>
+            <span class="cover"></span>
+            <span class="big-puff">
+            </span>
+            <span class="small-puff">
+            </span>
+          </div>
+          <div class="sound three hide" id="3">
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="cap"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="corner"></span>
+            <span class="cover"></span>
+            <span class="big-puff"></span>
+            <span class="small-puff"></span>
+          </div>
+
+          <div class="foo">
+            <button id="run1" class="hide">
+              Version One
+            </button>
+            <button id="run2">
+              Version Two
+            </button>
+            <button id="run3">
+              Version Three
+            </button>
+            <br><br>
+            <button id="runner">
+              Play
+            </button>
+          </div>
+
+        </div>
+      </article>
+      <div class="pure-g-r fit">
+        <div class="pure-u-3-4">
+          <br>
+          <br>
+          <h3 class="name-header">
+            <a href="/">JOSHUA BECKMAN</a>
+            <span onclick="jshBckmn.setRandomThought(this);" id="thoughtBubble" class="hint"></span>
+          </h3>
+        </div>
+        <div class="pure-u-1-4 pure-hidden-phone">
+          <br>
+          <br>
+          <h4 style="color:white;text-transform:uppercase;">
+            <span style="border-top:1px solid white;border-bottom:1px solid white;">Evening Edition</span>
+          </h4>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript">
+      ( function( window ) {
+        var b = document.getElementById('runner'),
+            b1 = document.getElementById('run1'),
+            b2 = document.getElementById('run2'),
+            b3 = document.getElementById('run3'),
+            s1 = document.getElementById('1'),
+            s2 = document.getElementById('2'),
+            s3 = document.getElementById('3'),
+            rs = document.getElementsByClassName('sound'),
+            i = 0,
+            length = rs.length;
+        b.onclick = function() {
+          var rs = document.getElementsByClassName('sound'),
+            i = 0,
+            length = rs.length;
+          for (; i < length; i++) {
+            classie.toggle(rs[i], 'run');
+          }
+          if (this.innerText == 'PLAY') {
+            this.innerText = 'STOP';
+          } else {
+            this.innerText = 'PLAY';
+          }
+        };
+        b1.onclick = function() {
+          if (classie.has(s1, 'hide')) {
+            classie.remove(s1, 'hide');
+            classie.add(s2, 'hide');
+            classie.add(s3, 'hide');
+            classie.add(b1, 'hide');
+            classie.remove(b2, 'hide');
+            classie.remove(b3, 'hide');
+          }
+        };
+        b2.onclick = function() {
+          if (classie.has(s2, 'hide')) {
+            classie.remove(s2, 'hide');
+            classie.add(s1, 'hide');
+            classie.add(s3, 'hide');
+            classie.add(b2, 'hide');
+            classie.remove(b1, 'hide');
+            classie.remove(b3, 'hide');
+          }
+        };
+        b3.onclick = function() {
+          if (classie.has(s3, 'hide')) {
+            classie.remove(s3, 'hide');
+            classie.add(s2, 'hide');
+            classie.add(s1, 'hide');
+            classie.add(b3, 'hide');
+            classie.remove(b2, 'hide');
+            classie.remove(b1, 'hide');
+          }
+        };
+      })( window );
+      window.jshBckmn = window.jshBckmn || {};
+      window.jshBckmn.thoughts = ["cares most about honesty in product and mind","learned something new today","can listen to Philip Glass for hours","teaches himself to fish","is in it to win it","breaks it and buys it","reads books over the water","sees things in black and white","speaks less than he thinks","keeps his fingers in many pies","is in the Loop","wants to be in the know","can feel a change coming on","woke up early today","writes it all down","is based on a true story","doesn't see how that's possible","believes you","agrees to disagree","stays up at night","keeps his hands free","works with his hands","is backwards compatible","was never really IE 7 compatible","shoots from the hip","carries several cameras","is the sum of his parts","is a viewer like you","isn't afraid of guys like you","learns ice-skating over the summer"];
+    </script>
+   <script src="/javascripts/bckmn.min.js"></script>
+
+  </body>
+</html>

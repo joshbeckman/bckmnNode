@@ -23,10 +23,21 @@ module.exports = function(grunt) {
         files: {
           'public/javascripts/starkLines.min.js': ['public/javascripts/starkLines/*.js', 'public/javascripts/gapi.js']
         }
+      },
+      general: {
+        options: {
+          banner: '/*! bckmn.com v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+          mangle: {
+            except: ['siteBeat', 'd3', 'gapi']
+          }
+        },
+        files: {
+          'public/javascripts/bckmn.min.js': ['public/javascripts/classie.js', 'public/javascripts/bckmn.js']
+        }
       }
     },
     jshint: {
-      files: ['gruntfile.js', 'public/javascripts/starkLines/*.js'],
+      files: ['gruntfile.js', 'public/javascripts/starkLines/*.js', 'public/javascripts/bckmn.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -37,18 +48,31 @@ module.exports = function(grunt) {
         }
       }
     },
+    cssmin: {
+      add_banner: {
+        options: {
+          banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        },
+        files: {
+          'public/stylesheets/bckmn.min.css': ['public/stylesheets/pure-min.css', 'public/stylesheets/default.css', 'public/stylesheets/style.css']
+        }
+      }
+    },
     watch: {
       files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
+      tasks: ['jshint', 'uglify']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('test', ['jshint']);
 
-  grunt.registerTask('crush', ['uglify']);
+  grunt.registerTask('crush', ['uglify', 'cssmin']);
 
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
 };
