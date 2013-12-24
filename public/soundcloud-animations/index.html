@@ -999,7 +999,12 @@
       }
       h1.blog-post-title{
         padding-top:1em;
-        margin-top:0;
+        margin:0 auto 1em;
+        display:inline-block;
+      }
+      .sound-words{
+        margin:0 auto;
+        max-width: 500px;
       }
       .sound.three{
         font-size:53px;
@@ -1154,6 +1159,33 @@
             </button>
           </div>
 
+        </div>
+        <div class="sound-words">
+          <p>
+            I was messing around with this little fad of making loading animations. I had started to develop a version with pleasant rounded-bar animation sequence, when <a href="http://jawsmartin.com" target="_blank">Josh Martin</a> looked over my shoulder.
+          </p>
+          <p>
+            He suggested that the bars looked just like those found in the <a href="http://soundcloud.com" target="_blank">SoundCloud</a> logo. And wouldn't it be cool to make an animation out of a logo?
+          </p>
+          <p>
+            It wasn't hard to build the rest of the animation sequences around the idea of sound waves and sound visualizations and old-school speaker system lights. I've placed three different versions here, all of which are built around the same genreal layout.
+          </p>
+          <p>
+            Each version is built entirely in releative units, so scaling the logo animation is as simple as changing one <code>font-size:</code> line in the CSS. All of the animations are done via CSS3 transforms and keyframes, with varying degrees of graceful degredation across browsers. The control of the animations is accomplished with a little DOM class manipulation and tiny JavaScript.
+          </p>
+          <p>
+            It would be cool to see something like this on page load when visiting <a href="http://soundcloud.com" target="_blank">SoundCloud</a> tracks. It would be even cooler if the logos throughout the page, or the favicon, were animated in such a way when any track is in progress, as a visual signal to the user.
+          </p>
+          <ol>
+            <li>Animate the logo</li>
+            <li>Relate the animation to the company/product</li>
+            <li>Make the animation useful to the user, codify the fluff</li>
+          </ol>
+          <hr>
+          <br>
+          <a href='http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.bckmn.com/soundcloud-animations&p[images][0]=&p[title]=Soundcloud%20Logo%20Animations&p[summary]=' target='_blank' style='border-top: 2px solid #3B5998;border-bottom: 2px solid #3B5998;color: #3B5998;padding:0 3px;margin:0 3px;'>Share on Facebook</a>
+          <a href='http://twitter.com/home?status=Soundcloud%20Logo%20Animations:%20http://www.bckmn.com/soundcloud-animations%20from%20@jbckmn' target='_blank' style='border-top: 2px solid #55acee;border-bottom: 2px solid #55acee;color: #55acee;padding:0 3px;margin:0 3px;'>Tweet it</a>
+          <a href='https://plus.google.com/share?url=http://www.bckmn.com/ssoundcloud-animations' target='_blank' style='border-top: 2px solid #dd4b39;border-bottom: 2px solid #dd4b39;color: #dd4b39;padding:0 3px;margin:0 3px;'>Share on Google+</a>
         </div>
       </article>
       <div class="pure-g-r fit">
