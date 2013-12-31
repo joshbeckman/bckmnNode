@@ -44,7 +44,7 @@
       .foo{
         margin:0 auto;
         padding: 20px 0;
-        width:500px;
+        max-width:500px;
         text-align: center;
       }
       .sound{
@@ -1000,7 +1000,7 @@
       h1.blog-post-title{
         padding-top:1em;
         margin:0 auto 1em;
-        display:inline-block;
+        text-align:center;
       }
       .sound-words{
         margin:0 auto;
@@ -1025,6 +1025,7 @@
         line-height: 1.3em;
         color: #5e5bd6;
         transition: 0.5s;-moz-transition: 0.5s;-webkit-transition: 0.5s;-o-transition: 0.5s;
+        padding-top:4px;
       }
       button:hover, button#runner{
         color:#258ecd;
@@ -1154,9 +1155,7 @@
               Version Three
             </button>
             <br><br>
-            <button id="runner">
-              Play
-            </button>
+            <button id="runner">PLAY</button>
           </div>
 
         </div>
@@ -1225,10 +1224,10 @@
           for (; i < length; i++) {
             classie.toggle(rs[i], 'run');
           }
-          if (this.innerText == 'PLAY') {
-            this.innerText = 'STOP';
+          if (this.innerHTML == 'PLAY') {
+            this.innerHTML = 'STOP';
           } else {
-            this.innerText = 'PLAY';
+            this.innerHTML = 'PLAY';
           }
         };
         b1.onclick = function() {
