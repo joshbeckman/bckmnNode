@@ -13,6 +13,7 @@ var moment = require('moment')
         {url: '/', changefreq: 'daily', priority: 1},
         {url: '/api', changefreq: 'daily', priority: 0.9},
         {url: '/pay', changefreq: 'monthly', priority: 0.7},
+        {url: '/soundcloud-animations', changefreq: 'daily', priority: 0.8}
       ];
 
 Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
