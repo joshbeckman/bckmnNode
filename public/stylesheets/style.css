@@ -725,6 +725,9 @@ p.gallery-image{
   background-color:rgba(0,0,0,0.8);
   color:#eee;
 }
+.night code{
+  color:#222;
+}
 
 @media screen and (max-height: 26.375em){
 
