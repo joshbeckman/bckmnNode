@@ -244,81 +244,81 @@
   animation: bump2 1.5s ease-in-out infinite alternate, opa 5.2s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(3){
-  -webkit-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
-  -moz-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
-  -ms-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
-  -o-animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
-  animation: bump 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+  -webkit-animation: bump3 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+  -moz-animation: bump3 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+  -ms-animation: bump3 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+  -o-animation: bump3 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
+  animation: bump3 1.6s ease-in-out infinite alternate, opa 5.1s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(4){
-  -webkit-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
-  -moz-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
-  -ms-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
-  -o-animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
-  animation: bump 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+  -webkit-animation: bump4 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+  -moz-animation: bump4 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+  -ms-animation: bump4 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+  -o-animation: bump4 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
+  animation: bump4 1.65s ease-in-out infinite alternate, opa 5s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(5){
-  -webkit-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
-  -moz-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
-  -ms-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
-  -o-animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
-  animation: bump 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+  -webkit-animation: bump5 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+  -moz-animation: bump5 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+  -ms-animation: bump5 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+  -o-animation: bump5 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
+  animation: bump5 1.7s ease-in-out infinite alternate, opa 4.9s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(6){
-  -webkit-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
-  -moz-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
-  -ms-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
-  -o-animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
-  animation: bump 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+  -webkit-animation: bump6 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+  -moz-animation: bump6 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+  -ms-animation: bump6 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+  -o-animation: bump6 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
+  animation: bump6 1.75s ease-in-out infinite alternate, opa 4.8s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(7){
-  -webkit-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
-  -moz-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
-  -ms-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
-  -o-animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
-  animation: bump 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+  -webkit-animation: bump7 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+  -moz-animation: bump7 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+  -ms-animation: bump7 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+  -o-animation: bump7 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
+  animation: bump7 1.8s ease-in-out infinite alternate, opa 4.7s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(8){
-  -webkit-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
-  -moz-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
-  -ms-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
-  -o-animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
-  animation: bump 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+  -webkit-animation: bump8 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+  -moz-animation: bump8 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+  -ms-animation: bump8 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+  -o-animation: bump8 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
+  animation: bump8 1.85s ease-in-out infinite alternate, opa 4.6s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(9){
-  -webkit-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
-  -moz-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
-  -ms-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
-  -o-animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
-  animation: bump 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+  -webkit-animation: bump9 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+  -moz-animation: bump9 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+  -ms-animation: bump9 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+  -o-animation: bump9 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
+  animation: bump9 1.9s ease-in-out infinite alternate, opa 4.5s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(10){
-  -webkit-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
-  -moz-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
-  -ms-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
-  -o-animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
-  animation: bump 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+  -webkit-animation: bump10 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+  -moz-animation: bump10 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+  -ms-animation: bump10 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+  -o-animation: bump10 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
+  animation: bump10 1.95s ease-in-out infinite alternate, opa 4.4s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(11){
-  -webkit-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
-  -moz-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
-  -ms-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
-  -o-animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
-  animation: bump 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+  -webkit-animation: bump11 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+  -moz-animation: bump11 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+  -ms-animation: bump11 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+  -o-animation: bump11 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
+  animation: bump11 2s ease-in-out infinite alternate, opa 4.3s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(12){
-  -webkit-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -moz-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -ms-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -o-animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  animation: bump 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -webkit-animation: bump12 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -moz-animation: bump12 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -ms-animation: bump12 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -o-animation: bump12 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  animation: bump12 2.05s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
 }
 .run.two .bar:nth-child(13){
-  -webkit-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -moz-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -ms-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  -o-animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
-  animation: bump 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -webkit-animation: bump13 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -moz-animation: bump13 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -ms-animation: bump13 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  -o-animation: bump13 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
+  animation: bump13 2.1s ease-in-out infinite alternate, opa 4.2s ease-in-out infinite alternate;
 }
 
 .three .bar{
@@ -772,83 +772,83 @@
 }
 @keyframes bump1 {
   33% {
-    height:0.75em;
+    height:0.05em;
   }
 66% {
-  height:1.75em;
+  height:0.15em;
 }
 }
 @-o-keyframes bump1 {
   33% {
-    height:0.75em;
+    height:0.05em;
   }
-66% {
-  height:1.75em;
-}
+  66% {
+    height:0.15em;
+  }
 }
 @-moz-keyframes bump1 {
   33% {
-    height:0.75em;
+    height:0.05em;
   }
-66% {
-  height:1.75em;
-}
+  66% {
+    height:0.15em;
+  }
 }
 @-ms-keyframes bump1 {
   33% {
-    height:0.75em;
+    height:0.05em;
   }
-66% {
-  height:1.75em;
-}
+  66% {
+    height:0.15em;
+  }
 }
 @-webkit-keyframes bump1 {
   33% {
-    height:0.75em;
+    height:0.05em;
   }
-66% {
-  height:1.75em;
-}
+  66% {
+    height:0.15em;
+  }
 }
 @keyframes bump2 {
   33% {
-    height:0.89em;
+    height:0.1em;
   }
-66% {
-  height:1.89em;
-}
+  66% {
+    height:0.3em;
+  }
 }
 @-o-keyframes bump2 {
   33% {
-    height:0.89em;
+    height:0.1em;
   }
-66% {
-  height:1.89em;
-}
+  66% {
+    height:0.3em;
+  }
 }
 @-moz-keyframes bump2 {
   33% {
-    height:0.89em;
+    height:0.1em;
   }
-66% {
-  height:1.89em;
-}
+  66% {
+    height:0.3em;
+  }
 }
 @-ms-keyframes bump2 {
   33% {
-    height:0.89em;
+    height:0.1em;
   }
-66% {
-  height:1.89em;
-}
+  66% {
+    height:0.3em;
+  }
 }
 @-webkit-keyframes bump2 {
   33% {
-    height:0.89em;
+    height:0.1em;
   }
-66% {
-  height:1.89em;
-}
+  66% {
+    height:0.3em;
+  }
 }
 @keyframes bump {
   33% {
