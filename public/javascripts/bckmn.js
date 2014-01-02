@@ -126,10 +126,13 @@ function loadImages(imageSrc, gal, imageSet, callback){
       menuToggle();
     };
   }
-  for(i=0;i<menuTogglers.length;i++){
-    menuTogglers[i].onclick = function() {
+  function makeToggleClickFxn() {
+    return function() {
       menuToggle();
     };
+  }
+  for(i=0;i<menuTogglers.length;i++){
+    menuTogglers[i].onclick = makeToggleClickFxn();
   }
 })();
 // In-house

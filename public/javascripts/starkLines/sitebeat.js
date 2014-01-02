@@ -333,6 +333,14 @@ var x = d3.scale.linear()
   function handleJSONDrop(evt) {
     evt.stopPropagation();
     evt.preventDefault();
+    function makeReaderLoadFxn() {
+      return (function(theFile) {
+        return function(e) {
+          var result = JSON.parse(e.target.result);
+          loadFileProfiles(result);
+        };
+      })(f);
+    }
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       var files = evt.dataTransfer.files,
           i = 0,
@@ -346,12 +354,7 @@ var x = d3.scale.linear()
 
         var reader = new FileReader();
 
-        reader.onload = (function(theFile) {
-          return function(e) {
-            var result = JSON.parse(e.target.result);
-            loadFileProfiles(result);
-          };
-        })(f);
+        reader.onload = makeReaderLoadFxn();
 
         reader.readAsText(f);
       }
