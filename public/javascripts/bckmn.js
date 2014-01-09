@@ -27,7 +27,19 @@ if(searchField){
   }
 })();
 // Creator function
-var create = function(name, props){ var el = document.createElement(name); for (var p in props) el[p] = props[p]; return el; };
+var create = function(name, props){
+  var el = document.createElement(name);
+  for (var p in props){
+  if(typeof props[p] === 'object'){
+  for(var q in props[p]){
+  el[p][q] = props[p][q];
+  }
+  }else{
+  el[p] = props[p];
+  }
+  }
+  return el;
+};
 // Custom ScrollTo
 function scrollTo(element, to, duration) {
   var start = element.scrollTop,

@@ -3,6 +3,7 @@ extends layout
 block content
   script(src='/javascripts/editor.js')
   script(src='/javascripts/marked.js')
+  script(src='/javascripts/color-thief.js')
   link(rel='stylesheet', href='/stylesheets/editor.css')
   link(rel='stylesheet', href='/stylesheets/yue.css')
   style(type="text/css").
@@ -26,6 +27,11 @@ block content
       .editor-wrapper
         input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
         textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
+        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post ? post.image : ''}")
+        span#post-colors
+          if post
+            for color in post.colors 
+              span(style="height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
 
   script.
     var editor = new Editor(),
@@ -128,3 +134,73 @@ block content
         listenToMenuPosts();
       };
     listenToMenuPosts();
+    // dnd interface and loading
+    (function initializeDnd(window, document) {
+      function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+        document.body.style.border = '10px solid #5E5BD6';
+      }
+      function loadColors(image) {
+        var colorThief = new ColorThief(),
+          otherColors = colorThief.getPalette(image, 6),
+          output = document.getElementById('post-colors'),
+          i = 0,
+          length = otherColors.length;
+        output.innerHTML = null;
+        for (; i <  length; i++) {
+          output.appendChild(create('span', {
+            style: {
+              width: '30px',
+              height:'10px',
+              display: 'inline-block',
+              background: 'rgb('+[otherColors[i][0].toString(), otherColors[i][1].toString(), otherColors[i][2].toString()].join(',')+')'
+            },
+            dataset: {
+              red: otherColors[i][0],
+              green: otherColors[i][1],
+              blue: otherColors[i][2]
+            }
+          }));
+        }
+      }
+      function handleImageDrop(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        document.body.style.border = 'none';
+        function makeReaderLoadFxn() {
+          return (function(theFile) {
+            return function(e) {
+              var result = e.target.result,
+                editor = document.getElementById('post-editor');
+              editor.appendChild(create('img', {
+                src: result,
+                id: 'dropped-image',
+                onload: function() {loadColors(document.getElementById('dropped-image'));}
+              }));
+            };
+          })(f);
+        }
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+          var files = evt.dataTransfer.files,
+              i = 0,
+              f, reader;
+          for (; i < files.length; i++) {
+            f = files[i];
+            if (!f.type.match(/image.*/)) {
+              alert('You\'re gonna need to upload a valid image file!\nCurrently, you are uploading a file of type "'+f.type.toString()+'"');
+              continue;
+            }
+            reader = new FileReader();
+            reader.onload = makeReaderLoadFxn();
+            reader.readAsDataURL(f);
+          }
+        } else {
+          alert('Javascript File APIs are not fully supported in this here browser.\n That sucks.');
+        }
+      }
+      var dropZone = document.getElementsByTagName('body')[0];
+      dropZone.addEventListener('dragover', handleDragOver, false);
+      dropZone.addEventListener('drop', handleImageDrop, false);
+    })(this, this.document);

@@ -17,6 +17,7 @@ var Post = new Schema({
     published: {type: Boolean, default: false, required: true},
     markdown: {type: String, required: true},
     image: {type: String},
+    colors: [{ hex: String, red: Number, green: Number, blue: Number }],
     searchableTime: {type: String},
     searchableUrl: {type: String},
     keywordBin: {type: String}
