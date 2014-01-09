@@ -27,11 +27,11 @@ block content
       .editor-wrapper
         input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
         textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
-        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post ? post.image : ''}")
+        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post.image ? post.image : ''}")
         span#post-colors
           if post
             for color in post.colors 
-              span(style="height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
+              span(style="display:inline-block;height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
 
   script.
     var editor = new Editor(),
@@ -71,11 +71,28 @@ block content
           saveCurrent();
         };
     };
+    function retrieveColors (parentEl) {
+      var elements = parentEl.children,
+        i = 0,
+        length = elements.length,
+        arr = [];
+      for (; i < length; i++) {
+        arr.push({
+          red: parseInt(elements[i].dataset.red, 10),
+          green: parseInt(elements[i].dataset.green, 10),
+          blue: parseInt(elements[i].dataset.blue, 10),
+          hex: elements[i].dataset.hex || ''
+        });
+      }
+      return arr;
+    }
     var saveCurrent = function(){
       var postEditor = document.getElementById('post-editor'),
           postID = postEditor.dataset.postId,
           title = document.getElementById('post-title-editor').value,
-          body = editor.codemirror.getValue();
+          body = editor.codemirror.getValue(),
+          imageUrl = document.getElementById('post-image').value,
+          colors = retrieveColors(document.getElementById('post-colors'));
       if(body && title){
         var r = confirm("Publish this?");
         if(postID){
@@ -84,6 +101,8 @@ block content
             title: title,
             _id: postID,
             published: r,
+            image: imageUrl,
+            colors: colors,
             time: (new Date)
           });
         }else{
@@ -91,6 +110,8 @@ block content
             markdown: body,
             title: title,
             published: r,
+            image: imageUrl,
+            colors: colors,
             time: (new Date)
           });
         }
@@ -105,6 +126,8 @@ block content
           if(unPubs[i]._id == elem.dataset.postId){
             document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
             document.getElementById('post-title-editor').value = unPubs[i].title;
+            document.getElementById('post-image').value = unPubs[i].image || '';
+            document.getElementById('post-colors').innerHTML = null;
             editor.codemirror.setValue(unPubs[i].markdown);
           }
         }

@@ -24,6 +24,10 @@ block content
         .blog-post-wrapper
           h2.blog-post-title
             a.blog-post-link(href="/blog/#{p.slug}") #{p.title}
+              if p.colors
+                .colors
+                  for color in p.colors 
+                    span(style="display:inline-block;height:10px;width:#{(1/p.colors.length)*100}%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
           .post-body !{p.lede}
           a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
       if posts.length < 1

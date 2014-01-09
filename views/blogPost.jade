@@ -6,6 +6,10 @@ block content
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
 
+  if post.colors
+    .post-colors
+      for color in post.colors 
+        span(style="display:inline-block;height:10px;width:#{(1/post.colors.length)*100}%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
   #content.pure-g-r
     .pure-u-1-6
       span.post-date.transition #{moment(post.modified).fromNow()}

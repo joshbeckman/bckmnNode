@@ -167,6 +167,13 @@ article#single-post {
 .blog-post-title{
   font-size: 2.5em;
 }
+.colors{
+  line-height: 0px;
+  margin-top: -8px;
+}
+.post-colors{
+  line-height: 8px;
+}
 .post-date{
   float: right;
   margin-top: 3.5em;
