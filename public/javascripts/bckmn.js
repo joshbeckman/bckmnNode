@@ -41,8 +41,8 @@ var create = function(name, props){
   return el;
 };
 // Custom ScrollTo
-function scrollTo(element, to, duration) {
-  var start = element.scrollTop,
+window.scrollTo = function(element, to, duration) {
+  var start = element.scrollY,
       change = to - start,
       currentTime = 0,
       increment = 20;
@@ -50,13 +50,13 @@ function scrollTo(element, to, duration) {
   var animateScroll = function(){
     currentTime += increment;
     var val = Math.easeInOutQuad(currentTime, start, change, duration);
-    element.scrollTop = val;
+    element.scroll(0, val);
     if(currentTime < duration) {
       setTimeout(animateScroll, increment);
     }
   };
   animateScroll();
-}
+};
 Math.easeInOutQuad = function (t, b, c, d) {
   t /= d/2;
   if (t < 1) return c/2*t*t + b;
@@ -170,3 +170,52 @@ if (document.getElementById('thoughtBubble')) {
     setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
   },10000);
 }
+// Detect resize
+function on_resize(c,t){
+  onresize = function(){
+    clearTimeout(t);
+    t=setTimeout(c,100);
+  };
+  return c;
+}
+// Post image functions
+(function(window, document) {
+  var postImg = document.getElementById('full-image'),
+    imgHolder = document.getElementById('post-image-holder'),
+    scrollPosts = document.getElementsByClassName('scroll-post'),
+    i = 0;
+  if (postImg) {
+    on_resize(function(){
+      resizeOnLoad(postImg);
+    })();
+    imgHolder.onload = function () {
+      postImg.style.backgroundImage = "url(" + this.src + ")";
+      resizeOnLoad(postImg);
+    };
+    postImg.onmouseover = function() {
+      i = 0;
+      for(; i < scrollPosts.length; i++) {
+        scrollPosts[i].style.opacity = '1';
+      }
+    };
+    for(; i < scrollPosts.length; i++) {
+      scrollPosts[i].onclick = makeScrollToPost();
+    }
+  }
+  function makeScrollToPost () {
+    return function() {
+      scrollTo(window, document.getElementById('content').offsetTop, 1000);
+      this.style.opacity = '0';
+      postImg.onmouseover = null;
+    };
+  }
+  function resizeOnLoad (elem) {
+    if(window.innerWidth > (window.innerHeight * 1.33)) {
+      elem.style.height = '100vh';
+      elem.style.paddingBottom = null;
+    } else {
+      elem.style.height = null;
+      elem.style.paddingBottom = '66%';
+    }
+  }
+})(this, this.document);

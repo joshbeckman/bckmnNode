@@ -5,7 +5,10 @@ block content
     span Menu
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
-
+  if post.image
+    img#post-image-holder(src="#{post.image}" style="display:none;visibility:hidden;")
+    .post-image#full-image
+      a.scroll-post READ
   if post.colors
     .post-colors
       for color in post.colors 
