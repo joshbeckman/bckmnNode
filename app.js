@@ -44,6 +44,7 @@ app.configure(function(){
     app.use(flash());
     app.use(express.cookieParser('your secret here'));
     app.use(express.cookieSession({ secret: 'marybeth and the fox fighting bant', cookie: { maxAge: 1000*60*60*24*30 } })); // CHANGE THIS SECRET!
+    app.use(express.compress());
     app.use(app.router);
     app.use(express.static(path.join(__dirname, 'public')));
 });
