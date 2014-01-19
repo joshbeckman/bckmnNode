@@ -70,7 +70,7 @@ function openStrip(set){
   var lb = document.getElementsByClassName('lightbox')[0],
       lbHeight = 560;
   lb.style.height = lbHeight.toString()+'px';
-  scrollTo(document.body, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
+  scrollTo(window, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
   loadImages(imageSrc, document.getElementById('strip'), images[set], function(){
     var imgs = document.getElementsByClassName('gallery-image'),
         indMargin = 3.5,
