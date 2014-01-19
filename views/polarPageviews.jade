@@ -2,6 +2,11 @@ extends layout
 
 block content
   link(rel='stylesheet', href="/stylesheets/polarpageviews.css")
+  style(type="text/css").
+    .night, .night code, .night input {
+      background-color: white;
+      color: #333;
+    }
   .pure-g-r
     .pure-u-1(style='margin-top:2em;')
       #controls
@@ -28,7 +33,7 @@ block content
       #radial
       #divvy.tooltip
       script(type='text/javascript', src='/javascripts/moment.js')
-      script(type='text/javascript', src='/javascripts/gapi.js')
+      script(type='text/javascript', src='https://apis.google.com/js/client.js?onload=handleClientLoad')
       script(type='text/javascript', src='/javascripts/authorize.js')
       script(type='text/javascript', src='/javascripts/d3.v2.min.js')
       script(type='text/javascript', src='/javascripts/p.js')
