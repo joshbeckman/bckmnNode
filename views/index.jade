@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  button#main-menu-button.menu-toggle-button
+  button#main-menu-button.menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu button (index)")
     span Menu
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
@@ -9,10 +9,10 @@ block content
   #content.pure-g-r
     .pure-u-3-4
       h1.name-header
-        a(href="#").menu-toggle-button JOSHUA BECKMAN
+        a(href="#").menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu name-button (index)") JOSHUA BECKMAN
         span(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.hint
     .pure-u-1-4.pure-hidden-phone
-      h4(style="color:white;text-transform:uppercase;")
+      h4(style="color:white;text-transform:uppercase;", title="You are reading in the dark, because it should be dark around you!")
         span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
     .pure-u-1-6
     #post-list.pure-u-2-3

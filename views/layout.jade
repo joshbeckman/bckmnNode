@@ -3,7 +3,7 @@ html
   head
     // Hey! Email me at jsh@bckmn.com - I'm always looking for projects.
     title #{title || 'Joshua Beckman (jbckmn)'}
-    meta(name="viewport", content="width=device-width")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
     link(rel='icon', href="/images/favicon.png")
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300,600')
@@ -36,7 +36,7 @@ html
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-        } else { _gaq = {push: function(arg) {console.log("ga:", arg)}}}
+        } else { var ga = function(arg) {console.log("ga:", arg)};}
 
   body
     main.container.day
@@ -63,7 +63,7 @@ html
     if socket
       script(src='/socket.io/socket.io.js')
     if (post || posts)
-      script(src="/javascripts/highlight.pack.js")
+      script(src="/javascripts/vendor/highlight.pack.js")
       script.
         hljs.initHighlightingOnLoad();
     script.

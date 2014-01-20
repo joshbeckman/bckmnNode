@@ -21,18 +21,18 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'public/javascripts/starkLines.min.js': ['public/javascripts/starkLines/*.js', 'public/javascripts/gapi.js']
+          'public/javascripts/starkLines.min.js': ['public/javascripts/starkLines/*.js', 'public/javascripts/vendor/gapi.js']
         }
       },
       general: {
         options: {
-          banner: '/*! bckmn.com v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+          banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
           mangle: {
             except: ['siteBeat', 'd3', 'gapi']
           }
         },
         files: {
-          'public/javascripts/bckmn.min.js': ['public/javascripts/classie.js', 'public/javascripts/bckmn.js']
+          'public/javascripts/bckmn.min.js': ['public/javascripts/vendor/classie.js', 'public/javascripts/vendor/gatrack.js', 'public/javascripts/bckmn.js']
         }
       }
     },

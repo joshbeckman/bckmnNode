@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  button#main-menu-button.menu-toggle-button
+  button#main-menu-button.menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu button (post)")
     span Menu
   nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
     include menuItems
@@ -27,18 +27,18 @@ block content
         .post-meta
         .post-links
           p.related-post READ THIS NEXT:
-            a(href="/blog/#{relatedPost.slug}")  #{relatedPost.title}
+            a(href="/blog/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
     .pure-u-1-6
     .pure-u-3-4
       br
       br
       h3.name-header
-        a(href="/") JOSHUA BECKMAN
+        a(href="/").ga-link-trackable(data-gatrack-action="Footer home link (post)", data-gatrack-category="Internal link") JOSHUA BECKMAN
         span(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.hint
     .pure-u-1-4.pure-hidden-phone
       br
       br
-      h4(style="color:white;text-transform:uppercase;")
+      h4(style="color:white;text-transform:uppercase;", title="You are reading in the dark, because it should be dark around you!")
         span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
   script
     window.jshBckmn = window.jshBckmn || {};
