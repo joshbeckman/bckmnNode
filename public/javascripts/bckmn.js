@@ -210,12 +210,15 @@ function on_resize(c,t){
     };
   }
   function resizeOnLoad (elem) {
-    if(window.innerWidth > (window.innerHeight * 1.33)) {
+    var img = document.getElementById('post-image-holder'),
+      fraction = img.height/img.width,
+      percent = fraction * 100;
+    if(window.innerHeight < (window.innerWidth * fraction)) {
       elem.style.height = '100vh';
       elem.style.paddingBottom = null;
     } else {
       elem.style.height = null;
-      elem.style.paddingBottom = '66%';
+      elem.style.paddingBottom = percent.toString() + '%';
     }
   }
 })(this, this.document);
