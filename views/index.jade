@@ -25,7 +25,7 @@ block content
           h2.blog-post-title
             a.blog-post-link(href="/blog/#{p.slug}") #{p.title}
           .post-body 
-            if p.colors
+            if p.colors && (p.colors.length > 0)
                 span.colors
                   for color in p.colors 
                     span(style="background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")

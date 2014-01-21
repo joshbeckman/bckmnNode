@@ -19,20 +19,14 @@
     link: function(elem, category, action){
       var cat = category || elem.dataset.gatrackCategory,
         act = action || elem.dataset.gatrackAction || elem.href || elem.title || elem.id || 'Unspecified link';
-      if (!cat && (elem.target && elem.target == '_blank')) {
+      if (!cat && (elem.target && elem.target != '_self')) {
         cat = 'Outbound Link';
-      } else if (!category) {
+      } else if (!cat) {
         cat = 'Link Event';
       }
       elem.addEventListener('click', clickEvent, false);
-      function clickEvent() {
-        gatrack.action(elem, cat, act, function(result) {
-          if (elem.href) {
-            setTimeout(function(){
-              window.open(elem.href, elem.target);
-            }, 100);
-          }
-        });
+      function clickEvent(evt) {
+        gatrack.action(elem, cat, act);
       }
     },
     // Trigger GA event on buttons or clickable elements
@@ -60,9 +54,9 @@
       function scrollEvent() {
         var start;
         if (direct == 'y') {
-          start = elem.scrollY;
+          start = this.scrollY + this.clientHeight;
         } else {
-          start = elem.scrollX;
+          start = this.scrollX + this.clientWidth;
         }
         if (start > px) {
           gatrack.action(elem, cat, act);
@@ -92,32 +86,35 @@
       function loadEvent(){
         gatrack.action(elem, cat, act);
       }
+    },
+    init: function(){
+      // Find and bind pre-determined trackable elements
+      var linkable = document.getElementsByClassName('ga-link-trackable'),
+        loadable = document.getElementsByClassName('ga-load-trackable'),
+        scrollable = document.getElementsByClassName('ga-scroll-trackable'),
+        hoverable = document.getElementsByClassName('ga-hover-trackable'),
+        touchable = document.getElementsByClassName('ga-touch-trackable'),
+        clickable = document.getElementsByClassName('ga-click-trackable'),
+        i;
+      for (i = linkable.length - 1; i >= 0; i--) {
+        gatrack.link(linkable[i]);
+      }
+      for (i = loadable.length - 1; i >= 0; i--) {
+        gatrack.load(loadable[i]);
+      }
+      for (i = scrollable.length - 1; i >= 0; i--) {
+        gatrack.scrollAt(scrollable[i]);
+      }
+      for (i = hoverable.length - 1; i >= 0; i--) {
+        gatrack.hover(hoverable[i]);
+      }
+      for (i = touchable.length - 1; i >= 0; i--) {
+        gatrack.touch(touchable[i]);
+      }
+      for (i = clickable.length - 1; i >= 0; i--) {
+        gatrack.click(clickable[i]);
+      }
     }
   };
-  // Find and bind pre-determined trackable elements
-  var linkable = document.getElementsByClassName('ga-link-trackable'),
-    loadable = document.getElementsByClassName('ga-load-trackable'),
-    scrollable = document.getElementsByClassName('ga-scroll-trackable'),
-    hoverable = document.getElementsByClassName('ga-hover-trackable'),
-    touchable = document.getElementsByClassName('ga-touch-trackable'),
-    clickable = document.getElementsByClassName('ga-click-trackable'),
-    i;
-  for (i = linkable.length - 1; i >= 0; i--) {
-    gatrack.link(linkable[i]);
-  }
-  for (i = loadable.length - 1; i >= 0; i--) {
-    gatrack.load(loadable[i]);
-  }
-  for (i = scrollable.length - 1; i >= 0; i--) {
-    gatrack.scrollAt(scrollable[i]);
-  }
-  for (i = hoverable.length - 1; i >= 0; i--) {
-    gatrack.hover(hoverable[i]);
-  }
-  for (i = touchable.length - 1; i >= 0; i--) {
-    gatrack.touch(touchable[i]);
-  }
-  for (i = clickable.length - 1; i >= 0; i--) {
-    gatrack.click(clickable[i]);
-  }
+  window.gatrack.init();
 })(this, this.document);
