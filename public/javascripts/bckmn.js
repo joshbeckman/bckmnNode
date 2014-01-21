@@ -153,16 +153,18 @@ window.jshBckmn.setRandomThought = function(elem){
     elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
     elem.style.opacity = '0.9';
   };
-window.jshBckmn.fadeDate = function(){
-  var d = document.getElementsByClassName('post-date')[0],
-      t = document.getElementsByClassName('blog-post-title')[0];
-  t.onmouseover = function(){
-    classie.add(d, 'date-fadeIn');
-  };
-  t.onmouseout = function(){
-    classie.remove(d, 'date-fadeIn');
-  };
-};
+(function(window, document){
+  var dates = document.getElementsByClassName('post-date'),
+      titles = document.getElementsByClassName('blog-post-title');
+  if (dates.length > 0 && titles.length > 0){
+    titles[0].onmouseover = function(){
+      classie.add(dates[0], 'date-fadeIn');
+    };
+    titles[0].onmouseout = function(){
+      classie.remove(dates[0], 'date-fadeIn');
+    };
+  }
+})(this, this.document);
 if (document.getElementById('thoughtBubble')) {
   setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
   setInterval(function(){
@@ -222,3 +224,74 @@ function on_resize(c,t){
     }
   }
 })(this, this.document);
+// Pixelated images
+(function (window, document) {
+      var canvases = document.getElementsByClassName('blog-image-canvas'),
+      ctx, img, isPlaying = false,
+      vMin = 5,
+      vMax = 100,
+      v = vMin,
+      vv = 3,
+      dv = vv;
+      for (var i = canvases.length - 1; i >= 0; i--) {
+        ctx = canvases[i].getContext('2d');
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+        img = new Image();
+        img.onload = makeImgListener(ctx, canvases[i], img);
+        img.src = canvases[i].dataset.imageSrc;
+      }
+      function makeImgListener (ctx, canvas, img) {
+        var ctxt = ctx;
+        return function() {
+          // canvas.height = 200;
+          // canvas.width = (img.width/img.height) * 200;
+          // canvas.addEventListener('mouseover', function(evt, ctxt, img){mouseoverHandler(ctxt, img)}, false);
+          // canvas.addEventListener('mouseout', function(evt, ctxt, img){mouseoutHandler(ctxt, img)}, false);
+          pixelate(ctxt, img, canvas);
+        };
+      }
+      function pixelate(ctx, img, canvas) {
+        var size = v ? v * 0.01 : 1,
+            w = canvas.width * size,
+            h = canvas.height * size;
+        ctx.drawImage(img, 0, 0, w, h);
+        ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+      }
+      function anim(ctx, img, canvas) {
+        console.log('There there.');
+        /// increase/decrese with delta set by mouse over/out
+        v += dv;
+        /// if we are outside min/max end animation
+        if (v >= vMax || v <= vMin) {
+          isPlaying = false;
+          return;
+        } else {
+          /// pixelate based on current value and loop
+          pixelate(ctx, img, canvas);
+          requestAnimationFrame(anim);
+        }
+      }
+      /// set reverse delta and restart anim if finished
+      function mouseoverHandler(ctx, img) {
+        dv = vv;
+        if (isPlaying === false) {
+          isPlaying = true;
+          anim(ctx, img, this);
+        }
+      }
+      /// set delta and restart anim if finished
+      function mouseoutHandler(ctx, img) {
+        dv = -vv;
+        if (isPlaying === false) {
+          isPlaying = true;
+          anim(ctx, img, this);
+        }
+      }
+      window.requestAnimationFrame = (function () {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
+          window.setTimeout(callback, 1000 / 60);
+        };
+      })();
+    })(this, this.document);

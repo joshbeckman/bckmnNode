@@ -21,6 +21,10 @@ block content
           a(href="/") HOME
         p.lead #{posts.length} results for: <code>#{queryString}</code>
       for p in posts
+        .blog-img-wrapper
+          if p.image 
+            a(href="/blog/#{p.slug}")
+              canvas.blog-image-canvas(data-image-src="#{p.image}", style="margin:0 auto;display:block;")
         .blog-post-wrapper
           h2.blog-post-title
             a.blog-post-link(href="/blog/#{p.slug}") #{p.title}

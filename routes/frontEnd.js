@@ -15,7 +15,7 @@ var moment = require('moment')
 module.exports = function (app, io, ensureAuth) {
   app.get('/', function(req, res) {
     Post.getLatestPosts(15, function(err, posts){
-      res.render('index', { title: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
+      res.render('index', { title: 'Joshua Beckman ' + config.thoughts[Math.floor(Math.random() * config.thoughts.length)] + '.',
                           user: req.user,
                           posts: posts,
                           images: config.front.images,
@@ -27,11 +27,10 @@ module.exports = function (app, io, ensureAuth) {
     });
   });
   app.get('/blog/:slug', function(req,res){
-    Post.find({published: true}).limit(10).lean().exec(function(err,related){
-      relatedPost = related[Math.floor(Math.random() * related.length)];
-      Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+    Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+      Post.getOneExcept(post.slug, function(err, relatedPost){
         if (err || !post) {
-          res.redirect('/'+req.params.slug);
+          res.redirect('/search?q='+req.params.slug);
         } else {
           res.render('blogPost', {title: post.title+' | Joshua Beckman',
                                 user: req.user,

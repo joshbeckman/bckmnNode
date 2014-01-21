@@ -38,14 +38,22 @@ Post.statics.slugify = function(string){
 };
 
 Post.statics.getLatestPosts = function(count, callback){
-  this.find({published: true}).sort('-modified').limit(count).lean().exec(callback);
+  this.find({published: true}).sort('-modified').limit(count).exec(callback);
 };
 Post.statics.getUnpublishedPosts = function(callback){
   this.find({published: false}).sort('-modified').lean().exec(callback);
-}
+};
 Post.statics.getPublishedPosts = function(callback){
   this.find({published: true}).sort('-modified').lean().exec(callback);
-}
+};
+Post.statics.getOneExcept = function(sluggy, callback){
+  console.log(sluggy);
+  this.find({published: true}).where('slug').ne(sluggy).sort('-modified').lean().exec(function(err, posts){
+    console.log(posts);
+    var post = posts[Math.floor(Math.random() * posts.length)];
+    callback(err, post);
+  });
+};
 
 Post.statics.searchQuery = function(data, io){
   this.find({ keywords: { $all: this.extractKeywords(data.query) } }, '-__v', {sort:{modified: -1}}).lean().exec(function(err, posts) {
