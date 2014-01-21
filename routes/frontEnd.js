@@ -28,10 +28,11 @@ module.exports = function (app, io, ensureAuth) {
   });
   app.get('/blog/:slug', function(req,res){
     Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
-      Post.getOneExcept(post.slug, function(err, relatedPost){
-        if (err || !post) {
-          res.redirect('/search?q='+req.params.slug);
-        } else {
+      console.log(post);
+      if (err || !post) {
+        res.redirect('/search?q='+req.params.slug);
+      } else {
+        Post.getOneExcept(post.slug, function(err, relatedPost){
           res.render('blogPost', {title: post.title+' | Joshua Beckman',
                                 user: req.user,
                                 post: post,
@@ -44,8 +45,8 @@ module.exports = function (app, io, ensureAuth) {
                                 error: req.flash('error'),
                                 req: req,
                                 thoughts: config.thoughts})
-        }
-      });
+        });
+      }
     });
   });
   app.get('/blog', function(req,res){

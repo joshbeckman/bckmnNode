@@ -190,10 +190,10 @@ function on_resize(c,t){
     on_resize(function(){
       resizeOnLoad(postImg);
     })();
-    imgHolder.onload = function () {
-      postImg.style.backgroundImage = "url(" + this.src + ")";
+    imgHolder.addEventListener('load', function () {
+      postImg.style.backgroundImage = "url('" + this.src + "')";
       resizeOnLoad(postImg);
-    };
+    }, false);
     postImg.onmouseover = function() {
       i = 0;
       for(; i < scrollPosts.length; i++) {
