@@ -27,7 +27,7 @@ block content
       .editor-wrapper
         input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
         textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
-        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post.image ? post.image : ''}")
+        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post && post.image ? post.image : ''}")
         span#post-colors
           if post && post.colors
             for color in post.colors 
