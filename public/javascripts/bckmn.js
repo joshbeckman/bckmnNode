@@ -260,40 +260,6 @@ function on_resize(c,t){
             h = canvas.height * size;
         ctx.drawImage(img, 0, 0, w, h);
         ctx.drawImage(canvas, 0, 0, w, h, 0, 0, canvas.width, canvas.height);
+        console.log(ctx.getImageData(0,0,canvas.width,canvas.height));
       }
-      function anim(ctx, img, canvas) {
-        console.log('There there.');
-        /// increase/decrese with delta set by mouse over/out
-        v += dv;
-        /// if we are outside min/max end animation
-        if (v >= vMax || v <= vMin) {
-          isPlaying = false;
-          return;
-        } else {
-          /// pixelate based on current value and loop
-          pixelate(ctx, img, canvas);
-          requestAnimationFrame(anim);
-        }
-      }
-      /// set reverse delta and restart anim if finished
-      function mouseoverHandler(ctx, img) {
-        dv = vv;
-        if (isPlaying === false) {
-          isPlaying = true;
-          anim(ctx, img, this);
-        }
-      }
-      /// set delta and restart anim if finished
-      function mouseoutHandler(ctx, img) {
-        dv = -vv;
-        if (isPlaying === false) {
-          isPlaying = true;
-          anim(ctx, img, this);
-        }
-      }
-      window.requestAnimationFrame = (function () {
-        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
-          window.setTimeout(callback, 1000 / 60);
-        };
-      })();
     })(this, this.document);

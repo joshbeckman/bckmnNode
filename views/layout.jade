@@ -20,7 +20,7 @@ html
     meta(name='twitter:creator', content='@jbckmn')
     meta(name='twitter:url', content='http://www.bckmn.com#{req.path}')
     meta(name='twitter:title', content='#{title || "Joshua Beckman (jbckmn)"}')
-    meta(name='twitter:image', content='#{mainImage || ""}')
+    meta(name='twitter:image', content='#{post ? post.image : mainImage || ""}')
     meta(name='twitter:description', content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
     meta(name='twitter:domain', content='http://bckmn.com')
     meta(name="apple-mobile-web-app-capable", content="yes")

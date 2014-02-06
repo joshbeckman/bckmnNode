@@ -345,9 +345,9 @@ p.gallery-image{
   transition: all 0.3s ease;
 }
 .cbp-spmenu {
-    background: rgba(255,255,255,1);
-    position: fixed;
-    overflow-y: auto;
+  background: rgba(255,255,255,1);
+  position: fixed;
+  overflow-y: auto;
 }
 .cbp-spmenu h3 {
   color: darkgrey;
@@ -364,22 +364,22 @@ p.gallery-image{
   background-color: transparent;
 }
 .cbp-spmenu a:hover {
-    background: #ddd;
-    color: black;
+  background: #ddd;
+  color: black;
 }
 
 .cbp-spmenu a:active {
 }
 
 .cbp-spmenu-vertical {
-    width: 240px;
-    height: 100%;
-    top: 0;
-    z-index: 1000;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
 .cbp-spmenu-vertical a {
-    padding: 0.25em 1em;
+  padding: 0.25em 1em;
 }
 
 /* Vertical menu that slides from the left or right */
