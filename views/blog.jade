@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  button#main-menu-button.menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu button (index)")
+    span Menu
+  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
+    include menuItems
+
+  #content.pure-g-r
+    .pure-u-3-4
+      h1.name-header
+        a(href="#").menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu name-button (index)") JOSHUA BECKMAN
+    .pure-u-1-4.pure-hidden-phone
+      h4(style="color:white;text-transform:uppercase;", title="You are reading in the dark, because it should be dark around you!")
+        span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
+    .pure-u-1-6
+    #post-list.pure-u-2-3
+      if queryString
+        p
+          a(href="/") HOME
+        p.lead #{posts.length} results for: <code>#{queryString}</code>
+      for p in posts
+        .blog-img-wrapper
+          if p.image 
+            a(href="/blog/#{p.slug}")
+              canvas.blog-image-canvas(data-image-src="#{p.image}", style="margin:0 auto;display:block;")
+        .blog-post-wrapper
+          h2.blog-post-title
+            a.blog-post-link(href="/blog/#{p.slug}") #{p.title}
+          .post-body 
+            if p.colors && (p.colors.length > 0)
+                span.colors
+                  for color in p.colors 
+                    span(style="background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
+            | !{p.lede}
+          a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
+      if posts.length < 1
+    .pure-u-1-6
+  script
+    window.jshBckmn = window.jshBckmn || {};

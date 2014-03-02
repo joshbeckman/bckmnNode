@@ -6,7 +6,7 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
     link(rel='icon', href="/images/favicon.png")
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:300|Open+Sans:300,600')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lato:300|Oswald:300')
     link(rel='stylesheet', href='/stylesheets/bckmn.min.css')
     link(rel='canonical', href='http://www.bckmn.com#{req.path}')
     link(rel='author', href='https://plus.google.com/u/0/103739350784081056661')
@@ -39,7 +39,7 @@ html
         } else { var ga = function(arg) {console.log("ga:", arg)};}
 
   body
-    main.container.day
+    main(class="#{vampire ? 'container' : 'container day'}")
       #message
         if message.length > 0
           p.pull-center.message
@@ -59,7 +59,8 @@ html
         .pure-g-r
           .pure-u-1.lightbox.transition
             ul#strip.gallery
-    include sole
+    if !isHome
+      include sole
     if socket
       script(src='/socket.io/socket.io.js')
     if (post || posts)

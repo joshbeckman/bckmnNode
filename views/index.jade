@@ -1,42 +1,143 @@
 extends layout
 
 block content
-  button#main-menu-button.menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu button (index)")
-    span Menu
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
-    include menuItems
 
-  #content.pure-g-r
-    .pure-u-3-4
-      h1.name-header
-        a(href="#").menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu name-button (index)") JOSHUA BECKMAN
-        span(onclick="jshBckmn.setRandomThought(this);")#thoughtBubble.hint
-    .pure-u-1-4.pure-hidden-phone
-      h4(style="color:white;text-transform:uppercase;", title="You are reading in the dark, because it should be dark around you!")
-        span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
-    .pure-u-1-6
-    #post-list.pure-u-2-3
-      if queryString
-        p
-          a(href="/") HOME
-        p.lead #{posts.length} results for: <code>#{queryString}</code>
-      for p in posts
-        .blog-img-wrapper
-          if p.image 
-            a(href="/blog/#{p.slug}")
-              canvas.blog-image-canvas(data-image-src="#{p.image}", style="margin:0 auto;display:block;")
-        .blog-post-wrapper
-          h2.blog-post-title
-            a.blog-post-link(href="/blog/#{p.slug}") #{p.title}
-          .post-body 
-            if p.colors && (p.colors.length > 0)
-                span.colors
-                  for color in p.colors 
-                    span(style="background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
-            | !{p.lede}
-          a.blog-more-link(href="/blog/#{p.slug}") CONTINUE READING &rarr;
-      if posts.length < 1
-    .pure-u-1-6
+  .home-list
+    article.slide.pure-g-r.leaderboard
+      .pure-u-1.inner
+        .inner-content
+          h1.name-header
+            a(href="#").ga-click-trackable(data-gatrack-action="Name-button (index)") JOSHUA BECKMAN
+          span#thoughtBubble.hint.home !{latestThought.text}
+          br
+          span
+            a(href="/api").ga-link-trackable API
+            | &nbsp;&sdot;&nbsp;
+            a(href="/blog").ga-link-trackable BLOG
+          p.links
+            small
+              a(href="http://twitter.com/jbckmn").ga-link-trackable Twitter
+              |  &sdot; 
+              a(href="http://github.com/jbckmn").ga-link-trackable GitHub
+              |  &sdot; 
+              a(href="http://dribbble.com/jbckmn").ga-link-trackable dribbble
+              |  &sdot; 
+              a(href="mailto:jsh@bckmn.com?subject=...Just came from your homepage") Email
+          span.down-arrow &or;
+    article.slide.stark-lines
+      .inner
+        .project-content.pure-g-r
+          .pure-u-1-2
+            img(src="http://s3.amazonaws.com/bckmn/public/misc/stark-lines.png")
+          .pure-u-1-2.text-center
+            h2 
+              a(href="/stark-lines").ga-link-trackable Stark Lines
+            p See all of your live visitors,<br>across multiple sites,<br>in one real-time graph.
+            a(href="/stark-lines").ga-link-trackable.go-btn See your sites
+    article.slide.gatrack
+      .inner
+        .project-content
+          .text-center
+            h2 
+              a(href="http://github.com/jbckmn/gatrack.js").ga-link-trackable GAtrack.js
+            p.lead Easily track user events with Google Analytics.
+            p Track any browser event, any user interaction or action, <a href="/blog/track-all-the-things-in-google-analytics">more here</a>.
+            br
+            a(href="http://github.com/jbckmn/gatrack.js").ga-link-trackable.go-btn Track all the things!
+    article.slide.aislin
+      .inner
+        .project-content
+          .text-center
+            h2 
+              a(href="http://aislin.co").ga-link-trackable Aislin
+            p.lead Wake up to all the data in your images.
+            p The best little image analysis API out there.
+            br
+            a(href="http://aislin.co").ga-link-trackable.go-btn Try it out
+    article.slide.polar-pageviews
+      .inner
+        .project-content.pure-g-r
+          .pure-u-1-2.text-center
+            img(src="/images/polarpageviews.jpg")
+          .pure-u-1-2.text-center
+            h2 
+              a(href="/polarpageviews").ga-link-trackable Polar Pageviews
+            p A graphical tool for annual traffic comparison,<br>by day, week & month.
+            a(href="/polarpageviews").ga-link-trackable.go-btn See your year
+    article.slide.naked-wordpress
+      .inner
+        .project-content
+          .text-center
+            h2 
+              a(href="http://naked-wordpress.bckmn.com").ga-link-trackable Naked Wordpress
+            p.lead The solution for designers who don't know WordPress.
+            p Comments on each and every piece of the WordPress puzzle,<br>so you can move things around intelligently.
+            br
+            a(href="http://naked-wordpress.bckmn.com").ga-link-trackable.go-btn Start learning
+    if false
+      article.slide.photos
+        .inner
+          .project-content.pure-g-r
+            .pure-u-1.text-center
+              h2 Visual Stories
+            .pure-u-1-4
+              p.text-center
+                a(href="https://medium.com/joe-mctigue", target="_blank") Joe McTigue
+            .pure-u-1-4
+              p.text-center
+                a(onclick="openStrip('illiniImprov');") Illini Improv: Behind The Curtain
+            .pure-u-1-4
+              p.text-center
+                a(onclick="openStrip('sports');") Sporting Fun
+            .pure-u-1-4
+              p.text-center
+                a(onclick="openStrip('falling');") Faces of The Falling
+            .pure-u-1-4
+              p.text-center
+                a(onclick="openStrip('latest');") Latest
+    article.slide.ontrackio
+      .inner
+        .project-content.pure-g-r
+          .pure-u-1-2.text-center
+            img(src="http://ontrack.io/apple-touch-icon-114x114.png")
+          .pure-u-1-2.text-center
+            h2 
+              a(href="http://ontrack.io").ga-link-trackable Ontrack.io
+            p.lead Start seeing yourself, graphed.
+            p Track data on any topic you can quantify,<br>then compare anonymously with your demographic.
+            br
+            a(href="http://ontrack.io").ga-link-trackable.go-btn Sign up
+    article.slide.coming-up
+      .inner
+        .project-content.pure-g-r
+          .pure-u-1.text-center
+            h2(id="coming-up")
+              a(href="#coming-up") Coming Up
+          .pure-u-1-3
+            p.lead
+              a(href="http://bbbench.com") bbbench <sup>&beta;</sup>
+            p Make your best dribbble line-ups.
+          .pure-u-1-3
+            p.lead
+              a(href="https://jbckmn.github.io/friesAndShake") Fries & A Shake
+            p Would you like fries and a shake with that hamburger button?
+          .pure-u-1-3
+            p.lead
+              a(href="http://apad.jbckmn.net") aphotoaday <sup>&beta;</sup>
+            p One photo each day, with the best photojournalists in the world.
+          .pure-u-1-3
+            p.lead
+              a(href="https://github.com/jbckmn/lightTable.js") lightTable.js <sup>&beta;</sup>
+            p In-browser photo analysis suite
+          .pure-u-1-3
+            p.lead
+              a(href="/soundcloud-animations") SoundCloud Animations
+            p Experimenting with loading or music playback animations for SoundCloud's Logo
+          .pure-u-1-3
+            p.lead
+              a(href="http://teamjosh.co") Team Josh
+            p Dynamic developer & designer duo
+    
   script
     window.jshBckmn = window.jshBckmn || {};
     window.jshBckmn.thoughts = !{JSON.stringify(thoughts)};

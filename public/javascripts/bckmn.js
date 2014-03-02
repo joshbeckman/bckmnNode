@@ -69,6 +69,7 @@ function openStrip(set){
   classie.add(document.getElementsByTagName('main')[0], 'lightboxed');
   var lb = document.getElementsByClassName('lightbox')[0],
       lbHeight = 560;
+  lb.style.display = 'inherit';
   lb.style.height = lbHeight.toString()+'px';
   scrollTo(window, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
   loadImages(imageSrc, document.getElementById('strip'), images[set], function(){
@@ -147,11 +148,105 @@ function loadImages(imageSrc, gal, imageSet, callback){
     menuTogglers[i].onclick = makeToggleClickFxn();
   }
 })();
+
+// Fries Menu Control functions
+(function(window, document){
+  var menu = document.getElementById( 'cbp-menu-right' ),
+      menuButton = document.getElementById( 'main-menu-button' ),
+      menuTimeout,
+      menuToggle = function(diffX) {
+        if ((diffX < 0) && classie.has(menu, 'cbp-spmenu-open')) {
+          classie.remove( menu, 'cbp-spmenu-open' );
+          if(menuButton){classie.remove( menuButton, 'menu-open' );}
+        } else if((diffX > 0) && !classie.has(menu, 'cbp-spmenu-open')) {
+          classie.add( menu, 'cbp-spmenu-open' );
+          if(menuButton){classie.add( menuButton, 'menu-open' );}
+        }
+      },
+      el = document.body,
+      ongoingTouches = [];
+
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  el.addEventListener("touchcancel", handleCancel, false);
+  el.addEventListener("touchleave", handleEnd, false);
+  el.addEventListener("touchmove", handleMove, false);
+
+  function handleStart(evt) {
+    evt.preventDefault();
+    var touches = evt.changedTouches;   
+    for (var i=0; i < touches.length; i++) {
+      ongoingTouches.push(copyTouch(touches[i]));
+    }
+  }
+  function handleMove(evt) {
+    evt.preventDefault();
+    var touches = evt.changedTouches,
+      idx, diffX, diffY;
+    for (var i=0; i < touches.length; i++) {
+      idx = ongoingTouchIndexById(touches[i].identifier);
+      diffX = Math.abs(ongoingTouches[idx].pageX - touches[i].pageX);
+      diffY = Math.abs(ongoingTouches[idx].pageY - touches[i].pageY);
+      if( (idx >= 0) && (diffX >= diffY) && (diffX < 241) ) {
+        if (classie.has(menu, 'cbp-spmenu-open')) {
+          menu.style.right = ( -(diffX) ).toString() +'px';
+        } else {
+          menu.style.right = ( diffX - 240 ).toString() +'px';
+        }
+        // ongoingTouches.splice(idx, 1, copyTouch(touches[i]));  // swap in the new touch record if you want to wipe history
+      } else {
+        console.log("can't figure out which touch to continue");
+      }
+    }
+  }
+  function handleEnd(evt) {
+    evt.preventDefault();
+    var touches = evt.changedTouches,
+      idx, diffX;
+    for (var i=0; i < touches.length; i++) {
+      idx = ongoingTouchIndexById(touches[i].identifier);
+      if(idx >= 0) {
+        diffX = ongoingTouches[idx].pageX - touches[i].pageX;
+        menuToggle(diffX);
+        menu.style.right = null;
+        ongoingTouches.splice(idx, 1);  // remove it; we're done
+      } else {
+        console.log("can't figure out which touch to end");
+      }
+    }
+  }
+  function handleCancel(evt) {
+    evt.preventDefault();
+    var touches = evt.changedTouches;
+    for (var i=0; i < touches.length; i++) {
+      ongoingTouches.splice(i, 1);  // remove it; we're done
+    }
+  }
+  function copyTouch(touch) {
+    return { identifier: touch.identifier, pageX: touch.pageX, pageY: touch.pageY };
+  }
+  function ongoingTouchIndexById(idToFind) {
+    for (var i=0; i < ongoingTouches.length; i++) {
+      var id = ongoingTouches[i].identifier;
+      
+      if (id == idToFind) {
+        return i;
+      }
+    }
+    return -1;    // not found
+  }
+  function makeToggleClickFxn() {
+    return function() {
+      menuToggle();
+    };
+  }
+})(this, this.document);
+
 // In-house
 window.jshBckmn = window.jshBckmn || {};
 window.jshBckmn.setRandomThought = function(elem){
-    elem.textContent = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)] + '.');
-    elem.style.opacity = '0.9';
+    elem.innerHTML = (jshBckmn.thoughts[Math.floor(Math.random() * jshBckmn.thoughts.length)].text);
+    elem.style.opacity = '1';
   };
 (function(window, document){
   var dates = document.getElementsByClassName('post-date'),
@@ -166,7 +261,9 @@ window.jshBckmn.setRandomThought = function(elem){
   }
 })(this, this.document);
 if (document.getElementById('thoughtBubble')) {
-  setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));
+  setTimeout(function(){
+    document.getElementById('thoughtBubble').style.opacity = '0.9';
+  }, 500);
   setInterval(function(){
     document.getElementById('thoughtBubble').style.opacity = '0';
     setTimeout(jshBckmn.setRandomThought, 1000, document.getElementById('thoughtBubble'));

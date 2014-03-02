@@ -9,21 +9,24 @@ var moment = require('moment')
     stripe = require('stripe')(api_key),
     api_public = process.env.STRIPE_PUBLIC_KEY,
     Post = require('../models/post'),
+    Thought = require('../models/thought'),
     Account = require('../models/account'),
     moment = require('moment');
 
 module.exports = function (app, io, ensureAuth) {
   app.get('/', function(req, res) {
-    Post.getLatestPosts(15, function(err, posts){
-      res.render('index', { title: 'Joshua Beckman ' + config.thoughts[Math.floor(Math.random() * config.thoughts.length)] + '.',
-                          user: req.user,
-                          posts: posts,
-                          images: config.front.images,
-                          imageSrc: config.front.src,
-                          message: req.flash('message'),
-                          error: req.flash('error'),
-                          req: req,
-                          thoughts: config.thoughts });
+    Thought.getLatest(15, function(err, thoughts) {
+      res.render('index', { title: 'Joshua Beckman || jbckmn',
+                        user: req.user,
+                        images: config.front.images,
+                        imageSrc: config.front.src,
+                        message: req.flash('message'),
+                        error: req.flash('error'),
+                        req: req,
+                        vampire: true,
+                        isHome: true,
+                        latestThought: thoughts[0],
+                        thoughts: thoughts });
     });
   });
   app.get('/blog/:slug', function(req,res){
@@ -43,14 +46,22 @@ module.exports = function (app, io, ensureAuth) {
                                 imageSrc: config.front.src,
                                 message: req.flash('message'),
                                 error: req.flash('error'),
-                                req: req,
-                                thoughts: config.thoughts})
+                                req: req})
         });
       }
     });
   });
   app.get('/blog', function(req,res){
-    res.redirect('/');
+    Post.getLatestPosts(15, function(err, posts){
+      res.render('blog', { title: 'Blog by Joshua Beckman || jbckmn',
+                          user: req.user,
+                          posts: posts,
+                          images: config.front.images,
+                          imageSrc: config.front.src,
+                          message: req.flash('message'),
+                          error: req.flash('error'),
+                          req: req });
+    });
   });
   app.get('/blog/:slug/edit', ensureAuth, function(req,res){
     Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
@@ -67,8 +78,7 @@ module.exports = function (app, io, ensureAuth) {
                           imageSrc: config.front.src,
                           message: req.flash('message'),
                           error: req.flash('error'),
-                          req: req,
-                          thoughts: config.thoughts });
+                          req: req });
     });
   })
 
@@ -206,7 +216,6 @@ module.exports = function (app, io, ensureAuth) {
                           description: "Experimenting with loading or music playback animations for SoundCloud",
                           images: config.front.images,
                           imageSrc: config.front.src,
-                          thoughts: config.thoughts,
                           message: req.flash('message'),
                           error: req.flash('error'),
                           req: req });

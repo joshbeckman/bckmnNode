@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  .container(style="height:100vh")
+    form#thought-form(action="/t", method="get", style="margin:0 auto;display:block;").pure-form.pure-form-aligned
+      legend
+      fieldset#bench-fields
+        .pure-control-group
+          label(for="color") Color
+          input(type="text", name="color", placeholder="#fff", autofocus="autofocus")
+        .pure-control-group
+          label(for="key") Key
+          input(type="text", name="key", placeholder="", autofocus="autofocus")
+        .pure-control-group
+          label(for="text") Text
+          textarea.pure-textarea(name="text", placeholder="Talk...")
+        .pure-controls
+          input(type="submit", value="Submit")

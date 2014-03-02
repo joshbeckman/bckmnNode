@@ -12,18 +12,3 @@ a(onclick="document.getElementById('menu-stories').style.display = 'inherit';thi
   a(onclick="openStrip('sports');") Sporting Fun
   a(onclick="openStrip('falling');") Faces of The Falling
   a(onclick="openStrip('latest');") Latest
-if false
-  a(onclick="document.getElementById('menu-projects').style.display = 'inherit';this.style.fontWeight = '700';") Projects
-  #menu-projects(style='display:none;padding-left:1em;')
-    a(href="http://weekaway.com", target="_blank") WeekAway.com
-    a(href="http://rankommend.com", target="_blank") Rankommend.com
-br
-input(type="text", placeholder="Search posts...")#search-field
-input(type="submit", value="GO")#search-submit
-br
-br
-if false
-  form#login-form(action="/login", style="display:none;")
-    legend Log In
-    input(type="email", placeholder="Email")#login-email-field
-    input(type="password", placeholder="Password")#login-password-field
