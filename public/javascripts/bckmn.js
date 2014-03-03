@@ -360,3 +360,6 @@ function on_resize(c,t){
         console.log(ctx.getImageData(0,0,canvas.width,canvas.height));
       }
     })(this, this.document);
+if (window.viewportUnitsBuggyfill) {
+  window.viewportUnitsBuggyfill.init();
+}

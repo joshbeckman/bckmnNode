@@ -1,3 +1,4 @@
+
 module.exports = function(grunt) {
 
   var Post = require('./models/post'),
@@ -32,7 +33,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'public/javascripts/bckmn.min.js': ['public/javascripts/vendor/classie.js', 'public/javascripts/vendor/gatrack.js', 'public/javascripts/bckmn.js']
+          'public/javascripts/bckmn.min.js': ['public/javascripts/vendor/classie.js', 'public/javascripts/vendor/vh-buggyfill.js', 'public/javascripts/vendor/gatrack.js', 'public/javascripts/bckmn.js']
         }
       }
     },
