@@ -1,11 +1,11 @@
 extends layout
 
 block content
-
   .home-list
-    article.slide.pure-g-r.leaderboard
+    article.slide.pure-g-r.leaderboard.transition
+      #home-anim-div.full-animation-div.pure-u(title="Click to clean up!")
       .pure-u-1.inner
-        .inner-content
+        .inner-content.text-center
           h1.name-header
             a(href="#").ga-click-trackable(data-gatrack-action="Name-button (index)") JOSHUA BECKMAN
           span#thoughtBubble.hint.home !{latestThought.text}
@@ -23,7 +23,6 @@ block content
               a(href="http://dribbble.com/jbckmn").ga-link-trackable dribbble
               |  &sdot; 
               a(href="mailto:jsh@bckmn.com?subject=...Just came from your homepage") Email
-          span.down-arrow &or;
     article.slide.stark-lines
       .inner
         .project-content.pure-g-r
@@ -141,3 +140,5 @@ block content
   script
     window.jshBckmn = window.jshBckmn || {};
     window.jshBckmn.thoughts = !{JSON.stringify(thoughts)};
+//  script(src="/javascripts/vendor/d3.v3.min.js")
+//  script(src="/javascripts/home-anim.js")
