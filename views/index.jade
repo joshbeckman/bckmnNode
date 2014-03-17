@@ -15,13 +15,26 @@ block content
             a(href="/blog").ga-link-trackable BLOG
           p.links
             small
+              a(href="#images").ga-link-trackable.showImages Images
+              |  &sdot; 
               a(href="http://twitter.com/jbckmn").ga-link-trackable Twitter
               |  &sdot; 
               a(href="http://github.com/jbckmn").ga-link-trackable GitHub
               |  &sdot; 
               a(href="http://dribbble.com/jbckmn").ga-link-trackable dribbble
               |  &sdot; 
-              a(href="mailto:jsh@bckmn.com?subject=...Just came from your homepage") Email
+              a(href="mailto:jsh@bckmn.com?subject=...Just came from your homepage").ga-link-trackable Email
+              #menu-stories
+                hr
+                a(href="https://medium.com/joe-mctigue", target="_blank") Joe McTigue
+                |  &sdot; 
+                a.openstrip(data-open-strip="illiniImprov") Illini Improv: Behind The Curtain
+                br
+                a.openstrip(data-open-strip="sports") Sporting Fun
+                |  &sdot; 
+                a.openstrip(data-open-strip="falling") Faces of The Falling
+                |  &sdot; 
+                a.openstrip(data-open-strip="latest") Latest
     article.slide.stark-lines
       .inner
         .project-content.pure-g-r

@@ -647,6 +647,9 @@ p.gallery-image{
   background-color: transparent;
   right: 250px;
 }
+#menu-stories{
+  display: none;
+}
 
 .bckmnicon{
   margin:0 auto;
@@ -998,9 +1001,24 @@ p.gallery-image{
     margin: 0;
     float: left;
   }
+  .inner>.project-content .pure-u-1-2:first-child{
+    display: none;
+  }
+  .inner>.project-content .pure-u-1-2:last-child{
+    left:0;
+  }
 }
 @media only screen and (max-width :500px){
   body{
     font-size: 16px;
+  }
+}
+@media (light-level: dim) {
+  .day, .day input{
+    background-color:rgba(0,0,0,0.8);
+    color:#eee;
+  }
+  .day code{
+    color:#222;
   }
 }

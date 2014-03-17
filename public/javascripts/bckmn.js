@@ -64,57 +64,79 @@ Math.easeInOutQuad = function (t, b, c, d) {
   return -c/2 * (t*(t-2) - 1) + b;
 };
 //Lightbox functions
-function openStrip(set){
-  document.body.style.background = 'rgba(0,0,0,0.8)';
-  classie.add(document.getElementsByTagName('main')[0], 'lightboxed');
-  var lb = document.getElementsByClassName('lightbox')[0],
-      lbHeight = 560;
-  lb.style.display = 'inherit';
-  lb.style.height = lbHeight.toString()+'px';
-  scrollTo(window, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
-  loadImages(imageSrc, document.getElementById('strip'), images[set], function(){
-    var imgs = document.getElementsByClassName('gallery-image'),
-        indMargin = 3.5,
-        totalWidth = 0;
-    if(imgs.length == images[set].length){
-      for(i=0;i<imgs.length;i++){
-        totalWidth += imgs[i].offsetWidth+(indMargin*2);
-      }
-      if (totalWidth < window.innerWidth){
-        totalWidth = window.innerWidth;
-      } else {
-        totalWidth = totalWidth;
-      }
-      document.getElementsByClassName('gallery')[0].style.width = totalWidth.toString()+'px';
-    }
-  });
-}
-function loadImages(imageSrc, gal, imageSet, callback){
-  gal.innerHTML = '';
-  for(i=0;i<imageSet.length;i++){
-    var li = create('li',{});
-    if(imageSet[i].src){
-      li.appendChild(
-        create('img',{
-          className: 'gallery-image',
-          src: imageSrc+imageSet[i].src,
-          alt: imageSet[i].alt,
-          onload: callback,
-          title: imageSet[i].alt
-        })
-      );
-    }else{
-      li.appendChild(
-        create('p',{
-          className: 'gallery-image lead',
-          onload: callback,
-          innerText: imageSet[i].text
-        })
-      );
-    }
-    gal.appendChild(li);
+(function(window,document){
+  var links = document.getElementsByClassName('openstrip'),
+      i = 0,
+      showImages = document.getElementsByClassName('showImages');
+  for(i = 0; i< links.length; i++) {
+    links[i].addEventListener('click', openStrip, false);
   }
-}
+  for(i = 0; i< showImages.length; i++){
+    showImages[i].addEventListener('click', showImagesFunc, false);
+  }
+  function showImagesFunc(evt){
+    document.getElementById('menu-stories').style.display = 'inherit';
+  }
+  function openStrip(evt, tempSet){
+    var set = tempSet;
+    if (!tempSet) {
+      set = this.dataset.openStrip;
+    }
+    document.body.style.background = 'rgba(0,0,0,0.8)';
+    classie.add(document.getElementsByTagName('main')[0], 'lightboxed');
+    var lb = document.getElementsByClassName('lightbox')[0],
+        lbHeight = 560;
+    lb.style.display = 'inherit';
+    lb.style.height = lbHeight.toString()+'px';
+    if (document.getElementById('content')) {
+      scrollTo(window, lbHeight-(window.innerHeight - document.getElementById('content').clientHeight), 1250);
+    } else {
+      scrollTo(window, lbHeight-(window.innerHeight - document.getElementsByClassName('home-list')[0].clientHeight), 1250);
+    }
+    loadImages(imageSrc, document.getElementById('strip'), images[set], function(){
+      var imgs = document.getElementsByClassName('gallery-image'),
+          indMargin = 3.5,
+          totalWidth = 0;
+      if(imgs.length == images[set].length){
+        for(i=0;i<imgs.length;i++){
+          totalWidth += imgs[i].offsetWidth+(indMargin*2);
+        }
+        if (totalWidth < window.innerWidth){
+          totalWidth = window.innerWidth;
+        } else {
+          totalWidth = totalWidth;
+        }
+        document.getElementsByClassName('gallery')[0].style.width = totalWidth.toString()+'px';
+      }
+    });
+  }
+  function loadImages(imageSrc, gal, imageSet, callback){
+    gal.innerHTML = '';
+    for(i=0;i<imageSet.length;i++){
+      var li = create('li',{});
+      if(imageSet[i].src){
+        li.appendChild(
+          create('img',{
+            className: 'gallery-image',
+            src: imageSrc+imageSet[i].src,
+            alt: imageSet[i].alt,
+            onload: callback,
+            title: imageSet[i].alt
+          })
+        );
+      }else{
+        li.appendChild(
+          create('p',{
+            className: 'gallery-image lead',
+            onload: callback,
+            innerText: imageSet[i].text
+          })
+        );
+      }
+      gal.appendChild(li);
+    }
+  }
+})(this, this.document);
 // Menu Control functions
 (function(){
   var menuRight = document.getElementById( 'cbp-spmenu-right' ),
