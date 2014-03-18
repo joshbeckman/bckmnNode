@@ -190,16 +190,60 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 .home-list article:first-child:after{
   content: '';
   background:white;
-  height: 10px;
-  width: 10px;
+  height: 2em;
+  width: 2em;
   position: absolute;
   left:45%;
   right:45%;
   display: block;
   margin:0 auto;
-  bottom:5px;
   z-index: 2;
   -webkit-transform: rotate(45deg);
+  -webkit-animation: bounceArrow 1.5s infinite alternate;
+  -moz-animation: bounceArrow 1.5s infinite alternate;
+  -ms-animation: bounceArrow 1.5s infinite alternate;
+  -o-animation: bounceArrow 1.5s infinite alternate;
+  animation: bounceArrow 1.5s infinite alternate;
+}
+@keyframes bounceArrow{
+  from {
+    bottom: 20px;
+  }
+  to {
+    bottom:7px;
+  }
+}
+@-moz-keyframes bounceArrow{
+  from {
+    bottom: 20px;
+  }
+  to {
+    bottom:7px;
+  }
+}
+@-webkit-keyframes bounceArrow{
+  from {
+    bottom: 20px;
+  }
+  to {
+    bottom:7px;
+  }
+}
+@-ms-keyframes bounceArrow{
+  from {
+    bottom: 20px;
+  }
+  to {
+    bottom:7px;
+  }
+}
+@-o-keyframes bounceArrow{
+  from {
+    bottom: 20px;
+  }
+  to {
+    bottom:7px;
+  }
 }
 .home-list article:first-child .inner{
   position: relative;
