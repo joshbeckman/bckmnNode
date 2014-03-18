@@ -400,6 +400,62 @@ article>.inner{
   font-size: 2em;
   margin: 0.5em 0 0.75em;
 }
+.name-header a{
+  border: none;
+}
+.name-header a:before, .name-header a:after{
+  content: '';
+  background:#5e5bd6;
+  height: 2px;
+  width: 100%;
+  display: block;
+  margin:0 auto;
+  -webkit-animation: expand 1.5s;
+  -moz-animation: expand 1.5s;
+  -ms-animation: expand 1.5s;
+  -o-animation: expand 1.5s;
+  animation: expand 1.5s;
+}
+@keyframes expand{
+  from {
+    width: 0%;
+  }
+  to {
+    width:100%;
+  }
+}
+@-moz-keyframes expand{
+  from {
+    width: 0%;
+  }
+  to {
+    width:100%;
+  }
+}
+@-webkit-keyframes expand{
+  from {
+    width: 0%;
+  }
+  to {
+    width:100%;
+  }
+}
+@-ms-keyframes expand{
+  from {
+    width: 0%;
+  }
+  to {
+    width:100%;
+  }
+}
+@-o-keyframes expand{
+  from {
+    width: 0%;
+  }
+  to {
+    width:100%;
+  }
+}
 #thoughtBubble.hint{
   display: block;
   opacity: 0;
