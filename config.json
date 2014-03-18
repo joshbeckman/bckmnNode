@@ -8,7 +8,7 @@
   "first_name":"Joshua",
   "last_name":"Beckman",
   "identicon_path":"http://bckmn.com/images/favicon.png",
-  "image_path":"http://s3.amazonaws.com/bckmn/public/about/jsh.jpg",
+  "image_path":"http://s3.amazonaws.com/bckmn/public/about/jsh+.jpg",
   "email":"jsh@bckmn.com",
   "externals":[
     {
@@ -20,16 +20,6 @@
       "name":"GitHub",
       "username":"jbckmn",
       "html_url":"http://github.com/jbckmn"
-    },
-    {
-      "name":"Vimeo",
-      "username":"bckmn",
-      "html_url":"http://vimeo.com/bckmn"
-    },
-    {
-      "name":"Tent",
-      "username":"bckmn",
-      "html_url":"http://bckmn.cupcake.io"
     }
   ],
   "birthdate":"1990-03-22T17:00:00-06:00",

@@ -1,10 +1,7 @@
 extends layout
 
 block content
-  button#main-menu-button.menu-toggle-button.ga-click-trackable(data-gatrack-action="Menu button (post)")
-    span Menu
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right.day
-    include menuItems
+
   if post.image
     img#post-image-holder(src="#{post.image}" style="display:none;visibility:hidden;")
     .post-image#full-image
