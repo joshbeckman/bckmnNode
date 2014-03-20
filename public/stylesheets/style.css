@@ -51,6 +51,12 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
 .text-center {
   text-align: center;
 }
+.dollars-label{
+  text-align: right;
+  font-size: 1.2em !important;
+  vertical-align: bottom;
+  padding-right: 5px;
+}
 .sole{
   max-width: 1200px;
   text-align: center;
