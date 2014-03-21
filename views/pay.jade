@@ -37,7 +37,7 @@ block content
           StripeCheckout.open({
             key:         '#{publicKey}',
             amount:      Math.round(100 * $('input[name="amount"]').val()),
-            name:        '#{title}',
+            name:        'Joshua Beckman',
             panelLabel:  'Pay',
             token:       token
           });

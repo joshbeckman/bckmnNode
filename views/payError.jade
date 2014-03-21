@@ -1,12 +1,9 @@
 extends layout
 
 block content
-  button#main-menu-button.menu-toggle-button
-    span Menu
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
-    include menuItems
+
   #content.pure-g-r
-    .pure-u-1
+    .pure-u-1(style="height:90vh;")
       h1= title
       p It seems there was a problem with your card. Please 
         a(href="/pay") try again
