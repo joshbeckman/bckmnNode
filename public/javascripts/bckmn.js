@@ -272,14 +272,24 @@ window.jshBckmn.setRandomThought = function(elem){
   };
 (function(window, document){
   var dates = document.getElementsByClassName('post-date'),
-      titles = document.getElementsByClassName('blog-post-title');
+      titles = document.getElementsByClassName('blog-post-title'),
+      i = 0;
   if (dates.length > 0 && titles.length > 0){
-    titles[0].onmouseover = function(){
-      classie.add(dates[0], 'date-fadeIn');
-    };
-    titles[0].onmouseout = function(){
-      classie.remove(dates[0], 'date-fadeIn');
-    };
+    for ( i = titles.length - 1; i >= 0; i--) {
+      titles[i].addEventListener('mouseover', makemouseover, false);
+      titles[i].addEventListener('mouseout', makemouseout, false);
+      console.log('loop');
+    }
+  }
+  function makemouseover(evt){
+    for ( i = dates.length - 1; i >= 0; i--) {
+      classie.add(dates[i], 'date-fadeIn');
+    }
+  }
+  function makemouseout(evt){
+    for (i = dates.length - 1; i >= 0; i--) {
+      classie.remove(dates[i], 'date-fadeIn');
+    }
   }
 })(this, this.document);
 if (document.getElementById('thoughtBubble')) {

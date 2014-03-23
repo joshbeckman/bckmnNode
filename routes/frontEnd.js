@@ -56,6 +56,7 @@ module.exports = function (app, io, ensureAuth) {
       res.render('blog', { title: 'Blog by Joshua Beckman || jbckmn',
                           user: req.user,
                           posts: posts,
+                          moment: moment,
                           images: config.front.images,
                           imageSrc: config.front.src,
                           message: req.flash('message'),

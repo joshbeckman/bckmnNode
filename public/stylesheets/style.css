@@ -1,6 +1,15 @@
+@font-face {
+  font-family: 'Clear Sans';
+  src: font-url('fonts/clearsans/EOT/ClearSans-Regular.eot');
+  src: font-url('fonts/clearsans/WOFF/ClearSans-Regular.woff') format('woff'), 
+    font-url('fonts/clearsans/TTF/ClearSans-Regular.ttf') format('truetype'), 
+    font-url('fonts/clearsans/SVG/ClearSans-Regular.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 body{
-  font-family: 'Lato', Helvetica, sans-serif;
-  font-weight: 300;
+  font-family: 'Clear Sans', Helvetica, sans-serif;
+  font-weight: 400;
   color: #222;
   background-color: rgba(94,91,214, 1);
   font-size: 20px;
@@ -89,7 +98,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
 }
 #search-field{
   height: 1.8em;
-  font-family: "Lato";
+  font-family: "Clear Sans";
   border: none;
   border-bottom: 2px solid #aaa;
   margin-left: 1em;
@@ -106,7 +115,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
   background: rgba(37,142,205,0);
   height: 33px;
   color: #258ecd;
-  font-family: "Lato";
+  font-family: "Clear Sans";
   border-radius: 0px;
 }
 #login-form legend {
@@ -348,11 +357,9 @@ article.gatrack{
   background: -ms-linear-gradient(#6496cb, #3d7cb8);
   background: -o-linear-gradient(#6496cb, #3d7cb8);
   color: white;
-  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
 article.gatrack a{
   color: white;
-  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
 article.gatrack a.go-btn, article.gatrack p a, article.gatrack a:hover{
   color: #111;
@@ -466,7 +473,7 @@ article>.inner{
   display: block;
   opacity: 0;
   font-size: 0.7em;
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: 'Clear Sans', Helvetica, sans-serif;
   padding-left: 0.4em;
   color: grey;
   text-decoration: none;
@@ -476,7 +483,7 @@ article>.inner{
   display: block;
   padding: 0;
   font-size: 1em;
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: 'Clear Sans', Helvetica, sans-serif;
   color: slategrey;
   text-decoration: none;
   transition: 1s;-moz-transition: 1s;-webkit-transition: 1s;-o-transition: 1s;
@@ -490,8 +497,22 @@ article#single-post {
   margin: 0 auto;
 }
 .blog-post-title{
-  font-size: 2.5em;
+  font-size: 1.75em;
+  margin-bottom: 1.5em;
 }
+.blog-post-title a{
+  color: #000;
+  text-transform: none;
+  font-family: 'Clear Sans';
+  border: none;
+}
+.post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5{
+  font-family: 'Clear Sans';
+}
+.blog-more-link{
+  color: #aaa;
+}
+
 .colors{
   display: inline;
   float: left;
@@ -546,8 +567,8 @@ article#single-post {
   color: rgba(94,91,214, 0.75);
 }
 .post-links p a{
-  font-family: "Oswald", Helvetica, sans-serif;
   font-size: 1.25em;
+  font-weight: 300;
 }
 .post-links p{
   margin-top: 5em;
