@@ -1103,6 +1103,9 @@ p.gallery-image{
 .night code{
   color:#222;
 }
+.night .blog-post-title a{
+  color: #ffffff;
+}
 
 @media screen and (max-height: 26.375em){
 
@@ -1147,5 +1150,8 @@ p.gallery-image{
   }
   .day code{
     color:#222;
+  }
+  .day .blog-post-title a{
+    color: #ffffff;
   }
 }
