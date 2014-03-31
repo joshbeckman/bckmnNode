@@ -4,7 +4,7 @@ html
     // Hey! Email me at jsh@bckmn.com - I'm always looking for projects.
     title #{title || 'Joshua Beckman (jbckmn)'}
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    meta(name="description", content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
+    meta(name="description", content="#{description || 'Joshua Beckman is available for hire in downtown Chicago, IL. He works as a web & software developer, designer, photographer, videographer and good guy.'}")
     link(rel='icon', href="/images/favicon.png")
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:300')
     link(rel='stylesheet', href='/stylesheets/bckmn.min.css')
@@ -21,7 +21,7 @@ html
     meta(name='twitter:url', content='http://www.bckmn.com#{req.path}')
     meta(name='twitter:title', content='#{title || "Joshua Beckman (jbckmn)"}')
     meta(name='twitter:image', content='#{post ? post.image : mainImage || ""}')
-    meta(name='twitter:description', content="#{description || 'Joshua Beckman is a freelance photographer, videographer and web developer available for hire in downtown Chicago, IL.'}")
+    meta(name='twitter:description', content="#{description || 'Joshua Beckman is available for hire in downtown Chicago, IL. He works as a web & software developer, designer, photographer, videographer and good guy.'}")
     meta(name='twitter:domain', content='http://bckmn.com')
     meta(name="apple-mobile-web-app-capable", content="yes")
     if (!noTracking)

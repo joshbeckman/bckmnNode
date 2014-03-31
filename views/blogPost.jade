@@ -17,7 +17,7 @@ block content
       article#single-post(itemscope, itemtype="http://schema.org/BlogPosting")
         meta(itemprop="author", content="Joshua Beckman")
         meta(itemprop="datePublished", content="#{post.modified}")
-        h1.blog-post-title
+        h1.blog-post-title.text-center
           a.blog-post-link(href="/blog/#{post.slug}", itemprop="url")
             span(itemprop="headline") #{post.title}
         .post-body(itemprop="articleBody") !{post.html}

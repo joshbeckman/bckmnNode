@@ -1,5 +1,6 @@
 body{
   background-color: white;
+  font-family: sans-serif;
 }
 #counters a {
   color: black;
@@ -9,6 +10,7 @@ body{
 }
 .live-counter {
   font-size: 3em;
+  line-height: 1em;
   color: #fefefe;
   margin:0 5px;
   border-bottom-right-radius: 3px;
