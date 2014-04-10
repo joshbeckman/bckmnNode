@@ -204,7 +204,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 .home-list article{
   position: relative;
   display: table;
-  height: 100vh;
+  min-height: 600px;
   width: 100%;
   vertical-align: middle;
 }
@@ -293,8 +293,8 @@ article.stark-lines a.go-btn, article.stark-lines a:hover{
   color:lightskyblue;
 }
 article.stark-lines img{
-  width: 100%;
-  border-radius: 5px;
+  width: 230px;
+  border-radius: 200px;
   margin-top: 1em;
 }
 article.aislin{
@@ -417,6 +417,50 @@ article>.inner{
   margin-top: 1em;
   float: right;
 }
+
+#contact-form{
+  margin: 10em auto 0;
+  max-width: 400px;
+  font-size: 0.9em;
+  text-align: left;
+  line-height: 1.7em;
+}
+#contact-form label{
+
+}
+#contact-form input{
+  border: none;
+  border-bottom: 1px dashed #5e5bd6;
+  text-align: center;
+  font-family: 'Clear Sans';
+}
+#contact-form input:focus{
+  border-bottom-style: solid;
+  box-shadow: none;
+  outline: none;
+}
+#contact-form input[name="name"]{
+  width: 5em;
+}
+#contact-form input[name="_replyto"]{
+  width: 7.5em;
+}
+#contact-form input[name="message"]{
+  width: 19em;
+}
+#contact-form input[type="submit"]{
+  display: block;
+  border: none;
+  border-bottom: 1px solid #5e5bd6;
+  background: aliceblue;
+  color: #5e5bd6;
+  padding: 0.5em 1em;
+  margin: 1em 0em 2em;
+}
+#contact-form input[type="submit"]:focus, #contact-form input[type="submit"]:hover{
+  border-bottom-style: dashed;
+}
+
 .name-header{
   display: inline-block;
   font-size: 2em;
