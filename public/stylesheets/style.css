@@ -204,7 +204,7 @@ code {background-color:#eee;padding:0.4em 0.6em;line-height: 2.5em;}
 .home-list article{
   position: relative;
   display: table;
-  min-height: 600px;
+  height: 600px;
   width: 100%;
   vertical-align: middle;
 }
