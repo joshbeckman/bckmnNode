@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/jbckmn
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://bckmn.com
+  * I am jbckmn (https://keybase.io/jbckmn) on keybase.
+  * I have a public key with fingerprint 64CC F611 E5C0 AE15 2B25  A5D2 1BC7 D34A 4D63 616B
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "64ccf611e5c0ae152b25a5d21bc7d34a4d63616b",
+            "host": "keybase.io",
+            "key_id": "1bc7d34a4d63616b",
+            "uid": "f8553430e9c8f2fb68ebd801838d9300",
+            "username": "jbckmn"
+        },
+        "service": {
+            "hostname": "bckmn.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1397152133,
+    "expire_in": 157680000,
+    "prev": "96cb72924661a602fcf033497130fddc601cdc859cb32ae465d6143064b6e5de",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.1.5
+Comment: https://keybase.io/crypto
+
+yMHnAnicbZFfSBRrGMZXXSOFREtb+qedsS6yRefvt7N7Lo57Y4EVUWsXVmwz33yz
+O647s82Oe7TFPCLpSUEiD5JxKrUyCi/UEE4SsS1dGKlBi4JpgoYEYqkVVAgHv1ns
+rrn5mOf9Pc/Dy/tiW5olM2X3ZPatC20dlSmvYss1ltNl01eihKhJdYQrSgRQ8pEV
+1Yf0kK6oBuEiAAuhDCgKcZAUEMXRIs0JnERTInRIDCuwEmAABUTCTvi1sOnAMaIQ
+RsWKhjX841UkrP6Cr0kOZJ7jGJYhkRPyMi2LgEeixJMUz/CSkyFJEwwjXRWCCNNV
+IgwEVaLeTmAtokCsRZPFm/PkuBhqQWwL6ZqhQa0ay37DCLlMl1EXMrE/kejdDPCK
+iirhlbEhgvSwoqmEi8IkNBQzkWKcDrw1xTB2AtWGFB15FZPgHIAn8WfWoAiOdAIo
+OmgnzQJACYCkZSiTDMNiN0PKkgQBSUEJ8pwTigwtIBZwEqDw3oAVAeIkhPvD6KKq
+ES7cZAg+HBlWfKpg1OiIqI/HzlktKZmWLemp5tEsmRnZP085UbHV0r1vZPF74WxF
+89/xjxOjU9LAg8L2aPHJ1U+tK21NtvtnSqdyi9TU+eB67VzD6ML4O/mOfSbesNal
+XSp5drQlwxhN7E9bZ15WJ8TPw00TD1veLo8XHDiSs2QtPxZY+KsDNeg9//lPrKxP
+83/8n0VI5699a/3qO2X/3ZMRsdLAw0RGDt27POuppJ4O3bAhTyIL9bj7xessR1Q1
+UQX9jdYvYzsn8/5ZehTw393b1VyR13s1Pydx2w7dQt9vz6cHB8tjvO3fgdfu+dzY
+4dS11tm59zc/7HDnV/XFzz7ent5o+5HdO5TwFO0qaQc9pS1lLs9M5/Hhg2NvxjsX
+u1f3PNkA3doRFg==
+=6J+j
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jbckmn
+
+==================================================================
