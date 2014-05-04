@@ -17,6 +17,7 @@
     "express-load": "*",
     "mailgun": "*",
     "stripe": "*",
+    "zlib": "*",
     "mailcomposer": "~0.2.1",
     "async": "*",
     "mongoose": "~3.6.20",
