@@ -18,7 +18,7 @@
 
   function stepOne(){
     messages.innerHTML = bannerTemplate({
-      message: "Why, hello there. In the next few seconds, we're going to watch CSS-Tricks get CSS <span class='emph'>tricked-out!</span><br/>---<br/>You see, the prettiest part of this page (the tabbed menu bar) is NOT acheived with CSS - it's done with SVG images.",
+      message: "Nice to see you. In the next few seconds, we're going to watch CSS-Tricks get CSS <span class='emph'>tricked-out!</span><br/>---<br/>You see, the prettiest part of this page (the tabbed menu bar) is NOT acheived with CSS - it's done with SVG images.",
       confirm: "OK, Let's Start"
     });
     messages.style.display = 'block';
@@ -73,7 +73,7 @@
     }, 1000);
     setTimeout(function(){
       messages.innerHTML = bannerTemplate({
-        message: "Woohoo! We've successfully reconstructed those complex SVG images with pure CSS.<br/>---<br/>Now <span class='emph'>that's</span> a CSS trick.",
+        message: "Woohoo! We've successfully reconstructed those heavy SVG images with pure CSS.<br/>---<br/>Now <span class='emph'>that's</span> a CSS trick.",
         confirm: "That's Pretty Cool!"
       });
       messages.style.display = 'block';
