@@ -8,6 +8,9 @@
     },
     "words":{
       "description": "Words and Blog Writings by Joshua Beckman"
+    },
+    "you":{
+      "description": "You & Josh should work together to build something truly great."
     }
   },
   "mongo":{
