@@ -3,7 +3,7 @@ extends layout
 block content
 
   #content.pure-g-r
-    .pure-u-1(style="height:90vh;")
+    .pure-u-1.boxed(style="height:90vh;")
       h1= title
       - var d = new Date;
       p For your records, here are the details of your payment on #{d.getMonth() + 1}/#{d.getDate()}/#{d.getFullYear()} to #{name}:

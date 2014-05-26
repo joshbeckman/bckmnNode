@@ -1,19 +1,10 @@
-doctype 5
-html
-  head
-    title #{title || 'Joshua Beckman (jbckmn)'}
-    meta(name="viewport", content="width=device-width")
-    link(rel='icon', href="/images/favicon.png")
-    link(rel='stylesheet', href='/stylesheets/style.css')
+extends layout
 
-  body
-    main.container
-      #content.pure-g-r.day(style="height:90vh;")
-        .pure-u-1-8
-        .pure-u-3-4
-          h1.text-center
-            code 404
-          h2 Apologies, but I don't know what you mean by: <br>
-            small(style='word-wrap:break-word;font-family:"Open Sans";') "#{url}"
-          h2.name-header
-            a(href="/") HOME
+block content
+  h1.text-center
+    a.boxed(style="padding:1em;", href="/") 404 Not Found
+  p.lede.boxed.text-center Cannot find url: <code>#{req.url}</code>
+  p.lede.boxed.text-center
+    a(href="http://www.andjosh.com") www & Josh
+  .foobar(style="height:1000px;")
+  include bijoubit

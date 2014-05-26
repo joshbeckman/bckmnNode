@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1.text-center
+    a.boxed(style="padding:1em;", href="") Building A Penrose Triangle
+  p.text-center
+    span.boxed(style="padding:0.25em 1em 0.5em;") &#x25BF; Scroll &#x25BF;
+  .foobar(style="height:1000px;")
+  #building-blocks(name="penrose")
+    a(href="http://twitter.com/jbckmn", rel="me", title="Follow me on Twitter") @jbckmn
+    .building-block(data-top="20", data-left="60", data-rotate="30", data-height="100")
+    .building-block(data-top="20", data-left="80", data-rotate="30", data-height="90")
+    .building-block(data-top="20", data-left="127", data-rotate="330", data-height="100")
+    .building-block(data-top="45", data-left="121", data-rotate="330", data-height="90")
+    .building-block(data-top="80", data-left="95", data-rotate="90", data-height="100")
+    .building-block(data-top="68", data-left="80", data-rotate="90", data-height="90")
+    .building-block(data-top="48", data-left="85", data-rotate="30", data-height="60")
+    .building-block(data-top="57", data-left="110", data-rotate="330", data-height="60")
+    .building-block(data-top="74", data-left="90", data-rotate="90", data-height="60")
+    .building-block(data-top="16", data-left="93", data-rotate="90", data-height="20")
+    .building-block(data-top="112", data-left="148", data-rotate="30", data-height="20")
+    .building-block(data-top="112", data-left="40", data-rotate="330", data-height="20")

@@ -2,8 +2,92 @@
   _.mixin({
     'asyncRequest': asyncRequest,
     'doJSONP': doJSONP,
-    'request': request
+    'request': request,
+    'onResize': on_resize,
+    'scrollTo': scrollTo,
+    'create': create,
+    'onWake': onWake,
+    'randColor': getRandomColor,
+    'getVendorPrefix': GetVendorPrefix
     });
+  function GetVendorPrefix(arrayOfPrefixes) {
+ 
+    var tmp = document.createElement("div");
+    var result = "";
+     
+    for (var i = 0; i < arrayOfPrefixes.length; ++i) {
+     
+      if (typeof tmp.style[arrayOfPrefixes[i]] != 'undefined'){
+        result = arrayOfPrefixes[i];
+        break;
+      }
+      else {
+        result = null;
+      }
+    }
+     
+    return result;
+  }
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  function onWake(cb, interval){
+    var lastTime = (new Date()).getTime();
+    setInterval(function() {
+      var currentTime = (new Date()).getTime();
+      if (currentTime > (lastTime + interval + 2000)) {
+        cb();
+      }
+      lastTime = currentTime;
+    }, interval);
+  }
+  function on_resize(c,t){
+    onresize = function(){
+      clearTimeout(t);
+      t=setTimeout(c,100);
+    };
+    return c;
+  }
+  function create(name, props){
+    var el = document.createElement(name);
+    for (var p in props){
+    if(typeof props[p] === 'object'){
+    for(var q in props[p]){
+    el[p][q] = props[p][q];
+    }
+    }else{
+    el[p] = props[p];
+    }
+    }
+    return el;
+  }
+  function scrollTo(element, to, duration) {
+    Math.easeInOutQuad = function (t, b, c, d) {
+      t /= d/2;
+      if (t < 1) return c/2*t*t + b;
+      t--;
+      return -c/2 * (t*(t-2) - 1) + b;
+    };
+    var start = element.scrollY,
+        change = to - start,
+        currentTime = 0,
+        increment = 20;
+
+    var animateScroll = function(){
+      currentTime += increment;
+      var val = Math.easeInOutQuad(currentTime, start, change, duration);
+      element.scroll(0, val);
+      if(currentTime < duration) {
+        setTimeout(animateScroll, increment);
+      }
+    };
+    animateScroll();
+  }
   function asyncRequest (url, id, fn) {
     window.loCallbacks = window.loCallbacks || {cntr: 0};
     var name = "fn" + window.loCallbacks.cntr++;

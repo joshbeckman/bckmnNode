@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  #heady
+    .font-medium.pure-g.headline
+      .pure-u-1-2.text-right
+        a(href="").color-me.head-left #{subnet} 
+          span  &
+      .pure-u-1-2.text-left
+        a(href="").head-right
+          span & 
+          |  Josh
+  if req.query.sub
+    p.text-center.lede.boxed <strong>#{req.query.sub}</strong> isn't taken yet, but get in touch about it.
+  else
+    p.text-center.lede.boxed I'm always looking for new projects.
+  .pure-g-r
+    .pure-u-1-4
+    .pure-u-1-2
+      form#contact-form.boxed(method="POST", action="http://forms.brace.io/jsh@bckmn.com", title="You & Josh", name="You & Josh")
+        h3.text-center What's Your Deal?
+        label(for="name") My name is  
+          input(type="text", name="name", placeholder="Jane Smith", required)
+        label(for="_replyto") , I can be reached at  
+          input(type="text", name="_replyto", placeholder="jane@smith.com", required)
+        label(for="message") , and I'm really interested in building    
+          input(type="text", name="message", placeholder="something that could make life easier", required)
+        |  with you.
+        input.btn(type="submit", value="Let's work on it")
+  include bijoubit
+  script.
+    var turnBody = true;

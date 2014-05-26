@@ -1,9 +1,17 @@
 {
+  "members":{
+    "www":{
+      "description":"The World Wide Web and Joshua Beckman"
+    },
+    "api":{
+      "description": "Application Programmable Interface for Joshua Beckman"
+    },
+    "words":{
+      "description": "Words and Blog Writings by Joshua Beckman"
+    }
+  },
   "mongo":{
     "url":"mongodb://localhost/personal"
-  },
-  "mailgun":{
-    "key":"key-5n1bqp873lh8yritf-uiogsvgn120fa4"
   },
   "first_name":"Joshua",
   "last_name":"Beckman",

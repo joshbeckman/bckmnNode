@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  h1.font-med.pure-g.headline.snappy
+    .pure-u-1-2.text-right
+      a(href="").color-me.head-left #{subnet} 
+        span  &
+    .pure-u-1-2.text-left
+      a(href="").head-right
+        span & 
+        |  Josh
+  p.text-center.lede.boxed We&#039;ve made some things.
+    br
+    a(href="http://twitter.com/jbckmn", rel="me", title="Twitter").ga-link-trackable
+      span.icon-twitter
+    a(href="http://github.com/jbckmn", rel="me", title="Github").ga-link-trackable
+      span.icon-github
+    a(href="http://dribbble.com/jbckmn", rel="me", title="Dribbble").ga-link-trackable
+      span.icon-dribbble
+    a(href="mailto:jsh@bckmn.com?subject=...Just came from your homepage", title="Email").ga-link-trackable
+      span.icon-mail
+  .font-med.pure-g.headline(title="My personal API")
+    .pure-u-1-2.text-right
+      a(href="http://api.andjosh.com").color-me.head-left api 
+        span  &
+    .pure-u-1-2.text-left
+      a(href="http://api.andjosh.com").head-right
+        span & 
+        |  Josh
+  .font-med.pure-g.headline(title="My personal blog and writing")
+    .pure-u-1-2.text-right
+      a(href="http://words.andjosh.com").color-me.head-left words 
+        span  &
+    .pure-u-1-2.text-left
+      a(href="http://words.andjosh.com").head-right
+        span & 
+        |  Josh
+  a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
+    h3.text-center Stark Lines
+  a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
+    h3.text-center Aislin
+  a(href="http://github.com/jbckmn/gatrack.js", title="Easily track user any events with Google Analytics.").ga-link-trackable.a-project.boxed.gatrackjs
+    h3.text-center GAtrack.js
+  a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable.a-project.boxed.naked-wordpress
+    h3.text-center Naked WordPress
+  a(href="http://unfavoriter.com", title="Automatically clean out your old Twitter favorites.").ga-link-trackable.a-project.boxed.unfavoriter
+    h3.text-center The Unfavoriter
+  include bijoubit
+  script(src="/javascripts/vendor/d3.v3.min.js")
+  script.
+    var turnBody = true;
+  style.
+    #building-blocks{
+      display:none;
+    }

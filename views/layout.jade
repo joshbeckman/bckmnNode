@@ -2,71 +2,61 @@ doctype 5
 html
   head
     // Hey! Email me at jsh@bckmn.com - I'm always looking for projects.
-    title #{title || 'Joshua Beckman (jbckmn)'}
+    title #{title}
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    meta(name="description", content="#{description || 'Joshua Beckman is available for hire in downtown Chicago, IL. He works as a web & software developer, designer, photographer, videographer and good guy.'}")
-    link(rel='icon', href="/images/favicon.png")
-    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:300')
-    link(rel='stylesheet', href='/stylesheets/bckmn.min.css')
-    link(rel='canonical', href='http://www.bckmn.com#{req.path}')
+    meta(content="text/html; charset=utf-8", http-equiv="Content-type")
+    meta(name="description", content="#{description}")
+    meta(name="HandheldFriendly", content="true")
+    meta(name="apple-mobile-web-app-capable", content="yes")
+    meta(name="msapplication-TileColor", content="#ffffff")
+    meta(name="msapplication-TileImage", content="/images/andjosh.png")
+    link(rel="apple-touch-icon", href="/images/andjosh.png")
+    link(rel='icon', href="/images/bwandjosh.png")
+    link(rel='stylesheet', href='/stylesheets/the.min.css')
+    link(rel='canonical', href='http://#{req.host}#{req.path}')
     link(rel='author', href='https://plus.google.com/u/0/103739350784081056661')
     meta(property='og:locale', content='en_US')
-    meta(property='og:url', content='http://www.bckmn.com#{req.path}')
-    meta(property='og:title', content='#{title || "Joshua Beckman (jbckmn)"}')
+    meta(property='og:url', content='http://#{req.host}#{req.path}')
+    meta(property='og:title', content='#{title}')
     meta(property='og:site_name', content="Joshua Beckman (jbckmn)")
     meta(property='og:type', content='website')
     meta(name='twitter:card', content='summary')
     meta(name='twitter:site', content='@jbckmn')
     meta(name='twitter:creator', content='@jbckmn')
-    meta(name='twitter:url', content='http://www.bckmn.com#{req.path}')
-    meta(name='twitter:title', content='#{title || "Joshua Beckman (jbckmn)"}')
-    meta(name='twitter:image', content='#{post ? post.image : mainImage || ""}')
-    meta(name='twitter:description', content="#{description || 'Joshua Beckman is available for hire in downtown Chicago, IL. He works as a web & software developer, designer, photographer, videographer and good guy.'}")
-    meta(name='twitter:domain', content='http://bckmn.com')
-    meta(name="apple-mobile-web-app-capable", content="yes")
-    if (!noTracking)
-      script.
-        if (document.location.hostname == "www.bckmn.com") {
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-35141887-2']);
-          _gaq.push(['_trackPageview']);
-
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        } else { var ga = function(arg) {console.log("ga:", arg)};}
+    meta(name='twitter:url', content='http://#{req.host}#{req.path}')
+    meta(name='twitter:title', content='#{title}')
+    meta(name='twitter:image', content='#{post ? post.image : "/images/andjosh.png"}')
+    meta(name='twitter:description', content="#{description}")
+    meta(name='twitter:domain', content='http://andjosh.com')
+    script.
+      // Put GA tracking here
 
   body
-    main(class="#{vampire ? 'container' : 'container day'}")
-      #message
-        if message.length > 0
-          p.pull-center.message
-            a(onclick="dismissAlert(this.parentNode.parentNode);", style="margin-right:1em;")
-              span.x-remove X
-            | #{message}
-      #error
-        if error.length > 0
-          p.pull-center.error
-            a(onclick="dismissAlert(this.parentNode.parentNode);", style="margin-right:1em;")
-              span.x-remove X
-            | #{error}
+    .pure-g
+      .pure-u-1-2.back-door
+    if message.length > 0 || error.length > 0
+      #messages
+        .wrapper
+          if message.length > 0
+            p.pull-center.message
+              a(onclick="dismissAlert(this.parentNode.parentNode);").dismiss-alert
+                span.icon-cross
+              | #{message}
+          if error.length > 0
+            p.pull-center.error
+              a(onclick="dismissAlert(this.parentNode.parentNode);").dismiss-alert
+                span.icon-cross
+              | #{error}
+    else
+      #messages(style="display:none;")
+        .wrapper
 
-      block content
+    block content
 
-      footer.footer
-        .pure-g-r
-          .pure-u-1.lightbox.transition
-            ul#strip.gallery
-    if !isHome
-      include sole
+    script(src="/javascripts/the.min.js")
     if socket
       script(src='/socket.io/socket.io.js')
     if (post || posts)
       script(src="/javascripts/vendor/highlight.pack.js")
       script.
         hljs.initHighlightingOnLoad();
-    script.
-      var images = !{JSON.stringify(images) || '[]'}, imageSrc = !{JSON.stringify(imageSrc) || '[]'};
-    script(src="/javascripts/bckmn.min.js")

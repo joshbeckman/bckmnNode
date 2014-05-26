@@ -1,40 +1,29 @@
 extends layout
 
 block content
-
-  if post.image
-    img#post-image-holder(src="#{post.image}" style="display:none;visibility:hidden;")
-    .post-image#full-image
-      a.scroll-post READ
-  if post.colors
-    .post-colors
-      for color in post.colors 
-        span(style="display:inline-block;height:10px;width:#{(1/post.colors.length)*100}%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
+  #heady
+    .font-med.pure-g.headline
+      .pure-u-1-2.text-right
+        a(href="http://words.andjosh.com").color-me.head-left #{subnet} 
+          span  &
+      .pure-u-1-2.text-left
+        a(href="http://www.andjosh.com").head-right
+          span & 
+          |  Josh
   #content.pure-g-r
-    .pure-u-1-6
-      span.post-date.transition #{moment(post.modified).fromNow()}
-    .pure-u-2-3
-      article#single-post(itemscope, itemtype="http://schema.org/BlogPosting")
-        meta(itemprop="author", content="Joshua Beckman")
-        meta(itemprop="datePublished", content="#{post.modified}")
-        h1.blog-post-title.text-center
-          a.blog-post-link(href="/blog/#{post.slug}", itemprop="url")
-            span(itemprop="headline") #{post.title}
+    .pure-u-1(itemscope, itemtype="http://schema.org/BlogPosting")
+      meta(itemprop="author", content="Joshua Beckman")
+      meta(itemprop="datePublished", content="#{post.modified}")
+      meta(itemprop="headline", content="#{post.title}")
+      meta(itemprop="url", content="/post/#{post.slug}")
+      if post.image
+        img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
+      article.blog-post-wrapper.boxed(style="#{post.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
+        a.blog-post-date(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
+        h2.blog-post-title.text-center
+          a.blog-post-link(href="/post/#{post.slug}") #{post.title}
         .post-body(itemprop="articleBody") !{post.html}
-        .post-meta
-        .post-links
-          p.related-post READ THIS NEXT:
-            a(href="/blog/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
-    .pure-u-1-6
-    .pure-u-3-4
-      br
-      br
-      h3.name-header
-        a(href="/", data-gatrack-action="Footer home link (post)", data-gatrack-category="Internal link").ga-link-trackable JOSHUA BECKMAN
-    .pure-u-1-4.pure-hidden-phone
-      br
-      br
-      h4(style="color:white;text-transform:uppercase;", title="You are reading in the dark, because it should be dark around you!")
-        span(style="border-top:1px solid white;border-bottom:1px solid white;") Evening Edition
-  script
-    window.jshBckmn = window.jshBckmn || {};
+      p.text-center.lede.boxed Read this next:
+        br
+        a(href="/post/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
+  include bijoubit

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .font-med.pure-g.headline
+    .pure-u-1-2.text-right
+      a(href="http://words.andjosh.com").color-me.head-left #{subnet} 
+        span  &
+    .pure-u-1-2.text-left
+      a(href="http://www.andjosh.com").head-right
+        span & 
+        |  Josh
+  if queryString
+    p.text-center.lede.boxed #{posts.length} results for: <code>#{queryString}</code>
+  #content.pure-g-r
+    for p in posts
+      .pure-u-1
+        if p.image
+          img.post-image(itemprop="image", src="#{p.image}", alt="#{p.title}")
+        .blog-post-wrapper.boxed(style="#{p.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
+          a.blog-post-date(href="/post/#{p.slug}") #{moment(p.modified).format("MMM Do, 'YY")}
+          h2.blog-post-title.text-center
+            a.blog-post-link(href="/post/#{p.slug}") #{p.title}
+          .post-body !{p.html}
+    if posts.length < 1
+  include bijoubit
