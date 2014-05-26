@@ -35,16 +35,6 @@ module.exports = function (app, io, ensureAuth) {
       res.redirect('http://you.andjosh.com?sub=' + sub);
     }
   });
-  app.get('/test-me', function(req,res){
-    res.render('you', { title: 'you',
-                            description: 'config.members[subnet].description',
-                            req: req,
-                            subnet: 'you',
-                            query: req.query,
-                            stripeKey: api_public,
-                            message: req.flash('message'), 
-                            error: req.flash('error') });
-  });
   app.get('/test-moi', function(req,res){
     res.render('bijou', { title: 'subname',
                             description: 'config.members[subnet].description',
