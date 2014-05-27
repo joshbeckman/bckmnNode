@@ -183,6 +183,9 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/blog', function(req,res){
     res.redirect(301, 'http://words.andjosh.com/');
   });
+  app.get('/pay', function(req,res){
+    res.redirect(301, 'http://payments.andjosh.com/');
+  });
 
   var checkSubdomain = function(req, res, sub, cb){
       if (sub == req.subdomains.join('') || 'localhost' == req.host){
