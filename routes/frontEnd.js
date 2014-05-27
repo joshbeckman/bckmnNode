@@ -9,6 +9,7 @@ var passport = require('passport'),
     api_public = process.env.STRIPE_PUBLIC_KEY,
     Post = require('../models/post'),
     moment = require('moment'),
+    request = require('request'),
     impersonate = require('../lib/getHTML').impersonate;
 
 module.exports = function (app, io, ensureAuth) {
@@ -36,14 +37,15 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    res.render('bijou', { title: 'subname',
-                            description: 'config.members[subnet].description',
-                            req: req,
-                            subnet: 'subnet',
-                            query: req.query,
-                            stripeKey: api_public,
-                            message: req.flash('message'), 
-                            error: req.flash('error') });
+    blocks['api'](req, res, 'subnet', 'subname');
+    // res.render('bijou', { title: 'subname',
+    //                         description: 'config.members[subnet].description',
+    //                         req: req,
+    //                         subnet: 'subnet',
+    //                         query: req.query,
+    //                         stripeKey: api_public,
+    //                         message: req.flash('message'), 
+    //                         error: req.flash('error') });
   });
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
@@ -267,6 +269,11 @@ module.exports = function (app, io, ensureAuth) {
             }
           };
           res.jsonp(fullResponse);
+        });
+        request('http://www.google-analytics.com/collect?v=1&tid=UA-51342011-1&cid=555&t=pageview&dp=%2F&dh=api.andjosh.com&dt=API', function (err, resp, body){
+          if (err){
+            console.log(err);
+          }
         });
       },
       words: function(req, res, subnet, subname){
