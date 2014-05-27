@@ -180,6 +180,9 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/blog/:slug', function(req,res){
     res.redirect(301, 'http://words.andjosh.com/post/' + req.params.slug);
   });
+  app.get('/blog', function(req,res){
+    res.redirect(301, 'http://words.andjosh.com/');
+  });
 
   var checkSubdomain = function(req, res, sub, cb){
       if (sub == req.subdomains.join('') || 'localhost' == req.host){
