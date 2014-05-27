@@ -6,25 +6,16 @@ block content
   script(src='/javascripts/vendor/color-thief.js')
   link(rel='stylesheet', href='/stylesheets/editor.css')
   link(rel='stylesheet', href='/stylesheets/yue.css')
-  style(type="text/css").
-    .night, .night code, .night input {
-      background-color: white;
-      color: #333;
-    }
-  button#main-menu-button.menu-toggle-button
-    span Menu
-    button#save-button Save
-  nav#cbp-spmenu-right.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-right
-    h3 POSTS
-    span#post-menu-items
+  nav.text-center
+    span#post-menu-items.lede.boxed
       if unpublishedPosts
         for up in unpublishedPosts
           a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
-    h3
-      a(href="/") HOME
   #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
+    .pure-u-1.text-center
+      button#save-button.boxed Save
     .pure-u-1
-      .editor-wrapper
+      .editor-wrapper.boxed
         input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
         textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
         input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post && post.image ? post.image : ''}")

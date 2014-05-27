@@ -37,7 +37,7 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['api'](req, res, 'subnet', 'subname');
+    blocks['words'](req, res, 'words', 'words');
     // res.render('bijou', { title: 'subname',
     //                         description: 'config.members[subnet].description',
     //                         req: req,
@@ -259,11 +259,11 @@ module.exports = function (app, io, ensureAuth) {
           fullResponse.identifiers = identifiers;
           if (posts && posts.length > 0) {
             fullResponse.blog = {
-              rss: "http://www.bckmn.com/rss.xml",
+              rss: "http://words.andjosh.com/rss.xml",
               latest: [
                 {
                   title: posts[0].title,
-                  url: 'http://www.bckmn.com/blog/'+posts[0].slug,
+                  url: 'http://words.andjosh.com/post/'+posts[0].slug,
                   date: posts[0].modified
                 }
               ]

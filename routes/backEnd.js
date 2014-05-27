@@ -11,16 +11,12 @@ var moment = require('moment')
     , RSS = require('rss')
     , sm = require('sitemap')
     , urls = [
-        {url: '/', changefreq: 'daily', priority: 1},
-        {url: '/blog', changefreq: 'daily', priority: 0.9},
-        {url: '/api', changefreq: 'daily', priority: 0.9},
-        {url: '/pay', changefreq: 'monthly', priority: 0.7},
-        {url: '/soundcloud-animations', changefreq: 'daily', priority: 0.8}
+        {url: '/', changefreq: 'daily', priority: 1}
       ];
 
 Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
   for(i=0;i<posts.length;i++){
-    urls.push({url: '/blog/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
+    urls.push({url: '/post/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
   };
 });
 module.exports = function (app, io, ensureAuth) {
@@ -65,7 +61,7 @@ module.exports = function (app, io, ensureAuth) {
 
   app.get('/sitemap.xml', function(req,res){
     var sitemap = sm.createSitemap ({
-                    hostname: 'http://www.bckmn.com',
+                    hostname: 'http://www.andjosh.com',
                     cacheTime: 600000,        // 600 sec - cache purge period
                     urls: urls
                   });
@@ -80,8 +76,8 @@ module.exports = function (app, io, ensureAuth) {
       var feed = new RSS({
           title: 'Joshua Beckman',
           description: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
-          feed_url: 'http://www.bckmn.com/rss.xml',
-          site_url: 'http://www.bckmn.com',
+          feed_url: 'http://words.andjosh.com/rss.xml',
+          site_url: 'http://words.andjosh.com',
           image_url: config.image_path,
           author: 'Joshua Beckman',
           language: 'en',
@@ -92,7 +88,7 @@ module.exports = function (app, io, ensureAuth) {
         feed.item({
             title:  posts[i].title,
             description: posts[i].markdown.slice(0,150),
-            url: 'http://www.bckmn.com/blog/'+posts[i].slug,
+            url: 'http://words.andjosh.com/post/'+posts[i].slug,
             date: posts[i].modified,
             lat: config.location.latitude,
             long: config.location.longitude

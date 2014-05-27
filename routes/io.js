@@ -7,7 +7,8 @@ var fs = require('fs')
     , config = JSON.parse(fs.readFileSync('./config.json'))
     , passport = require('passport')
     , moment = require('moment')
-    , Post = require('../models/post');
+    , Post = require('../models/post')
+    , postHelpers = require('../lib/postHelpers');
 
 module.exports = function (app, io) {
 
