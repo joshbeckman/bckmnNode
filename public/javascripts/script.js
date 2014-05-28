@@ -17,23 +17,10 @@ function dismissAlert(elem){
   }
 
   setInterval(colorUs, 3000);
-  // setMiddle();
-  // _.onResize(function(){
-  //   setMiddle();
-  // })();
   if (window.turnBody){
     document.body.className += ' turned';
   }
 
-  function setMiddle(){
-    var ww = window.innerWidth,
-      ww2 = Math.floor(ww/2);
-    if (ww % 2){
-      document.body.style.backgroundImage = 'linear-gradient(90deg, #fff ' + (ww2 - 1).toString() + 'px, #ddd ' + (ww2 - 1).toString() + 'px, #ddd ' + (ww2 + 1).toString() + 'px, #fff ' + (ww2 + 1).toString() + 'px)';
-    } else {
-      document.body.style.backgroundImage = 'linear-gradient(90deg, #fff ' + (ww2).toString() + 'px, #ddd ' + (ww2).toString() + 'px, #ddd ' + (ww2 + 1).toString() + 'px, #fff ' + (ww2 + 1).toString() + 'px)';
-    }
-  }
   function colorUs(){
     for (var i = colored.length - 1; i >= 0; i--) {
       colored[i].style.color = _.randColor();
@@ -492,10 +479,10 @@ if (window.d3 !== undefined){
   supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints,
   transformPrefix = _.getVendorPrefix(["transform", "msTransform", "mozTransform", "webkitTransform", "oTransform"]);
 
-  if (!supportsTouch){
+  // if (!supportsTouch){
     setTimeout(buildPage, 30);
     var scrollIntervalID = setInterval(runPage, 10);
-  }
+  // }
 
   function runPage(){
     old = past;

@@ -58,7 +58,18 @@ a:hover{
 code {
   background-color:#f5f5f5;
   padding:0.4em 0.6em;
-  line-height: 2.5em;
+}
+pre, pre.prettyprint{
+  background: #f5f5f5;
+  margin: 0 -32px;
+  padding: 7px 10px;
+  font-size: 14px;
+  border:none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+pre code{
+  padding: 0px;
 }
 .greened{
   color: #45CB46;
