@@ -26,4 +26,17 @@ block content
       p.text-center.lede.boxed Read this next:
         br
         a(href="/post/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
+  #mc_embed_signup.boxed.lede.text-center
+    h5 Receive new posts by email
+    form#mc-embedded-subscribe-form.validate(action='http://bckmn.us3.list-manage.com/subscribe/post?u=1eebaff46609c8040a88eb538&id=545c6aec6a', method='post', name='mc-embedded-subscribe-form', target='_blank', novalidate='novalidate')
+      .mc-field-group
+        input#mce-EMAIL.required.email(type='email', value='', name='EMAIL', placeholder="Your Email")
+      div(style='position: absolute; left: -5000px;')
+        input(type='text', name='b_1eebaff46609c8040a88eb538_545c6aec6a', tabindex='-1', value='')
+      .clear
+        input#mc-embedded-subscribe.button(type='submit', value='Subscribe', name='subscribe')
+  #mce-responses.clear
+    #mce-error-response.response.boxed.text-center(style='display: none;')
+    #mce-success-response.response.boxed.text-center(style='display: none;')
   include bijoubit
+  include mailchimpjs

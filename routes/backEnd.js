@@ -74,8 +74,8 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/rss.xml', function(req, res){
     Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
       var feed = new RSS({
-          title: 'Joshua Beckman',
-          description: 'Joshua Beckman is a web developer and photographer in downtown Chicago',
+          title: 'Words & Josh',
+          description: 'Joshua Beckman is in downtown Chicago',
           feed_url: 'http://words.andjosh.com/rss.xml',
           site_url: 'http://words.andjosh.com',
           image_url: config.image_path,
