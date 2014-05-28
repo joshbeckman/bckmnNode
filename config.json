@@ -9,6 +9,9 @@
     "words":{
       "description": "Words and Blog Writings by Joshua Beckman"
     },
+    "payments":{
+      "description": "Support Joshua Beckman, with money!"
+    },
     "you":{
       "description": "You & Josh should work together to build something truly great."
     }
