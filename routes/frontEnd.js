@@ -283,7 +283,7 @@ module.exports = function (app, io, ensureAuth) {
         });
       },
       words: function(req, res, subnet, subname){
-        Post.getLatestPosts(15, function(err, posts){
+        Post.getLatestPosts(10, (req.query.offset ? parseInt(req.query.offset, 10) : 0), function(err, posts){
           res.render(subnet, { title: subname,
                               description: config.members[subnet].description,
                               req: req,

@@ -88,7 +88,7 @@ module.exports = function (app, io, ensureAuth) {
         feed.item({
             title:  posts[i].title,
             description: posts[i].markdown.slice(0,150),
-            url: 'http://words.andjosh.com/post/'+posts[i].slug,
+            url: 'http://words.andjosh.com/post/'+posts[i].slug + '?utm_medium=rss',
             date: posts[i].modified,
             lat: config.location.latitude,
             long: config.location.longitude

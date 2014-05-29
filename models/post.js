@@ -37,8 +37,8 @@ Post.statics.slugify = function(string){
   return string.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
 };
 
-Post.statics.getLatestPosts = function(count, callback){
-  this.find({published: true}).sort('-modified').limit(count).exec(callback);
+Post.statics.getLatestPosts = function(count, offset, callback){
+  this.find({published: true}).sort('-modified').skip(offset).limit(count).exec(callback);
 };
 Post.statics.getUnpublishedPosts = function(callback){
   this.find({published: false}).sort('-modified').lean().exec(callback);
