@@ -37,7 +37,7 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['words'](req, res, 'words', 'words');
+    blocks['api'](req, res, 'words', 'words');
     // res.render('bijou', { title: 'subname',
     //                         description: 'config.members[subnet].description',
     //                         req: req,
@@ -196,7 +196,7 @@ module.exports = function (app, io, ensureAuth) {
     },
     blocks = {
       api: function(req, res, subnet, subname){
-        Post.getLatestPosts(1, function(err, posts){
+        Post.getLatestPosts(1, 0, function(err, posts){
           var person = {},
             identifiers = {},
             externals = config.externals,
