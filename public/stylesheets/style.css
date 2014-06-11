@@ -257,44 +257,6 @@ pre code{
 .headline{
   font-size: 2.05em;
 }
-.turned .headline.snappy{
-  animation: snap 1s cubic-bezier(0.7, 0.7, 1.0, 0.1);
-  -moz-animation: snap 1s cubic-bezier(0.7, 0.7, 1.0, 0.1);
-  -ms-animation: snap 1s cubic-bezier(0.7, 0.7, 1.0, 0.1);
-  -webkit-animation: snap 1s cubic-bezier(0.7, 0.7, 1.0, 0.1);
-}
-@keyframes snap{
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-@-moz-keyframes snap{
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-@-webkit-keyframes snap{
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-@-ms-keyframes snap{
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
 .headline div{
   overflow: hidden;
   overflow: -moz-hidden-unscrollable;
@@ -397,6 +359,8 @@ pre code{
   -moz-animation: turn 1s;
   -ms-animation: turn 1s;
   -webkit-animation: turn 1s;
+  -webkit-perspective:1000px;
+  perspective:1000px;
 }
 @keyframes turn{
   from {

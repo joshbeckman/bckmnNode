@@ -183,6 +183,9 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/blog', function(req,res){
     res.redirect(301, 'http://words.andjosh.com/');
   });
+  app.get('/api', function(req,res){
+    res.redirect(301, 'http://api.andjosh.com/');
+  });
   app.get('/pay', function(req,res){
     res.redirect(301, 'http://payments.andjosh.com/');
   });
@@ -271,7 +274,7 @@ module.exports = function (app, io, ensureAuth) {
           }
           fullResponse._links = {
             self: {
-              href: "/api"
+              href: "/"
             }
           };
           res.jsonp(fullResponse);
