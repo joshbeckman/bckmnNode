@@ -16,9 +16,10 @@ block content
       button#save-button.boxed Save
     .pure-u-1
       .editor-wrapper.boxed
-        input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : ''}")
-        textarea#editor(placeholder="Body here ....") !{post ? post.markdown : ''}
-        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post && post.image ? post.image : ''}")
+        input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : req.query.title || ''}")
+        textarea#editor(placeholder="Body here ....") !{post ? post.markdown : req.query.quote || ''}
+        input#post-link(type='text', placeholder='http://www.example.com/link', value="#{post && post.link ? post.link : req.query.link || ''}")
+        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post && post.image ? post.image : req.query.image || ''}")
         span#post-colors
           if post && post.colors
             for color in post.colors 
@@ -83,6 +84,7 @@ block content
           title = document.getElementById('post-title-editor').value,
           body = editor.codemirror.getValue(),
           imageUrl = document.getElementById('post-image').value,
+          linkUrl = document.getElementById('post-link').value,
           colors = retrieveColors(document.getElementById('post-colors'));
       if(body && title){
         var r = confirm("Publish this?");
@@ -93,6 +95,7 @@ block content
             _id: postID,
             published: r,
             image: imageUrl,
+            link: linkUrl,
             colors: colors,
             time: (new Date)
           });
@@ -102,6 +105,7 @@ block content
             title: title,
             published: r,
             image: imageUrl,
+            link: linkUrl,
             colors: colors,
             time: (new Date)
           });
@@ -118,6 +122,7 @@ block content
             document.getElementById('post-editor').dataset.postId = elem.dataset.postId;
             document.getElementById('post-title-editor').value = unPubs[i].title;
             document.getElementById('post-image').value = unPubs[i].image || '';
+            document.getElementById('post-link').value = unPubs[i].link || '';
             document.getElementById('post-colors').innerHTML = null;
             editor.codemirror.setValue(unPubs[i].markdown);
           }

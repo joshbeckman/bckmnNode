@@ -500,6 +500,9 @@ svg:not(:root) {
   text-transform: none;
   border: none;
 }
+.blog-post-link span{
+  color: #24B1E0;
+}
 .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5{
   font-family: 'Clear Sans';
 }
