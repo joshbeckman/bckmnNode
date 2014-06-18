@@ -3484,7 +3484,7 @@ var MMCQ = (function() {
 
 (function(window, document){
   var base = 'http://words.andjosh.com/w?key='+document.getElementById('andjoshBlogKey').className,
-    selection = getSelectionHtml(),
+    selection = document.getElementById('andjoshQuote') ? document.getElementById('andjoshQuote').innerHTML : '',
     query_array = ['&title=', document.title, '&link=', window.location.href, '&quote=', selection];
   grabColors();
   function grabColors(){
@@ -3511,23 +3511,5 @@ var MMCQ = (function() {
   }
   function loadTab(){
     window.andjoshWindow.location = base + query_array.join('');
-  }
-  function getSelectionHtml() {
-    var html = "";
-    if (typeof window.getSelection != "undefined") {
-      var sel = window.getSelection();
-      if (sel.rangeCount) {
-        var container = document.createElement("div");
-        for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-          container.appendChild(sel.getRangeAt(i).cloneContents());
-        }
-        html = container.innerHTML;
-      }
-    } else if (typeof document.selection != "undefined") {
-      if (document.selection.type == "Text") {
-        html = document.selection.createRange().htmlText;
-      }
-    }
-    return html;
   }
 })(this, this.document);
