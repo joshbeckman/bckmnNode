@@ -1,34 +1,39 @@
 extends layout
 
 block content
-  script(src='/javascripts/vendor/editor.js')
   script(src='/javascripts/vendor/marked.js')
-  script(src='/javascripts/vendor/color-thief.js')
-  link(rel='stylesheet', href='/stylesheets/editor.css')
-  link(rel='stylesheet', href='/stylesheets/yue.css')
-  nav.text-center
-    span#post-menu-items.lede.boxed
-      if unpublishedPosts
-        for up in unpublishedPosts
-          a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
+  //- script(src='/javascripts/vendor/color-thief.js')
+  script(src='/javascripts/marklet.js')
   #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
-    .pure-u-1.text-center
-      button#save-button.boxed Save
-    .pure-u-1
-      .editor-wrapper.boxed
-        input#post-title-editor.title(type='text', placeholder='Title', value="#{post ? post.title : req.query.title || ''}")
-        textarea#editor(placeholder="Body here ....") !{post ? post.markdown : req.query.quote || ''}
-        input#post-link(type='text', placeholder='http://www.example.com/link', value="#{post && post.link ? post.link : req.query.link || ''}")
-        input#post-image(type='text', placeholder='http://image-url.jpg', value="#{post && post.image ? post.image : req.query.image || ''}")
-        span#post-colors
-          if post && post.colors
-            for color in post.colors 
-              span(style="display:inline-block;height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
+    .pure-u-1-3
+    .pure-u-1-3
+      form.pure-form
+        fieldset.pure-group
+          input#post-image(type='text', placeholder='//image-url.jpg', value="#{post && post.image ? post.image : req.query.image || ''}").pure-input-1
+          input#post-link(type='text', placeholder='//www.example.com/link', value="#{post && post.link ? post.link : req.query.link || ''}").pure-input-1
+          input#post-title-editor.pure-input-1(type='text', placeholder='Title', value="#{post ? post.title : req.query.title || ''}", autofocus="autofocus")
+        fieldset.pure-group
+          textarea#post-textarea.pure-input-1(rows="15") !{post ? post.markdown : req.query.quote || ''}
+          span#post-colors
+            if post && post.colors
+              for color in post.colors 
+                span(style="display:inline-block;height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
+            if req.query.colors
+              for color in req.query.colors.split(';')
+                span(style="display:inline-block;height:10px;width:30px;background-color:#{color};")
+        button#save-button(type="submit").pure-button.pure-input-1.pure-button-primary Yep
+      br
+      br
+      nav.text-center.boxed
+        span#post-menu-items.lede
+          if unpublishedPosts
+            for up in unpublishedPosts
+              a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
+      div.text-center.lede.boxed
+        a(href="javascript:(function(){  var base = 'http://andjosh.com/javascripts/marklet.js',    s = document.createElement('script');  s.type = 'text/javascript';  s.src = base;  document.body.appendChild(s);})();") Marklet
 
   script.
-    var editor = new Editor(),
-      socket;
-    editor.render();
+    var socket;
     window.onload = function() {
         socket = io.connect(window.location.hostname);
         socket.on('savedPost', function(data) {
@@ -82,7 +87,7 @@ block content
       var postEditor = document.getElementById('post-editor'),
           postID = postEditor.dataset.postId,
           title = document.getElementById('post-title-editor').value,
-          body = editor.codemirror.getValue(),
+          body = document.getElementById('post-textarea').innerHTML,
           imageUrl = document.getElementById('post-image').value,
           linkUrl = document.getElementById('post-link').value,
           colors = retrieveColors(document.getElementById('post-colors'));
@@ -124,7 +129,7 @@ block content
             document.getElementById('post-image').value = unPubs[i].image || '';
             document.getElementById('post-link').value = unPubs[i].link || '';
             document.getElementById('post-colors').innerHTML = null;
-            editor.codemirror.setValue(unPubs[i].markdown);
+            document.getElementById('post-textarea').innerHTML = unPubs[i].markdown;
           }
         }
       },

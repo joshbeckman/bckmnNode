@@ -479,10 +479,10 @@ if (window.d3 !== undefined){
   supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints,
   transformPrefix = _.getVendorPrefix(["transform", "msTransform", "mozTransform", "webkitTransform", "oTransform"]);
 
-  // if (!supportsTouch){
+  if (elems.length > 0){
     setTimeout(buildPage, 30);
     var scrollIntervalID = setInterval(runPage, 10);
-  // }
+  }
 
   function runPage(){
     old = past;

@@ -564,18 +564,8 @@ p.gallery-image{
   border-top: 1px solid #aaa;
   padding: 0.5em;
 }
-#post-title-editor{
- border-bottom: 2px solid rgba(94,91,214, 0.5);
- min-height: 1em;
- padding: 0.5em;
-}
-#post-title-editor:focus, #post-body-editor:focus{
-  outline: none;
-}
-#post-body-editor{
-  min-height: 15em;
-  padding: 1em;
-  color: black;
+#post-editor .pure-form *{
+  font-family: 'Clear Sans';
 }
 #raw-button, #preview-button, #posts-button, #draft-button, #pub-button{
   background: transparent;
