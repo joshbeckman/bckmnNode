@@ -3495,15 +3495,17 @@ var MMCQ = (function() {
         image.src = canvas.toDataURL('image/png');
         image.id = 'the-body-img';
         image.style.display = 'none';
-        document.body.appendChild(image);
-        var colorThief = new ColorThief(),
-          palette = colorThief.getPalette(document.getElementById('the-body-img'), 5);
-        query_array.push('&colors=');
-        for (var i = palette.length - 1; i >= 0; i--) {
-          color_array.push('rgb(' + palette[i].join(',') + ')');
+        image.onload = function(){
+          var colorThief = new ColorThief(),
+            palette = colorThief.getPalette(document.getElementById('the-body-img'), 5);
+          query_array.push('&colors=');
+          for (var i = palette.length - 1; i >= 0; i--) {
+            color_array.push('rgb(' + palette[i].join(',') + ')');
+          }
+          query_array.push(color_array.join(';'));
+          loadTab();
         }
-        query_array.push(color_array.join(';'));
-        loadTab();
+        document.body.appendChild(image);
       }
     });
   }
