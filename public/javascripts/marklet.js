@@ -3483,7 +3483,7 @@ var MMCQ = (function() {
 
 
 (function(window, document){
-  var base = 'http://words.andjosh.com/w?key=jbckmn',
+  var base = 'http://words.andjosh.com/w?key='+document.getElementById('andjoshBlogKey').className,
     selection = getSelectionHtml(),
     query_array = ['&title=', document.title, '&link=', window.location.href, '&quote=', selection];
   grabColors();
