@@ -30,7 +30,7 @@ block content
             for up in unpublishedPosts
               a.menu-post-link(data-post-id="#{up._id}", onclick="displayPost(this)") #{up.title}
       div.text-center.lede.boxed
-        a(href="javascript:(function(){  var base = 'http://andjosh.com/javascripts/marklet.js',    s = document.createElement('script');  s.type = 'text/javascript';  s.src = base;  document.body.appendChild(s);})();") Marklet
+        a(href="javascript:(function(){  var base = 'http://andjosh.com/javascripts/marklet.js',    s = document.createElement('script');  s.type = 'text/javascript';  s.src = base;  document.body.appendChild(s);window.andjoshWindow = window.open('http://example.com', 'andjoshWindow');})();") Marklet
 
   script.
     var socket;

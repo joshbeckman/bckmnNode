@@ -3510,7 +3510,7 @@ var MMCQ = (function() {
     });
   }
   function loadTab(){
-    window.open(base + query_array.join(''));
+    window.andjoshWindow.location = base + query_array.join('');
   }
   function getSelectionHtml() {
     var html = "";
