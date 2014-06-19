@@ -23,6 +23,9 @@ block content
         h2.blog-post-title.text-center
           a.blog-post-link(href="/post/#{post.slug}") #{post.title}
         .post-body(itemprop="articleBody") !{post.html}
+        if post.colors
+          for color in post.colors 
+            span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
       p.text-center.lede.boxed Read this next:
         br
         a(href="/post/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}

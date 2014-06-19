@@ -29,6 +29,9 @@ block content
             else
               a.blog-post-link.ga-link-trackable(href="/post/#{p.slug}", title="View post") #{p.title}
           .post-body !{p.html}
+          if p.colors
+            for color in p.colors 
+              span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
   if posts.length < 1
   if posts.length >= 10
     p.text-center.lede.boxed
