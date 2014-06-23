@@ -6,7 +6,7 @@ block content
   #post-editor.pure-g-r(data-post-id="#{post ? post._id : ''}")
     .pure-u-1-3
     .pure-u-1-3
-      form.pure-form
+      .pure-form
         fieldset.pure-group
           input#post-image(type='text', placeholder='//image-url.jpg', value="#{post && post.image ? post.image : req.query.image || ''}").pure-input-1
           input#post-link(type='text', placeholder='//www.example.com/link', value="#{post && post.link ? post.link : req.query.link || ''}").pure-input-1
@@ -19,7 +19,7 @@ block content
                 span(style="display:inline-block;height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
             if req.query.colors
               for color in req.query.colors.split(';')
-                span(style="display:inline-block;height:10px;width:30px;background-color:#{color};")
+                span(style="display:inline-block;height:10px;width:30px;background-color:#{color};", data-red="#{color.split(',')[0].split('(')[1]}", data-green="#{color.split(',')[1]", data-blue="#{color.split(',')[0].split(')')[0]}")
         button#save-button(type="submit").pure-button.pure-input-1.pure-button-primary Yep
       br
       br
