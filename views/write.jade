@@ -19,7 +19,7 @@ block content
                 span(style="display:inline-block;height:10px;width:30px;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
             if req.query.colors
               for color in req.query.colors.split(';')
-                span(style="display:inline-block;height:10px;width:30px;background-color:#{color};", data-red="#{color.split(',')[0].split('(')[1]}", data-green="#{color.split(',')[1]", data-blue="#{color.split(',')[0].split(')')[0]}")
+                span(style="display:inline-block;height:10px;width:30px;background-color:#{color};", data-red="#{color.split(',')[0].split('(')[1]}", data-green="#{color.split(',')[1]}", data-blue="#{color.split(',')[2].split(')')[0]}")
         button#save-button(type="submit").pure-button.pure-input-1.pure-button-primary Yep
       br
       br
