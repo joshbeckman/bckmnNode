@@ -21,7 +21,11 @@ block content
       article.blog-post-wrapper.boxed(style="#{post.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
         a.blog-post-date(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
         h2.blog-post-title.text-center
-          a.blog-post-link(href="/post/#{post.slug}") #{post.title}
+          if post.link
+            a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View content on external site") #{post.title}
+              span  &raquo;
+          else
+            a.blog-post-link(href="/post/#{post.slug}") #{post.title}
         .post-body(itemprop="articleBody") !{post.html}
         if post.colors
           for color in post.colors 
