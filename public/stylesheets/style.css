@@ -526,7 +526,7 @@ svg:not(:root) {
   margin: 0px -33px;
   width: 600px;
   display: block;
-  max-width: unset;
+  max-width: inherit;
   position: relative;
   z-index: 100;
 }

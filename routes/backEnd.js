@@ -13,12 +13,6 @@ var moment = require('moment')
     , urls = [
         {url: '/', changefreq: 'daily', priority: 1}
       ];
-
-Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
-  for(i=0;i<posts.length;i++){
-    urls.push({url: '/post/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
-  };
-});
 module.exports = function (app, io, ensureAuth) {
 
   app.get('/w', ensureAuth, function(req,res){
@@ -57,14 +51,19 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/sitemap.xml', function(req,res){
-    var sitemap = sm.createSitemap ({
+    Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
+      for(i=0;i<posts.length;i++){
+        urls.push({url: '/post/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
+      }
+      var sitemap = sm.createSitemap ({
                     hostname: 'http://www.andjosh.com',
                     cacheTime: 600000,        // 600 sec - cache purge period
                     urls: urls
                   });
-    sitemap.toXML( function (xml) {
-        res.header('Content-Type', 'application/xml');
-        res.send( xml );
+      sitemap.toXML( function (xml) {
+          res.header('Content-Type', 'application/xml');
+          res.send( xml );
+      });
     });
   });
 
@@ -84,7 +83,7 @@ module.exports = function (app, io, ensureAuth) {
       for(i=0;i<posts.length;i++){
         feed.item({
             title:  posts[i].title,
-            description: posts[i].markdown.slice(0,150),
+            description: posts[i].html,
             url: 'http://words.andjosh.com/post/'+posts[i].slug + '?utm_medium=rss',
             date: posts[i].modified,
             lat: config.location.latitude,
