@@ -24,7 +24,7 @@ block content
           a.blog-post-date(href="/post/#{p.slug}") #{moment(p.modified).format("MMM Do, 'YY")}
           h2.blog-post-title.text-center
             if p.link
-               a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{p.link}", title="View content on external site") #{p.title}
+               a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{p.link}", title="View #{p.title} on external site", rel="external in-reply-to bookmark") #{p.title}
                 span  &raquo;
             else
               a.blog-post-link.ga-link-trackable(href="/post/#{p.slug}", title="View post") #{p.title}
