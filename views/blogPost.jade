@@ -2,7 +2,7 @@ extends layout
 
 block content
   #heady
-    .font-med.pure-g.headline
+    h2.font-med.pure-g.headline
       .pure-u-1-2.text-right
         a(href="http://words.andjosh.com").color-me.head-left #{subnet} 
           span  &
@@ -10,6 +10,12 @@ block content
         a(href="http://www.andjosh.com").head-right
           span & 
           |  Josh
+  p.text-center.lede.boxed.meta-links
+    a(href="/about", title="About & Josh").ga-link-trackable About
+    | &mdash;
+    a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
+    | &mdash;
+    a(href="#newsletter_signup", title="Sign up for the newsletter").ga-link-trackable Mailing List
   #content.pure-g-r
     .pure-u-1(itemscope, itemtype="http://schema.org/BlogPosting")
       meta(itemprop="author", content="Joshua Beckman")
@@ -20,7 +26,7 @@ block content
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       article.blog-post-wrapper.boxed(style="#{post.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
         a.blog-post-date(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
-        h2.blog-post-title.text-center
+        h1.blog-post-title.text-center
           if post.link
             a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
               span  &raquo;
@@ -30,20 +36,16 @@ block content
         if post.colors
           for color in post.colors 
             span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
-      p.text-center.lede.boxed Read this next:
+      p.text-center.lede.boxed.meta-links Read this next:
         br
         a(href="/post/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
-  #mc_embed_signup.boxed.lede.text-center
-    h5 Receive new posts by email
-    form#mc-embedded-subscribe-form.validate(action='http://bckmn.us3.list-manage.com/subscribe/post?u=1eebaff46609c8040a88eb538&id=545c6aec6a', method='post', name='mc-embedded-subscribe-form', target='_blank', novalidate='novalidate')
-      .mc-field-group
-        input#mce-EMAIL.required.email(type='email', value='', name='EMAIL', placeholder="Your Email")
-      div(style='position: absolute; left: -5000px;')
-        input(type='text', name='b_1eebaff46609c8040a88eb538_545c6aec6a', tabindex='-1', value='')
-      .clear
-        input#mc-embedded-subscribe.button(type='submit', value='Subscribe', name='subscribe')
-  #mce-responses.clear
-    #mce-error-response.response.boxed.text-center(style='display: none;')
-    #mce-success-response.response.boxed.text-center(style='display: none;')
+  #newsletter_signup.boxed.lede.text-center
+    h5 Receive new posts at your email address
+    form(style='text-align: center;', action='https://tinyletter.com/jbckmn', method='post', target='popupwindow', onsubmit='window.open(\'https://tinyletter.com/jbckmn\', \'popupwindow\', \'scrollbars=yes,width=800,height=600\');return true')
+      p
+        input#tlemail(type='email', style='width: 140px;', name='email', placeholder="your@email.com")
+      input(type='hidden', value='1', name='embed')
+      input.button(type='submit', value='Subscribe')
+      small Powered by 
+        a(href='https://tinyletter.com', target='_blank') TinyLetter
   include bijoubit
-  include mailchimpjs

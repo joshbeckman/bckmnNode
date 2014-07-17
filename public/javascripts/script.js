@@ -7,8 +7,8 @@ function dismissAlert(elem){
 (function(window, document){
   var bh = document.body.clientHeight,
     wh = window.innerHeight,
-    oh = (wh - bh)/2,
-    ph = wh/3.5,
+    oh = Math.round(wh - bh)/2,
+    ph = Math.round(wh/6),
     colored = document.getElementsByClassName('color-me');
   if (bh < wh){
     document.body.style.paddingTop = oh.toString() + 'px';

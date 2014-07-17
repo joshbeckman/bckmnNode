@@ -189,6 +189,9 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/pay', function(req,res){
     res.redirect(301, 'http://payments.andjosh.com/');
   });
+  app.get('/about', function(req,res){
+    res.redirect(301, 'http://about.andjosh.com/');
+  });
 
   var checkSubdomain = function(req, res, sub, cb){
       if (sub == req.subdomains.join('') || 'localhost' == req.host){
@@ -297,6 +300,16 @@ module.exports = function (app, io, ensureAuth) {
                               message: req.flash('message'), 
                               error: req.flash('error') });
         });
+      },
+      about: function(req, res, subnet, subname){
+        res.render('about', { title: 'About Josh Beckman (@jbckmn)',
+                            description: 'Let\'s learn all about Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL.',
+                            req: req,
+                            subnet: 'about',
+                            query: req.query,
+                            stripeKey: api_public,
+                            message: req.flash('message'), 
+                            error: req.flash('error') });
       }
     };
 }

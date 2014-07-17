@@ -9,10 +9,7 @@ var moment = require('moment')
     , marked = require('marked')
     , moment = require('moment')
     , RSS = require('rss')
-    , sm = require('sitemap')
-    , urls = [
-        {url: '/', changefreq: 'daily', priority: 1}
-      ];
+    , sm = require('sitemap');
 module.exports = function (app, io, ensureAuth) {
 
   app.get('/w', ensureAuth, function(req,res){
@@ -51,12 +48,15 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/sitemap.xml', function(req,res){
+    var urls = [
+        {url: '/', changefreq: 'daily', priority: 1}
+      ];
     Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
       for(i=0;i<posts.length;i++){
         urls.push({url: '/post/'+posts[i].slug, changefreq: 'daily', lastmod: moment(posts[i].modified).format('YYYY-MM-DD'), priority: 0.8});
       }
       var sitemap = sm.createSitemap ({
-                    hostname: 'http://www.andjosh.com',
+                    hostname: 'http://words.andjosh.com',
                     cacheTime: 600000,        // 600 sec - cache purge period
                     urls: urls
                   });

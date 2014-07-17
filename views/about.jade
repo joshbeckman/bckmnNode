@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1.font-med.pure-g.headline
+    .pure-u-1-2.text-right
+      a(href="").color-me.head-left About 
+        span  &
+    .pure-u-1-2.text-left
+      a(href="").head-right
+        span & 
+        |  Josh
+  p.lede.boxed.text-center.meta-links Josh Beckman is a full-stack-data-designer-developer-dude.
+  #content.pure-g-r
+    .pure-u-1(itemscope, itemtype="http://schema.org/Person")
+      meta(itemprop="name", content="Joshua Beckman")
+      meta(itemprop="url", content="http://andjosh.com")
+      meta(itemprop="alternateName", content="jbckmn")
+      meta(itemprop="jobTitle", content="full-stack-data-designer-developer-dude")
+      img.post-image(itemprop="image", src="/images/aboutJoshBeckman.jpg", alt="Josh Beckman")
+      article.blog-post-wrapper.boxed(style="border-top-left-radius:0px;border-top-right-radius:0px;")
+        .post-body(itemprop="description") 
+          p I'm head developer at Aggrego and one-half of <a href="http://teamjosh.com">Team Josh</a>. 
+          p I post regularly on <a href="http://words.andjosh.com">my blog</a>, somewhat often on <a href="http://twitter.com/jbckmn">Twitter</a>, push code very often to <a href="http://github.com/jbckmn">GitHub</a> and shoot infrequently to <a href="http://dribbble.com/jbckmn">dribbble</a>. My <a href="http://api.andjosh.com">personal API</a> is constantly updated.
+          h3 Contact
+          p If you want to start a project together, checkout what <a href="//you.andjosh.com">You & Josh</a> can do. I respond pretty quickly on <a href="http://twitter.com/jbckmn">Twitter</a> and faster via <a href="mailto:jsh@bckmn.com?subject=...Just came from your about page">email</a>. I accept donations securely on <a href="//payments.andjosh.com">my payments page</a>.
+  p.lede.boxed.text-center
+    a(href="http://www.andjosh.com", rel="home") www & Josh
+  .foobar(style="height:200px;")
+  include bijoubit
