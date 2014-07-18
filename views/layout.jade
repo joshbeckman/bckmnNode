@@ -25,7 +25,7 @@ html
     meta(name='twitter:creator', content='@jbckmn')
     meta(name='twitter:url', content='http://#{req.host}#{req.path}')
     meta(name='twitter:title', content='#{title}')
-    meta(name='twitter:image', content='#{post ? post.image : "/images/andjosh.png"}')
+    meta(name='twitter:image', content='#{post ? post.image : "http://andjosh.com/images/andjosh.png"}')
     meta(name='twitter:description', content="#{description}")
     meta(name='twitter:domain', content='http://andjosh.com')
     if (post || posts)

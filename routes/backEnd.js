@@ -13,16 +13,19 @@ var moment = require('moment')
 module.exports = function (app, io, ensureAuth) {
 
   app.get('/w', ensureAuth, function(req,res){
-    Post.findOne({_id: req.query.edit}).lean().exec(function(err,post){
-      res.render('write', {
-        title: 'Write',
-        post: post,
-        marked: marked,
-        noTracking: true,
-        socket: true,
-        message: req.flash('message'),
-        error: req.flash('error'),
-        req: req
+    Post.getUnpublishedPosts(function(err, postList){
+      Post.findOne({_id: req.query.edit}).lean().exec(function(err,post){
+        res.render('write', {
+          title: 'Write',
+          post: post,
+          postList: postList,
+          marked: marked,
+          noTracking: true,
+          socket: true,
+          message: req.flash('message'),
+          error: req.flash('error'),
+          req: req
+        });
       });
     });
   });
