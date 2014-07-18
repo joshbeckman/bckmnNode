@@ -69,6 +69,20 @@ module.exports = function (app, io, ensureAuth) {
             res.send( xml );
         });
       });
+    } else if ('www' == req.subdomains.join('')){
+      urls.push({url: '/soundcloud-animations', changefreq: 'weekly', priority: 0.8});
+      urls.push({url: '/css-tricked-out', changefreq: 'weekly', priority: 0.8});
+      urls.push({url: '/polarpageviews', changefreq: 'weekly', priority: 0.8});
+      urls.push({url: '/penrose-triangle-animation', changefreq: 'weekly', priority: 0.8});
+      var sitemap = sm.createSitemap ({
+                    hostname: 'http://' + req.host,
+                    cacheTime: 600000,        // 600 sec - cache purge period
+                    urls: urls
+                  });
+      sitemap.toXML( function (xml) {
+          res.header('Content-Type', 'application/xml');
+          res.send( xml );
+      });
     } else {
       var sitemap = sm.createSitemap ({
                     hostname: 'http://' + req.host,
