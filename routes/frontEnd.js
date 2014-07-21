@@ -37,7 +37,7 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['about'](req, res, 'about', 'about');
+    blocks['words'](req, res, 'words', 'words');
     // res.render('bijou', { title: 'subname',
     //                         description: 'config.members[subnet].description',
     //                         req: req,
