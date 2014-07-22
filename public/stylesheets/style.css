@@ -490,7 +490,7 @@ article.article-wrap.in-roll{
   padding-left: 10px;
   padding-right: 10px;
 }
-.post-body p, .post-body ul, .post-body blockquote{
+.post-body p, .post-body ul, .post-body blockquote, .post-body hr{
   max-width: 640px;
   margin: 0 auto;
   display: block;
