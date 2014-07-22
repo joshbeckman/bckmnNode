@@ -230,13 +230,13 @@ pre code{
   outline: none;
 }
 #contact-form input[name="name"]{
-  width: 5em;
+  width: 5.1em;
 }
 #contact-form input[name="_replyto"]{
-  width: 7.6em;
+  width: 7.7em;
 }
 #contact-form input[name="message"]{
-  width: 17em;
+  width: 17.1em;
 }
 #contact-form input[type="submit"]{
   display: block;
@@ -448,12 +448,13 @@ article.article-wrap.in-roll{
 }
 .blog-post-title{
   font-size: 1.75em;
-  max-width: 620px;
+  max-width: 640px;
   margin: 0 auto;
   padding: 1em 10px;
   position: relative;
   z-index: 1;
   background: white;
+  line-height: 1.2em;
 }
 .blog-post-title a{
   color: #222;
@@ -463,10 +464,11 @@ article.article-wrap.in-roll{
 .blog-post-link span{
   color: #24B1E0;
   position: relative;
-  transition: 0.3s;
-  -moz-transition: 0.3s;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
+  left: 0px;
+  transition: left 0.3s;
+  -moz-transition: left 0.3s;
+  -webkit-transition: left 0.3s;
+  -o-transition: left 0.3s;
 }
 .blog-post-link:hover span{
   left: 5px;
@@ -518,8 +520,11 @@ article.article-wrap.in-roll{
   padding-bottom: 0.5em;
 }
 .post-colors{
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
+  position: relative;
+  z-index: 100;
+  background: white;
 }
 
 .post-image{
