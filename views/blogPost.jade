@@ -3,7 +3,7 @@ extends layout
 block content
   #heady
     h2.font-med.headline
-      a(href="http://words.andjosh.com") #{subnet} & Josh
+      a(href="/", title="Blog homepage") #{subnet} & Josh
     ul.top-links
       li
         a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
@@ -20,7 +20,7 @@ block content
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       span.blog-post-date
-        a(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
+        a(href="/post/#{post.slug}", title="Last modified #{post.modified}") #{moment(post.modified).format("MMM Do, 'YY")}
       h1.blog-post-title.text-center
         if post.link
           a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
