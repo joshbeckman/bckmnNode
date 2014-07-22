@@ -477,7 +477,7 @@ if (window.d3 !== undefined){
   supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints,
   transformPrefix = _.getVendorPrefix(["transform", "msTransform", "mozTransform", "webkitTransform", "oTransform"]);
 
-  if (elems.length > 0 && viewW > 800){
+  if (elems.length > 0 && viewW > 780){
     setTimeout(buildPage, 30);
     var scrollIntervalID = setInterval(runPage, 10);
   }

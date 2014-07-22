@@ -249,7 +249,7 @@ pre code{
   border-bottom-style: dashed;
 }
 #heady{
-  max-width: 640px;
+  max-width: 580px;
   margin:0 auto;
   padding:20px;
   background:white;
@@ -286,7 +286,7 @@ pre code{
   padding-right: 20px;
 }
 .foot-credit{
-  max-width: 640px;
+  max-width: 580px;
   padding: 10px 20px 0;
   text-align: center;
   border-top: 1px solid #aaa;
@@ -434,7 +434,7 @@ article.article-wrap.in-roll{
 .blog-post-date{
   display: block;
   margin: 0 auto;
-  max-width: 640px;
+  max-width: 580px;
   background: white;
   position: relative;
   z-index: 1;
@@ -448,7 +448,7 @@ article.article-wrap.in-roll{
 }
 .blog-post-title{
   font-size: 1.75em;
-  max-width: 640px;
+  max-width: 580px;
   margin: 0 auto;
   padding: 1em 10px;
   position: relative;
@@ -475,7 +475,7 @@ article.article-wrap.in-roll{
 }
 .post-body h1, .post-body h2, .post-body h3, .post-body h4, .post-body h5{
   font-family: 'Clear Sans';
-  max-width: 640px;
+  max-width: 580px;
   margin: 0 auto;
   display: block;
   padding: 1em 20px;
@@ -484,14 +484,14 @@ article.article-wrap.in-roll{
   background: white;
 }
 .post-body pre code{
-  max-width: 600px;
+  max-width: 540px;
   margin: 0 auto;
   display: block;
   padding-left: 10px;
   padding-right: 10px;
 }
 .post-body p, .post-body ul, .post-body blockquote, .post-body hr{
-  max-width: 640px;
+  max-width: 580px;
   margin: 0 auto;
   display: block;
   padding-left: 20px;
@@ -509,7 +509,7 @@ article.article-wrap.in-roll{
   border-left: 0.25em solid #24B1E0;
   margin:0 auto;
   padding:1px 15px;
-  max-width: 640px;
+  max-width: 580px;
 }
 .post-body blockquote p{
   padding-left: 0;
@@ -520,7 +520,7 @@ article.article-wrap.in-roll{
   padding-bottom: 0.5em;
 }
 .post-colors{
-  max-width: 640px;
+  max-width: 580px;
   margin: 0 auto;
   position: relative;
   z-index: 100;
@@ -529,14 +529,14 @@ article.article-wrap.in-roll{
 
 .post-image{
   margin: 0 auto;
-  max-width: 640px !important;
+  max-width: 580px !important;
   width:100%;
   display: block;
   position: relative;
   z-index: 100;
 }
 .post-body img{
-  max-width: 600px !important;
+  max-width: 540px !important;
   width:100%;
   display: block;
   position: relative;
@@ -623,7 +623,7 @@ p.gallery-image{
 }
 
 .meta-links{
-  max-width:640px;
+  max-width:580px;
   display: block;
   margin:0 auto;
   padding:1em 10px 7px;
