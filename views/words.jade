@@ -1,51 +1,50 @@
 extends layout
 
 block content
-  h1.font-med.pure-g.headline
-    .pure-u-1-2.text-right
-      a(href="http://words.andjosh.com").color-me.head-left #{subnet} 
-        span  &
-    .pure-u-1-2.text-left
-      a(href="http://www.andjosh.com").head-right
-        span & 
-        |  Josh
+  #heady
+    h1.font-med.headline
+      a(href="http://words.andjosh.com") #{subnet} & Josh
+    ul.top-links
+      li
+        a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+      li
+        a(href="/about", title="About & Josh").ga-link-trackable About
+      li
+        a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
   if queryString
-    p.text-center.lede.boxed #{posts.length} results for: <code>#{queryString}</code>
-  else
-    p.text-center.lede.boxed.meta-links
-      a(href="//about.andjosh.com", title="About & Josh").ga-link-trackable About
-      | &mdash;
-      a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
-      | &mdash;
-      a(href="#newsletter_signup", title="Sign up for the newsletter").ga-link-trackable Mailing List
-  #content.pure-g-r
+    p.text-center.lede #{posts.length} results for: <code>#{queryString}</code>
+  .pure-g-r
     for p in posts
-      .pure-u-1
+      article.pure-u-1.article-wrap.in-roll
         if p.image
           img.post-image(itemprop="image", src="#{p.image}", alt="#{p.title}")
-        .blog-post-wrapper.boxed(style="#{p.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
-          a.blog-post-date(href="/post/#{p.slug}") #{moment(p.modified).format("MMM Do, 'YY")}
-          h2.blog-post-title.text-center
-            if p.link
-               a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{p.link}", title="View #{p.title} on external site", rel="external in-reply-to bookmark") #{p.title}
-                span  &raquo;
-            else
-              a.blog-post-link.ga-link-trackable(href="/post/#{p.slug}", title="View post") #{p.title}
-          .post-body !{p.html}
+        span.blog-post-date
+          a(href="/post/#{p.slug}") #{moment(p.modified).format("MMM Do, 'YY")}
+        h2.blog-post-title.text-center
+          if p.link
+            a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{p.link}", title="View #{p.title} on external site", rel="external in-reply-to bookmark") #{p.title}
+              span  &raquo;
+          else
+            a.blog-post-link(href="/post/#{p.slug}") #{p.title}
+        .post-body !{p.html}
+        .post-colors
           if p.colors
             for color in p.colors 
               span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
   if posts.length < 1
   if posts.length >= 10
-    p.text-center.lede.boxed
-      a(href="/?offset=#{req.query.offset ? (parseInt(req.query.offset, 10) + 10).toString() : '10'}") Next Page
+    p.blog-post-date
+      a(href="/?offset=#{req.query.offset ? (parseInt(req.query.offset, 10) + 10).toString() : '10'}") Next Page &raquo;
   #newsletter_signup.boxed.lede.text-center
-    h5 Receive new posts at your email address
+    h5 Receive new posts weekly at your inbox
     form(style='text-align: center;', action='https://tinyletter.com/jbckmn', method='post', target='popupwindow', onsubmit='window.open(\'https://tinyletter.com/jbckmn\', \'popupwindow\', \'scrollbars=yes,width=800,height=600\');return true')
       p
+        label(for="email") Your email: 
         input#tlemail(type='email', style='width: 140px;', name='email', placeholder="your@email.com")
       input(type='hidden', value='1', name='embed')
       input.button(type='submit', value='Subscribe')
       small Powered by 
         a(href='https://tinyletter.com', target='_blank') TinyLetter
+  p.foot-credit
+    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
   include bijoubit

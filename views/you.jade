@@ -2,18 +2,17 @@ extends layout
 
 block content
   #heady
-    .font-medium.pure-g.headline
-      .pure-u-1-2.text-right
-        a(href="").color-me.head-left #{subnet} 
-          span  &
-      .pure-u-1-2.text-left
-        a(href="").head-right
-          span & 
-          |  Josh
+    h1.font-med.headline
+      a(href="") #{subnet} & Josh
+    ul.top-links
+      li
+        a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable.color-me andjosh.com
+      li
+        a(href="/about", title="About & Josh").ga-link-trackable.color-me About
   if req.query.sub
-    p.text-center.lede.boxed <strong>#{req.query.sub}</strong> isn't taken yet, but get in touch about it.
+    h4.blog-post-date <strong>#{req.query.sub}</strong> isn't taken yet, but get in touch about it.
   else
-    p.text-center.lede.boxed I'm always looking for new projects.
+    h4.blog-post-date I'm always looking for new projects.
   .pure-g-r
     .pure-u-1-4
     .pure-u-1-2
@@ -27,6 +26,6 @@ block content
           input(type="text", name="message", placeholder="something that could make life easier", required)
         |  with you.
         input.btn(type="submit", value="Let's work on it")
+  p.foot-credit
+    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
   include bijoubit
-  script.
-    var turnBody = true;

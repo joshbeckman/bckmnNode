@@ -9,18 +9,16 @@ function dismissAlert(elem){
     wh = window.innerHeight,
     oh = Math.round(wh - bh)/2,
     ph = Math.round(wh/6),
-    colored = document.getElementsByClassName('color-me');
-  if (bh < wh){
-    document.body.style.paddingTop = oh.toString() + 'px';
-  } else {
-    document.body.style.paddingTop = ph.toString() + 'px';
-  }
-
+    colored = document.getElementsByClassName('color-me'),
+    topLinks = document.getElementsByClassName('top-links');
   setInterval(colorUs, 3000);
-  if (window.turnBody){
-    document.body.className += ' turned';
-  }
+  setTimeout(underlineUs, 1000);
 
+  function underlineUs(){
+    for (var i = topLinks.length - 1; i >= 0; i--) {
+      topLinks[i].className += ' active';
+    }
+  }
   function colorUs(){
     for (var i = colored.length - 1; i >= 0; i--) {
       colored[i].style.color = _.randColor();
@@ -479,7 +477,7 @@ if (window.d3 !== undefined){
   supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints,
   transformPrefix = _.getVendorPrefix(["transform", "msTransform", "mozTransform", "webkitTransform", "oTransform"]);
 
-  if (elems.length > 0){
+  if (elems.length > 0 && viewW > 800){
     setTimeout(buildPage, 30);
     var scrollIntervalID = setInterval(runPage, 10);
   }
@@ -502,10 +500,10 @@ if (window.d3 !== undefined){
     var rotator;
     for (i = elems.length - 1; i >= 0; i--) {
       elems[i].style.zIndex = elems[i].dataset.zIndex || null;
-      elems[i].style.top = elems[i].dataset.origTop = (Math.random() * viewH).toFixed() + 'px';
+      elems[i].style.top = elems[i].dataset.origTop = ((Math.random() * viewH) - viewH).toFixed() + 'px';
       elems[i].style.left = elems[i].dataset.origLeft = (Math.random() * viewW).toFixed() + 'px';
-      elems[i].style.height = elems[i].dataset.origHeight = (Math.random() * viewH).toFixed() + 'px';
-      elems[i].style.opacity = '0';
+      elems[i].style.height = elems[i].dataset.origHeight = (viewH+viewW).toFixed() + 'px';
+      elems[i].style.opacity = '0.2';
       rotator = (Math.random() * 360).toFixed();
       elems[i].dataset.origRotate = rotator;
       elems[i].style[transformPrefix] = 'rotate(' + rotator + 'deg)';
@@ -520,9 +518,10 @@ if (window.d3 !== undefined){
       elems[i].style.top = (parseInt(dataset.origTop,10) + ((parseInt(dataset.top,10) - parseInt(dataset.origTop,10)) * perc)).toFixed() + 'px';
       elems[i].style.left = (parseInt(dataset.origLeft,10) + ((parseInt(dataset.left,10) - parseInt(dataset.origLeft,10)) * perc)).toFixed() + 'px';
       elems[i].style.height = (parseInt(dataset.origHeight,10) + ((parseInt(dataset.height,10) - parseInt(dataset.origHeight,10)) * perc)).toFixed() + 'px';
-      elems[i].style.opacity = (Math.round(100 * perc) / 100).toString();
+      elems[i].style.opacity = ((Math.round(100 * perc) / 100) + 0.2).toString();
       elems[i].style[transformPrefix] = 'rotate(' + (parseInt(dataset.origRotate,10) + ((parseInt(dataset.rotate,10) - parseInt(dataset.origRotate,10)) * perc)).toFixed() + 'deg)';
     }
+    document.getElementById('building-blocks').style.zIndex = null;
     document.getElementById('building-blocks').className = 'pure-hidden-phone';
   }
   function finalizePage(){
@@ -531,10 +530,11 @@ if (window.d3 !== undefined){
       elems[i].style.top = (parseInt(dataset.top,10)).toFixed() + 'px';
       elems[i].style.left = (parseInt(dataset.left,10)).toFixed() + 'px';
       elems[i].style.height = (parseInt(dataset.height,10)).toFixed() + 'px';
-      elems[i].style.opacity = '1';
+      elems[i].style.opacity = 1;
       elems[i].style[transformPrefix] = 'rotate(' + (parseInt(dataset.rotate,10)).toFixed() + 'deg)';
     }
     document.getElementById('building-blocks').style.display = 'block';
+    document.getElementById('building-blocks').style.zIndex = 1;
     document.getElementById('building-blocks').className = 'pure-hidden-phone turned-fast';
   }
 })(this, this.document);

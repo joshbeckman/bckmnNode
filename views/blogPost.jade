@@ -2,50 +2,49 @@ extends layout
 
 block content
   #heady
-    h2.font-med.pure-g.headline
-      .pure-u-1-2.text-right
-        a(href="http://words.andjosh.com").color-me.head-left #{subnet} 
-          span  &
-      .pure-u-1-2.text-left
-        a(href="http://www.andjosh.com").head-right
-          span & 
-          |  Josh
-  p.text-center.lede.boxed.meta-links
-    a(href="/about", title="About & Josh").ga-link-trackable About
-    | &mdash;
-    a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
-    | &mdash;
-    a(href="#newsletter_signup", title="Sign up for the newsletter").ga-link-trackable Mailing List
-  #content.pure-g-r
-    .pure-u-1(itemscope, itemtype="http://schema.org/BlogPosting")
+    h2.font-med.headline
+      a(href="http://words.andjosh.com") #{subnet} & Josh
+    ul.top-links
+      li
+        a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+      li
+        a(href="/about", title="About & Josh").ga-link-trackable About
+      li
+        a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
+  .pure-g-r
+    article.pure-u-1.article-wrap(itemscope, itemtype="http://schema.org/BlogPosting")
       meta(itemprop="author", content="Joshua Beckman")
       meta(itemprop="datePublished", content="#{post.modified}")
       meta(itemprop="headline", content="#{post.title}")
       meta(itemprop="url", content="/post/#{post.slug}")
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
-      article.blog-post-wrapper.boxed(style="#{post.image ? 'border-top-left-radius:0px;border-top-right-radius:0px;' : ''}")
-        a.blog-post-date(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
-        h1.blog-post-title.text-center
-          if post.link
-            a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
-              span  &raquo;
-          else
-            a.blog-post-link(href="/post/#{post.slug}") #{post.title}
-        .post-body(itemprop="articleBody") !{post.html}
+      span.blog-post-date
+        a(href="/post/#{post.slug}") #{moment(post.modified).format("MMM Do, 'YY")}
+      h1.blog-post-title.text-center
+        if post.link
+          a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
+            span  &raquo;
+        else
+          a.blog-post-link(href="/post/#{post.slug}") #{post.title}
+      .post-body(itemprop="articleBody") !{post.html}
+      .post-colors
         if post.colors
           for color in post.colors 
             span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
-      p.text-center.lede.boxed.meta-links Read this next:
-        br
+      p.meta-links Read this next 
+        span.icon-shuffle
         a(href="/post/#{relatedPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{relatedPost.title}
   #newsletter_signup.boxed.lede.text-center
-    h5 Receive new posts at your email address
+    h5 Receive new posts weekly at your inbox
     form(style='text-align: center;', action='https://tinyletter.com/jbckmn', method='post', target='popupwindow', onsubmit='window.open(\'https://tinyletter.com/jbckmn\', \'popupwindow\', \'scrollbars=yes,width=800,height=600\');return true')
       p
+        label(for="email") Your email: 
         input#tlemail(type='email', style='width: 140px;', name='email', placeholder="your@email.com")
       input(type='hidden', value='1', name='embed')
       input.button(type='submit', value='Subscribe')
       small Powered by 
         a(href='https://tinyletter.com', target='_blank') TinyLetter
+  p.foot-credit
+    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
   include bijoubit
