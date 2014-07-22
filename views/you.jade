@@ -9,10 +9,12 @@ block content
         a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable.color-me andjosh.com
       li
         a(href="/about", title="About & Josh").ga-link-trackable.color-me About
+      li
+        a(href="mailto:jsh@bckmn.com?subject=I want to work with you!", title="Email Josh").ga-link-trackable.color-me Email
   if req.query.sub
-    h4.blog-post-date <strong>#{req.query.sub}</strong> isn't taken yet, but get in touch about it.
+    h4.blog-post-date <strong>#{req.query.sub}</strong> isn't taken yet, but you should get in touch about it.
   else
-    h4.blog-post-date I'm always looking for new projects.
+    h4.blog-post-date I'm always open to new projects.
   .pure-g-r
     .pure-u-1-4
     .pure-u-1-2
