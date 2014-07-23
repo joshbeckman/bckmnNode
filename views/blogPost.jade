@@ -28,6 +28,13 @@ block content
         else
           a.blog-post-link(href="/post/#{post.slug}") #{post.title}
       .post-body(itemprop="articleBody") !{post.html}
+        p.share-links
+          a(href="http://twitter.com/home?status=#{post.title}:%20http://words.andjosh.com/post/#{post.slug}/%20via%20@jbckmn", data-tweet-me="http://words.andjosh.com/post/#{post.slug}/", title="Share on Twitter", target="_blank").twitter-count
+            span.icon-twitter
+              | +
+          a(href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://words.andjosh.com/post/#{post.slug}/&p[images][0]=#{post.image ? post.image : ''}&p[title]=#{post.title}&p[summary]=#{description}", data-facebook-me="http://words.andjosh.com/post/#{post.slug}/", title="Share on Facebook", target="_blank").facebook-count
+            span.icon-facebook
+              | +
       .post-colors
         if post.colors
           for color in post.colors 

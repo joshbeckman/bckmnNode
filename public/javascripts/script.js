@@ -539,5 +539,36 @@ if (window.d3 !== undefined){
   }
 })(this, this.document);
 
+(function(win, doc){
+  var twitters = doc.getElementsByClassName('twitter-count'),
+    twURL = "http://urls.api.twitter.com/1/urls/count.json?url=",
+    facebookers = doc.getElementsByClassName('facebook-count'),
+    fbURL = "http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls=",
+    theURL = "",
+    i = 0;
+  for (i = twitters.length - 1; i >= 0; i--) {
+    theURL = twURL + twitters[i].dataset.tweetMe;
+    _.asyncRequest(theURL, i, twHandle);
+  }
+  for (i = facebookers.length - 1; i >= 0; i--) {
+    theURL = fbURL + facebookers[i].dataset.facebookMe;
+    _.asyncRequest(theURL, i, fbHandle);
+  }
+  function twHandle(id, data){
+    for (var i = twitters.length - 1; i >= 0; i--) {
+      if(twitters[i].dataset.tweetMe == data.url){
+        twitters[i].innerHTML += data.count;
+      }
+    }
+  }
+  function fbHandle(id, data){
+    for (var i = facebookers.length - 1; i >= 0; i--) {
+      if(facebookers[i].dataset.facebookMe == data[0].url){
+        facebookers[i].innerHTML += data[0].total_count;
+      }
+    }
+  }
+})(this, this.document);
+
 // In-house
 window.jbckmn = window.jbckmn || {};

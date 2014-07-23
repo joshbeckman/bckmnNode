@@ -622,6 +622,25 @@ p.gallery-image{
   margin-top: -163px;
 }
 
+p.share-links{
+  padding-left: 0;
+  padding-top: 2em;
+  padding-bottom: 3px;
+}
+.share-links a.twitter-count{
+  border-right:1px solid #aaa;
+  border-bottom:1px solid #aaa;
+  padding:4px 10px 4px 15px;
+}
+.share-links a.facebook-count{
+  border-bottom:1px solid #aaa;
+  padding:4px 15px 4px 10px;
+}
+.share-links a span{
+  position: relative;
+  top: 1px;
+  left: -2px;
+}
 .meta-links{
   max-width:580px;
   display: block;

@@ -37,7 +37,7 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['about'](req, res, 'about', 'about');
+    blocks['words'](req, res, 'words', 'words');
     // res.render('payments', { title: 'payments',
     //                         description: 'config.members[subnet].description',
     //                         req: req,
@@ -191,6 +191,12 @@ module.exports = function (app, io, ensureAuth) {
   });
   app.get('/about', function(req,res){
     res.redirect(301, 'http://about.andjosh.com/');
+  });
+  app.get('/feed', function(req,res){
+    res.redirect(301, 'http://words.andjosh.com/rss.xml');
+  });
+  app.get('/rss', function(req,res){
+    res.redirect(301, 'http://words.andjosh.com/rss.xml');
   });
 
   var checkSubdomain = function(req, res, sub, cb){
