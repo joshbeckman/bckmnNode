@@ -70,6 +70,7 @@ module.exports = function (app, io, ensureAuth) {
         });
       });
     } else if ('www' == req.subdomains.join('')){
+      urls.push({url: '/?verbose=true', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/soundcloud-animations', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/css-tricked-out', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/polarpageviews', changefreq: 'weekly', priority: 0.8});

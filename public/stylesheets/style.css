@@ -285,6 +285,11 @@ pre code{
   width: 100%;
   padding-right: 20px;
 }
+.work-desc{
+  color: #555;
+  padding: 4em 1em 0;
+  text-align: justify;
+}
 .foot-credit{
   max-width: 580px;
   padding: 10px 20px 0;
