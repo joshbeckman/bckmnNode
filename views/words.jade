@@ -12,7 +12,12 @@ block content
       li
         a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
   if queryString
-    p.text-center.lede #{posts.length} results for: <code>#{queryString}</code>
+    .post-body
+      p.text-center #{posts.length} results for: <code>#{queryString}</code>
+      form.text-center(action="/")
+        label(for="s") Search: 
+        input(type="text", name="s", id="s")
+      br
   .pure-g-r
     for p in posts
       article.pure-u-1.article-wrap.in-roll

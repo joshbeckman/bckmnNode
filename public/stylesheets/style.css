@@ -490,7 +490,7 @@ article.article-wrap.in-roll{
   padding-left: 10px;
   padding-right: 10px;
 }
-.post-body p, .post-body ul, .post-body blockquote, .post-body hr{
+.post-body p, .post-body ul, .post-body blockquote, .post-body hr, .post-body form{
   max-width: 580px;
   margin: 0 auto;
   display: block;
@@ -499,6 +499,9 @@ article.article-wrap.in-roll{
   background: white;
   position: relative;
   z-index: 1;
+}
+.post-body form input, .post-body form label{
+  font-family: 'Clear Sans';
 }
 .post-body ul{
   padding-left: 40px;
