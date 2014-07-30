@@ -20,7 +20,7 @@
     },
     "josh":{
       "redirect": "http://www.teamjosh.co"
-    },
+    }
   },
   "mongo":{
     "url":"mongodb://localhost/personal"
