@@ -17,7 +17,10 @@
     },
     "about":{
       "description": "Let's learn all about Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL."
-    }
+    },
+    "josh":{
+      "redirect": "http://www.teamjosh.co"
+    },
   },
   "mongo":{
     "url":"mongodb://localhost/personal"
