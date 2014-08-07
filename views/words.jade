@@ -16,9 +16,9 @@ block content
   if queryString
     .post-body
       p.text-center #{posts.length} results for: <code>#{queryString}</code>
-      form.text-center(action="/")
+      form.text-center(action="/search")
         label(for="s") Search: 
-        input(type="text", name="s", id="s")
+        input(type="text", name="q", id="q")
       br
   .pure-g-r
     for p in posts
