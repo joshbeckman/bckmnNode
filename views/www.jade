@@ -29,13 +29,6 @@ block content
       else
         a.lede.boxed(href="?verbose=true") Text Mode
     .pure-u-1-2
-      a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
-        h3.text-center Stark Lines
-        if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> Google Analytics does not let you compare live traffic between sites.
-            p <strong>Solution:</strong> This no-sign-up-required web application gives you the power to see all of your live visitors, across multiple sites, in one real-time graph.
-    .pure-u-1-2
       a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
         h3.text-center Aislin
         if req.query.verbose
@@ -49,6 +42,13 @@ block content
           .work-desc
             p <strong>Problem:</strong> How do you efficiently test UI/UX theories or track client errors using extant user data?
             p <strong>Solution:</strong> Use simple classes and data-attributes to send user events to Google Analytics, where it can be paired with all other browsing history.
+    .pure-u-1-2
+      a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
+        h3.text-center Stark Lines
+        if req.query.verbose
+          .work-desc
+            p <strong>Problem:</strong> Google Analytics does not let you compare live traffic between sites.
+            p <strong>Solution:</strong> This no-sign-up-required web application gives you the power to see all of your live visitors, across multiple sites, in one real-time graph.
     .pure-u-1-2
       a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable.a-project.boxed.naked-wordpress
         h3.text-center Naked WordPress
