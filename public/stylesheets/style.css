@@ -251,22 +251,28 @@ pre code{
 #heady{
   max-width: 580px;
   margin:0 auto;
-  padding:20px;
+  padding:20px 10px 50px;
   background:rgba(255,255,255,0.6);
   position: relative;
   z-index: 1;
+}
+.blog-heady-wrap{
+  display: inline-block;
 }
 .top-links{
   list-style:none;
   margin:0;
   padding:0;
 }
+.top-links li{
+  display: inline-block;
+}
 .top-links li a, .top-links li span{
   padding-left: 10px;
+  padding-right: 10px;
   padding-top: 3px;
   padding-bottom: 3px;
   display: inline-block;
-  border-left: 1px solid #aaa;
   border-bottom-color: #222;
 }
 .top-links li a:after, .top-links li span:after{
@@ -389,7 +395,13 @@ svg:not(:root) {
   position: relative;
   top: 20px;
 }
-
+svg#bijou{
+  visibility: visible;
+  height:100px;
+  width: 100px;
+  position: relative;
+  background: white;
+}
 #building-blocks{
   height: 160px;
   position: fixed;
@@ -443,7 +455,6 @@ article.article-wrap.in-roll{
   background: rgba(255,255,255,0.6);
   position: relative;
   z-index: 1;
-  text-align: center;
 }
 .blog-post-date a{
   padding: 0 0.5em;
@@ -537,7 +548,7 @@ article.article-wrap.in-roll{
 
 .post-image{
   margin: 0 auto;
-  max-width: 580px !important;
+  max-width: 560px !important;
   width:100%;
   display: block;
   position: relative;

@@ -2,15 +2,17 @@ extends layout
 
 block content
   #heady
-    h2.font-med.headline
-      a(href="/", title="Blog homepage") #{subnet} & Josh
-    ul.top-links
-      li
-        a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
-      li
-        a(href="/about", title="About & Josh").ga-link-trackable About
-      li
-        a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
+    include bijousvg
+    .blog-heady-wrap
+      h1.font-med.headline
+        a(href="/", title="Blog homepage") #{subnet} & Josh
+      ul.top-links
+        li
+          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+        li
+          a(href="/about", title="About & Josh").ga-link-trackable About
+        li
+          a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
   .pure-g-r
     article.pure-u-1.article-wrap(itemscope, itemtype="http://schema.org/BlogPosting")
       meta(itemprop="author", content="Joshua Beckman")
@@ -21,7 +23,7 @@ block content
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       span.blog-post-date
         a(href="/post/#{post.slug}", title="Last modified #{post.modified}") #{moment(post.modified).format("MMM Do, 'YY")}
-      h1.blog-post-title.text-center
+      h1.blog-post-title
         if post.link
           a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
             span  &raquo;
@@ -54,4 +56,3 @@ block content
         a(href='https://tinyletter.com', target='_blank') TinyLetter
   p.foot-credit
     small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
-  include bijoubit

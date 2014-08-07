@@ -47,9 +47,7 @@ Post.statics.getPublishedPosts = function(callback){
   this.find({published: true}).sort('-modified').lean().exec(callback);
 };
 Post.statics.getOneExcept = function(sluggy, callback){
-  console.log(sluggy);
   this.find({published: true}).where('slug').ne(sluggy).sort('-modified').lean().exec(function(err, posts){
-    console.log(posts);
     var post = posts[Math.floor(Math.random() * posts.length)];
     callback(err, post);
   });

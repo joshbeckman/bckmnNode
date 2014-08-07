@@ -2,15 +2,17 @@ extends layout
 
 block content
   #heady
-    h1.font-med.headline
-      a(href="/", title="Blog homepage") #{subnet} & Josh
-    ul.top-links
-      li
-        a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
-      li
-        a(href="/about", title="About & Josh").ga-link-trackable About
-      li
-        a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
+    include bijousvg
+    .blog-heady-wrap
+      h1.font-med.headline
+        a(href="/", title="Blog homepage") #{subnet} & Josh
+      ul.top-links
+        li
+          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+        li
+          a(href="/about", title="About & Josh").ga-link-trackable About
+        li
+          a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
   if queryString
     .post-body
       p.text-center #{posts.length} results for: <code>#{queryString}</code>
@@ -25,7 +27,7 @@ block content
           img.post-image(itemprop="image", src="#{p.image}", alt="#{p.title}")
         span.blog-post-date
           a(href="/post/#{p.slug}", title="Last modified #{p.modified}") #{moment(p.modified).format("MMM Do, 'YY")}
-        h2.blog-post-title.text-center
+        h2.blog-post-title
           if p.link
             a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{p.link}", title="View #{p.title} on external site", rel="external in-reply-to bookmark") #{p.title}
               span  &raquo;
@@ -52,4 +54,3 @@ block content
         a(href='https://tinyletter.com', target='_blank') TinyLetter
   p.foot-credit
     small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
-  include bijoubit

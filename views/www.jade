@@ -2,28 +2,32 @@ extends layout
 
 block content
   #heady
-    h1.font-med.headline
-      a(href="/") #{subnet} & Josh
-    ul.top-links
-      li
-        span Josh Beckman is a full-stack-data-designer-developer-dude.
-      li
-        a(href="http://you.andjosh.com", title="you & Josh").color-me.ga-link-trackable You & Josh 
-          em(style="font-style:normal;color:#2e393c;") should work together.
-      li
-        a(href="http://about.andjosh.com", title="about & Josh").color-me.ga-link-trackable About/Colophon
-      li
-        a(href="mailto:jsh@bckmn.com?subject=Just came from www.andjosh.com", title="Email Josh").color-me.ga-link-trackable Email
-      li
-        a(href="http://words.andjosh.com", title="words & Josh").color-me.ga-link-trackable Blog
-      li
-        a(href="http://api.andjosh.com", title="API & Josh").color-me.ga-link-trackable API 
+    .text-center
+      include bijousvg
+    .blog-heady-wrap
+      h1.font-med.headline
+        a(href="/") #{subnet} & Josh
+      ul.top-links
+        li
+          span Josh Beckman is a full-stack-data-designer-developer-dude.
+        li
+          a(href="http://you.andjosh.com", title="you & Josh").ga-link-trackable You & Josh 
+            em(style="font-style:normal;color:#2e393c;") should work together.
+      ul.top-links
+        li
+          a(href="http://about.andjosh.com", title="about & Josh").ga-link-trackable About
+        li
+          a(href="mailto:jsh@bckmn.com?subject=Just came from www.andjosh.com", title="Email Josh").ga-link-trackable Email
+        li
+          a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable Blog
+        li
+          a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable API 
   #content.pure-g-r
     .pure-u-1.text-center
       if req.query.verbose
-        a.lede.boxed(href="/") Animated
+        a.lede.boxed(href="/") Animated Mode
       else
-        a.lede.boxed(href="?verbose=true") Verbose
+        a.lede.boxed(href="?verbose=true") Text Mode
     .pure-u-1-2
       a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
         h3.text-center Stark Lines
@@ -59,6 +63,5 @@ block content
           .work-desc
             p <strong>Problem:</strong> You have thousands of old, favorited tweets from bot services or other means, and want to get rid of them.
             p <strong>Solution:</strong> Run through your favorited tweets on a daily or monthly basis and unfavorite any older than your chosen lifespan.
-  include bijoubit
   if !req.query.verbose
     script(src="/javascripts/vendor/d3.v3.min.js")
