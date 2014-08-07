@@ -252,7 +252,7 @@ pre code{
   max-width: 580px;
   margin:0 auto;
   padding:20px 10px 50px;
-  background:rgba(255,255,255,0.6);
+  background:transparent;
   position: relative;
   z-index: 1;
 }
@@ -302,7 +302,7 @@ pre code{
   text-align: center;
   border-top: 1px solid #aaa;
   margin:0 auto 20px;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
@@ -452,7 +452,7 @@ article.article-wrap.in-roll{
   display: block;
   margin: 0 auto;
   max-width: 580px;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
@@ -469,7 +469,7 @@ article.article-wrap.in-roll{
   padding: 1em 10px;
   position: relative;
   z-index: 1;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
   line-height: 1.2em;
 }
 .blog-post-title a{
@@ -497,7 +497,7 @@ article.article-wrap.in-roll{
   padding: 1em 20px;
   position: relative;
   z-index: 1;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
 }
 .post-body pre code{
   max-width: 540px;
@@ -512,7 +512,7 @@ article.article-wrap.in-roll{
   display: block;
   padding-left: 20px;
   padding-right: 20px;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
   position: relative;
   z-index: 1;
 }
@@ -543,7 +543,7 @@ article.article-wrap.in-roll{
   margin: 0 auto;
   position: relative;
   z-index: 100;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
 }
 
 .post-image{
@@ -668,7 +668,7 @@ p.share-links{
   border-left:1px solid #aaa;
   position: relative;
   z-index: 1000;
-  background: rgba(255,255,255,0.6);
+  background: transparent;
 }
 .meta-links:after{
   content:'';
