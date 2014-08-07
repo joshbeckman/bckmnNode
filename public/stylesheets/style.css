@@ -256,6 +256,18 @@ pre code{
   position: relative;
   z-index: 1;
 }
+#heady.blog{
+  width:200px;
+  position: fixed;
+  top: 200px;
+  left: 0;
+  bottom: 0;
+  border-right: 1px solid #eee;
+}
+#heady.blog .headline{
+  font-size: 26px;
+  margin-top: 0px;
+}
 .top-links{
   list-style:none;
   margin:0;
@@ -299,6 +311,9 @@ pre code{
   background: rgba(255,255,255,0.6);
   position: relative;
   z-index: 1;
+}
+.foot-credit.blog{
+  margin-left: 200px;
 }
 .headline{
   font-size: 2.05em;
@@ -389,7 +404,16 @@ svg:not(:root) {
   position: relative;
   top: 20px;
 }
-
+svg#bijou{
+  visibility: visible;
+  height:200px;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  border-right: 1px solid #eee;
+}
 #building-blocks{
   height: 160px;
   position: fixed;
@@ -430,6 +454,10 @@ svg:not(:root) {
   -o-transition: color 3s;
 }
 
+.blog-list{
+  max-width: 580px;
+  margin-left: 200px;
+}
 article.article-wrap{
   background: transparent;
 }
@@ -445,6 +473,13 @@ article.article-wrap.in-roll{
   z-index: 1;
   text-align: center;
 }
+.blog-list .blog-post-date{
+  text-align: left;
+}
+.blog-post-date.blog{
+  margin:0;
+  margin-left: 200px;
+}
 .blog-post-date a{
   padding: 0 0.5em;
   border-top: 1px solid #aaa;
@@ -455,7 +490,7 @@ article.article-wrap.in-roll{
   font-size: 1.75em;
   max-width: 580px;
   margin: 0 auto;
-  padding: 1em 10px;
+  padding: 1em 20px;
   position: relative;
   z-index: 1;
   background: rgba(255,255,255,0.6);
@@ -677,6 +712,7 @@ p.share-links{
   width: 280px;
   margin-top:0;
   margin-bottom: 0;
+  margin-left: 350px;
   border-radius:0;
   border-right:none;
   border-top:none;

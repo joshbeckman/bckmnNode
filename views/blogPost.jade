@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  #heady
+  #heady.blog
     h2.font-med.headline
       a(href="/", title="Blog homepage") #{subnet} & Josh
     ul.top-links
@@ -11,14 +11,16 @@ block content
         a(href="/about", title="About & Josh").ga-link-trackable About
       li
         a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS
-  .pure-g-r
-    article.pure-u-1.article-wrap(itemscope, itemtype="http://schema.org/BlogPosting")
+  .blog-list
+    article.article-wrap(itemscope, itemtype="http://schema.org/BlogPosting")
       meta(itemprop="author", content="Joshua Beckman")
       meta(itemprop="datePublished", content="#{post.modified}")
       meta(itemprop="headline", content="#{post.title}")
       meta(itemprop="url", content="/post/#{post.slug}")
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
+      else
+        br
       span.blog-post-date
         a(href="/post/#{post.slug}", title="Last modified #{post.modified}") #{moment(post.modified).format("MMM Do, 'YY")}
       h1.blog-post-title.text-center
@@ -52,6 +54,6 @@ block content
       input.button(type='submit', value='Subscribe')
       small Powered by 
         a(href='https://tinyletter.com', target='_blank') TinyLetter
-  p.foot-credit
+  p.foot-credit.blog
     small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
-  include bijoubit
+  include bijousvg

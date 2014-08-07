@@ -537,6 +537,57 @@ if (window.d3 !== undefined){
     document.getElementById('building-blocks').style.zIndex = 1;
     document.getElementById('building-blocks').className = 'pure-hidden-phone turned-fast';
   }
+
+  // SVG Bijou
+  var arr = ['.foo', '.boo','.fool','.bool','.cool', '.nool','.doo','.loo', '.too'],
+    inc = 1;
+    godraw();
+  function godraw () {
+    for (var i = arr.length - 1; i >= 0; i--) {
+      setTimeout(draw, Math.random()*1000, arr[i], 1);
+    }
+    setTimeout(undraw, inc * 5000);
+  }
+  function undraw () {
+    for (var i = arr.length - 1; i >= 0; i--) {
+      setTimeout(drawNone, Math.random()*1000, arr[i], -1);
+    }
+    setTimeout(godraw, 3000);
+    inc++;
+  }
+  function drawNone(sl, int){
+    var path = document.querySelector(sl),
+      bound = path.getBoundingClientRect(),
+      length = Math.round(Math.sqrt(Math.pow(bound.height, 2) + Math.pow(bound.width, 2)));
+    path.style.strokeDashoffset = length;
+  }
+  function draw(sl, int){
+    var path = document.querySelector(sl),
+      bound = path.getBoundingClientRect(),
+      length = Math.round(Math.sqrt(Math.pow(bound.height, 2) + Math.pow(bound.width, 2)));
+    // Clear any previous transition
+    path.style.transition = path.style.WebkitTransition = 'none';
+    // Set up the starting positions
+    path.style.strokeDasharray = length + ' ' + length;
+    path.style.strokeDashoffset = int * length;
+    path.style.strokeWidth = 1;
+    // Trigger a layout so styles are calculated & the browser
+    // picks up the starting position before animating
+    path.getBoundingClientRect();
+    // Define our transition
+    path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + Math.round(0.5 + Math.random() * 2).toString() + 's ease-in-out';
+    // Go!
+    path.style.strokeDashoffset = '0';
+    path.style.stroke = getRandomColor();
+  }
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 })(this, this.document);
 
 (function(win, doc){
