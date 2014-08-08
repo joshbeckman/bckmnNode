@@ -3,13 +3,13 @@ extends layout
 block content
   #heady
     .text-center
-      include bijousvg
-    .blog-heady-wrap
+      include bijousvglarge
+    .blog-heady-wrap.text-center
       h1.font-med.headline
-        a(href="/") #{subnet} & Josh
+        a(href="/", title="www & Joahua Beckman") #{subnet} & Josh
       ul.top-links
         li
-          span Josh Beckman is a full-stack-data-designer-developer-dude.
+          span Full-stack-data-designer-developer-dude
         li
           a(href="http://you.andjosh.com", title="you & Josh").ga-link-trackable You & Josh 
             em(style="font-style:normal;color:#2e393c;") should work together.
@@ -23,11 +23,6 @@ block content
         li
           a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable API 
   #content.pure-g-r
-    .pure-u-1.text-center
-      if req.query.verbose
-        a.lede.boxed(href="/") Animated Mode
-      else
-        a.lede.boxed(href="?verbose=true") Text Mode
     .pure-u-1-2
       a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
         h3.text-center Aislin
@@ -63,5 +58,16 @@ block content
           .work-desc
             p <strong>Problem:</strong> You have thousands of old, favorited tweets from bot services or other means, and want to get rid of them.
             p <strong>Solution:</strong> Run through your favorited tweets on a daily or monthly basis and unfavorite any older than your chosen lifespan.
+    .pure-u-1.text-center
+      if req.query.verbose
+        a.lede.boxed(href="/") Animated Mode
+      else
+        a.lede.boxed(href="?verbose=true") Text Mode
+      br
+      br
+      br
+      br
   if !req.query.verbose
     script(src="/javascripts/vendor/d3.v3.min.js")
+  script.
+    document.getElementById('heady').style.height = (window.innerHeight - 50).toString() + 'px';

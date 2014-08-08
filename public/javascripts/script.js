@@ -541,7 +541,7 @@ if (window.d3 !== undefined){
   // SVG Bijou
   var arr = ['.foo', '.boo','.fool','.bool','.cool', '.nool','.doo','.loo', '.too'],
     inc = 1;
-    if(document.getElementById('bijou')){      
+    if(document.getElementById('bijou') || document.getElementById('bijou-large')){      
       godraw();
     }
   function godraw () {

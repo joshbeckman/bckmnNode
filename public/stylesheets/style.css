@@ -402,6 +402,13 @@ svg#bijou{
   position: relative;
   background: white;
 }
+svg#bijou-large{
+  visibility: visible;
+  height:200px;
+  width: 200px;
+  position: relative;
+  background: white;
+}
 #building-blocks{
   height: 160px;
   position: fixed;
