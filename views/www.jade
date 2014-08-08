@@ -70,8 +70,8 @@ block content
   if !req.query.verbose
     script(src="/javascripts/vendor/d3.v3.min.js")
   script.
-    if (document.getElementById('heady').style.height < (window.innerHeight - 50)){
-      var h = document.getElementById('heady').clientHeight;
+    var h = document.getElementById('heady').clientHeight;
+    if (h < (window.innerHeight - 50)){
       document.getElementById('heady').style.paddingTop = ((window.innerHeight - h)/2).toString() + 'px';
       document.getElementById('heady').style.height = (window.innerHeight - 50).toString() + 'px';
     }
