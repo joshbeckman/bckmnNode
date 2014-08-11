@@ -1,10 +1,23 @@
 extends layout
 
 block content
-
-  #content.pure-g-r
-    .pure-u-1.boxed(style="height:90vh;")
-      h1= title
-      - var d = new Date;
-      p For your records, here are the details of your payment on #{d.getMonth() + 1}/#{d.getDate()}/#{d.getFullYear()} to #{name}:
-      h3 $#{paidAmount} #{paidMessage ? 'for '+paidMessage : ''} paid via your #{charge.card.type} ending in #{charge.card.last4}.
+  #heady
+    include bijousvg
+    .blog-heady-wrap
+      h1.font-med.headline
+        a(href="/") #{subnet} & Josh
+      ul.top-links
+        li
+          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+        li
+          a(href="http://words.andjosh.com", title="Words & Josh").ga-link-trackable Blog
+        li
+          a(href="http://about.andjosh.com", title="API & Josh").ga-link-trackable About
+  .pure-g-r
+    .pure-u-1
+      article.article-wrap
+        .post-body 
+          h1= title
+          - var d = new Date;
+          p For your records, here are the details of your payment on #{d.getMonth() + 1}/#{d.getDate()}/#{d.getFullYear()} to #{name}:
+          h3 $#{paidAmount} #{paidMessage ? 'for '+paidMessage : ''} paid via your #{charge.card.type} ending in #{charge.card.last4}.

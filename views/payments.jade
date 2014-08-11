@@ -1,58 +1,29 @@
 extends layout
 
 block content
-  br
-  br
-  #content.pure-g-r
-    .pure-u-1-4
-    .pure-u-1-2.text-center.boxed
-      h1.name-header
-        a(href="/").ga-click-trackable(data-gatrack-action="Name-button (Blog)") Joshua Beckman
-        small.muted(style="display:block;margin-top:10px;") appreciates your support!
-      p
-        a(href="htt://about.andjosh.com", target="_blank").ga-click-trackable About Josh
-        br
-        br
-      form(accept-charset="UTF-8", action="/payment-thanks", method="post").pure-form(style="margin:0 auto; max-width:300px;")
-        label.dollars-label $
-          input(type="number", name="amount", value="#{amount ? amount : '3'}", min="1", max="9999", step="1", size="4", required, style="text-align:right;").dollars.pure-input-1-3
-        br
-        br
-        script(src="https://checkout.stripe.com/checkout.js", class="stripe-button", data-key="#{stripeKey}", data-image="/images/beckman.png", data-name="Joshua Beckman", data-description="Appreciates your support!").
-        // fieldset.pure-group
-        //   input(type="email",name="email",value="#{email ? email : ''}", required, placeholder="Your email", title="Your email").pure-input-1
-        //   input(type="text", name="message", value="#{text ? text : ''}", placeholder="Your message", title="Your message").pure-input-1
-        // .pure-controls
-        //   button.pay-with-card.btn(type="submit").pure-u-1 Pay with card
-      br
-      a(href="http://stripe.com", rel="nofollow", target="_blank")
-        small.muted Secured and
-        br
-        img(src="/images/stripe.png", width="150")
-      br
-      br
-
-  // script(src='/javascripts/vendor/jquery-1.10.2.min.js')
-  // script(src='https://checkout.stripe.com/v2/checkout.js')
-  // script.
-  //   $(function () {
-  //     $('form').submit(function () {
-  //       if($('input[name="stripeToken"]').length < 1) {
-  //         var token = function(res){
-  //           var $input = $('<input type=hidden name=stripeToken />').val(res.id);
-  //           $('button.pay-with-card').attr('disabled', 'disabled');
-  //           $('form').append($input).submit();
-  //         };
-
-  //         StripeCheckout.open({
-  //           key:         '#{publicKey}',
-  //           amount:      Math.round(100 * $('input[name="amount"]').val()),
-  //           name:        'Joshua Beckman',
-  //           panelLabel:  'Pay',
-  //           token:       token
-  //         });
-
-  //         return false;
-  //       }
-  //     });
-  //   });
+  #heady
+    include bijousvg
+    .blog-heady-wrap
+      h1.font-med.headline
+        a(href="/") #{subnet} & Josh
+      ul.top-links
+        li
+          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
+        li
+          a(href="http://words.andjosh.com", title="Words & Josh").ga-link-trackable Blog
+        li
+          a(href="http://about.andjosh.com", title="API & Josh").ga-link-trackable About
+  .pure-g-r
+    .pure-u-1
+      article.article-wrap
+        .post-body 
+          h3 I genuinely appreciate any domation you can make toward my existing projects. 
+          .text-center
+            form(accept-charset="UTF-8", action="/payment-thanks-400", method="post").pure-form(style="margin:0 auto; max-width:300px;")
+              script(src="https://checkout.stripe.com/checkout.js", class="stripe-button", data-key="#{stripeKey}", data-image="/images/jbckmn.jpg", data-name="Joshua Beckman", data-amount="400", data-description="Donation ($4.00)", data-panel-label="Donate {{amount}}", data-label="Donate to Josh").
+              br
+              br
+              a(href="http://stripe.com", rel="nofollow", target="_blank")
+                small.muted Secured and powered by Stripe.
+              br
+              br

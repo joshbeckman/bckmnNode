@@ -37,15 +37,15 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['words'](req, res, 'words', 'words');
-    // res.render('payments', { title: 'payments',
-    //                         description: 'config.members[subnet].description',
-    //                         req: req,
-    //                         subnet: 'payments',
-    //                         query: req.query,
-    //                         stripeKey: api_public,
-    //                         message: req.flash('message'), 
-    //                         error: req.flash('error') });
+    // blocks['words'](req, res, 'words', 'words');
+    res.render('payments', { title: 'payments',
+                            description: 'config.members[subnet].description',
+                            req: req,
+                            subnet: 'payments',
+                            query: req.query,
+                            stripeKey: api_public,
+                            message: req.flash('message'), 
+                            error: req.flash('error') });
   });
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
@@ -90,11 +90,12 @@ module.exports = function (app, io, ensureAuth) {
     });
   });
 
-  app.post('/payment-thanks', function(req, res) {
+  app.post('/payment-thanks-400', function(req, res) {
+    console.log(req.body);
     checkSubdomain(req, res, 'payments', function(){
       stripe.charges.create(
         {
-          amount: parseInt(parseFloat(req.body.amount)*100),
+          amount: parseInt(400,10),
           currency: "usd",
           card: req.body.stripeToken,
           description: req.body.stripeEmail
@@ -111,7 +112,8 @@ module.exports = function (app, io, ensureAuth) {
             res.render('payThanks', {  title: 'Thank you!',
                                       name: 'Joshua Beckman',
                                       charge: charge,
-                                      paidAmount: req.body.amount,
+                                      subnet: 'Thanks',
+                                      paidAmount: 4.00,
                                       paidMessage: req.body.message,
                                       message: req.flash('message'),
                                       error: req.flash('error'),
@@ -125,6 +127,7 @@ module.exports = function (app, io, ensureAuth) {
     checkSubdomain(req, res, 'payments', function(){
       res.render('payError', { title: 'Oh Noes!',
                               message: req.flash('message'),
+                              subnet: 'Errors',
                               error: req.flash('error'),
                               req: req });
     });
