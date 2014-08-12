@@ -409,6 +409,9 @@ svg#bijou-large{
   position: relative;
   background: white;
 }
+svg#bijou-large line{
+  /*filter: url('#dropshadow');*/
+}
 #building-blocks{
   height: 160px;
   position: fixed;

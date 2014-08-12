@@ -583,7 +583,8 @@ if (window.d3 !== undefined){
     path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + Math.round(0.5 + Math.random() * 2).toString() + 's ease-in-out';
     // Go!
     path.style.strokeDashoffset = '0';
-    path.style.stroke = _.randColor();
+    path.style.stroke = '#222a66';
+    // path.style.stroke = _.randColor();
   }
 })(this, this.document);
 

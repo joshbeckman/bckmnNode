@@ -1,4 +1,10 @@
 svg#bijou-large
+  filter#dropshadow(height='200%')
+    fegaussianblur(in='SourceAlpha', stddeviation='3')
+    feoffset(dx='2', dy='10', result='offsetblur')
+    femerge
+      femergenode
+      femergenode(in='SourceGraphic')
   line.too(x1='60', x2='72', y1='95', y2='110', stroke='none', style='')
   line.loo(x1='140', x2='85', y1='190', y2='125', stroke='none', style='')
   line.foo(x1='60', x2='60', y1='95', y2='150', stroke='none', style='')
