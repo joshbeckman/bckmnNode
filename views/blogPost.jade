@@ -38,7 +38,7 @@ block content
             span.icon-facebook
               | +
       .post-colors
-        if post.colors
+        if post.colors && false
           for color in post.colors 
             span(style="display:inline-block;height:5px;width:20%;background-color:#{color.hex ? color.hex : 'rgb('+[color.red,color.green,color.blue].join(',')+')'};")
       p.meta-links Read this next 
