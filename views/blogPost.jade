@@ -22,7 +22,7 @@ block content
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       span.blog-post-date
-        a(href="/post/#{post.slug}", title="Last modified #{post.modified}") #{moment(post.modified).format("MMM Do, 'YY")}
+        a(href="/post/#{post.slug}", title="Last modified #{post.modified}") #{moment(post.modified).format("MMM Do, 'YY")} <span class="icon-link"></span> 
       h1.blog-post-title
         if post.link
           a.blog-post-link.outbound-post-link.ga-link-trackable(href="#{post.link}", title="View #{post.title} on external site", rel="external in-reply-to bookmark") #{post.title}
@@ -55,4 +55,4 @@ block content
       small Powered by 
         a(href='https://tinyletter.com', target='_blank') TinyLetter
   p.foot-credit
-    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
+    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack data-designer-developer-dude.

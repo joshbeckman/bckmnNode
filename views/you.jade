@@ -14,9 +14,9 @@ block content
         li
           a(href="mailto:jsh@bckmn.com?subject=I want to work with you!", title="Email Josh").ga-link-trackable Email
   if req.query.sub
-    h4.blog-post-date <strong>#{req.query.sub}</strong> isn't taken yet, but you should get in touch about it.
+    h4.blog-post-date.text-center <strong>#{req.query.sub}</strong> isn't taken yet, but you should get in touch about it.
   else
-    h4.blog-post-date I'm always open to new projects.
+    h4.blog-post-date.text-center I'm always open to new projects.
   .pure-g-r
     .pure-u-1-4
     .pure-u-1-2
@@ -31,4 +31,4 @@ block content
         |  with you.
         input.btn(type="submit", value="Let's work on it")
   p.foot-credit
-    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack-data-designer-developer-dude.
+    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack data-designer-developer-dude.

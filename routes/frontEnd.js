@@ -38,10 +38,10 @@ module.exports = function (app, io, ensureAuth) {
   });
   app.get('/test-moi', function(req,res){
     // blocks['words'](req, res, 'words', 'words');
-    res.render('payments', { title: 'payments',
+    res.render('about', { title: 'about',
                             description: 'config.members[subnet].description',
                             req: req,
-                            subnet: 'payments',
+                            subnet: 'about',
                             query: req.query,
                             stripeKey: api_public,
                             message: req.flash('message'), 
