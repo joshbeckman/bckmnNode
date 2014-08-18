@@ -31,10 +31,8 @@
     "passport-local-mongoose": "~0.2.5"
   },
   "devDependencies": {
-    "grunt-contrib-csslint": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
     "grunt-contrib-cssmin": "*"
   }
 }
