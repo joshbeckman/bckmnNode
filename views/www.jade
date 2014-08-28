@@ -22,51 +22,52 @@ block content
           a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable Blog
         li
           a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable API 
-  #content.pure-g-r
-    .pure-u-1-2
-      a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
-        h3.text-center Aislin
+  if false
+    #content.pure-g-r
+      .pure-u-1-2
+        a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
+          h3.text-center Aislin
+          if req.query.verbose
+            .work-desc
+              p <strong>Problem:</strong> Image analysis on the client-side is difficult, but there is much data to be extracted.
+              p <strong>Solution:</strong> Pass your image URLs to this quick and complete image analysis engine and receive JSON-formatted EXIF and color palette data.
+      .pure-u-1-2
+        a(href="http://github.com/jbckmn/gatrack.js", title="Easily track user any events with Google Analytics.").ga-link-trackable.a-project.boxed.gatrackjs
+          h3.text-center gatrack.js
+          if req.query.verbose
+            .work-desc
+              p <strong>Problem:</strong> How do you efficiently test UI/UX theories or track client errors using extant user data?
+              p <strong>Solution:</strong> Use simple classes and data-attributes to send user events to Google Analytics, where it can be paired with all other browsing history.
+      .pure-u-1-2
+        a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
+          h3.text-center Stark Lines
+          if req.query.verbose
+            .work-desc
+              p <strong>Problem:</strong> Google Analytics does not let you compare live traffic between sites.
+              p <strong>Solution:</strong> This no-sign-up-required web application gives you the power to see all of your live visitors, across multiple sites, in one real-time graph.
+      .pure-u-1-2
+        a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable.a-project.boxed.naked-wordpress
+          h3.text-center Naked WordPress
+          if req.query.verbose
+            .work-desc
+              p <strong>Problem:</strong> WordPress is great for designing client sites and blogs, but designers don’t have time to learn the WordPress Codex.
+              p <strong>Solution:</strong> Use this naked, commented WordPress theme for designers as a base from which to build and learn.
+      .pure-u-1
+        a(href="http://unfavoriter.com", title="Automatically clean out your old Twitter favorites.").ga-link-trackable.a-project.boxed.unfavoriter
+          h3.text-center The Unfavoriter
+          if req.query.verbose
+            .work-desc
+              p <strong>Problem:</strong> You have thousands of old, favorited tweets from bot services or other means, and want to get rid of them.
+              p <strong>Solution:</strong> Run through your favorited tweets on a daily or monthly basis and unfavorite any older than your chosen lifespan.
+      .pure-u-1.text-center
         if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> Image analysis on the client-side is difficult, but there is much data to be extracted.
-            p <strong>Solution:</strong> Pass your image URLs to this quick and complete image analysis engine and receive JSON-formatted EXIF and color palette data.
-    .pure-u-1-2
-      a(href="http://github.com/jbckmn/gatrack.js", title="Easily track user any events with Google Analytics.").ga-link-trackable.a-project.boxed.gatrackjs
-        h3.text-center gatrack.js
-        if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> How do you efficiently test UI/UX theories or track client errors using extant user data?
-            p <strong>Solution:</strong> Use simple classes and data-attributes to send user events to Google Analytics, where it can be paired with all other browsing history.
-    .pure-u-1-2
-      a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
-        h3.text-center Stark Lines
-        if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> Google Analytics does not let you compare live traffic between sites.
-            p <strong>Solution:</strong> This no-sign-up-required web application gives you the power to see all of your live visitors, across multiple sites, in one real-time graph.
-    .pure-u-1-2
-      a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable.a-project.boxed.naked-wordpress
-        h3.text-center Naked WordPress
-        if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> WordPress is great for designing client sites and blogs, but designers don’t have time to learn the WordPress Codex.
-            p <strong>Solution:</strong> Use this naked, commented WordPress theme for designers as a base from which to build and learn.
-    .pure-u-1
-      a(href="http://unfavoriter.com", title="Automatically clean out your old Twitter favorites.").ga-link-trackable.a-project.boxed.unfavoriter
-        h3.text-center The Unfavoriter
-        if req.query.verbose
-          .work-desc
-            p <strong>Problem:</strong> You have thousands of old, favorited tweets from bot services or other means, and want to get rid of them.
-            p <strong>Solution:</strong> Run through your favorited tweets on a daily or monthly basis and unfavorite any older than your chosen lifespan.
-    .pure-u-1.text-center
-      if req.query.verbose
-        a.lede.boxed(href="/") Animated Mode
-      else
-        a.lede.boxed(href="?verbose=true") Text Mode
-      br
-      br
-      br
-      br
+          a.lede.boxed(href="/") Animated Mode
+        else
+          a.lede.boxed(href="?verbose=true") Text Mode
+        br
+        br
+        br
+        br
   if !req.query.verbose
     script(src="/javascripts/vendor/d3.v3.min.js")
   script.
