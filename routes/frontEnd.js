@@ -23,7 +23,7 @@ module.exports = function (app, io, ensureAuth) {
       } else if (blocks[subnet]) {
         blocks[subnet](req, res, subnet, subname);
       } else {
-        res.render(subnet, { title: subname,
+        res.render(subnet, { title: subname + ' Beckman',
                             description: config.members[subnet].description,
                             req: req,
                             subnet: subnet,
@@ -37,15 +37,15 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    blocks['words'](req, res, 'words', 'words');
-    // res.render('about', { title: 'about',
-    //                         description: 'config.members[subnet].description',
-    //                         req: req,
-    //                         subnet: 'about',
-    //                         query: req.query,
-    //                         stripeKey: api_public,
-    //                         message: req.flash('message'), 
-    //                         error: req.flash('error') });
+    // blocks['words'](req, res, 'words', 'words');
+    res.render('payments', { title: 'payments',
+                            description: 'config.members[subnet].description',
+                            req: req,
+                            subnet: 'about',
+                            query: req.query,
+                            stripeKey: api_public,
+                            message: req.flash('message'), 
+                            error: req.flash('error') });
   });
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
@@ -53,16 +53,19 @@ module.exports = function (app, io, ensureAuth) {
         if (err || !post) {
           res.redirect('/search?q='+req.params.slug);
         } else {
-          Post.getOneExcept(post.slug, function(err, relatedPost){
-            res.render('blogPost', {title: post.title+' | & Joshua Beckman',
-                                  post: post,
-                                  subnet: 'words',
-                                  description: post.markdown.slice(0,150),
-                                  relatedPost: relatedPost,
-                                  moment: moment,
-                                  message: req.flash('message'),
-                                  error: req.flash('error'),
-                                  req: req});
+          Post.getPrePost(post.modified, function(err, np){
+            res.render('blogPost',  {
+                                      title: post.title+' | & Joshua Beckman',
+                                      post: post,
+                                      subnet: 'words',
+                                      description: post.html.replace(/(<([^>]+)>)/ig,"").slice(0,140) + '...',
+                                      nextPost: np.next,
+                                      prevPost: np.prev,
+                                      moment: moment,
+                                      message: req.flash('message'),
+                                      error: req.flash('error'),
+                                      req: req
+                                    });
           });
         }
       });
@@ -159,7 +162,6 @@ module.exports = function (app, io, ensureAuth) {
     checkSubdomain(req, res, 'www', function(){
       impersonate("http://css-tricks.com", function(err, body) {
         body = body.split('</head>');
-        console.log(body.length);
         var foo = body[1].split('</body>');
         body = [body[0], '</head>', foo[0], '</body>', foo[1]];
         res.render('cssTrickedOut', {
@@ -193,7 +195,7 @@ module.exports = function (app, io, ensureAuth) {
     res.redirect(301, 'http://payments.andjosh.com/');
   });
   app.get('/about', function(req,res){
-    res.redirect(301, 'http://about.andjosh.com/');
+    res.redirect(301, 'http://www.andjosh.com/');
   });
   app.get('/feed', function(req,res){
     res.redirect(301, 'http://words.andjosh.com/rss.xml');
@@ -299,7 +301,7 @@ module.exports = function (app, io, ensureAuth) {
       },
       words: function(req, res, subnet, subname){
         Post.getLatestPosts(10, (req.query.offset ? parseInt(req.query.offset, 10) : 0), function(err, posts){
-          res.render(subnet, { title: subname,
+          res.render(subnet, { title: subname + ' Beckman',
                               description: config.members[subnet].description,
                               req: req,
                               subnet: subnet,
@@ -310,15 +312,18 @@ module.exports = function (app, io, ensureAuth) {
                               error: req.flash('error') });
         });
       },
-      about: function(req, res, subnet, subname){
-        res.render('about', { title: 'About Josh Beckman (@jbckmn)',
-                            description: 'Let\'s learn all about Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL.',
-                            req: req,
-                            subnet: 'about',
-                            query: req.query,
-                            stripeKey: api_public,
-                            message: req.flash('message'), 
-                            error: req.flash('error') });
+      www: function(req, res, subnet, subname){
+        Post.getLatestPosts(1, 0, function(err, posts){
+          res.render(subnet, { title: 'Josh Beckman',
+                              description: config.members[subnet].description,
+                              req: req,
+                              subnet: subnet,
+                              query: req.query.sub,
+                              posts: posts,
+                              moment: moment,
+                              message: req.flash('message'), 
+                              error: req.flash('error') });
+        });
       }
     };
 }

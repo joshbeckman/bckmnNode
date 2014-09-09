@@ -1,78 +1,38 @@
 extends layout
 
 block content
-  #heady
+  #main(itemscope, itemtype="http://schema.org/Person")
+    meta(itemprop="name", content="Joshua Beckman")
+    meta(itemprop="url", content="http://andjosh.com")
+    meta(itemprop="alternateName", content="jbckmn")
+    meta(itemprop="image", content="http://andjosh.com/images/aboutJoshBeckman.jpg")
     .text-center
-      include bijousvglarge
-    .blog-heady-wrap.text-center
-      h1.font-med.headline
-        a(href="/", title="www & Joahua Beckman") #{subnet} & Josh
-      ul.top-links
-        li
-          span Full-stack data-designer-developer-dude
-        li
-          a(href="http://you.andjosh.com", title="you & Josh").ga-link-trackable You & Josh 
-            em(style="font-style:normal;color:#2e393c;") should work together
-      ul.top-links
-        li
-          a(href="http://about.andjosh.com", title="about & Josh").ga-link-trackable About
-        li
-          a(href="mailto:jsh@bckmn.com?subject=Just came from www.andjosh.com", title="Email Josh").ga-link-trackable Email
-        li
-          a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable Blog
-        li
-          a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable API 
-  if false
-    #content.pure-g-r
-      .pure-u-1-2
-        a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable.a-project.boxed.aislin
-          h3.text-center Aislin
-          if req.query.verbose
-            .work-desc
-              p <strong>Problem:</strong> Image analysis on the client-side is difficult, but there is much data to be extracted.
-              p <strong>Solution:</strong> Pass your image URLs to this quick and complete image analysis engine and receive JSON-formatted EXIF and color palette data.
-      .pure-u-1-2
-        a(href="http://github.com/jbckmn/gatrack.js", title="Easily track user any events with Google Analytics.").ga-link-trackable.a-project.boxed.gatrackjs
-          h3.text-center gatrack.js
-          if req.query.verbose
-            .work-desc
-              p <strong>Problem:</strong> How do you efficiently test UI/UX theories or track client errors using extant user data?
-              p <strong>Solution:</strong> Use simple classes and data-attributes to send user events to Google Analytics, where it can be paired with all other browsing history.
-      .pure-u-1-2
-        a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable.a-project.boxed.stark
-          h3.text-center Stark Lines
-          if req.query.verbose
-            .work-desc
-              p <strong>Problem:</strong> Google Analytics does not let you compare live traffic between sites.
-              p <strong>Solution:</strong> This no-sign-up-required web application gives you the power to see all of your live visitors, across multiple sites, in one real-time graph.
-      .pure-u-1-2
-        a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable.a-project.boxed.naked-wordpress
-          h3.text-center Naked WordPress
-          if req.query.verbose
-            .work-desc
-              p <strong>Problem:</strong> WordPress is great for designing client sites and blogs, but designers don’t have time to learn the WordPress Codex.
-              p <strong>Solution:</strong> Use this naked, commented WordPress theme for designers as a base from which to build and learn.
-      .pure-u-1
-        a(href="http://unfavoriter.com", title="Automatically clean out your old Twitter favorites.").ga-link-trackable.a-project.boxed.unfavoriter
-          h3.text-center The Unfavoriter
-          if req.query.verbose
-            .work-desc
-              p <strong>Problem:</strong> You have thousands of old, favorited tweets from bot services or other means, and want to get rid of them.
-              p <strong>Solution:</strong> Run through your favorited tweets on a daily or monthly basis and unfavorite any older than your chosen lifespan.
-      .pure-u-1.text-center
-        if req.query.verbose
-          a.lede.boxed(href="/") Animated Mode
-        else
-          a.lede.boxed(href="?verbose=true") Text Mode
-        br
-        br
-        br
-        br
-  if !req.query.verbose
-    script(src="/javascripts/vendor/d3.v3.min.js")
-  script.
-    var h = document.getElementById('heady').clientHeight;
-    if (h < (window.innerHeight - 50)){
-      document.getElementById('heady').style.paddingTop = ((window.innerHeight - h)/2).toString() + 'px';
-      document.getElementById('heady').style.height = (window.innerHeight - 50).toString() + 'px';
-    }
+      include bijousvg
+    h1
+      a(href="/") Josh Beckman
+    p(itemprop="description") I build things for the internet and for your phones. I can be reached at 
+      a(href="mailto:email@andjosh.com?subject=Just came from www.andjosh.com", title="Email Josh").ga-link-trackable email@andjosh.com
+      | . I blog at 
+      a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable words.andjosh.com
+      | . I maintain a 
+      a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable personal API
+      | . I tweet infrequently on 
+      a(href="http://twitter.com/jbckmn", title="@jbckmn").ga-link-trackable Twitter
+      | .
+    hr.large
+    h6 Recent post
+    for p in posts
+      h3
+        a.blog-post-link(href="/post/#{p.slug}") #{p.title}
+    hr.large
+    h6 Recent Work
+    p
+      a(href="http://nareta.co", title="Listen to your reading list anywhere. Nareta will take your bookmarked articles and read them back to you.").ga-link-trackable Nareta
+      | &nbsp;&mdash;&nbsp;
+      a(href="http://github.com/jbckmn/gatrack.js", title="Easily track user any events with Google Analytics.").ga-link-trackable gatrack.js
+      | &nbsp;&mdash;&nbsp;
+      a(href="http://naked-wordpress.bckmn.com", title="The solution for designers who don't know WordPress.").ga-link-trackable Naked WordPress
+      | &nbsp;&mdash;&nbsp;
+      a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable Aislin
+      | &nbsp;&mdash;&nbsp;
+      a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable Stark Lines

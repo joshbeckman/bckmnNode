@@ -53,6 +53,18 @@ Post.statics.getOneExcept = function(sluggy, callback){
   });
 };
 
+Post.statics.getPrePost = function(date, callback){
+  var pObj = this;
+  pObj.find({published: true}).where('modified').gt(date).sort('modified').limit(1).lean().exec(function(err, nextPost){
+    pObj.find({published: true}).where('modified').lt(date).sort('-modified').limit(1).lean().exec(function(err, prevPost){
+      callback(err, {
+        prev: prevPost[0],
+        next: nextPost[0]
+      });
+    });
+  });
+};
+
 Post.statics.searchQuery = function(data, io){
   this.find({ keywords: { $all: this.extractKeywords(data.query) } }, '-__v', {sort:{modified: -1}}).lean().exec(function(err, posts) {
     if(err){

@@ -1,29 +1,18 @@
 extends layout
 
 block content
-  #heady
-    include bijousvg
-    .blog-heady-wrap
-      h1.font-med.headline
-        a(href="/") #{subnet} & Josh
-      ul.top-links
-        li
-          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
-        li
-          a(href="http://words.andjosh.com", title="Words & Josh").ga-link-trackable Blog
-        li
-          a(href="http://about.andjosh.com", title="API & Josh").ga-link-trackable About
-  .pure-g-r
-    .pure-u-1
-      article.article-wrap
-        .post-body 
-          h3 I genuinely appreciate any domation you can make toward my existing projects. 
-          .text-center
-            form(accept-charset="UTF-8", action="/payment-thanks-400", method="post").pure-form(style="margin:0 auto; max-width:300px;")
-              script(src="https://checkout.stripe.com/checkout.js", class="stripe-button", data-key="#{stripeKey}", data-image="/images/jbckmn.jpg", data-name="Joshua Beckman", data-amount="400", data-description="Donation ($4.00)", data-panel-label="Donate {{amount}}", data-label="Donate to Josh").
-              br
-              br
-              a(href="http://stripe.com", rel="nofollow", target="_blank")
-                small.muted Secured and powered by Stripe.
-              br
-              br
+  #main
+    .text-center
+      include bijousvg
+    h1
+      a(href="/") Payments and Josh Beckman
+    p I genuinely appreciate any domation you can make toward my existing work. You can read more about me at 
+      a(href="http://andjosh.com", title="andjosh.com").ga-link-trackable andjosh.com
+      | .
+    .text-center
+      form(accept-charset="UTF-8", action="/payment-thanks-400", method="post").pure-form(style="margin:0 auto; max-width:300px;")
+        script(src="https://checkout.stripe.com/checkout.js", class="stripe-button", data-key="#{stripeKey}", data-image="/images/jbckmn.jpg", data-name="Joshua Beckman", data-amount="400", data-description="Donation ($4.00)", data-panel-label="Donate {{amount}}", data-label="Donate to Josh").
+        br
+        br
+        a(href="http://stripe.com", rel="nofollow", target="_blank")
+          small.muted Secured and powered by Stripe.

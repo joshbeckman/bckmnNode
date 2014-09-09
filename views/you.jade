@@ -1,34 +1,17 @@
 extends layout
 
 block content
-  #heady
-    include bijousvg
-    .blog-heady-wrap
-      h1.font-med.headline
-        a(href="") #{subnet} & Josh
-      ul.top-links
-        li
-          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
-        li
-          a(href="/about", title="About & Josh").ga-link-trackable About
-        li
-          a(href="mailto:jsh@bckmn.com?subject=I want to work with you!", title="Email Josh").ga-link-trackable Email
-  if req.query.sub
-    h4.blog-post-date.text-center <strong>#{req.query.sub}</strong> isn't taken yet, but you should get in touch about it.
-  else
-    h4.blog-post-date.text-center I'm always open to new projects.
-  .pure-g-r
-    .pure-u-1-4
-    .pure-u-1-2
-      form#contact-form.boxed(method="POST", action="http://forms.brace.io/jsh@bckmn.com", title="You & Josh", name="You & Josh")
-        h3.text-center What's Your Deal?
-        label(for="name") My name is  
-          input(type="text", name="name", placeholder="Jane Smith", required)
-        label(for="_replyto") , I can be reached at  
-          input(type="text", name="_replyto", placeholder="jane@smith.com", required)
-        label(for="message") , and I'm really interested in building    
-          input(type="text", name="message", placeholder="something that could make life easier", required)
-        |  with you.
-        input.btn(type="submit", value="Let's work on it")
-  p.foot-credit
-    small <a href="http://about.andjosh.com" rel="me, author">Josh Beckman</a> is a full-stack data-designer-developer-dude.
+  #main
+    .text-center
+      include bijousvg
+    h1
+      a(href="http://andjosh.com") Josh Beckman
+    p I build things for the internet and for your phones. 
+    p What do you do? Whatever, I'm sure we would enjoy talking. 
+    p Email me: 
+      a(href="mailto:email@andjosh.com?subject=I want to work with you!", title="Email Josh").ga-link-trackable email@andjosh.com
+      | . Tweet at me: 
+      a(href="http://twitter.com/jbckmn", title="@jbckmn").ga-link-trackable @jbckmn
+      | . My home page is at 
+      a(href="http://andjosh.com", title="andjosh.com").ga-link-trackable andjosh.com
+      | .

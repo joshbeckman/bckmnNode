@@ -1,7 +1,7 @@
 {
   "members":{
     "www":{
-      "description":"The World Wide Web and Joshua Beckman"
+      "description":"Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL."
     },
     "api":{
       "description": "Application Programmable Interface for Joshua Beckman"
@@ -16,7 +16,7 @@
       "description": "You & Josh should work together to build something truly great."
     },
     "about":{
-      "description": "Let's learn all about Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL."
+      "redirect": "http://www.andjosh.com"
     },
     "josh":{
       "redirect": "http://www.teamjosh.co"

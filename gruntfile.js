@@ -34,7 +34,7 @@ module.exports = function(grunt) {
           banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
         },
         files: {
-          'public/stylesheets/the.min.css': ['public/stylesheets/pure-min.css', 'public/stylesheets/prism.css', 'public/stylesheets/icons.css', 'public/stylesheets/style.css']
+          'public/stylesheets/the.min.css': ['public/stylesheets/normal.css', 'public/stylesheets/prism.css', 'public/stylesheets/style.css']
         }
       }
     },
