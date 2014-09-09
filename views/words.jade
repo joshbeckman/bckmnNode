@@ -8,7 +8,7 @@ block content
       a(href="/", title="Blog homepage") Words and Josh
     p My name is 
       a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable Josh Beckman
-      | . I build things for the internet and for your phones. This fancy blog comes with an 
+      | . I build things for the internet and for your phones. This fancy blog comes equipped with an 
       a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS feed
       |  and a 
       a(href="http://tinyletter.com/jbckmn", title="Newsletter").ga-link-trackable newsletter
@@ -26,7 +26,9 @@ block content
         h2
           a.blog-post-link(href="/post/#{p.slug}") #{p.title}
         .post-body !{p.html}
-    if posts.length >= 10
+    if posts.length < 1
+      h2 No posts found!
+    if posts.length >= 5
       hr.large
       p.text-center
         a(href="/?offset=#{req.query.offset ? (parseInt(req.query.offset, 10) + 10).toString() : '10'}") Next Page &raquo;

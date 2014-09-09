@@ -1,8 +1,89 @@
 extends layout
 
 block content
-  h1.text-center
-    a.boxed(style="padding:1em;", href="") Building A Penrose Triangle
+  style(type="text/css").
+    #building-blocks{
+      height: 160px;
+      position: fixed;
+      top: 0px;
+      left: 0px;
+    }
+    #building-blocks[name="penrose"]{
+      width: 185px;
+    }
+    #building-blocks[name="bijou"]{
+      width: 105px;
+    }
+    #building-blocks a{
+      position: relative;
+      top: 140px;
+      left: 19px;
+      visibility: hidden;
+      opacity: 0;
+    }
+    #building-blocks[name="penrose"] a{
+      left: 60px;
+    }
+    #building-blocks.turned-fast a{
+      visibility: visible;
+      opacity: 1;
+    }
+    .building-block{
+      position: fixed;
+      z-index: -100;
+      top: 0;
+      left: 0;
+      display: block;
+      border-right: 2px solid;
+      width: 1px;
+      transition: color 3s;
+      -moz-transition: color 3s;
+      -webkit-transition: color 3s;
+      -o-transition: color 3s;
+    }
+    .turned-fast{
+      animation: turn 1s;
+      -moz-animation: turn 1s;
+      -ms-animation: turn 1s;
+      -webkit-animation: turn 1s;
+      -webkit-perspective:1000px;
+      perspective:1000px;
+    }
+    @keyframes turn{
+      from {
+        transform: perspective(1000px) rotateY(0deg);
+      }
+      to {
+        transform: perspective(1000px) rotateY(360deg);
+      }
+    }
+    @-ms-keyframes turn{
+      from {
+        -ms-transform: perspective(1000px) rotateY(0deg);
+      }
+      to {
+        -ms-transform: perspective(1000px) rotateY(360deg);
+      }
+    }
+    @-webkit-keyframes turn{
+      from {
+        -webkit-transform: perspective(1000px) rotateY(0deg);
+      }
+      to {
+        -webkit-transform: perspective(1000px) rotateY(360deg);
+      }
+    }
+    @-moz-keyframes turn{
+      from {
+        -moz-transform: perspective(1000px) rotateY(0deg);
+      }
+      to {
+        -moz-transform: perspective(1000px) rotateY(360deg);
+      }
+    }
+  br
+  h1
+    a Building A Penrose Triangle
   p.text-center
     span.boxed(style="padding:0.25em 1em 0.5em;") &#x25BF; Scroll &#x25BF;
   p.text-center.lede.boxed 

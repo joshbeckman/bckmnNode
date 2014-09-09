@@ -70,7 +70,6 @@ module.exports = function (app, io, ensureAuth) {
         });
       });
     } else if ('www' == req.subdomains.join('')){
-      urls.push({url: '/?verbose=true', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/soundcloud-animations', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/css-tricked-out', changefreq: 'weekly', priority: 0.8});
       urls.push({url: '/polarpageviews', changefreq: 'weekly', priority: 0.8});
@@ -100,8 +99,8 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/rss.xml', function(req, res){
     Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
       var feed = new RSS({
-          title: 'Words & Josh',
-          description: 'Joshua Beckman is in downtown Chicago',
+          title: 'Words & Josh Beckman',
+          description: 'Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL.',
           feed_url: 'http://words.andjosh.com/rss.xml',
           site_url: 'http://words.andjosh.com',
           image_url: config.image_path,
