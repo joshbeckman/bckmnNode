@@ -62,28 +62,13 @@ block content
           saveCurrent();
         };
     };
-    function retrieveColors (parentEl) {
-      var elements = parentEl.children,
-        i = 0,
-        length = elements.length,
-        arr = [];
-      for (; i < length; i++) {
-        arr.push({
-          red: parseInt(elements[i].dataset.red, 10),
-          green: parseInt(elements[i].dataset.green, 10),
-          blue: parseInt(elements[i].dataset.blue, 10),
-          hex: elements[i].dataset.hex || ''
-        });
-      }
-      return arr;
-    }
     var saveCurrent = function(){
       var postEditor = document.getElementById('post-editor'),
           postID = postEditor.dataset.postId,
           title = document.getElementById('post-title-editor').value,
           body = document.getElementById('post-textarea').value,
           imageUrl = document.getElementById('post-image').value,
-          colors = retrieveColors(document.getElementById('post-colors'));
+          colors = [];
       if(body && title){
         var r = confirm("Publish this?");
         if(postID){

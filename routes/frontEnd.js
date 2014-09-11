@@ -37,15 +37,15 @@ module.exports = function (app, io, ensureAuth) {
     }
   });
   app.get('/test-moi', function(req,res){
-    // blocks['words'](req, res, 'words', 'words');
-    res.render('you', { title: 'you',
-                            description: 'config.members[subnet].description',
-                            req: req,
-                            subnet: 'about',
-                            query: req.query,
-                            stripeKey: api_public,
-                            message: req.flash('message'), 
-                            error: req.flash('error') });
+    blocks['words'](req, res, 'words', 'words');
+    // res.render('you', { title: 'you',
+    //                         description: 'config.members[subnet].description',
+    //                         req: req,
+    //                         subnet: 'about',
+    //                         query: req.query,
+    //                         stripeKey: api_public,
+    //                         message: req.flash('message'), 
+    //                         error: req.flash('error') });
   });
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
