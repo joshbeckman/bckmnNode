@@ -174,9 +174,9 @@ function dismissAlert(elem){
 
   // SVG Bijou
   var arr = ['.foo', '.boo','.fool','.bool','.cool', '.nool','.doo','.loo', '.too'],
-    inc = 1;
+    inc = 1, bTimeout;
     if(document.getElementById('bijou')){      
-      godraw();
+      setTimeout(godraw, 1000);
     }
     if(document.getElementById('bijou-large')){      
       setTimeout(godraw, 1000);
@@ -185,14 +185,15 @@ function dismissAlert(elem){
     for (var i = arr.length - 1; i >= 0; i--) {
       setTimeout(draw, Math.random()*1000, arr[i], 1);
     }
-    setTimeout(undraw, inc * 5000);
+    document.getElementById('bijou').addEventListener('mouseover', function(){
+      undraw();
+    }, false);
   }
   function undraw () {
     for (var i = arr.length - 1; i >= 0; i--) {
-      setTimeout(drawNone, Math.random()*1000, arr[i], -1);
+      setTimeout(drawNone, 10, arr[i], -1);
     }
     setTimeout(godraw, 3000);
-    inc++;
   }
   function drawNone(sl, int){
     var path = document.querySelector(sl),

@@ -6,17 +6,17 @@ block content
     meta(itemprop="url", content="http://andjosh.com")
     meta(itemprop="alternateName", content="jbckmn")
     meta(itemprop="image", content="http://andjosh.com/images/aboutJoshBeckman.jpg")
-    .text-center
-      include bijousvg
     h1
       a(href="/") Josh Beckman
     article
       p(itemprop="description") I build things for the internet and for your phones. I can be reached at 
         a(href="mailto:email@andjosh.com?subject=Just came from www.andjosh.com", title="Email Josh").ga-link-trackable email@andjosh.com
-        | . I blog at 
+        | . I write at 
         a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable words.andjosh.com
         | . I maintain a 
         a(href="http://api.andjosh.com", title="API & Josh").ga-link-trackable personal API
+        | . I push projects frequently to 
+        a(href="http://github.com/jbckmn", title="@jbckmn").ga-link-trackable GitHub
         | . I tweet infrequently on 
         a(href="http://twitter.com/jbckmn", title="@jbckmn").ga-link-trackable Twitter
         | .
@@ -37,3 +37,52 @@ block content
         a(href="http://aislin.co", title="The best little image analysis API out there.").ga-link-trackable Aislin
         | &nbsp;&mdash;&nbsp;
         a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable Stark Lines
+    .text-center
+      canvas#canvas.canvas(title="Time is not a constant. Click to save this moment.")
+  script.
+    (function(window, document){
+      var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        height = canvas.parentNode.clientHeight/2,
+        width = canvas.parentNode.clientWidth/2,
+        radius = Math.sqrt(width / 2 * width / 2 + height / 2 * height / 2) + 5,
+        theta = Math.PI * (3 - Math.sqrt(5)),
+        spacing = 3 + Math.log((new Date).getHours()+1),
+        size = 1,
+        speed = 1,
+        index = 0,
+        total = (radius * radius) / (spacing * spacing),
+        vendor = ["", "-webkit-", "-moz-", "-ms-", "-o-"]
+          .reduce(function(p, v) { return v + "transform" in document.body.style ? v : p; });
+      canvas.height = canvas.width = radius * 2;
+      canvas.style.left = width / 2 - radius + "px";
+      canvas.style.top = height / 2 - radius + "px";
+      canvas.width = radius * 2;
+      canvas.height = radius * 2;
+      canvas.style[vendor + "transform-origin"] = radius + "px " + radius + "px";
+      context.translate(radius, radius);
+      function color() {
+        var ti = (new Date).getTime();
+          i = parseInt(ti.toString()[ti.toString().length - 5], 10);
+          var r = Math.floor( Math.sin(i) * 127 + 128 );
+          var g = Math.floor( Math.sin(i + 2) * 127 + 128 );
+          var b = Math.floor( Math.sin(i + 3) * 127 + 128 );
+          return 'rgb(' + r + ', ' + g + ',' + b + ')';
+      }
+      setInterval(function() {
+        for (var j = 0; index < total && j < speed; ++j) {
+          var radius = spacing * Math.sqrt(++index),
+              angle = index * theta,
+              x = radius * Math.cos(angle),
+              y = radius * Math.sin(angle);
+          context.beginPath();
+          context.arc(x, y, size, 0, 2 * Math.PI);
+          context.fillStyle = context.strokeStyle = color();
+          context.stroke();
+        }
+      }, 1000/30);
+      canvas.addEventListener('click', function(evt){
+        var url = canvas.toDataURL("image/png");
+        window.andjoshWindow = window.open(url, 'andjoshWindow');
+      });
+    })(this, this.document);

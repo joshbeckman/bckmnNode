@@ -1,4 +1,4 @@
-body{
+body, input, textarea{
   font-family: 'Vollkorn', Georgia, serif;
   font-weight: 400;
   color: #3f3f3f;
@@ -9,7 +9,7 @@ body{
 body *{
   box-sizing:border-box;
 }
-h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6, button{
   font: 24px/28px 'Unica One', Helvetica, sans-serif;
   text-transform: uppercase;
   text-align: center;
@@ -30,6 +30,12 @@ a {
 a:hover, a:focus{
   box-shadow: 0 1px #85144B; 
   outline: none;
+}
+#main{
+  max-width: 460px;
+  width: 100%;
+  text-align: justify;
+  margin: 20px auto 100px;
 }
 hr.large{
   margin: 2em 0;
@@ -55,7 +61,9 @@ pre, pre.prettyprint{
   position: relative;
   z-index: 1;
 }
-
+input, textarea{
+  width: 100%;
+}
 .text-left{
   text-align: left;
 }
@@ -63,15 +71,34 @@ pre, pre.prettyprint{
   text-align: center;
 }
 
-#main{
-  max-width: 460px;
-  width: 100%;
-  text-align: justify;
-  margin: 20px auto 100px;
-}
 #bijou{
   width: 100px;
   height: 100px;
+}
+
+#post-editor input, #post-editor textarea{
+  border: none;
+  padding: 5px;
+  text-align: justify;
+  white-space: normal;
+}
+#post-editor input:focus, #post-editor textarea:focus{
+  outline: none;
+}
+#post-title-editor{
+  font-family: 'Unica One', Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+#post-editor label h5{
+  opacity: 0.5;
+}
+
+.canvas {
+  margin:0 auto;
+  display:block;
+}
+.canvas:hover{
+  cursor: pointer;
 }
 
 @media only screen and (max-width :767px){

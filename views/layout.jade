@@ -1,5 +1,5 @@
 doctype 5
-html
+html(lang="en")
   head
     // Hey! Email me at jsh@bckmn.com - I'm always looking for projects.
     title #{title}
@@ -10,6 +10,8 @@ html
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="msapplication-TileColor", content="#ffffff")
     meta(name="msapplication-TileImage", content="/images/andjosh.png")
+    style(type="text/css").
+      body,input,textarea{font-family:Vollkorn,Georgia,serif;font-weight:400;color:#3f3f3f;background:#fff;font-size:16px;line-height:25px}body *{box-sizing:border-box}button,h1,h2,h3,h4,h5,h6{font:24px/28px 'Unica One',Helvetica,sans-serif;text-transform:uppercase;text-align:center;margin:20px 10px 30px}a{color:#c31;text-decoration:none;cursor:pointer;box-shadow:0 1px transparent;transition:box-shadow 1s;-moz-transition:box-shadow 1s;-webkit-transition:box-shadow 1s;-o-transition:box-shadow 1s}#main{max-width:460px;width:100%;text-align:justify;margin:20px auto 100px}
     link(rel="apple-touch-icon", href="/images/andjosh.png")
     link(rel='icon', href="/images/andjoshclear.png")
     link(rel='stylesheet', href='/stylesheets/the.min.css')
@@ -29,8 +31,6 @@ html
     meta(name='twitter:image', content='#{post ? post.image : "http://andjosh.com/images/andjosh.png"}')
     meta(name='twitter:description', content="#{description}")
     meta(name='twitter:domain', content='http://andjosh.com')
-    if (post || posts)
-      link(href="/javascripts/vendor/prettify/prettify.css", type="text/css", rel="stylesheet")
     if req.host != 'localhost' && !noTracking
       script.
         (function(g,a,t,r,a,c,k){g[r]=g[r]||{};g[r][a]=t.getTime();g[r][c]=[];g[c]=function(m,u,l,c,e){this.gatrack.onerror.push([m,u,l,c,e])}})(window,document,(new Date()),'gatrack','timer','onerror');
