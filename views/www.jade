@@ -45,11 +45,12 @@ block content
     (function(window, document){
       var canvas = document.getElementById('canvas'),
         context = canvas.getContext('2d'),
-        height = canvas.parentNode.clientHeight/2,
-        width = canvas.parentNode.clientWidth/2,
+        height = canvas.parentNode.clientHeight*2,
+        width = canvas.parentNode.clientWidth*2,
+        limit = width/2,
         radius = Math.sqrt(width / 2 * width / 2 + height / 2 * height / 2) + 5,
         theta = Math.PI * (3 - Math.sqrt(5)),
-        spacing = 3 + Math.log((new Date).getHours()+1),
+        spacing = 10 + Math.log((new Date).getHours()+1),
         size = 1,
         speed = 1,
         index = 0,
@@ -59,6 +60,7 @@ block content
       canvas.height = canvas.width = radius * 2;
       canvas.style.left = width / 2 - radius + "px";
       canvas.style.top = height / 2 - radius + "px";
+      canvas.style.width = limit + 'px';
       canvas.width = radius * 2;
       canvas.height = radius * 2;
       canvas.style[vendor + "transform-origin"] = radius + "px " + radius + "px";
