@@ -216,7 +216,10 @@
       }
       // if(data)alert(JSON.stringify(data));
       if (data) {
-        window.location = data.url;
+        var dl = window.confirm('Download the image?');
+        if (dl){
+          window.location = data.url;
+        }
       };
     })
   }
