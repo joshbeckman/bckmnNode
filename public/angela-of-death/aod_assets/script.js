@@ -214,7 +214,10 @@
       if(t){
         var data = $.data(t).model.model.data;
       }
-      if(data)alert(JSON.stringify(data));
+      // if(data)alert(JSON.stringify(data));
+      if (data) {
+        window.location = data.url;
+      };
     })
   }
 
