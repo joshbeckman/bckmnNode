@@ -8,9 +8,9 @@ block content
     meta(itemprop="image", content="http://andjosh.com/images/aboutJoshBeckman.jpg")
     h1
       a(href="/") Josh Beckman
-    article
+    div
       p(itemprop="description") I build things for the internet and for your phones. I can be reached at 
-        a(href="mailto:email@andjosh.com?subject=Just came from www.andjosh.com", title="Email Josh").ga-link-trackable email@andjosh.com
+        a(href="mailto:email@andjosh.com?subject=Just came from andjosh.com", title="Email Josh").ga-link-trackable email@andjosh.com
         | . I write at 
         a(href="http://words.andjosh.com", title="words & Josh").ga-link-trackable words.andjosh.com
         | . I maintain a 
@@ -20,12 +20,12 @@ block content
         | . I tweet infrequently on 
         a(href="http://twitter.com/jbckmn", title="@jbckmn").ga-link-trackable Twitter
         | .
-    article
+    div
       h6 Recent post
       for p in posts
         h3
           a.blog-post-link(href="/post/#{p.slug}") #{p.title}
-    article
+    div
       h6 Recent Work
       p.text-center
         a(href="http://nareta.co", title="Listen to your reading list anywhere. Nareta will take your bookmarked articles and read them back to you.").ga-link-trackable Nareta
@@ -40,7 +40,7 @@ block content
         | &nbsp;&mdash;&nbsp;
         a(href="http://starklin.es", title="See all of your live visitors, across multiple sites, in one real-time graph.").ga-link-trackable Stark Lines
     .text-center
-      canvas#canvas.canvas(title="Time is not a constant. Click to save this moment.")
+      canvas#canvas.canvas(title="This time is yours. Click to save this moment.").ga-click-trackable
   script.
     (function(window, document){
       var canvas = document.getElementById('canvas'),
@@ -51,7 +51,7 @@ block content
         radius = Math.sqrt(width / 2 * width / 2 + height / 2 * height / 2) + 5,
         theta = Math.PI * (3 - Math.sqrt(5)),
         spacing = 10 + Math.log((new Date).getHours()+1),
-        size = 1,
+        size = 4,
         speed = 1,
         index = 0,
         total = (radius * radius) / (spacing * spacing),
@@ -83,8 +83,9 @@ block content
           context.arc(x, y, size, 0, 2 * Math.PI);
           context.fillStyle = context.strokeStyle = color();
           context.stroke();
+          context.fill();
         }
-      }, 1000/30);
+      }, 1000/60);
       canvas.addEventListener('click', function(evt){
         var url = canvas.toDataURL("image/png");
         window.andjoshWindow = window.open(url, 'andjoshWindow');

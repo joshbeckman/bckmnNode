@@ -7,7 +7,9 @@ block content
       meta(itemprop="datePublished", content="#{post.modified}")
       meta(itemprop="headline", content="#{post.title}")
       meta(itemprop="url", content="/post/#{post.slug}")
-      h6 #{moment(post.modified).format("MMM Do, YYYY")}
+      h6
+        a(href="/", title="Blog homepage", style="text-decoration:none;") Words and Josh
+        | &nbsp;&raquo; #{moment(post.modified).format("MMM Do, YYYY")}
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       h1
