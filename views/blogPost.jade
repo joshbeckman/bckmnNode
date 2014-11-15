@@ -21,6 +21,23 @@ block content
       if prevPost
         h6.text-left Prev: 
           a(href="/post/#{prevPost.slug}").ga-link-trackable(data-gatrack-action="Read this next (post)", data-gatrack-category="Internal link")  #{prevPost.title}
+      if post.comments && post.comments.length
+        h6.discussion Discussion
+        ul.comments
+          for c in post.comments
+            li
+              h6 #{c.author} on #{(c.date || '').toString().substring(0,15)}
+              div #{c.body}
+      form(method="POST", action="/post/#{post._id}/comment").comment-form
+        legend New Comment
+        textarea(name="comment", placeholder="Commenting...", required)
+        label(for="author") What is your name?
+        input(type="text", name="author", required, placeholder="Marybeth, etc.")
+        br
+        label(for="a") What is the highest prime number under seven?
+        input(type="text", name="a", required)
+        br
+        button.ga-click-trackable Submit
     hr.large
     h3
       a(href="/", title="Blog homepage") Words and Josh

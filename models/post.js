@@ -18,6 +18,7 @@ var Post = new Schema({
     markdown: {type: String, required: true},
     image: {type: String},
     colors: [{ hex: String, red: Number, green: Number, blue: Number }],
+    comments: [{ author: String, body: String, date: Date }],
     searchableTime: {type: String},
     searchableUrl: {type: String},
     keywordBin: {type: String}

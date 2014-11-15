@@ -78,6 +78,27 @@ module.exports = function (app, io, ensureAuth) {
       });
     });
   });
+  app.post('/post/:id/comment', function(req, res){
+    checkSubdomain(req, res, 'words', function(){
+      Post.findOne({_id: req.params.id}).exec(function(err, post){
+                
+        if (req.body.a == '5' && req.body.author != '' && req.body.comment != ''){
+          post.comments.push({
+            author: req.body.author,
+            body:req.body.comment,
+            date: (new Date)
+          });
+          post.save(function(err,result){
+            if(err) console.log('err commenting post:', err);
+          }); 
+          req.flash('message', 'Successfully commented!');
+        } else {
+          req.flash('error', 'Error commenting!');
+        }
+        res.redirect('/post/'+post.slug);
+      });
+    });
+  });
   app.get('/search', function (req, res) {
     checkSubdomain(req, res, 'words', function(){
       Post.find({published: true, keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {

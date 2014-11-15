@@ -22,7 +22,7 @@ block content
         if p.image
           img.post-image(itemprop="image", src="#{p.image}", alt="#{p.title}")
         h2
-          a.blog-post-link(href="/post/#{p.slug}") #{p.title}
+          a.ga-link-trackable.blog-post-link(href="/post/#{p.slug}") #{p.title}
     if posts.length < 1
       h2 No posts found!
     if posts.length >= 5
