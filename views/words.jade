@@ -20,7 +20,7 @@ block content
       article
         h6 #{moment(p.modified).format("MMM Do, YYYY")}
         if p.image
-          img.post-image(itemprop="image", src="#{p.image}", alt="#{p.title}")
+          img.post-image(src="#{p.image}", alt="#{p.title}")
         h2
           a.ga-link-trackable.blog-post-link(href="/post/#{p.slug}") #{p.title}
         .post-body !{p.html}
