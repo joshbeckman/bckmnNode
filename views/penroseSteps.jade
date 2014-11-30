@@ -103,3 +103,128 @@ block content
     .building-block(data-top="16", data-left="93", data-rotate="90", data-height="20")
     .building-block(data-top="112", data-left="148", data-rotate="30", data-height="20")
     .building-block(data-top="112", data-left="40", data-rotate="330", data-height="20")
+  script.
+    (function(window, document){
+      var elems = document.getElementsByClassName('building-block'),
+      whole = document.body.scrollHeight,
+      past = window.scrollY,
+      perc = 0,
+      old = window.scrollY,
+      i = 0,
+      dataset = {},
+      viewH = window.innerHeight,
+      viewW = window.innerWidth,
+      supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints,
+      transformPrefix = _.getVendorPrefix(["transform", "msTransform", "mozTransform", "webkitTransform", "oTransform"]);
+
+      if (elems.length > 0 && viewW > 780){
+        setTimeout(buildPage, 30);
+        var scrollIntervalID = setInterval(runPage, 10);
+      }
+
+      function runPage(){
+        old = past;
+        past = window.scrollY;
+        perc = past/(document.body.scrollHeight - viewH);
+        if (old != past && perc < 1) {
+          window.requestAnimationFrame(function() {
+            updatePage();
+          });
+        } else if (old != past && perc >= 1) {
+          window.requestAnimationFrame(function() {
+            finalizePage();
+          });
+        }
+      }
+      function buildPage(){
+        var rotator;
+        for (i = elems.length - 1; i >= 0; i--) {
+          elems[i].style.zIndex = elems[i].dataset.zIndex || null;
+          elems[i].style.top = elems[i].dataset.origTop = ((Math.random() * viewH) - viewH).toFixed() + 'px';
+          elems[i].style.left = elems[i].dataset.origLeft = (Math.random() * viewW).toFixed() + 'px';
+          elems[i].style.height = elems[i].dataset.origHeight = (viewH+viewW).toFixed() + 'px';
+          elems[i].style.opacity = '0.2';
+          rotator = (Math.random() * 360).toFixed();
+          elems[i].dataset.origRotate = rotator;
+          elems[i].style[transformPrefix] = 'rotate(' + rotator + 'deg)';
+        }
+        if (viewH >= document.body.scrollHeight){
+          setTimeout(finalizePage, 2000);
+        }
+      }
+      function updatePage(){
+        for (i = elems.length - 1; i >= 0; i--) {
+          dataset = elems[i].dataset;
+          elems[i].style.top = (parseInt(dataset.origTop,10) + ((parseInt(dataset.top,10) - parseInt(dataset.origTop,10)) * perc)).toFixed() + 'px';
+          elems[i].style.left = (parseInt(dataset.origLeft,10) + ((parseInt(dataset.left,10) - parseInt(dataset.origLeft,10)) * perc)).toFixed() + 'px';
+          elems[i].style.height = (parseInt(dataset.origHeight,10) + ((parseInt(dataset.height,10) - parseInt(dataset.origHeight,10)) * perc)).toFixed() + 'px';
+          elems[i].style.opacity = ((Math.round(100 * perc) / 100) + 0.2).toString();
+          elems[i].style[transformPrefix] = 'rotate(' + (parseInt(dataset.origRotate,10) + ((parseInt(dataset.rotate,10) - parseInt(dataset.origRotate,10)) * perc)).toFixed() + 'deg)';
+        }
+        document.getElementById('building-blocks').style.zIndex = null;
+        document.getElementById('building-blocks').className = 'pure-hidden-phone';
+      }
+      function finalizePage(){
+        for (i = elems.length - 1; i >= 0; i--) {
+          dataset = elems[i].dataset;
+          elems[i].style.top = (parseInt(dataset.top,10)).toFixed() + 'px';
+          elems[i].style.left = (parseInt(dataset.left,10)).toFixed() + 'px';
+          elems[i].style.height = (parseInt(dataset.height,10)).toFixed() + 'px';
+          elems[i].style.opacity = 1;
+          elems[i].style[transformPrefix] = 'rotate(' + (parseInt(dataset.rotate,10)).toFixed() + 'deg)';
+        }
+        document.getElementById('building-blocks').style.display = 'block';
+        document.getElementById('building-blocks').style.zIndex = 1;
+        document.getElementById('building-blocks').className = 'pure-hidden-phone turned-fast';
+      }
+
+      // SVG Bijou
+      var arr = ['.foo', '.boo','.fool','.bool','.cool', '.nool','.doo','.loo', '.too'],
+        inc = 1, bTimeout;
+        if(document.getElementById('bijou')){      
+          setTimeout(godraw, 1000);
+        }
+        if(document.getElementById('bijou-large')){      
+          setTimeout(godraw, 1000);
+        }
+      function godraw () {
+        for (var i = arr.length - 1; i >= 0; i--) {
+          setTimeout(draw, Math.random()*1000, arr[i], 1);
+        }
+        document.getElementById('bijou').addEventListener('mouseover', function(){
+          undraw();
+        }, false);
+      }
+      function undraw () {
+        for (var i = arr.length - 1; i >= 0; i--) {
+          setTimeout(drawNone, 10, arr[i], -1);
+        }
+        setTimeout(godraw, 3000);
+      }
+      function drawNone(sl, int){
+        var path = document.querySelector(sl),
+          bound = path.getBoundingClientRect(),
+          length = Math.round(Math.sqrt(Math.pow(bound.height, 2) + Math.pow(bound.width, 2)));
+        path.style.strokeDashoffset = length;
+      }
+      function draw(sl, int){
+        var path = document.querySelector(sl),
+          bound = path.getBoundingClientRect(),
+          length = Math.round(Math.sqrt(Math.pow(bound.height, 2) + Math.pow(bound.width, 2)));
+        // Clear any previous transition
+        path.style.transition = path.style.WebkitTransition = 'none';
+        // Set up the starting positions
+        path.style.strokeDasharray = length + ' ' + length;
+        path.style.strokeDashoffset = int * length;
+        path.style.strokeWidth = 1;
+        // Trigger a layout so styles are calculated & the browser
+        // picks up the starting position before animating
+        path.getBoundingClientRect();
+        // Define our transition
+        path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset ' + Math.round(0.5 + Math.random() * 2).toString() + 's ease-in-out';
+        // Go!
+        path.style.strokeDashoffset = '0';
+        path.style.stroke = '#666';
+        // path.style.stroke = _.randColor();
+      }
+    })(this, this.document);

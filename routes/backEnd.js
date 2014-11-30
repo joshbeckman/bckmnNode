@@ -9,25 +9,127 @@ var moment = require('moment')
     , marked = require('marked')
     , moment = require('moment')
     , RSS = require('rss')
-    , sm = require('sitemap');
+    , sm = require('sitemap')
+    , awsKey = 'AKIAIWVJ6X3JUX4GOB2A'
+    , awsSec = '7C+XTIsmAw4OTDMxc28r28y9VZCocGPQO1yZ7Nlw'
+    , s3 = require('s3')
+    , client = s3.createClient({
+        maxAsyncS3: 20,     // this is the default
+        s3RetryCount: 3,    // this is the default
+        s3RetryDelay: 1000, // this is the default
+        multipartUploadThreshold: 20971520, // this is the default (20 MB)
+        multipartUploadSize: 15728640, // this is the default (15 MB)
+        s3Options: {
+          accessKeyId: awsKey,
+          secretAccessKey: awsSec,
+        }
+      });
 module.exports = function (app, io, ensureAuth) {
 
-  app.get('/w', ensureAuth, function(req,res){
+  app.get('/w', function(req,res){
     Post.getUnpublishedPosts(function(err, postList){
       Post.findOne({_id: req.query.edit}).lean().exec(function(err,post){
-        res.render('write', {
+        res.render('writer', {
           title: 'Write',
           post: post,
           postList: postList,
           marked: marked,
           noTracking: true,
-          socket: true,
           message: req.flash('message'),
           error: req.flash('error'),
           req: req
         });
       });
     });
+  });
+
+  app.post('/api/create', function(req,res){
+    if(req.body.key && req.body.key == process.env.BLOG_KEY) {
+      var newPost = new Post;
+      newPost.markdown = req.body.markdown;
+      newPost.title = req.body.title;
+      if (req.files.image){
+        uploadImage(req.files.image, function(err, data, filePath){
+          newPost.image = filePath;
+          newPost.slug = Post.slugify(req.body.title);
+          newPost.html = marked(req.body.markdown);
+          newPost.lede = marked(req.body.markdown.split('\n\n').slice(0,3).join('\n\n'));
+          if (req.body.link)
+            newPost.link = req.body.link;
+          newPost.published = req.body.published ? true : false;
+          newPost.searchableTime = moment(new Date).format('dddd MMMM Do YYYY h:mm:ss A');
+          newPost.save(function(err,result){
+            if (err){
+              res.status(500).jsonp(err);
+            } else{
+              res.status(201).jsonp(result);
+            }
+          });
+        });
+      } else {
+        newPost.slug = Post.slugify(req.body.title);
+        newPost.html = marked(req.body.markdown);
+        newPost.lede = marked(req.body.markdown.split('\n\n').slice(0,3).join('\n\n'));
+        if (req.body.link)
+          newPost.link = req.body.link;
+        newPost.published = req.body.published ? true : false;
+        newPost.searchableTime = moment(new Date).format('dddd MMMM Do YYYY h:mm:ss A');
+        newPost.save(function(err,result){
+          if (err){
+            res.status(500).jsonp(err);
+          } else{
+            res.status(201).jsonp(result);
+          }
+        });
+      }
+    } else {
+      res.status(403).jsonp(req.body);
+    }
+  });
+
+  app.post('/api/edit/:id', function(req,res){
+    if(req.body.key && req.body.key == process.env.BLOG_KEY) {
+      Post.findOne({_id: req.params.id}).exec(function(err, newPost){
+        newPost.markdown = req.body.markdown;
+        newPost.title = req.body.title;
+        if (req.files.image){
+          uploadImage(req.files.image, function(err, data, filePath){
+            newPost.image = filePath;
+            newPost.slug = Post.slugify(req.body.title);
+            newPost.html = marked(req.body.markdown);
+            newPost.lede = marked(req.body.markdown.split('\n\n').slice(0,3).join('\n\n'));
+            if (req.body.link)
+              newPost.link = req.body.link;
+            newPost.published = req.body.published ? true : false;
+            newPost.searchableTime = moment(new Date).format('dddd MMMM Do YYYY h:mm:ss A');
+            newPost.save(function(err,result){
+              if (err){
+                res.status(500).jsonp(err);
+              } else{
+                res.status(201).jsonp(result);
+              }
+            });
+          });
+        } else {
+          newPost.slug = Post.slugify(req.body.title);
+          newPost.html = marked(req.body.markdown);
+          newPost.lede = marked(req.body.markdown.split('\n\n').slice(0,3).join('\n\n'));
+          if (req.body.link)
+            newPost.link = req.body.link;
+          newPost.published = req.body.published ? true : false;
+          newPost.searchableTime = moment(new Date).format('dddd MMMM Do YYYY h:mm:ss A');
+          newPost.save(function(err,result){
+            if (err){
+              res.status(500).jsonp(err);
+            } else{
+              res.status(201).jsonp(result);
+            }
+          });
+        }
+      });
+    } else {
+      res.status(403).jsonp(req.body);
+    }
   });
 
   app.get('/t', ensureAuth, function(req,res){
@@ -122,5 +224,29 @@ module.exports = function (app, io, ensureAuth) {
       res.header('Content-Type', 'application/xml');
       res.send( feed.xml() );
     });
+  });
+}
+
+function uploadImage(formImage, cb){
+  var remote = (new Date).toISOString().substring(0,10) + '/' + formImage.name;
+  s3Thing(formImage.path, remote, 'andjosh', cb);
+}
+
+function s3Thing(local, remote, bucket, cb){
+  var params = {
+      localFile: local,
+      s3Params: {
+        Bucket: bucket,
+        Key: remote,
+      }
+    },
+    uploader = client.uploadFile(params);
+  uploader.on('error', function(err) {
+    console.error("unable to upload file to s3:", err.stack);
+    cb(err, null, null);
+  });
+  uploader.on('end', function(data) {
+    console.log("done uploading file to s3");
+    cb(null, data, ('https://s3.amazonaws.com/' + bucket + '/' + remote));
   });
 }

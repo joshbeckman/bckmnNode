@@ -9,6 +9,8 @@ var express = require('express')
   , flash = require('connect-flash')
   , io = require('socket.io').listen(server)
   , fs = require('fs')
+  , bodyParser = require('body-parser')
+  , multer = require('multer')
   , config = JSON.parse(fs.readFileSync('./config.json'))
   , mongoUri = process.env.MONGOLAB_URI
             || process.env.MONGOHQ_URL
@@ -27,7 +29,9 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser());
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(multer()); // for parsing multipart/form-data
 app.use(express.methodOverride());
 app.use(flash());
 app.use(express.cookieParser('You know you wanna'));

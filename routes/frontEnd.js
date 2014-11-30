@@ -13,6 +13,7 @@ var passport = require('passport'),
     impersonate = require('../lib/getHTML').impersonate;
 
 module.exports = function (app, io, ensureAuth) {
+
   app.get('/', function(req, res) {
     var sub = req.subdomains.join(''),
       subnet = sub == '' ? 'www' : req.subdomains.join('-'),
@@ -33,23 +34,40 @@ module.exports = function (app, io, ensureAuth) {
                             error: req.flash('error') });
       }
     } else {
-      res.redirect('http://you.andjosh.com?sub=' + sub);
+      res.redirect('http://www.andjosh.com?sub=' + sub);
     }
   });
+
   app.get('/test-moi', function(req,res){
-    blocks['words'](req, res, 'words', 'words');
-    // res.render('you', { title: 'you',
-    //                         description: 'config.members[subnet].description',
-    //                         req: req,
-    //                         subnet: 'about',
-    //                         query: req.query,
-    //                         stripeKey: api_public,
-    //                         message: req.flash('message'), 
-    //                         error: req.flash('error') });
+    res.render('payments',  {
+      title: 'Josh Beckman',
+      message: req.flash('message'),
+      error: req.flash('error'),
+      req: req
+    });
   });
+
+  app.get('/about', function(req,res){
+    res.render('about',  {
+      title: 'Josh Beckman',
+      message: req.flash('message'),
+      error: req.flash('error'),
+      req: req
+    });
+  });
+
+  // Legacy routing for posts
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
       Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+        res.redirect('/posts/'+post._id+'/'+post.slug)
+      });
+    });
+  });
+
+  app.get('/posts/:id/:slug', function(req,res){
+    checkSubdomain(req, res, 'words', function(){
+      Post.findOne({_id: req.params.id}).lean().exec(function(err,post){
         if (err || !post) {
           res.redirect('/search?q='+req.params.slug);
         } else {
@@ -71,14 +89,14 @@ module.exports = function (app, io, ensureAuth) {
       });
     });
   });
-  app.get('/post/:slug/edit', ensureAuth, function(req,res){
+  app.get('/posts/:id/:slug/edit', ensureAuth, function(req,res){
     checkSubdomain(req, res, 'words', function(){
-      Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
+      Post.findOne({_id: req.params.id}).lean().exec(function(err,post){
         res.redirect('/w?key='+req.query.key+'&edit='+post._id)
       });
     });
   });
-  app.post('/post/:id/comment', function(req, res){
+  app.post('/posts/:id/comment', function(req, res){
     checkSubdomain(req, res, 'words', function(){
       Post.findOne({_id: req.params.id}).exec(function(err, post){
                 
@@ -95,7 +113,7 @@ module.exports = function (app, io, ensureAuth) {
         } else {
           req.flash('error', 'Error commenting!');
         }
-        res.redirect('/post/'+post.slug);
+        res.redirect('/posts/' + post._id + '/' +post.slug);
       });
     });
   });
@@ -215,9 +233,6 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/pay', function(req,res){
     res.redirect(301, 'http://payments.andjosh.com/');
   });
-  app.get('/about', function(req,res){
-    res.redirect(301, 'http://www.andjosh.com/');
-  });
   app.get('/feed', function(req,res){
     res.redirect(301, 'http://words.andjosh.com/rss.xml');
   });
@@ -320,22 +335,9 @@ module.exports = function (app, io, ensureAuth) {
           }
         });
       },
-      words: function(req, res, subnet, subname){
-        Post.getLatestPosts(10, (req.query.offset ? parseInt(req.query.offset, 10) : 0), function(err, posts){
-          res.render(subnet, { title: subname + ' Beckman',
-                              description: config.members[subnet].description,
-                              req: req,
-                              subnet: subnet,
-                              query: req.query.sub,
-                              posts: posts,
-                              moment: moment,
-                              message: req.flash('message'), 
-                              error: req.flash('error') });
-        });
-      },
       www: function(req, res, subnet, subname){
-        Post.getLatestPosts(1, 0, function(err, posts){
-          res.render(subnet, { title: 'Josh Beckman',
+        Post.getLatestPosts(10, (req.query.offset ? parseInt(req.query.offset, 10) : 0), function(err, posts){
+          res.render('words', { title: subname + ' Beckman',
                               description: config.members[subnet].description,
                               req: req,
                               subnet: subnet,

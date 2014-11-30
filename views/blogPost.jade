@@ -2,14 +2,13 @@ extends layout
 
 block content
   #main
+    include sidebar
     article(itemscope, itemtype="http://schema.org/BlogPosting")
       meta(itemprop="author", content="Joshua Beckman")
       meta(itemprop="datePublished", content="#{post.modified}")
       meta(itemprop="headline", content="#{post.title}")
       meta(itemprop="url", content="/post/#{post.slug}")
-      h6
-        a(href="/", title="Blog homepage", style="text-decoration:none;") Words and Josh
-        | &nbsp;&raquo; #{moment(post.modified).format("MMM Do, YYYY")}
+      h6 #{moment(post.modified).format("MMM Do, YYYY")}
       if post.image
         img.post-image(itemprop="image", src="#{post.image}", alt="#{post.title}")
       h1
@@ -28,23 +27,14 @@ block content
             li
               h6 #{c.author} on #{(c.date || '').toString().substring(0,15)}
               div #{c.body}
-      form(method="POST", action="/post/#{post._id}/comment").comment-form
-        legend New Comment
-        textarea(name="comment", placeholder="Commenting...", required)
-        label(for="author") What is your name?
-        input(type="text", name="author", required, placeholder="Marybeth, etc.")
-        br
-        label(for="a") What is the highest prime number under seven?
-        input(type="text", name="a", required)
-        br
-        button.ga-click-trackable Submit
-    hr.large
-    h3
-      a(href="/", title="Blog homepage") Words and Josh
-    p My name is 
-      a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable Josh Beckman
-      | . I build things for the internet and for your phones. This fancy blog comes with an 
-      a(href="/rss.xml", title="RSS Feed").ga-link-trackable RSS feed
-      |  and a 
-      a(href="http://tinyletter.com/andjosh", title="Newsletter").ga-link-trackable newsletter
-      | .
+      if false
+        form(method="POST", action="/post/#{post._id}/comment").comment-form
+          legend New Comment
+          textarea(name="comment", placeholder="Commenting...", required)
+          label(for="author") What is your name?
+          input(type="text", name="author", required, placeholder="Marybeth, etc.")
+          br
+          label(for="a") What is the highest prime number under seven?
+          input(type="text", name="a", required)
+          br
+          button.ga-click-trackable Submit

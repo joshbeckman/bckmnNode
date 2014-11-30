@@ -1,0 +1,66 @@
+extends layout
+
+block content
+  style.
+    #post-image{
+      opacity:0.1;
+    }
+    #save-button{
+      border:1px solid;
+      background:#fff;
+      font-size: 15px;
+      color:#c31;
+      line-height: 15px;
+      padding:5px 10px;
+    }
+    #post-editor input, #post-editor textarea{
+      border: none;
+      padding: 5px;
+      text-align: justify;
+      white-space: normal;
+    }
+    #post-editor input:focus, #post-editor textarea:focus{
+      outline: none;
+    }
+    #post-title-editor{
+      font-family: 'Futura', Helvetica, sans-serif;
+      text-transform: uppercase;
+    }
+    #post-editor label h5{
+      opacity: 0.5;
+    }
+  #main
+    #post-editor
+      form.pure-form(method="POST", action="/api#{post ? '/edit/' + post._id : '/create'}", enctype="multipart/form-data")
+        label(for="image")
+          h5.text-left(style="margin:0;font-size:1em;") Image
+        input#post-image(name="image", type='file')
+        label(for="title")
+          h5.text-left(style="margin:0;font-size:1em;") Title
+        input#post-title-editor(name="title", type='text', placeholder='Title', value="#{post ? post.title : req.query.title || ''}", autofocus="autofocus")
+        label(for="markdown")
+          h5.text-left(style="margin:0;font-size:1em;") Text
+        textarea#post-textarea(rows="15", name="markdown") !{post ? post.markdown : ''}
+        label(for="published")
+          h5.text-left(style="margin:0;font-size:1em;") Published?
+        if post && post.published
+          input#published(name="published", type="checkbox", checked)
+        else
+          input#published(name="published", type="checkbox", checked)
+        label(for="key")
+          h5.text-left(style="margin:0;font-size:1em;") Key
+        input#post-key(name="key", type='password')
+        br
+        .text-center
+          button#save-button(type="submit") Yep
+      br
+      br
+    div
+      ul.unpub-list
+        for p in postList
+          li
+            a(href="/w?key=#{req.query.key}&edit=#{p._id}") #{p.title}
+      br
+      br
+      div.text-center
+        a(href="javascript:(function(){  function getSelectionHtml() {    var html = '';    if (typeof window.getSelection != 'undefined') {      var sel = window.getSelection();      if (sel.rangeCount) {        var container = document.createElement('div');        for (var i = 0, len = sel.rangeCount; i < len; ++i) {          container.appendChild(sel.getRangeAt(i).cloneContents());        }        html = container.innerHTML;      }    } else if (typeof document.selection != 'undefined') {      if (document.selection.type == 'Text') {        html = document.selection.createRange().htmlText;      }    }    return html;  }  var base = 'http://andjosh.com/javascripts/marklet.js',    s = document.createElement('script'),    key = prompt('Key into the lock...'),    k = document.createElement('span'),    q = document.createElement('span');  s.type = 'text/javascript';  s.src = base;  k.id = 'andjoshBlogKey';  k.className = key;  q.id = 'andjoshQuote';  q.innerHTML = getSelectionHtml();  document.body.appendChild(q);  document.body.appendChild(s);  document.body.appendChild(k);  window.andjoshWindow = window.open('http://example.com', 'andjoshWindow');})();") marklet

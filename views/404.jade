@@ -1,22 +1,13 @@
 extends layout
 
 block content
-  #heady
-    include bijousvg
-    .blog-heady-wrap
-      h1.font-med.headline
-        a(href="/") #{subnet} & Josh
-      ul.top-links
-        li
-          a(href="http://www.andjosh.com", title="www & Josh").ga-link-trackable andjosh.com
-        li
-          a(href="http://words.andjosh.com", title="Words & Josh").ga-link-trackable Blog
-        li
-          a(href="http://about.andjosh.com", title="API & Josh").ga-link-trackable About
-  .pure-g-r
-    .pure-u-1
-      article.article-wrap
-        .post-body 
-          h1.text-center
-            a(style="padding:1em;", href="/") 404 Not Found
-          p.text-center I'm truly sorry, but I cannot find url: <code>#{req.url}</code>
+  #main
+    include sidebar
+    h1.text-center
+      a(style="padding:1em;", href="/") 404 Not Found
+    p.text-center I'm truly sorry, but I cannot find url: <code>#{req.url}</code>
+    hr.large
+    form(action="/search", method="GET")#search.text-center.blog-search
+      label(for="q") Search:
+      input(type="text", name="q", id="q")
+      button Submit
