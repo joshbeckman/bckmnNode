@@ -176,6 +176,7 @@ padding:5px 10px;
   #main{
     margin-right: auto;
     margin-left: auto;
+    padding: 0 10px 0;
   }
   header{
     position: initial;
@@ -184,6 +185,11 @@ padding:5px 10px;
   header ul li{
     display: inline-block;
     margin:0 1.5em 0 0;
+  }
+  img.post-image{
+    margin: 0px -10px;
+    width: calc(100% + 20px);
+    max-width: initial;
   }
 }
 /*Prettyprint*/
