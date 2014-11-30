@@ -89,7 +89,7 @@ module.exports = function (app, io, ensureAuth) {
       });
     });
   });
-  app.get('/posts/:id/:slug/edit', ensureAuth, function(req,res){
+  app.get('/posts/:id/:slug/edit', function(req,res){
     checkSubdomain(req, res, 'words', function(){
       Post.findOne({_id: req.params.id}).lean().exec(function(err,post){
         res.redirect('/w?key='+req.query.key+'&edit='+post._id)

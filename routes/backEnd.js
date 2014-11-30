@@ -199,7 +199,7 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/rss.xml', function(req, res){
-    Post.find({published: true}).sort('-modified').lean().exec(function(err,posts){
+    Post.find({published: true}).limit(20).sort('-modified').lean().exec(function(err,posts){
       var feed = new RSS({
           title: 'Words & Josh Beckman',
           description: 'Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL.',
@@ -214,7 +214,7 @@ module.exports = function (app, io, ensureAuth) {
       for(i=0;i<posts.length;i++){
         feed.item({
             title:  posts[i].title,
-            description: posts[i].html,
+            description: posts[i].image ? '<img src="' + posts[i].image + '"/>' + posts[i].html : posts[i].html,
             url: 'http://words.andjosh.com/post/'+posts[i].slug + '?utm_medium=rss',
             date: posts[i].modified,
             lat: config.location.latitude,
