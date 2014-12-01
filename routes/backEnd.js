@@ -10,8 +10,8 @@ var moment = require('moment')
     , moment = require('moment')
     , RSS = require('rss')
     , sm = require('sitemap')
-    , awsKey = 'AKIAIWVJ6X3JUX4GOB2A'
-    , awsSec = '7C+XTIsmAw4OTDMxc28r28y9VZCocGPQO1yZ7Nlw'
+    , awsKey = process.env.AWS_KEY
+    , awsKey = process.env.AWS_SEC
     , s3 = require('s3')
     , client = s3.createClient({
         maxAsyncS3: 20,     // this is the default
