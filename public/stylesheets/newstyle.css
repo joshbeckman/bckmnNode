@@ -5,8 +5,8 @@ body, input, textarea{
   font-weight: 400;
   color: #3f3f3f;
   background: #ffffff;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 13px;
+  line-height: 20px;
 }
 body *{
   box-sizing:border-box;
@@ -173,6 +173,10 @@ padding:5px 10px;
 
 }
 @media only screen and (max-width :670px){
+  body{
+    font-size: 14px;
+    line-height: 22px;
+  }
   #main{
     margin-right: auto;
     margin-left: auto;
