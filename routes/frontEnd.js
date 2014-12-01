@@ -66,7 +66,7 @@ module.exports = function (app, io, ensureAuth) {
   });
 
   app.get('/posts/:id/:slug', function(req,res){
-    checkSubdomain(req, res, 'words', function(){
+    checkSubdomain(req, res, 'www', function(){
       Post.findOne({_id: req.params.id}).lean().exec(function(err,post){
         if (err || !post) {
           res.redirect('/search?q='+req.params.slug);
@@ -90,14 +90,14 @@ module.exports = function (app, io, ensureAuth) {
     });
   });
   app.get('/posts/:id/:slug/edit', function(req,res){
-    checkSubdomain(req, res, 'words', function(){
+    checkSubdomain(req, res, 'www', function(){
       Post.findOne({_id: req.params.id}).lean().exec(function(err,post){
         res.redirect('/w?key='+req.query.key+'&edit='+post._id)
       });
     });
   });
   app.post('/posts/:id/comment', function(req, res){
-    checkSubdomain(req, res, 'words', function(){
+    checkSubdomain(req, res, 'www', function(){
       Post.findOne({_id: req.params.id}).exec(function(err, post){
                 
         if (req.body.a == '5' && req.body.author != '' && req.body.comment != ''){
@@ -118,7 +118,7 @@ module.exports = function (app, io, ensureAuth) {
     });
   });
   app.get('/search', function (req, res) {
-    checkSubdomain(req, res, 'words', function(){
+    checkSubdomain(req, res, 'www', function(){
       Post.find({published: true, keywords: { $all: Post.extractKeywords(req.query.q) } }, null, {sort:{modified: -1}}).lean().exec(function(err, posts) {
         res.render('words', { title: 'Results for: '+req.query.q,
                             posts: posts,
