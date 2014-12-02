@@ -12,14 +12,14 @@ body *{
   box-sizing:border-box;
 }
 h1,h2,h3,h4,h5,h6, button{
-  font: 24px/28px 'Futura', 'Century Gothic', Helvetica, sans-serif;
+  font: 20px/28px 'Futura', 'Century Gothic', Helvetica, sans-serif;
   text-transform: uppercase;
   text-align: left;
-  margin: 20px 0px 30px;
+  margin: 20px 0px 20px;
   font-weight: 400;
 }
 h6{
-  font-size: 14px;
+  font-size: 13px;
   line-height: 18px;
   margin: 20px 10px 10px;
 }
@@ -56,7 +56,7 @@ header h1, header h2{
 header ul{
   list-style: none;
   margin:0;
-  padding: 0 0 0 30px;
+  padding: 0 0 0 25px;
 }
 header li a{
   font-size: 12px;
