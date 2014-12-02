@@ -90,6 +90,9 @@ pre, pre.prettyprint, code.prettyprint{
   border-bottom: 1px solid #ddd;
   position: relative;
   z-index: 1;
+  -webkit-hyphens: none;
+     -moz-hyphens: none;
+          hyphens: none;
 }
 input, textarea{
   width: 100%;
@@ -99,6 +102,11 @@ input, textarea{
 }
 .text-center{
   text-align: center;
+}
+.post-body {
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
 }
 .blog-search input{
 display: inline-block;
