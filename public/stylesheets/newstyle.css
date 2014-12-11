@@ -37,7 +37,15 @@ h1 a, h2 a, h3 a, h4 a, h5 a{
   text-decoration:none;
 }
 h1 span, h2 span{
-  font-size: 1.2em;
+  border-radius: 100%;
+  border:2px solid;
+  display: inline-block;
+  height: 28px;
+  width:28px;
+  vertical-align: text-top;
+  font-size: 20px;
+  padding:1px 5px 0px;
+  line-height: 20px;
 }
 #main{
   max-width: 430px;
@@ -56,7 +64,7 @@ header h1, header h2{
 header ul{
   list-style: none;
   margin:0;
-  padding: 0 0 0 25px;
+  padding: 0 0 0 10px;
 }
 header li a{
   font-size: 12px;
