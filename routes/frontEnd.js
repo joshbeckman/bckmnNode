@@ -60,7 +60,11 @@ module.exports = function (app, io, ensureAuth) {
   app.get('/post/:slug', function(req,res){
     checkSubdomain(req, res, 'words', function(){
       Post.findOne({slug: req.params.slug}).lean().exec(function(err,post){
-        res.redirect('/posts/'+post._id+'/'+post.slug)
+        if (err || !post) {
+          res.redirect('/404');
+        } else {
+          res.redirect('/posts/'+post._id+'/'+post.slug);
+        }
       });
     });
   });
