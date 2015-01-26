@@ -19,7 +19,3 @@ block content
       hr.large
       p.text-center
         a(href="/?offset=#{req.query.offset ? (parseInt(req.query.offset, 10) + 10).toString() : '10'}") Next Page &raquo;
-    form(action="/search", method="GET")#search.text-center.blog-search
-        label(for="q") Search:
-        input(type="text", name="q", id="q")
-        button Submit

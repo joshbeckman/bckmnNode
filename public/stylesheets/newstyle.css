@@ -3,7 +3,7 @@
 body, input, textarea{
   font-family: "Verdana", Helvetica, sans-serif;
   font-weight: 400;
-  color: #3f3f3f;
+  color: #444;
   background: #ffffff;
   font-size: 13px;
   line-height: 20px;
@@ -12,8 +12,7 @@ body *{
   box-sizing:border-box;
 }
 h1,h2,h3,h4,h5,h6, button{
-  font: 20px/28px 'Futura', 'Century Gothic', Helvetica, sans-serif;
-  text-transform: uppercase;
+  font: 20px/28px 'Verdana', Helvetica, sans-serif;
   text-align: left;
   margin: 20px 0px 20px;
   font-weight: 400;
@@ -24,17 +23,11 @@ h6{
   margin: 20px 10px 10px;
 }
 a {
-  color: #c31;
-  text-decoration: underline;
-  cursor: pointer;
+  color: #000;
 }
 a:focus{
   outline: none;
-  background-color:#c31;
-  color: white;
-}
-h1 a, h2 a, h3 a, h4 a, h5 a{
-  text-decoration:none;
+  background-color:#eee;
 }
 h1 span, h2 span{
   border-radius: 100%;
@@ -68,8 +61,6 @@ header ul{
 }
 header li a{
   font-size: 12px;
-  text-transform: uppercase;
-  font-family: 'Futura', 'Century Gothic',Helvetica, sans-serif;
   text-decoration: none;
 }
 hr.large{
@@ -132,7 +123,7 @@ outline:none;
 border:1px solid;
 background:#fff;
 font-size: 15px;
-color:#c31;
+color:blue;
 line-height: 15px;
 padding:5px 10px;
 }
@@ -148,8 +139,6 @@ text-align:left;
 }
 .comment-form{}
 .comment-form legend{
-font-family: "Unica One";
-text-transform: uppercase;
 margin:20px 0 5px;
 }
 .comment-form label{
@@ -172,7 +161,7 @@ padding:0.5em;
 border:1px solid;
 background:#fff;
 font-size: 15px;
-color:#c31;
+color:blue;
 line-height: 15px;
 padding:5px 10px;
 }
