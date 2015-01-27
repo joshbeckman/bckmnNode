@@ -22,7 +22,7 @@ var Post = new Schema({
     searchableTime: {type: String},
     searchableUrl: {type: String},
     keywordBin: {type: String},
-    created: {type: Date, default: (new Date)}
+    createdAt: {type: Date, default: (new Date)}
 });
 
 Post.plugin(troop.timestamp);
