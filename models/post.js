@@ -40,7 +40,7 @@ Post.statics.slugify = function(string){
 };
 
 Post.statics.getLatestPosts = function(count, offset, callback){
-  this.find({published: true}).sort('-createdAt').skip(offset).limit(count).exec(callback);
+  this.find({published: true}).sort('-modified').skip(offset).limit(count).exec(callback);
 };
 Post.statics.getUnpublishedPosts = function(callback){
   this.find({published: false}).sort('-modified').lean().exec(callback);
