@@ -21,7 +21,8 @@ var Post = new Schema({
     comments: [{ author: String, body: String, date: Date }],
     searchableTime: {type: String},
     searchableUrl: {type: String},
-    keywordBin: {type: String}
+    keywordBin: {type: String},
+    created: {type: Date, default: (new Date)}
 });
 
 Post.plugin(troop.timestamp);
@@ -39,7 +40,7 @@ Post.statics.slugify = function(string){
 };
 
 Post.statics.getLatestPosts = function(count, offset, callback){
-  this.find({published: true}).sort('-modified').skip(offset).limit(count).exec(callback);
+  this.find({published: true}).sort('-created').skip(offset).limit(count).exec(callback);
 };
 Post.statics.getUnpublishedPosts = function(callback){
   this.find({published: false}).sort('-modified').lean().exec(callback);
