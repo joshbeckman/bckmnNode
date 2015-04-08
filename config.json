@@ -1,7 +1,7 @@
 {
   "members":{
     "www":{
-      "description":"Josh Beckman (@jbckmn), a developer, designer, data scientist and photographer in Chicago, IL."
+      "description":"Josh Beckman (@andjosh), a developer, designer, data scientist and photographer in Chicago, IL."
     },
     "api":{
       "description": "Application Programmable Interface for Joshua Beckman"
@@ -34,12 +34,12 @@
     {
       "name":"Twitter",
       "username":"jbckmn",
-      "html_url":"http://twitter.com/jbckmn"
+      "html_url":"http://twitter.com/twandjosh"
     },
     {
       "name":"GitHub",
       "username":"jbckmn",
-      "html_url":"http://github.com/jbckmn"
+      "html_url":"http://github.com/andjosh"
     }
   ],
   "birthdate":"1990-03-22T17:00:00-06:00",

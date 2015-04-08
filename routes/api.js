@@ -18,7 +18,7 @@ module.exports = function (app, io) {
         fullResponse = {};
       identifiers.icon = config.icon_path;
       identifiers.image = config.image_path;
-      identifiers.home_url = "http://www.bckmn.com";
+      identifiers.home_url = "http://www.andjosh.com";
       identifiers.first_name = config.first_name;
       identifiers.last_name = config.last_name;
       // person.birthdate = config.birthdate;
@@ -74,18 +74,6 @@ module.exports = function (app, io) {
       identifiers.externals = externals;
       fullResponse.person = person;
       fullResponse.identifiers = identifiers;
-      if (posts && posts.length > 0) {
-        fullResponse.blog = {
-          rss: "http://www.bckmn.com/rss.xml",
-          latest: [
-            {
-              title: posts[0].title,
-              url: 'http://www.bckmn.com/blog/'+posts[0].slug,
-              date: posts[0].modified
-            }
-          ]
-        };
-      }
       fullResponse._links = {
         self: {
           href: "/api"
