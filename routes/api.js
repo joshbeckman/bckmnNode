@@ -5,13 +5,12 @@ var moment = require('moment'),
     fs = require('fs'),
     Post = require('../models/post'),
     config = JSON.parse(fs.readFileSync('./config.json')),
-    error404 = {"status":{"code":404,"message":"Nothing found by that identifier. Life is hard.","html_url":"http://bckmn.com"}},
-    error400 = {"status":{"code":400,"message":"Josh doesn't understand what you mean. Speak slowly.","html_url":"http://bckmn.com"}},
-    updated204 = {"status":{"code":204,"message":"Success! Life is good.","html_url":"http://bckmn.com"}};
+    error404 = {"status":{"code":404,"message":"Nothing found by that identifier. Life is hard.","html_url":"http://andjosh.com"}},
+    error400 = {"status":{"code":400,"message":"Josh doesn't understand what you mean. Speak slowly.","html_url":"http://andjosh.com"}},
+    updated204 = {"status":{"code":204,"message":"Success! Life is good.","html_url":"http://andjosh.com"}};
 
 module.exports = function (app, io) {
   app.get('/api', function(req, res) {
-    Post.getLatestPosts(1, function(err, posts){
       var person = {},
         identifiers = {},
         externals = config.externals,
@@ -80,6 +79,5 @@ module.exports = function (app, io) {
         }
       };
       res.jsonp(fullResponse);
-    });
   });
 }
