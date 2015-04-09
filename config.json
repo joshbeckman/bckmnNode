@@ -27,8 +27,8 @@
   },
   "first_name":"Joshua",
   "last_name":"Beckman",
-  "identicon_path":"http://www.andjosh.com/images/andjosh.png",
-  "image_path":"http://www.andjosh.com/images/jbckmn.jpg",
+  "identicon_path":"http://www.andjosh.com/favicon.png",
+  "image_path":"http://www.andjosh.com/favicon.png",
   "email":"jsh@bckmn.com",
   "externals":[
     {
