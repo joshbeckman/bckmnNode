@@ -253,14 +253,13 @@ module.exports = function (app, io, ensureAuth) {
     },
     blocks = {
       api: function(req, res, subnet, subname){
-        Post.getLatestPosts(1, 0, function(err, posts){
           var person = {},
             identifiers = {},
             externals = config.externals,
             fullResponse = {};
           identifiers.icon = config.icon_path;
           identifiers.image = config.image_path;
-          identifiers.home_url = "http://www.bckmn.com";
+          identifiers.home_url = "http://www.andjosh.com";
           identifiers.first_name = config.first_name;
           identifiers.last_name = config.last_name;
           var years = moment().diff(config.birthdate, 'years'),
@@ -314,25 +313,12 @@ module.exports = function (app, io, ensureAuth) {
           identifiers.externals = externals;
           fullResponse.person = person;
           fullResponse.identifiers = identifiers;
-          if (posts && posts.length > 0) {
-            fullResponse.blog = {
-              rss: "http://words.andjosh.com/rss.xml",
-              latest: [
-                {
-                  title: posts[0].title,
-                  url: 'http://words.andjosh.com/post/'+posts[0].slug,
-                  date: posts[0].modified
-                }
-              ]
-            };
-          }
           fullResponse._links = {
             self: {
               href: "/"
             }
           };
           res.jsonp(fullResponse);
-        });
         request('http://www.google-analytics.com/collect?v=1&tid=UA-51342011-1&cid=555&t=pageview&dp=%2F&dh=api.andjosh.com&dt=API', function (err, resp, body){
           if (err){
             console.log(err);
