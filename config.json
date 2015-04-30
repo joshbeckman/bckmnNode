@@ -63,7 +63,7 @@
       "Ruby","JavaScript","Python","HTML","CSS","PHP","Go","Objective-C"
     ],
     "frameworks":[
-      "Rails","Node.js","Flask","d3js","WordPress","Jade","LESS","SASS","jQuery","Socket.io","Backbone", "Sinatra", "Connect/Express/Koajs", "OpenCV","ImageMagick"
+      "React","Rails","Node.js","Flask","d3js","WordPress","Jade","LESS","SASS","jQuery","Socket.io","Backbone", "Sinatra", "Connect/Express/Koajs", "OpenCV","ImageMagick"
     ],
     "databases":[
       "PostgreSQL","MongoDB","MySQL","Redis","ElasticSearch"
